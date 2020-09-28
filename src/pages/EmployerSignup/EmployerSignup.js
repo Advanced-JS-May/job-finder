@@ -3,7 +3,7 @@ import EmployerRegister from '../../components/EmployerRegister/EmployerRegister
 function EmployerSignup() {
   return (
     <>
-      <h1>Employer Signup</h1>;
+      <h1>Employer Sign Up</h1>;
       <EmployerRegister />
     </>
   );
