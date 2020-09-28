@@ -1,10 +1,11 @@
-import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import React from 'react';
+import { Switch, Route, Link } from 'react-router-dom';
 
-import Register from "../../pages/Register";
-import Login from "../../pages/Login";
-import Events from "../../pages/Events";
-import EmailVerification from "../../pages/EmailVerification";
+import EmployerSignup from '../../pages/EmployerSignup/EmployerSignup';
+import EmailVerification from '../../pages/EmailVerification/EmailVerification';
+import Signin from '../../pages/Signin/Signin';
+
+import Jobs from '../../pages/Jobs/Jobs';
 
 function UnauthenticatedApp() {
   return (
@@ -13,26 +14,42 @@ function UnauthenticatedApp() {
         <nav>
           <ul>
             <li>
-              <Link to="/register">Register</Link>
+              <Link to="/jobs">Jobs</Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/companies">Companies</Link>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              Employer
+              <ul>
+                <li>
+                  <Link to="/company/signup">Employer</Link>
+                </li>
+                <li>
+                  <Link to="/register">Job Seeker</Link>
+                </li>
+              </ul>
             </li>
             <li>
-              <Link to="/events">Events</Link>
+              <Link to="/login">Sign In</Link>
             </li>
           </ul>
         </nav>
 
         <Switch>
-          <Route path="/register">
-            <Register />
+          <Route path="/company/signup">
+            <EmployerSignup />
+          </Route>
+          <Route path="/company/register">
+            <EmployerSignup />
           </Route>
           <Route path="/login">
-            <Login />
+            <Signin />
           </Route>
-          <Route path="/events">
-            <Events />
+          <Route path="/jobs">
+            <Jobs />
           </Route>
           <Route path="/email-verification">
             <EmailVerification />
