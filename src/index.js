@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ProvideAuth } from './services/authentication';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <ProvideAuth>
+      <Router>
+        <App />
+      </Router>
+    </ProvideAuth>
   </React.StrictMode>,
   document.getElementById('root')
 );

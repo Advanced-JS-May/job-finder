@@ -1,50 +1,44 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
+/* UI */
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-
 import FacebookSvgIcon from '../FacebookSvgIcon/FacebookSvgIcon';
 import GoogleSvgIcon from '../GoogleSvgIcon/GoogleSvgIcon';
 
+import { useAuth } from '../../services/authentication';
+
 function EmployerRegister() {
-  const [name, setName] = useState('');
+  const { signup } = useAuth();
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-
-  const handleNameInput = ({ target: { value } }) => setName(value);
-
+  const [error, setError] = useState(null);
   const handleEmailInput = ({ target: { value } }) => setEmail(value);
-
   const handlePasswordInput = ({ target: { value } }) => setPassword(value);
-
   const handlePassword2Input = ({ target: { value } }) => setPassword2(value);
 
+  const handleRegister = () => {
+    signup(email, password)
+      .then((user) => {
+        history.push('/email-verification');
+      })
+      .catch(console.warn);
+  };
+  const isInvalid = password !== password2 || password === '' || email === '';
+  const handleFormCancel = () => history.push('/');
   return (
     <div>
       <form autoComplete="off">
-        {/* <section>
-          <label>Company's name</label>
-          <TextField
-            color="primary"
-            required
-            id="outlined-required"
-            label="Required"
-            variant="outlined"
-            onChange={handleNameInput}
-            value={name}
-            helperText=""
-            error={false}
-          />
-        </section> */}
         <section>
           <label>email</label>
           <TextField
             color="primary"
             required
-            id="outlined-required"
             label="Required"
             variant="outlined"
             helperText=""
@@ -59,7 +53,6 @@ function EmployerRegister() {
           <TextField
             color="primary"
             required
-            id="outlined-required"
             label="Required"
             variant="outlined"
             helperText=""
@@ -74,7 +67,6 @@ function EmployerRegister() {
           <TextField
             color="primary"
             required
-            id="outlined-required"
             label="Required"
             variant="outlined"
             helperText=""
@@ -85,15 +77,19 @@ function EmployerRegister() {
           />
         </section>
         <ButtonGroup aria-label="outlined primary button group">
-          <Button color="primary">Submit</Button>
-          <Button color="secondary">Cancel</Button>
+          <Button disabled={isInvalid} onClick={handleRegister} color="primary">
+            Submit
+          </Button>
+          <Button onClick={handleFormCancel} color="secondary">
+            Cancel
+          </Button>
         </ButtonGroup>
         <Divider />
         <ButtonGroup aria-label="outlined primary button group">
           <Button color="primary">
             <FacebookSvgIcon width="40" />
           </Button>
-          <Button color="secondary">
+          <Button color="primary">
             <GoogleSvgIcon width="40" />
           </Button>
         </ButtonGroup>
