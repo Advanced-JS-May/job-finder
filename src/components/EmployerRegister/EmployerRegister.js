@@ -9,6 +9,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import FacebookSvgIcon from '../FacebookSvgIcon/FacebookSvgIcon';
 import GoogleSvgIcon from '../GoogleSvgIcon/GoogleSvgIcon';
 
+/* firebase */
 import { useAuth } from '../../services/authentication';
 
 function EmployerRegister() {
@@ -27,8 +28,11 @@ function EmployerRegister() {
       .then((user) => {
         history.push('/email-verification');
       })
-      .catch(console.warn);
+      .catch((error) => {
+        setError(error.message);
+      });
   };
+
   const isInvalid = password !== password2 || password === '' || email === '';
   const handleFormCancel = () => history.push('/');
   return (
@@ -84,6 +88,7 @@ function EmployerRegister() {
             Cancel
           </Button>
         </ButtonGroup>
+        <p>{error}</p>
         <Divider />
         <ButtonGroup aria-label="outlined primary button group">
           <Button color="primary">

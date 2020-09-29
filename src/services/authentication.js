@@ -1,6 +1,9 @@
 import React, { createContext, useEffect, useContext, useState } from 'react';
 
-import firebase from '../libraries/firebase';
+import firebase, { database } from '../libraries/firebase';
+
+import { writeUserData } from '../Utils/writeUserData';
+import { ROLES } from '../constants/constants';
 
 const authContext = createContext();
 
@@ -42,7 +45,7 @@ function useProvideAuth() {
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
         // setUser(response.user);
-        return sendVerificationEmail(response.user);
+        sendVerificationEmail(response.user);
       });
   };
 
@@ -80,7 +83,14 @@ function useProvideAuth() {
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user && user.emailVerified) {
-        console.log(user);
+        const { uid, email } = user;
+        /* ANCHOR please give attention to this part */
+        /*    if ((window.location.pathname = '/company/signup')) { */
+        writeUserData(uid, email, ROLES.employer);
+        /*  } */
+
+        // console.log(user);
+        /* ANCHOR shourld we have this user data later or we must get it from the database */
         setUser(user);
       } else {
         setUser(false);

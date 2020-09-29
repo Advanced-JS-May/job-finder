@@ -4,6 +4,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 import EmployerSignup from '../../pages/EmployerSignup/EmployerSignup';
 import EmailVerification from '../../pages/EmailVerification/EmailVerification';
 import Signin from '../../pages/Signin/Signin';
+import Signup from '../../pages/Signup/Signup';
 
 import Jobs from '../../pages/Jobs/Jobs';
 
@@ -35,12 +36,18 @@ function UnauthenticatedApp() {
             <li>
               <Link to="/login">Sign In</Link>
             </li>
+            <li>
+              <Link to="/signup">Sign up</Link>
+            </li>
           </ul>
         </nav>
 
         <Switch>
           <Route path="/company/signup">
             <EmployerSignup />
+          </Route>
+          <Route path="/signup">
+            <Signup />
           </Route>
           <Route path="/company/register">
             <EmployerSignup />
