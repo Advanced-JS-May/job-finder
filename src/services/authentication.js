@@ -1,9 +1,8 @@
 import React, { createContext, useEffect, useContext, useState } from 'react';
 
-import firebase, { database } from '../libraries/firebase';
+import firebase from '../libraries/firebase';
 
-import { writeUserData } from '../Utils/writeUserData';
-import { ROLES } from '../constants/constants';
+import { writeUserData, getUsersById } from './writeUserData';
 
 const authContext = createContext();
 
@@ -39,13 +38,14 @@ function useProvideAuth() {
 
   const sendVerificationEmail = (user) => user.sendEmailVerification();
 
-  const signup = (email, password) => {
+  const signup = (email, password, role) => {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
-        // setUser(response.user);
-        sendVerificationEmail(response.user);
+        console.log(response.user);
+        writeUserData(response.user, role);
+        return sendVerificationEmail(response.user);
       });
   };
 
@@ -83,15 +83,14 @@ function useProvideAuth() {
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user && user.emailVerified) {
-        const { uid, email } = user;
-        /* ANCHOR please give attention to this part */
-        /*    if ((window.location.pathname = '/company/signup')) { */
-        writeUserData(uid, email, ROLES.employer);
-        /*  } */
-
-        // console.log(user);
-        /* ANCHOR shourld we have this user data later or we must get it from the database */
-        setUser(user);
+        getUsersById(user.uid).then((response) => {
+          writeUserData(
+            { ...response, emailVerified: user.emailVerified },
+            response.role
+          );
+          setUser(response);
+          return response;
+        });
       } else {
         setUser(false);
       }

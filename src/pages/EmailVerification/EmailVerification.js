@@ -1,59 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import Typography from '@material-ui/core/Typography';
+
+import { useHistory } from 'react-router-dom';
 
 import { useAuth } from '../../services/authentication';
-import { database } from '../../libraries/firebase';
 
-function EmailVerification() {
-  const [open, setOpen] = React.useState(true);
+export default function OutlinedCard() {
+  const history = useHistory();
   const { user } = useAuth();
-  // console.log(user);
-  function getEventById(id) {
-    return database
-      .ref('/user/' + id)
-      .once('value')
-      .then((snapshot) => snapshot.val());
-  }
-  let uid;
-  if (user) {
-    uid = user;
-  }
-  // console.log(uid);
-  // getEventById(uid).then((data) => console.log(data));
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleReload = () => {
+    if (user && user.emailVerified) {
+      history.push('/employer');
+    }
   };
-  const handleReload = () => {};
+  const [isDisplayed, setIsDisplayed] = useState(true);
+  const handleContainerDisplay = () => {
+    setIsDisplayed(false);
+  };
 
   return (
-    <div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+    <div
+      onClick={handleContainerDisplay}
+      style={{
+        display: isDisplayed ? 'flex' : 'none',
+        height: '100vh',
+        width: '100vw',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Card
+        style={{
+          boxShadow: '2px 2px 2px #848484, -2px -2px 2px #eeeeee',
+        }}
+        variant="outlined"
       >
-        <DialogTitle id="alert-dialog-title">{'Email is sent'}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Verify your E-Mail: Check you E-Mails (Spam folder included) for a
-            confirmation E-Mail or send another confirmation E-Mail.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
+        <CardContent>
+          <Typography variant="h6" component="h2">
+            Verify your E-Mail
+          </Typography>
+          <Typography variant="body1" component="p">
+            Check you E-Mails (Spam folder included) for a confirmation E-Mail
+          </Typography>
+          <Typography color="textSecondary" variant="body2" component="p">
+            After verification, please reload this page
+          </Typography>
+        </CardContent>
+        <CardActions>
           <Button onClick={handleReload} color="primary" autoFocus>
             Reload
           </Button>
-        </DialogActions>
-      </Dialog>
+        </CardActions>
+      </Card>
     </div>
   );
 }
-
-export default EmailVerification;

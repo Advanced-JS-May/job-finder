@@ -7,6 +7,7 @@ import Signin from '../../pages/Signin/Signin';
 import Signup from '../../pages/Signup/Signup';
 
 import Jobs from '../../pages/Jobs/Jobs';
+import './unauthenticated.css';
 
 function UnauthenticatedApp() {
   return (

@@ -20,7 +20,19 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box>{children}</Box>}
+      {value === index && (
+        <Box
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          m={3}
+        >
+          {children}
+        </Box>
+      )}
     </div>
   );
 }
@@ -38,16 +50,27 @@ function a11yProps(index) {
   };
 }
 
-export default function SimpleTabs({ value, onChange }) {
+export default function SimpleTabs() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (_event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <div>
-      <Tabs value={value} onChange={onChange} aria-label="simple tabs example">
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="simple tabs example"
+      >
         <Tab label="Employer" {...a11yProps(0)} />
         <Tab label="Job-seeker" {...a11yProps(1)} />
       </Tabs>
 
       <TabPanel value={value} index={0}>
         <h2>Employer</h2>
+
         <EmployerRegister />
       </TabPanel>
       <TabPanel value={value} index={1}>
