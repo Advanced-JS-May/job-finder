@@ -8,6 +8,7 @@ import Box from '@material-ui/core/Box';
 
 /* Components */
 import EmployerRegister from '../EmployerRegister/EmployerRegister';
+import JobSeekerRegister from '../JobSeekerRegister/JobSeekRegister';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,6 +76,7 @@ export default function SimpleTabs() {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <h2>Job-seeker</h2>
+        <JobSeekerRegister />
       </TabPanel>
     </div>
   );

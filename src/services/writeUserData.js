@@ -1,6 +1,6 @@
 import firebase, { database } from '../libraries/firebase';
 
-export function writeUserData({ uid, email, emailVerified }, role) {
+export function writeUserData({ uid, email, emailVerified }, role = '') {
   firebase
     .database()
     .ref('users/' + uid)

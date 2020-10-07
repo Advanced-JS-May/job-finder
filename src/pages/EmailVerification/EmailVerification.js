@@ -1,37 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import { useHistory } from 'react-router-dom';
 
 import { useAuth } from '../../services/authentication';
+import { ROLES } from '../../constants/constants';
 
 export default function OutlinedCard() {
   const history = useHistory();
   const { user } = useAuth();
-
-  const handleReload = () => {
-    if (user && user.emailVerified) {
-      history.push('/employer');
-    }
-  };
   const [isDisplayed, setIsDisplayed] = useState(true);
-  const handleContainerDisplay = () => {
-    setIsDisplayed(false);
-  };
 
-  return (
+  useEffect(() => {
+    if (user && user.emailVerified) {
+      setIsDisplayed(false);
+      if (user.role === ROLES.employer) {
+        history.push('/employer');
+      } else {
+        history.push('/');
+      }
+    }
+  }, [history, user]);
+
+  return user && user.emailVerified ? (
+    <LinearProgress />
+  ) : (
     <div
-      onClick={handleContainerDisplay}
       style={{
         display: isDisplayed ? 'flex' : 'none',
-        height: '100vh',
+        height: '80vh',
         width: '100vw',
         position: 'absolute',
-        top: 0,
+        top: '20vh',
         left: 0,
         justifyContent: 'center',
         alignItems: 'center',
@@ -54,11 +59,6 @@ export default function OutlinedCard() {
             After verification, please reload this page
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button onClick={handleReload} color="primary" autoFocus>
-            Reload
-          </Button>
-        </CardActions>
       </Card>
     </div>
   );
