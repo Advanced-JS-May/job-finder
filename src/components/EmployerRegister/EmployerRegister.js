@@ -6,8 +6,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Box from '@material-ui/core/Box';
-// import FacebookSvgIcon from '../FacebookSvgIcon/FacebookSvgIcon';
-// import GoogleSvgIcon from '../GoogleSvgIcon/GoogleSvgIcon';
 
 /* firebase */
 import { useAuth } from '../../services/authentication';
@@ -111,34 +109,6 @@ function EmployerRegister() {
         </ButtonGroup>
         <p>{error}</p>
       </form>
-      <ButtonGroup
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-        aria-label="outlined primary button group"
-      >
-        <Button
-          style={{
-            margin: '0 0 10px',
-            border: '1px solid',
-            padding: 15,
-          }}
-          color="primary"
-        >
-          Sign up with FaceBook
-        </Button>
-        <Button
-          style={{
-            margin: '0 0 10px',
-            border: '1px solid',
-            padding: 15,
-          }}
-          color="primary"
-        >
-          Sign up with Google
-        </Button>
-      </ButtonGroup>
     </Box>
   );
 }
