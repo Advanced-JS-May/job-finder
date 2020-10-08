@@ -1,15 +1,15 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
-
 import EmployerSignup from '../../pages/EmployerSignup/EmployerSignup';
 import EmailVerification from '../../pages/EmailVerification/EmailVerification';
-import Signin from '../../pages/Signin/Signin';
+import SignIn from '../../pages/SignIn/SignIn';
 import Signup from '../../pages/Signup/Signup';
 
 import Jobs from '../../pages/Jobs/Jobs';
-import './unauthenticated.css';
+
 
 function UnauthenticatedApp() {
+
   return (
     <div>
       <div>
@@ -54,7 +54,7 @@ function UnauthenticatedApp() {
             <EmployerSignup />
           </Route>
           <Route path="/login">
-            <Signin />
+            <SignIn />
           </Route>
           <Route path="/jobs">
             <Jobs />
