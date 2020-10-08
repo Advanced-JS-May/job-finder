@@ -7,9 +7,7 @@ import Signup from '../../pages/Signup/Signup';
 
 import Jobs from '../../pages/Jobs/Jobs';
 
-
 function UnauthenticatedApp() {
-
   return (
     <div>
       <div>
