@@ -10,7 +10,7 @@ export default function FacebookButton() {
   const history = useHistory();
 
   function signInWithFacebook() {
-    authWithFacebook(ROLES.employer)
+    authWithFacebook(ROLES.user)
       .then((user) => {
         if (user) {
           history.push("/");

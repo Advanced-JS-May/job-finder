@@ -10,7 +10,7 @@ export default function GoogleButton() {
   const history = useHistory();
 
   function signInWithGoogle() {
-    authWithGoogle(ROLES.employer)
+    authWithGoogle(ROLES.user)
       .then((user) => {
         if (user) {
           history.push("/");
