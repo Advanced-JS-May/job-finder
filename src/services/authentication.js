@@ -1,8 +1,8 @@
-import React, { createContext, useEffect, useContext, useState } from 'react';
+import React, { createContext, useEffect, useContext, useState } from "react";
 
-import firebase from '../libraries/firebase';
+import firebase from "../libraries/firebase";
 
-import { writeUserData, getUsersById } from './writeUserData';
+import { writeUserData, getUsersById } from "./writeUserData";
 
 const authContext = createContext();
 
@@ -36,6 +36,29 @@ function useProvideAuth() {
       });
   };
 
+  const authWithGoogle = (role) => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    return firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(function (result) {
+        writeUserData(result.user, role);
+        return result.user;
+      });
+  };
+
+  const authWithFacebook = (role) => {
+    let provider = new firebase.auth.FacebookAuthProvider();
+
+    return firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(function (result) {
+        writeUserData(result.user, role);
+        return result.user;
+      });
+  };
   const sendVerificationEmail = (user) => user.sendEmailVerification();
 
   const signup = (email, password, role) => {
@@ -106,6 +129,8 @@ function useProvideAuth() {
     signin,
     signup,
     signout,
+    authWithGoogle,
+    authWithFacebook,
     // sendPasswordResetEmail,
     // confirmPasswordReset,
   };
