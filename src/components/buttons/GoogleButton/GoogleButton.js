@@ -18,6 +18,7 @@ export default function GoogleButton() {
       })
       .catch((error) => console.log(error));
   }
+
   return (
     <Button
       variant="outlined"

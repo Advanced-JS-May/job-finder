@@ -14,14 +14,18 @@ import { USER_ROLES } from '../../constants/user.constants';
 function EmployerRegister() {
   const { signup } = useAuth();
   const history = useHistory();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [error, setError] = useState(null);
+
   const handleEmailInput = ({ target: { value } }) => setEmail(value);
   const handlePasswordInput = ({ target: { value } }) => setPassword(value);
   const handlePasswordConfirmationInput = ({ target: { value } }) =>
     setPasswordConfirm(value);
+
+  const handleFormCancel = () => history.push('/');
 
   const handleRegister = () => {
     signup(email, password, USER_ROLES.employer)
@@ -36,7 +40,7 @@ function EmployerRegister() {
 
   const isInvalid =
     password !== passwordConfirm || password === '' || email === '';
-  const handleFormCancel = () => history.push('/');
+
   return (
     <Box style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
       <form

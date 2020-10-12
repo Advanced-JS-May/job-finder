@@ -5,13 +5,14 @@ import GoogleButton from '../buttons/GoogleButton/GoogleButton';
 import FacebookButton from '../buttons/FacebookButton/FacebookButton';
 
 export default function EmployeeSignIn() {
+  const history = useHistory();
+
   const [email, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const { signin } = useAuth();
 
   const handleLoginUpdate = ({ target: { value } }) => setLogin(value);
   const handlePasswordUpdate = ({ target: { value } }) => setPassword(value);
-  const history = useHistory();
 
   const handleLogin = () => {
     signin(email, password)

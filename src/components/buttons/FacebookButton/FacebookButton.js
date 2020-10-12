@@ -18,6 +18,7 @@ export default function FacebookButton() {
       })
       .catch((error) => console.log(error));
   }
+
   return (
     <Button
       variant="outlined"
