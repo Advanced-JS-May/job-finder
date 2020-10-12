@@ -21,7 +21,7 @@ export default function OutlinedCard() {
   useEffect(() => {
     if (user && user.emailVerified) {
       if (user.role === USER_ROLES.employer) {
-        history.push('/employer');
+        history.push(`/companies/${user.uid}/edit/`);
       } else {
         history.push('/');
       }
