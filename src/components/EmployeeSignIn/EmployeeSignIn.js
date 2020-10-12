@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../services/authentication';
-import GoogleButton from '../GoogleButton/GoogleButton';
-import FacebookButton from '../FacebookButton/FacebookButton';
+import GoogleButton from '../buttons/GoogleButton/GoogleButton';
+import FacebookButton from '../buttons/FacebookButton/FacebookButton';
 
 export default function EmployeeSignIn() {
   const [email, setLogin] = useState('');

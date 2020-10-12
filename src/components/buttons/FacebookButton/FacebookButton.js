@@ -1,16 +1,16 @@
 import React from 'react';
-import GoogleSvgIcon from '../GoogleSvgIcon/GoogleSvgIcon';
+import FacebookSvgIcon from '../../icons/FacebookSvgIcon/FacebookSvgIcon';
 import Button from '@material-ui/core/Button';
-import { useAuth } from '../../services/authentication';
+import { useAuth } from '../../../services/authentication';
 import { useHistory } from 'react-router-dom';
-import { USER_ROLES } from '../../constants/constants';
+import { USER_ROLES } from '../../../constants/constants';
 
-export default function GoogleButton() {
-  const { authWithGoogle } = useAuth();
+export default function FacebookButton() {
+  const { authWithFacebook } = useAuth();
   const history = useHistory();
 
-  function signInWithGoogle() {
-    authWithGoogle(USER_ROLES.user)
+  function signInWithFacebook() {
+    authWithFacebook(USER_ROLES.user)
       .then((user) => {
         if (user) {
           history.push('/');
@@ -22,7 +22,7 @@ export default function GoogleButton() {
     <Button
       variant="outlined"
       color="primary"
-      onClick={signInWithGoogle}
+      onClick={signInWithFacebook}
       style={{
         display: 'flex',
         alignItems: 'center',
@@ -30,8 +30,8 @@ export default function GoogleButton() {
         width: '220px',
       }}
     >
-      <GoogleSvgIcon width="20" />
-      <span>sign In with Google</span>
+      <FacebookSvgIcon width="20" />
+      <span>sign In with Facebook</span>
     </Button>
   );
 }

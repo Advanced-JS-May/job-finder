@@ -6,8 +6,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Box from '@material-ui/core/Box';
-import FacebookButton from '../FacebookButton/FacebookButton';
-import GoogleButton from '../GoogleButton/GoogleButton';
+import FacebookButton from '../buttons/FacebookButton/FacebookButton';
+import GoogleButton from '../buttons/GoogleButton/GoogleButton';
 
 /* firebase */
 import { useAuth } from '../../services/authentication';
