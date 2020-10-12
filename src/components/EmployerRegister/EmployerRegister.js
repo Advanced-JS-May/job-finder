@@ -1,45 +1,50 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import { useFormik } from 'formik';
 /* UI */
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Box from '@material-ui/core/Box';
-
 /* Authentication */
 import { useAuth } from '../../services/authentication';
 import { USER_ROLES } from '../../constants/user.constants';
+/* validation */
+import validate from '../../Utils/validate.helper';
 
 function EmployerRegister() {
   const { signup } = useAuth();
   const history = useHistory();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [error, setError] = useState(null);
 
-  const handleEmailInput = ({ target: { value } }) => setEmail(value);
-  const handlePasswordInput = ({ target: { value } }) => setPassword(value);
-  const handlePasswordConfirmationInput = ({ target: { value } }) =>
-    setPasswordConfirm(value);
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      passwordConfirm: '',
+    },
+    validate,
+    onSubmit: ({ email, password }) => {
+      signup(email, password, USER_ROLES.employer)
+        .then(() => {
+          history.push('/email-verification');
+        })
+        .catch((error) => {
+          console.log(error);
+          setError(error.message);
+        });
+    },
+  });
 
-  const handleFormCancel = () => history.push('/');
+  const emailCheck = formik.touched.email && formik.errors.email ? true : false;
 
-  const handleRegister = () => {
-    signup(email, password, USER_ROLES.employer)
-      .then((user) => {
-        history.push('/email-verification');
-      })
-      .catch((error) => {
-        console.log(error);
-        setError(error.message);
-      });
-  };
+  const passwordCHeck =
+    formik.touched.password && formik.errors.password ? true : false;
 
-  const isInvalid =
-    password !== passwordConfirm || password === '' || email === '';
+  const passwordConfirmCheck =
+    formik.touched.passwordConfirm && formik.errors.passwordConfirm
+      ? true
+      : false;
 
   return (
     <Box style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
@@ -48,71 +53,68 @@ function EmployerRegister() {
         autoComplete="off"
       >
         <TextField
-          color="primary"
-          required
-          label="email"
-          variant="outlined"
-          helperText=""
-          error={false}
-          onChange={handleEmailInput}
-          value={email}
           type="email"
+          name="email"
+          error={emailCheck}
+          value={formik.values.email}
+          label={emailCheck ? formik.errors.email : 'email'}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          required
+          color="primary"
+          variant="outlined"
           style={{
             margin: '0 0 10px',
           }}
         />
 
         <TextField
+          type="password"
+          name="password"
+          error={passwordCHeck}
+          value={formik.values.password}
+          label={passwordCHeck ? formik.errors.password : 'password'}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          variant="outlined"
           color="primary"
           required
-          label="password"
-          variant="outlined"
-          helperText=""
-          error={false}
-          onChange={handlePasswordInput}
-          value={password}
-          type="password"
           style={{
             margin: '0 0 10px',
           }}
         />
 
         <TextField
+          type="password"
+          name="passwordConfirm"
+          error={passwordConfirmCheck}
+          label={
+            passwordConfirmCheck
+              ? formik.errors.passwordConfirm
+              : 'confirm password'
+          }
+          value={formik.values.passwordConfirm}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          variant="outlined"
           color="primary"
           required
-          label="confirm password"
-          variant="outlined"
-          helperText=""
-          error={false}
-          onChange={handlePasswordConfirmationInput}
-          value={passwordConfirm}
-          type="password"
           style={{
             margin: '0 0 10px',
           }}
         />
 
-        <ButtonGroup
+        <Button
           style={{
-            display: 'flex',
-            justifyContent: 'center',
+            flexGrow: 1,
           }}
-          aria-label="outlined primary button group"
+          onClick={formik.onSubmit}
+          color="primary"
+          variant="outlined"
         >
-          <Button
-            style={{
-              flexGrow: 1,
-            }}
-            disabled={isInvalid}
-            onClick={handleRegister}
-            color="primary"
-          >
-            Submit
-          </Button>
-          <Button onClick={handleFormCancel} color="secondary">
-            Cancel
-          </Button>
-        </ButtonGroup>
+          Submit
+        </Button>
+
         <p>{error}</p>
       </form>
     </Box>
