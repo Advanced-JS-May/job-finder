@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box';
 import FacebookButton from '../buttons/FacebookButton/FacebookButton';
 import GoogleButton from '../buttons/GoogleButton/GoogleButton';
 
-/* firebase */
+/* Authentication */
 import { useAuth } from '../../services/authentication';
 import { USER_ROLES } from '../../constants/user.constants';
 

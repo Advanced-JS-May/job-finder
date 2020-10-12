@@ -1,8 +1,5 @@
 import React, { createContext, useEffect, useContext, useState } from 'react';
-
 import firebase from '../libraries/firebase';
-
-// import { writeUserData, getUsersById } from './writeUserData';
 import { createUser, getUsersById } from './user';
 
 const authContext = createContext();

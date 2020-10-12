@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
@@ -14,11 +12,14 @@ import { USER_ROLES } from '../../constants/user.constants';
 export default function OutlinedCard() {
   const history = useHistory();
   const { user } = useAuth();
-  const [isDisplayed, setIsDisplayed] = useState(true);
+
+  let isUserVerified;
+  if (user) {
+    isUserVerified = user && user.emailVerified;
+  }
 
   useEffect(() => {
     if (user && user.emailVerified) {
-      setIsDisplayed(false);
       if (user.role === USER_ROLES.employer) {
         history.push('/employer');
       } else {
@@ -32,7 +33,7 @@ export default function OutlinedCard() {
   ) : (
     <div
       style={{
-        display: isDisplayed ? 'flex' : 'none',
+        display: isUserVerified ? 'flex' : 'none',
         height: '80vh',
         width: '100vw',
         position: 'absolute',

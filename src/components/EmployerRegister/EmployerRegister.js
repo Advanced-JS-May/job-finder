@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Box from '@material-ui/core/Box';
 
-/* firebase */
+/* Authentication */
 import { useAuth } from '../../services/authentication';
 import { USER_ROLES } from '../../constants/user.constants';
 
