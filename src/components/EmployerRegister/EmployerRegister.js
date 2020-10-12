@@ -49,6 +49,7 @@ function EmployerRegister() {
   return (
     <Box style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
       <form
+        onSubmit={formik.handleSubmit}
         style={{ display: 'flex', flexDirection: 'column', marginRight: 20 }}
         autoComplete="off"
       >
@@ -105,10 +106,11 @@ function EmployerRegister() {
         />
 
         <Button
+          type="submit"
           style={{
             flexGrow: 1,
           }}
-          onClick={formik.onSubmit}
+          onClick={formik.handleSubmit}
           color="primary"
           variant="outlined"
         >
