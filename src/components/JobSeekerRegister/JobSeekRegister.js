@@ -11,7 +11,7 @@ import GoogleButton from '../buttons/GoogleButton/GoogleButton';
 
 /* firebase */
 import { useAuth } from '../../services/authentication';
-import { USER_ROLES } from '../../constants/constants';
+import { USER_ROLES } from '../../constants/user.constants';
 
 function EmployerRegister() {
   const { signup } = useAuth();

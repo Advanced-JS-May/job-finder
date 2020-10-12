@@ -3,7 +3,7 @@ import GoogleSvgIcon from '../../icons/GoogleSvgIcon/GoogleSvgIcon';
 import Button from '@material-ui/core/Button';
 import { useAuth } from '../../../services/authentication';
 import { useHistory } from 'react-router-dom';
-import { USER_ROLES } from '../../../constants/constants';
+import { USER_ROLES } from '../../../constants/user.constants';
 
 export default function GoogleButton() {
   const { authWithGoogle } = useAuth();

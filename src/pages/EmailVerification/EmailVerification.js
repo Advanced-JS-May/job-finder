@@ -9,7 +9,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { useHistory } from 'react-router-dom';
 
 import { useAuth } from '../../services/authentication';
-import { USER_ROLES } from '../../constants/constants';
+import { USER_ROLES } from '../../constants/user.constants';
 
 export default function OutlinedCard() {
   const history = useHistory();
