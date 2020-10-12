@@ -18,11 +18,12 @@ function EmployerRegister() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [error, setError] = useState(null);
   const handleEmailInput = ({ target: { value } }) => setEmail(value);
   const handlePasswordInput = ({ target: { value } }) => setPassword(value);
-  const handlePassword2Input = ({ target: { value } }) => setPassword2(value);
+  const handlePasswordConfirmationInput = ({ target: { value } }) =>
+    setPasswordConfirm(value);
 
   const handleRegister = () => {
     signup(email, password, USER_ROLES.user)
@@ -35,7 +36,8 @@ function EmployerRegister() {
       });
   };
 
-  const isInvalid = password !== password2 || password === '' || email === '';
+  const isInvalid =
+    password !== passwordConfirm || password === '' || email === '';
   const handleFormCancel = () => history.push('/');
   return (
     <Box style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
@@ -80,8 +82,8 @@ function EmployerRegister() {
           variant="outlined"
           helperText=""
           error={false}
-          onChange={handlePassword2Input}
-          value={password2}
+          onChange={handlePasswordConfirmationInput}
+          value={passwordConfirm}
           type="password"
           style={{
             margin: '0 0 10px',
