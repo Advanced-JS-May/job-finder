@@ -11,7 +11,7 @@ import GoogleButton from '../GoogleButton/GoogleButton';
 
 /* firebase */
 import { useAuth } from '../../services/authentication';
-import { ROLES } from '../../constants/constants';
+import { USER_ROLES } from '../../constants/constants';
 
 function EmployerRegister() {
   const { signup } = useAuth();
@@ -25,7 +25,7 @@ function EmployerRegister() {
   const handlePassword2Input = ({ target: { value } }) => setPassword2(value);
 
   const handleRegister = () => {
-    signup(email, password, ROLES.user)
+    signup(email, password, USER_ROLES.user)
       .then((user) => {
         history.push('/email-verification');
       })

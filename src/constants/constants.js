@@ -1,4 +1,4 @@
-export const ROLES = {
+export const USER_ROLES = {
   employer: 'EMPLOYER',
   user: '',
 };

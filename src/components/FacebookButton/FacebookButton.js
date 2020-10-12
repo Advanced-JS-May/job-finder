@@ -1,19 +1,19 @@
-import React from "react";
-import FacebookSvgIcon from "../FacebookSvgIcon/FacebookSvgIcon";
-import Button from "@material-ui/core/Button";
-import { useAuth } from "../../services/authentication";
-import { useHistory } from "react-router-dom";
-import { ROLES } from "../../constants/constants";
+import React from 'react';
+import FacebookSvgIcon from '../FacebookSvgIcon/FacebookSvgIcon';
+import Button from '@material-ui/core/Button';
+import { useAuth } from '../../services/authentication';
+import { useHistory } from 'react-router-dom';
+import { USER_ROLES } from '../../constants/constants';
 
 export default function FacebookButton() {
   const { authWithFacebook } = useAuth();
   const history = useHistory();
 
   function signInWithFacebook() {
-    authWithFacebook(ROLES.user)
+    authWithFacebook(USER_ROLES.user)
       .then((user) => {
         if (user) {
-          history.push("/");
+          history.push('/');
         }
       })
       .catch((error) => console.log(error));
@@ -24,10 +24,10 @@ export default function FacebookButton() {
       color="primary"
       onClick={signInWithFacebook}
       style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        width: "220px",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '220px',
       }}
     >
       <FacebookSvgIcon width="20" />

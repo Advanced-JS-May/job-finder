@@ -9,7 +9,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { useHistory } from 'react-router-dom';
 
 import { useAuth } from '../../services/authentication';
-import { ROLES } from '../../constants/constants';
+import { USER_ROLES } from '../../constants/constants';
 
 export default function OutlinedCard() {
   const history = useHistory();
@@ -19,7 +19,7 @@ export default function OutlinedCard() {
   useEffect(() => {
     if (user && user.emailVerified) {
       setIsDisplayed(false);
-      if (user.role === ROLES.employer) {
+      if (user.role === USER_ROLES.employer) {
         history.push('/employer');
       } else {
         history.push('/');
