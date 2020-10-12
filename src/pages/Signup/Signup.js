@@ -1,5 +1,4 @@
 import React from 'react';
-
 import SimpleTabs from '../../components/Tabs/Tabs';
 
 function Signup() {

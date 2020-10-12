@@ -1,8 +1,6 @@
-import React, { createContext, useEffect, useContext, useState } from "react";
-
-import firebase from "../libraries/firebase";
-
-import { writeUserData, getUsersById } from "./writeUserData";
+import React, { createContext, useEffect, useContext, useState } from 'react';
+import firebase from '../libraries/firebase';
+import { createUser, getUsersById } from './user';
 
 const authContext = createContext();
 
@@ -43,7 +41,7 @@ function useProvideAuth() {
       .auth()
       .signInWithPopup(provider)
       .then(function (result) {
-        writeUserData(result.user, role);
+        createUser(result.user, role);
         return result.user;
       });
   };
@@ -55,7 +53,7 @@ function useProvideAuth() {
       .auth()
       .signInWithPopup(provider)
       .then(function (result) {
-        writeUserData(result.user, role);
+        createUser(result.user, role);
         return result.user;
       });
   };
@@ -67,7 +65,7 @@ function useProvideAuth() {
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
         console.log(response.user);
-        writeUserData(response.user, role);
+        createUser(response.user, role);
         return sendVerificationEmail(response.user);
       });
   };
@@ -107,7 +105,7 @@ function useProvideAuth() {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user && user.emailVerified) {
         getUsersById(user.uid).then((response) => {
-          writeUserData(
+          createUser(
             { ...response, emailVerified: user.emailVerified },
             response.role
           );

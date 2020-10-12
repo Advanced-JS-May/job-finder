@@ -6,26 +6,29 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Box from '@material-ui/core/Box';
-// import FacebookSvgIcon from '../FacebookSvgIcon/FacebookSvgIcon';
-// import GoogleSvgIcon from '../GoogleSvgIcon/GoogleSvgIcon';
 
-/* firebase */
+/* Authentication */
 import { useAuth } from '../../services/authentication';
-import { ROLES } from '../../constants/constants';
+import { USER_ROLES } from '../../constants/user.constants';
 
 function EmployerRegister() {
   const { signup } = useAuth();
   const history = useHistory();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [error, setError] = useState(null);
+
   const handleEmailInput = ({ target: { value } }) => setEmail(value);
   const handlePasswordInput = ({ target: { value } }) => setPassword(value);
-  const handlePassword2Input = ({ target: { value } }) => setPassword2(value);
+  const handlePasswordConfirmationInput = ({ target: { value } }) =>
+    setPasswordConfirm(value);
+
+  const handleFormCancel = () => history.push('/');
 
   const handleRegister = () => {
-    signup(email, password, ROLES.employer)
+    signup(email, password, USER_ROLES.employer)
       .then((user) => {
         history.push('/email-verification');
       })
@@ -35,8 +38,9 @@ function EmployerRegister() {
       });
   };
 
-  const isInvalid = password !== password2 || password === '' || email === '';
-  const handleFormCancel = () => history.push('/');
+  const isInvalid =
+    password !== passwordConfirm || password === '' || email === '';
+
   return (
     <Box style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
       <form
@@ -80,8 +84,8 @@ function EmployerRegister() {
           variant="outlined"
           helperText=""
           error={false}
-          onChange={handlePassword2Input}
-          value={password2}
+          onChange={handlePasswordConfirmationInput}
+          value={passwordConfirm}
           type="password"
           style={{
             margin: '0 0 10px',
@@ -111,34 +115,6 @@ function EmployerRegister() {
         </ButtonGroup>
         <p>{error}</p>
       </form>
-      <ButtonGroup
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-        aria-label="outlined primary button group"
-      >
-        <Button
-          style={{
-            margin: '0 0 10px',
-            border: '1px solid',
-            padding: 15,
-          }}
-          color="primary"
-        >
-          Sign up with FaceBook
-        </Button>
-        <Button
-          style={{
-            margin: '0 0 10px',
-            border: '1px solid',
-            padding: 15,
-          }}
-          color="primary"
-        >
-          Sign up with Google
-        </Button>
-      </ButtonGroup>
     </Box>
   );
 }

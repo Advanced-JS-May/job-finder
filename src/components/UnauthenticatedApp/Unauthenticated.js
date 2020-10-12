@@ -22,17 +22,6 @@ function UnauthenticatedApp() {
           </ul>
           <ul>
             <li>
-              Employer
-              <ul>
-                <li>
-                  <Link to="/company/signup">Employer</Link>
-                </li>
-                <li>
-                  <Link to="/register">Job Seeker</Link>
-                </li>
-              </ul>
-            </li>
-            <li>
               <Link to="/login">Sign In</Link>
             </li>
             <li>
