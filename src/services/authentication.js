@@ -21,7 +21,7 @@ export const useAuth = () => {
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
   const [user, setUser] = useState(null);
-
+  
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
   const signin = (email, password) => {
@@ -64,10 +64,9 @@ function useProvideAuth() {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
-        console.log(response.user);
         createUser(response.user, role);
         return sendVerificationEmail(response.user);
-      });
+      } );
   };
 
   const signout = () => {

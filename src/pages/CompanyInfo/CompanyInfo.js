@@ -5,11 +5,12 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Button from '@material-ui/core/Button';
 import { uniqueId } from "lodash";
 import { createCompany } from '../../services/company';
-
+import {useAuth} from '../../services/authentication'
 
 export default function Company () {
 
 const [company,setCompany]=useState({})
+const {user}=useAuth();
 
 
 const handleCompanyInput = ({ target:{ value,name } })=> {
@@ -17,12 +18,15 @@ const handleCompanyInput = ({ target:{ value,name } })=> {
      ...e,
      [name]:value,
      id:uniqueId(),
+     uid:user.uid,
    }))
 };
 
 const handleCreateCompany =()=>{
   createCompany(company)
 }
+
+
 
 
 return (

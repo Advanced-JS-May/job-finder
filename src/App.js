@@ -1,24 +1,20 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
-<<<<<<< HEAD
-import './App.css';
-/* import AuthenticatedApp from './components/AuthenticatedApp/AuthenticatedApp'; */
-import UnauthenticatedApp from './components/UnauthenticatedApp/Unauthenticated';
-import CompanyInfo from './pages/CompanyInfo/CompanyInfo';
+import CompanyInfo from './pages/CompanyInfo/CompanyInfo'
+/* components */
+import EmployerSignup from './pages/EmployerSignup/EmployerSignup';
+import EmailVerification from './pages/EmailVerification/EmailVerification';
+import SignIn from './pages/SignIn/SignIn';
+import Signup from './pages/Signup/Signup';
+import Navbar from './components/Navbar/Navbar';
 
 import Jobs from './pages/Jobs/Jobs';
->>>>>>> e45ecd74c131f3c8476ac946c379a493e66ef3f0
 
 function App() {
   return (
     <div className="App">
       <header>
-        <UnauthenticatedApp />
-        <CompanyInfo />
-=======
         <Navbar />
-
         <Switch>
           <Route path="/company/signup">
             <EmployerSignup />
@@ -38,8 +34,10 @@ function App() {
           <Route path="/email-verification">
             <EmailVerification />
           </Route>
+          <Route path="/companies">
+            <CompanyInfo />
+          </Route>
         </Switch>
->>>>>>> e45ecd74c131f3c8476ac946c379a493e66ef3f0
       </header>
     </div>
   );
