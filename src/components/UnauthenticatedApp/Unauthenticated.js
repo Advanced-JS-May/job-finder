@@ -4,7 +4,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 import EmployerSignup from '../../pages/EmployerSignup/EmployerSignup';
 import EmailVerification from '../../pages/EmailVerification/EmailVerification';
 import Signin from '../../pages/Signin/Signin';
-
+import Home from '../../pages/Home/Home'
 import Jobs from '../../pages/Jobs/Jobs';
 
 function UnauthenticatedApp() {
@@ -13,6 +13,9 @@ function UnauthenticatedApp() {
       <div>
         <nav>
           <ul>
+            <li>
+              <Link to="/home">Home</Link>
+            </li>
             <li>
               <Link to="/jobs">Jobs</Link>
             </li>
@@ -39,6 +42,9 @@ function UnauthenticatedApp() {
         </nav>
 
         <Switch>
+          <Route path="/home">
+            <Home />
+          </Route>
           <Route path="/company/signup">
             <EmployerSignup />
           </Route>

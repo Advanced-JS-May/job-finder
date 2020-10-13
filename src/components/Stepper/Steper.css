@@ -1,0 +1,32 @@
+.title__home-how {
+	color: #690;
+	text-align: center;
+}
+.stepper-container-home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 10%;
+  margin-bottom: 100px;
+}
+.stepper-container-home div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.stepper-container-home .step-lines {
+  width: 30%;
+  height: 1px;
+  background-color: #690;
+  margin: 0 10px;
+}
+.stepper-container-home span {
+  margin: 5px 0;
+  color: #690;
+}
+.text-in-circles {
+  fill: #fff;
+}
