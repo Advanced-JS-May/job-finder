@@ -4,7 +4,10 @@ import { useFormik } from 'formik';
 /* UI */
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Box from '@material-ui/core/Box';
+import FacebookButton from '../buttons/FacebookButton/FacebookButton';
+import GoogleButton from '../buttons/GoogleButton/GoogleButton';
 /* Authentication */
 import { useAuth } from '../../services/authentication';
 import { USER_ROLES } from '../../constants/user.constants';
@@ -25,7 +28,7 @@ function EmployerRegister() {
     },
     validate,
     onSubmit: ({ email, password }) => {
-      signup(email, password, USER_ROLES.employer)
+      signup(email, password, USER_ROLES.user)
         .then(() => {
           history.push('/email-verification');
         })
@@ -61,9 +64,9 @@ function EmployerRegister() {
           label={emailCheck ? formik.errors.email : 'email'}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          required
-          color="primary"
           variant="outlined"
+          color="primary"
+          required
           style={{
             margin: '0 0 10px',
           }}
@@ -97,28 +100,34 @@ function EmployerRegister() {
           value={formik.values.passwordConfirm}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          variant="outlined"
-          color="primary"
           required
+          color="primary"
+          variant="outlined"
           style={{
             margin: '0 0 10px',
           }}
         />
-
         <Button
           type="submit"
-          style={{
-            flexGrow: 1,
-          }}
-          onClick={formik.handleSubmit}
           color="primary"
           variant="outlined"
+          onClick={formik.onSubmit}
         >
           Submit
         </Button>
 
         <p>{error}</p>
       </form>
+      <ButtonGroup
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+        aria-label="outlined primary button group"
+      >
+        <GoogleButton />
+        <FacebookButton />
+      </ButtonGroup>
     </Box>
   );
 }

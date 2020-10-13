@@ -12,6 +12,8 @@ const {
   REACT_APP_APP_ID,
 } = process.env;
 
+
+
 const firebaseConfig = {
   apiKey: REACT_APP_API_KEY,
   authDomain: REACT_APP_AUTH_DOMAIN,
@@ -21,6 +23,7 @@ const firebaseConfig = {
   messagingSenderId: REACT_APP_MESSAGING_SENDER_ID,
   appId: REACT_APP_APP_ID,
 };
+
 
 firebase.initializeApp(firebaseConfig);
 

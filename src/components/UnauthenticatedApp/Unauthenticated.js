@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Switch, Route, Link } from 'react-router-dom';
 
 import EmployerSignup from '../../pages/EmployerSignup/EmployerSignup';
@@ -6,10 +7,14 @@ import EmailVerification from '../../pages/EmailVerification/EmailVerification';
 import Signin from '../../pages/Signin/Signin';
 import Home from '../../pages/Home/Home'
 import Jobs from '../../pages/Jobs/Jobs';
+=======
+import { Link } from 'react-router-dom';
+>>>>>>> 5efce77e9c4677abae4600741908bd08a596ae12
 
 function UnauthenticatedApp() {
   return (
     <div>
+<<<<<<< HEAD
       <div>
         <nav>
           <ul>
@@ -62,6 +67,16 @@ function UnauthenticatedApp() {
           </Route>
         </Switch>
       </div>
+=======
+      <ul>
+        <li>
+          <Link to="/login">Sign In</Link>
+        </li>
+        <li>
+          <Link to="/signup">Sign up</Link>
+        </li>
+      </ul>
+>>>>>>> 5efce77e9c4677abae4600741908bd08a596ae12
     </div>
   );
 }

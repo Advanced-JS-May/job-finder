@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useContext, useState } from 'react';
-
 import firebase from '../libraries/firebase';
+import { createUser, getUsersById } from './user';
 
 const authContext = createContext();
 
@@ -21,7 +21,7 @@ export const useAuth = () => {
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
   const [user, setUser] = useState(null);
-
+  
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
   const signin = (email, password) => {
@@ -34,16 +34,39 @@ function useProvideAuth() {
       });
   };
 
+  const authWithGoogle = (role) => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    return firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(function (result) {
+        createUser(result.user, role);
+        return result.user;
+      });
+  };
+
+  const authWithFacebook = (role) => {
+    let provider = new firebase.auth.FacebookAuthProvider();
+
+    return firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(function (result) {
+        createUser(result.user, role);
+        return result.user;
+      });
+  };
   const sendVerificationEmail = (user) => user.sendEmailVerification();
 
-  const signup = (email, password) => {
+  const signup = (email, password, role) => {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
-        // setUser(response.user);
+        createUser(response.user, role);
         return sendVerificationEmail(response.user);
-      });
+      } );
   };
 
   const signout = () => {
@@ -80,8 +103,14 @@ function useProvideAuth() {
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user && user.emailVerified) {
-        console.log(user);
-        setUser(user);
+        getUsersById(user.uid).then((response) => {
+          createUser(
+            { ...response, emailVerified: user.emailVerified },
+            response.role
+          );
+          setUser(response);
+          return response;
+        });
       } else {
         setUser(false);
       }
@@ -97,6 +126,8 @@ function useProvideAuth() {
     signin,
     signup,
     signout,
+    authWithGoogle,
+    authWithFacebook,
     // sendPasswordResetEmail,
     // confirmPasswordReset,
   };

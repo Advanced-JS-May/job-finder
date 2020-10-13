@@ -1,7 +1,13 @@
 import React from 'react';
+import SimpleTabs from '../../components/Tabs/Tabs';
 
 function Signup() {
-  return <h1>Sign Up</h1>;
+  return (
+    <div>
+      <h1>Sign Up</h1>
+      <SimpleTabs />
+    </div>
+  );
 }
 
 export default Signup;
