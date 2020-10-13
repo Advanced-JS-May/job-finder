@@ -6,13 +6,6 @@ import './App.css';
 /* import AuthenticatedApp from './components/AuthenticatedApp/AuthenticatedApp'; */
 import UnauthenticatedApp from './components/UnauthenticatedApp/Unauthenticated';
 import CompanyInfo from './pages/CompanyInfo/CompanyInfo';
-=======
-/* components */
-import EmployerSignup from './pages/EmployerSignup/EmployerSignup';
-import EmailVerification from './pages/EmailVerification/EmailVerification';
-import SignIn from './pages/SignIn/SignIn';
-import Signup from './pages/Signup/Signup';
-import Navbar from './components/Navbar/Navbar';
 
 import Jobs from './pages/Jobs/Jobs';
 >>>>>>> e45ecd74c131f3c8476ac946c379a493e66ef3f0
@@ -21,7 +14,6 @@ function App() {
   return (
     <div className="App">
       <header>
-<<<<<<< HEAD
         <UnauthenticatedApp />
         <CompanyInfo />
 =======
