@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import CompanyInfo from './pages/CompanyInfo/CompanyInfo'
 /* components */
 import EmployerSignup from './pages/EmployerSignup/EmployerSignup';
 import EmailVerification from './pages/EmailVerification/EmailVerification';
