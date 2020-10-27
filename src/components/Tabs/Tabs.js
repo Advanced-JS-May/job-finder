@@ -7,7 +7,7 @@ import EmployerRegister from '../EmployerRegister/EmployerRegister';
 import JobSeekerRegister from '../JobSeekerRegister/JobSeekRegister';
 import a11yProps from './helper/tabs.helper';
 
-export default function SimpleTabs() {
+export default function SimpleTabs({ label1, label2 }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (_event, newValue) => {
@@ -21,8 +21,8 @@ export default function SimpleTabs() {
         onChange={handleChange}
         aria-label="simple tabs example"
       >
-        <Tab label="Employer" {...a11yProps(0)} />
-        <Tab label="Job-seeker" {...a11yProps(1)} />
+        <Tab label={label1} {...a11yProps(0)} />
+        <Tab label={label2} {...a11yProps(1)} />
       </Tabs>
 
       <TabPanel value={value} index={0}>

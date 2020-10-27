@@ -5,7 +5,7 @@ function Signup() {
   return (
     <div>
       <h1>Sign Up</h1>
-      <SimpleTabs />
+      <SimpleTabs label1="Employer" label2="Job-seeker" />
     </div>
   );
 }
