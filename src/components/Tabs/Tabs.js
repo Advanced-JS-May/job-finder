@@ -1,55 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-/* UI */
+import TabPanel from './TabPanel/TabPanel';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
-
-/* Components */
 import EmployerRegister from '../EmployerRegister/EmployerRegister';
 import JobSeekerRegister from '../JobSeekerRegister/JobSeekRegister';
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          m={3}
-        >
-          {children}
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
+import a11yProps from './helper/tabs.helper';
 
 export default function SimpleTabs() {
   const [value, setValue] = React.useState(0);
@@ -71,9 +27,9 @@ export default function SimpleTabs() {
 
       <TabPanel value={value} index={0}>
         <h2>Employer</h2>
-
         <EmployerRegister />
       </TabPanel>
+
       <TabPanel value={value} index={1}>
         <h2>Job-seeker</h2>
         <JobSeekerRegister />
