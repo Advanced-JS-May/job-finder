@@ -10,7 +10,7 @@ import EmployerSignup from '../../../pages/EmployerSignup/EmployerSignup';
 function PublicRoutes() {
   return (
     <>
-      <Route path="/home">
+      <Route path="/">
         <Home />
       </Route>
       <Route path="/company/signup">
