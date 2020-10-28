@@ -3,6 +3,9 @@ import React from 'react';
 function GoogleSvgIcon({ width }) {
   return (
     <svg
+      style={{
+        margin: '0 10px 0 0',
+      }}
       width={width}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 533.5 544.3"

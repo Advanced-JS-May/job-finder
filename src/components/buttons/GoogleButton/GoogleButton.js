@@ -1,11 +1,11 @@
 import React from 'react';
 import GoogleSvgIcon from '../../icons/GoogleSvgIcon/GoogleSvgIcon';
-import Button from '@material-ui/core/Button';
+import CustomButton from '../CustomButton/CustomButton';
 import { useAuth } from '../../../services/authentication';
 import { useHistory } from 'react-router-dom';
 import { USER_ROLES } from '../../../constants/user.constants';
 
-export default function GoogleButton() {
+export default function GoogleButton(props) {
   const { authWithGoogle } = useAuth();
   const history = useHistory();
 
@@ -20,19 +20,12 @@ export default function GoogleButton() {
   }
 
   return (
-    <Button
-      variant="outlined"
-      color="primary"
+    <CustomButton
+      text="sign In with Google"
+      {...props}
       onClick={signInWithGoogle}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '220px',
-      }}
     >
       <GoogleSvgIcon width="20" />
-      <span>sign In with Google</span>
-    </Button>
+    </CustomButton>
   );
 }

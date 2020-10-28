@@ -3,6 +3,9 @@ import React from 'react';
 function FacebookSvgIcon({ width }) {
   return (
     <svg
+      style={{
+        margin: '0 10px 0 0',
+      }}
       width={width}
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
