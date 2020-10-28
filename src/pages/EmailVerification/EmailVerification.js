@@ -23,7 +23,7 @@ export default function OutlinedCard() {
       if (user.role === USER_ROLES.employer) {
         history.push(`/companies`);
       } else {
-        history.push('/');
+        history.push('/profile/create');
       }
     }
   }, [history, user, isUserVerified]);

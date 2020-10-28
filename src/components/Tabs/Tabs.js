@@ -1,39 +1,58 @@
 import React from 'react';
-
-import TabPanel from './TabPanel/TabPanel';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import EmployerRegister from '../EmployerRegister/EmployerRegister';
-import JobSeekerRegister from '../JobSeekerRegister/JobSeekRegister';
 import a11yProps from './helper/tabs.helper';
 
-export default function SimpleTabs({ label1, label2 }) {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (_event, newValue) => {
-    setValue(newValue);
-  };
-
+export default function SimpleTabs({ label1, label2, children, ...props }) {
   return (
     <div>
       <Tabs
-        value={value}
-        onChange={handleChange}
-        aria-label="simple tabs example"
+        textColor="primary"
+        indicatorColor="primary"
+        variant="fullWidth"
+        centered
+        {...props}
+        aria-label="tabs"
+        style={{
+          margin: '2rem',
+        }}
       >
         <Tab label={label1} {...a11yProps(0)} />
         <Tab label={label2} {...a11yProps(1)} />
       </Tabs>
 
-      <TabPanel value={value} index={0}>
-        <h2>Employer</h2>
-        <EmployerRegister />
-      </TabPanel>
-
-      <TabPanel value={value} index={1}>
-        <h2>Job-seeker</h2>
-        <JobSeekerRegister />
-      </TabPanel>
+      {children}
     </div>
   );
 }
+
+// function withTabs(first, second) {
+//   function SimpleTabs() {
+//     const [value, setValue] = React.useState(0);
+//     const [label1, label2] = useContext(labelContext);
+
+//     const handleChange = (_event, newValue) => {
+//       setValue(newValue);
+//     };
+
+//     return (
+//       <div>
+//         <Tabs value={value} onChange={handleChange} aria-label="tabs">
+//           <Tab label={label1} {...a11yProps(0)} />
+//           <Tab label={label2} {...a11yProps(1)} />
+//         </Tabs>
+
+//         <TabPanel value={value} index={0}>
+//           {first}
+//         </TabPanel>
+
+//         <TabPanel value={value} index={1}>
+//           {second}
+//         </TabPanel>
+//       </div>
+//     );
+//   }
+//   return SimpleTabs;
+// }
+
+// export const TabsWithComponents = withTabs(EmployerRegister, JobSeekerRegister);
