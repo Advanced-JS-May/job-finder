@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 /* UI */
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
+import FormField from '../Form/FormField/FormField';
+import ErrorMessage from '../Form/ErrorMessage/ErrorMessage';
 /* Authentication */
 import { useAuth } from '../../services/authentication';
 import { USER_ROLES } from '../../constants/user.constants';
 /* validation */
 import validate from '../../Utils/validate.helper';
 
-function EmployerRegister() {
+function EmployerRegister({ value, index }) {
   const { signup } = useAuth();
   const history = useHistory();
 
@@ -47,13 +48,24 @@ function EmployerRegister() {
       : false;
 
   return (
-    <Box style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
+    <Box
+      style={{
+        display: 'flex',
+        width: '100%',
+        maxWidth: '600px',
+        justifyContent: 'center',
+      }}
+    >
       <form
         onSubmit={formik.handleSubmit}
-        style={{ display: 'flex', flexDirection: 'column', marginRight: 20 }}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          minWidth: '300px',
+        }}
         autoComplete="off"
       >
-        <TextField
+        <FormField
           type="email"
           name="email"
           error={emailCheck}
@@ -61,31 +73,19 @@ function EmployerRegister() {
           label={emailCheck ? formik.errors.email : 'email'}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          required
-          color="primary"
-          variant="outlined"
-          style={{
-            margin: '0 0 10px',
-          }}
         />
 
-        <TextField
-          type="password"
+        <FormField
           name="password"
+          type="password"
           error={passwordCHeck}
           value={formik.values.password}
           label={passwordCHeck ? formik.errors.password : 'password'}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          variant="outlined"
-          color="primary"
-          required
-          style={{
-            margin: '0 0 10px',
-          }}
         />
 
-        <TextField
+        <FormField
           type="password"
           name="passwordConfirm"
           error={passwordConfirmCheck}
@@ -97,27 +97,20 @@ function EmployerRegister() {
           value={formik.values.passwordConfirm}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          variant="outlined"
-          color="primary"
-          required
-          style={{
-            margin: '0 0 10px',
-          }}
         />
 
         <Button
           type="submit"
           style={{
-            flexGrow: 1,
+            margin: ' 16px 0',
           }}
-          onClick={formik.handleSubmit}
           color="primary"
           variant="outlined"
         >
           Submit
         </Button>
 
-        <p>{error}</p>
+        <ErrorMessage message={error} />
       </form>
     </Box>
   );

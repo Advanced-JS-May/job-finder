@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import Bunner from '../../components/Bunner/Bunner'
-import Footer from '../../components/Footer/Footer'
-import StepperJob from '../../components/Stepper/Stepper'
-
+import Banner from '../../components/Banner/Banner';
+import Footer from '../../components/Footer/Footer';
+import StepperJob from '../../components/Stepper/Stepper';
 
 function Home() {
   return (
-  	<>
-  		<Bunner />
-  		<StepperJob />
-  		<Footer />
-  	</>
+    <>
+      <Banner />
+      <StepperJob />
+      <Footer />
+    </>
   );
 }
 

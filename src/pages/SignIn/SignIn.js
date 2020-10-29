@@ -1,6 +1,6 @@
 import React from "react";
-import EmployeeSignIn from "../../components/EmployeeSignIn/EmployeeSignIn";
-import CompanySignIn from "../../components/CompanySignIn/CompanySignIn";
+import EmployeeSignIn from "../../components/JobSeekerSignIn/JobSeekerSignIn";
+import CompanySignIn from "../../components/EmployerSignIn/EmployerSignIn";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -43,8 +43,8 @@ export default function SignIn() {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="Employee" />
-          <Tab label="Company" />
+          <Tab label="Job-seeker" />
+          <Tab label="Employer" />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>

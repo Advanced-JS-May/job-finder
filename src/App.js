@@ -1,20 +1,20 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+
 /* components */
-import EmployerSignup from './pages/EmployerSignup/EmployerSignup';
-import EmailVerification from './pages/EmailVerification/EmailVerification';
-import SignIn from './pages/SignIn/SignIn';
-import Signup from './pages/Signup/Signup';
 import Navbar from './components/Navbar/Navbar';
+<<<<<<< HEAD
 import Home from './pages/Home/Home';
-import Company from './pages/CompanyInfo/CompanyInfo';
 import Jobs from './pages/Jobs/Jobs';
+=======
+import SwitchRouter from './components/Routes/SwitchRouter/SwitchRouter';
+>>>>>>> 0fcf3982969f9624f4e137f6e4db1c672826169e
 
 function App() {
   return (
     <div className="App">
       <header>
         <Navbar />
+<<<<<<< HEAD
         <Switch>
 		  <Route path="/home">
             <Home />
@@ -38,9 +38,12 @@ function App() {
             <EmailVerification />
           </Route>
           <Route path="/companies">
-            <Company />
+            <CompaniesInfo />
           </Route>
         </Switch>
+=======
+        <SwitchRouter />
+>>>>>>> 0fcf3982969f9624f4e137f6e4db1c672826169e
       </header>
     </div>
   );
