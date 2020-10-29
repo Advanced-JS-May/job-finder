@@ -11,6 +11,7 @@ import Jobs from '../../../pages/Jobs/Jobs';
 import CompanyInfo from '../../../pages/CompanyInfo/CompanyInfo';
 import EmailVerification from '../../../pages/EmailVerification/EmailVerification';
 import Company from '../../../pages/Company/Company'
+import CreateProfile from '../../../pages/CreateProfile/CreateProfile';
 
 function SwitchRouter() {
   const { user } = useAuth();
@@ -32,14 +33,12 @@ function SwitchRouter() {
       <Route path="/email-verification">
         <EmailVerification />
       </Route>
-      <Route path="/company/:id">
-      <CompanyInfo />
-      <Company />
+      <Route path="/profile/create">
+        <CreateProfile />
       </Route>
-
-      {/* <PrivateRoute auth={user && user.emailVerified} path="/company/create">
+      <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
         <CompanyInfo />
-      </PrivateRoute> */}
+      </PrivateRoute>
     </Switch>
   );
 }
