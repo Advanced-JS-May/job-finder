@@ -7,7 +7,7 @@ import SignIn from './pages/SignIn/SignIn';
 import Signup from './pages/Signup/Signup';
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
-
+import Company from './pages/CompanyInfo/CompanyInfo';
 import Jobs from './pages/Jobs/Jobs';
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
             <EmailVerification />
           </Route>
           <Route path="/companies">
-            <CompanyInfo />
+            <Company />
           </Route>
         </Switch>
       </header>
