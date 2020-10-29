@@ -10,6 +10,7 @@ import Home from '../../../pages/Home/Home';
 import Jobs from '../../../pages/Jobs/Jobs';
 import CompanyInfo from '../../../pages/CompanyInfo/CompanyInfo';
 import EmailVerification from '../../../pages/EmailVerification/EmailVerification';
+import Company from '../../../pages/Company/Company'
 
 function SwitchRouter() {
   const { user } = useAuth();
@@ -31,10 +32,14 @@ function SwitchRouter() {
       <Route path="/email-verification">
         <EmailVerification />
       </Route>
+      <Route path="/company/:id">
+      <CompanyInfo />
+      <Company />
+      </Route>
 
-      <PrivateRoute auth={user && user.emailVerified} path="/company/create">
+      {/* <PrivateRoute auth={user && user.emailVerified} path="/company/create">
         <CompanyInfo />
-      </PrivateRoute>
+      </PrivateRoute> */}
     </Switch>
   );
 }

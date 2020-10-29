@@ -8,7 +8,7 @@ export  function createCompany (company) {
 
 export function getCompanyById(id) {
   return database
-    .ref('/users/' + id)
+    .ref('/companies/' + id)
     .once('value')
     .then((snapshot) => snapshot.val());
 }

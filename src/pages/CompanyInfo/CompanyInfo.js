@@ -7,7 +7,7 @@ import { uniqueId } from "lodash";
 import { createCompany } from '../../services/company';
 import {useAuth} from '../../services/authentication'
 
-export default function Company () {
+export default function CompanyInfo () {
 
 const [company,setCompany]=useState({})
 const {user}=useAuth();
@@ -17,9 +17,8 @@ const handleCompanyInput = ({ target:{ value,name } })=> {
    setCompany((e)=>({
      ...e,
      [name]:value,
-     id:uniqueId(),
-     uid:user.uid,
-   }))
+     id:user.uid,
+      }))
 };
 
 const handleCreateCompany =()=>{
@@ -35,7 +34,7 @@ return (
         <h3>Company Bio</h3>
         <h2>Basic Info</h2>
         <label>
-         <TextField id="outlined-basic" label="Company Name"  variant="outlined" name="company-name"onChange={handleCompanyInput} value={company.title}/>
+         <TextField id="outlined-basic" label="Company Name"  variant="outlined" name="companyName"onChange={handleCompanyInput} value={company.title}/>
         </label>
         <label>
          <TextField id="outlined-basic" label="Date of Establishment" type="number" variant="outlined" name="date-of-establishment"onChange={handleCompanyInput} value={company.dateOfEstablishment}/>

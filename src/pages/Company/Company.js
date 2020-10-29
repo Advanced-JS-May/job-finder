@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import { getEventById } from "../services/event";
-
-
+import { getCompanyById } from '../../services/company'
+import CardMedia from '@material-ui/core/CardMedia';
 
 export default function Company() {
-  const [event, setEvent] = useState({});
+  const [company, setCompany] = useState({});
   const { id } = useParams();
 
   useEffect(() => {
-    getEventById(id).then((e) => {
-      setEvent(e);
+    getCompanyById(id).then((c) => {
+      setCompany(c);
     });
   }, [id]);
 
-  return (
-    <section style={{ margin: 20 }}>
-      {/* <h2>{event.title}</h2>
-      <p>{event.description}</p> */}
-    </section>
-  );
+console.log(company)
+  return ( 
+    <section>
+      <div>
+        <CardMedia
+          component="img"
+          alt="Profile Picture"
+          height="50px"
+          image="./img_avatar.png"
+          title="Profile picture"
+        />
+      </div>
+      <div>
+        <p>{company.companyName}</p>
+      </div>
+  </section>)
 }
