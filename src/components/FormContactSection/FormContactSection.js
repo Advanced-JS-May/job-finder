@@ -14,7 +14,18 @@ function TextMaskCustom(props) {
   return <InputMask {...props} mask="+374 ( 99 ) 99-99-99" maskChar=" " />;
 }
 
-function FormContactSection() {
+function FormContactSection({
+  phoneValue,
+  emailValue,
+  twitterValue,
+  facebookValue,
+  linkedInValue,
+  handlePhoneChange,
+  handleEmailChange,
+  handleTwitterChange,
+  handleFacebookChange,
+  handleLinkedInChange,
+}) {
   return (
     <div
       style={{
@@ -26,7 +37,7 @@ function FormContactSection() {
         padding: '10px',
       }}
     >
-      <Grid container direction="column" justifyContent="center" spacing={2}>
+      <Grid container direction="column" spacing={2}>
         <Grid
           item
           style={{
@@ -44,6 +55,8 @@ function FormContactSection() {
             variant="outlined"
             name="phone"
             label="phone Number"
+            value={phoneValue}
+            onChange={handlePhoneChange}
             fullWidth
             InputProps={{
               inputComponent: TextMaskCustom,
@@ -69,6 +82,8 @@ function FormContactSection() {
             name="email"
             variant="outlined"
             label="email"
+            value={emailValue}
+            onChange={handleEmailChange}
             fullWidth
             InputProps={{ style: { fontSize: 16, padding: 10 } }}
           />
@@ -90,6 +105,9 @@ function FormContactSection() {
             variant="outlined"
             fullWidth
             label="Twitter"
+            name="twitter"
+            value={twitterValue}
+            onChange={handleTwitterChange}
             InputProps={{ style: { fontSize: 16, padding: 10 } }}
           />
         </Grid>
@@ -111,6 +129,9 @@ function FormContactSection() {
             variant="outlined"
             fullWidth
             label="Facebook"
+            name="facebook"
+            value={facebookValue}
+            onChange={handleFacebookChange}
             InputProps={{ style: { fontSize: 16, padding: 10 } }}
           />
         </Grid>
@@ -131,6 +152,9 @@ function FormContactSection() {
             variant="outlined"
             fullWidth
             label="LinkedIn"
+            name="linkedIn"
+            value={linkedInValue}
+            onChange={handleLinkedInChange}
             InputProps={{ style: { fontSize: 16, padding: 10 } }}
           />
         </Grid>

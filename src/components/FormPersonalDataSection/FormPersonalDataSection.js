@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import CITIES from '../../constants/armenianCities';
 import GENDERS from '../../constants/gender';
 
-function FormPersonalDataSection() {
-  const [gender, setGender] = useState(GENDERS[0]);
-  const [city, setCity] = useState(CITIES[0]);
-
-  const handleGenderChange = (event) => {
-    setGender(event.target.value);
-  };
-
-  const handleCityChange = (event) => {
-    setCity(event.target.value);
-  };
-
+function FormPersonalDataSection({
+  nameValue,
+  HandleNameChange,
+  handleSurnameChange,
+  surnameValue,
+  ageValue,
+  handleAgeChange,
+  genderValue,
+  handleGenderChange,
+  cityValue,
+  handleCityChange,
+}) {
   return (
     <div
       style={{
@@ -29,18 +30,27 @@ function FormPersonalDataSection() {
       <TextField
         fullWidth
         label="Name"
+        name="name"
+        value={nameValue}
+        onChange={HandleNameChange}
         variant="outlined"
         InputProps={{ style: { padding: 5, margin: '12px 0' } }}
       />
       <TextField
         fullWidth
         label="Surname"
+        name="surname"
+        value={surnameValue}
+        onChange={handleSurnameChange}
         variant="outlined"
         InputProps={{ style: { margin: '12px 0 ', padding: 5 } }}
       />
       <TextField
         type="number"
         label="Age"
+        value={ageValue}
+        onChange={handleAgeChange}
+        name="age"
         variant="outlined"
         fullWidth
         InputProps={{ style: { margin: '12px 0', padding: 5 } }}
@@ -48,7 +58,8 @@ function FormPersonalDataSection() {
       <TextField
         variant="outlined"
         select
-        value={gender}
+        name="gender"
+        value={genderValue}
         onChange={handleGenderChange}
         fullWidth
         InputProps={{ style: { padding: 0, margin: '12px 0' } }}
@@ -71,7 +82,8 @@ function FormPersonalDataSection() {
       <TextField
         variant="outlined"
         select
-        value={city}
+        name="city"
+        value={cityValue}
         onChange={handleCityChange}
         fullWidth
         InputProps={{ style: { padding: 0, margin: '10px 0' } }}
