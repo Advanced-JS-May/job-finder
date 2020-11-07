@@ -1,0 +1,7 @@
+.MuiInputBase-root {
+	min-height: 50px;
+	min-width: 220px;
+}
+.MuiTextField-root {
+	height: 56px;
+}

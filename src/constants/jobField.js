@@ -1,0 +1,25 @@
+ const fields = [
+	'All categories',
+	'Software development',
+	'Quality Assurance',
+	'Web/Graphic design',
+	'Product/Project Management',
+	'Hardware design',
+	'Other IT',
+	'Sales/service management',
+	'Administrative/office-work',
+	'Tourism/Hospitality/HoReCa',
+	'Marketing/Advertising',
+	'Communications/Journalism/PR',
+	'Accounting/Bookkeeping/Cash register',
+	'Finance Management',
+	'Banking/credit',
+	'TV/Radio/Entertainment',
+	'Education/training',
+	'Legal',
+	'Audit/Compliance',
+	'Healthcare/Pharmaceutical',
+	'Human Resources',
+
+]             
+export default fields;

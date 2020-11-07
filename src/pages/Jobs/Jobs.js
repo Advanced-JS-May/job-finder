@@ -1,7 +1,7 @@
 import React from 'react';
-
+import Company from '../CompanyInfo/CompanyInfo.js';
 function Jobs() {
-  return <h1>Jobs</h1>;
+	return <h2>Jobs</h2>; 
 }
 
 export default Jobs;
