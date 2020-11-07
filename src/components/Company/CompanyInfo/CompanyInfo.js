@@ -31,6 +31,15 @@ return (
     <div>
       <form style={{ textAlign: "center" }}>
   <h3>Company Bio</h3>
+  <TextField
+    id="outlined-basic"
+    label="Description"
+    variant="outlined"
+    name="description"
+    onChange={handleCompanyInput}
+    value={company.description}
+    width="300px"
+  />
   <h2>Basic Info</h2>
   <TextField
     id="outlined-basic"
@@ -96,11 +105,11 @@ return (
   <TextField
     id="outlined-basic"
     label="E-mail"
-    type="email"
+    type="website"
     variant="outlined"
     name="email"
     onChange={handleCompanyInput}
-    value={company.email}
+    value={company.website}
   />
   <TextField
     id="outlined-basic"
