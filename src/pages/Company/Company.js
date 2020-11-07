@@ -1,4 +1,4 @@
-o//React
+//React
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCompanyById } from '../../services/company'
@@ -13,7 +13,7 @@ import Tab from "@material-ui/core/Tab";
 
 //components
 import TabPanel from "../../components/TabPanel/TabPanel";
-utimport CompanyInfo from "../../components/Company/CompanyInfo/CompanyInfo";
+import  CompanyInfo from "../../components/Company/CompanyInfo/CompanyInfo";
 import CreateJob from "../../components/Company/CreateJob/CreateJob";
 
 const useStyles = makeStyles((theme) => ({
