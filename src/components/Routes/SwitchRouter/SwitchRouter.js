@@ -10,6 +10,7 @@ import Home from '../../../pages/Home/Home';
 import Jobs from '../../../pages/Jobs/Jobs';
 import CompanyInfo from '../../../pages/CompanyInfo/CompanyInfo';
 import EmailVerification from '../../../pages/EmailVerification/EmailVerification';
+import Company from '../../../pages/Company/Company'
 import CreateProfile from '../../../pages/CreateProfile/CreateProfile';
 import AllCompanies from '../../../pages/AllCompanies/AllCompanies';
 
@@ -39,9 +40,9 @@ function SwitchRouter() {
       <Route path="/profile/create">
         <CreateProfile />
       </Route>
-
-      <PrivateRoute auth={user && user.emailVerified} path="/company/create">
+      <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
         <CompanyInfo />
+        <Company />
       </PrivateRoute>
     </Switch>
   );
