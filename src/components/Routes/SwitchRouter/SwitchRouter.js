@@ -8,10 +8,10 @@ import SignIn from '../../../pages/SignIn/SignIn';
 import Signup from '../../../pages/Signup/Signup';
 import Home from '../../../pages/Home/Home';
 import Jobs from '../../../pages/Jobs/Jobs';
-import CompanyInfo from '../../../pages/CompanyInfo/CompanyInfo';
+import Company from '../../../pages/Company/Company';
 import EmailVerification from '../../../pages/EmailVerification/EmailVerification';
-import Company from '../../../pages/Company/Company'
 import CreateProfile from '../../../pages/CreateProfile/CreateProfile';
+
 
 function SwitchRouter() {
   const { user } = useAuth();
@@ -36,10 +36,13 @@ function SwitchRouter() {
       <Route path="/profile/create">
         <CreateProfile />
       </Route>
-      <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
+      {/* <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
         <CompanyInfo />
         <Company />
-      </PrivateRoute>
+      </PrivateRoute> */}
+      <Route path="/company/:id">
+        <Company />
+       </Route>
     </Switch>
   );
 }

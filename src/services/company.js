@@ -14,6 +14,7 @@ export function getCompanyById(id) {
 }
 
 
+
 // function to GET information about company from DB
 // export function getCompany (company) {
 //   return database()
