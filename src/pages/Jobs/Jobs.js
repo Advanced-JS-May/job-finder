@@ -1,7 +1,7 @@
-import React, { useEffect , useState } from "react";
+import React, { useEffect, useState } from "react";
 import JobCard from "../../components/JobCard/JobCard";
 import { makeStyles } from "@material-ui/core/styles";
-import {getAllJobs} from "../../services/getAllJobs"
+import { getAllJobs } from "../../services/getAllJobs";
 
 const useStyles = makeStyles({
   root: {
@@ -18,27 +18,12 @@ function Jobs() {
       setJobs(Object.values(response));
     });
   }, []);
-  console.log("out",jobs);
 
-  // useEffect(() => {
-  //   getAllJobs().then((res) => {
-  //     console.log("Res before",res);
-
-  //     setJobs((t)=>{t.push(res)})
-
-  //     console.log("JOB",jobs);
-  //   }
-  //   ); // very bad code 
-
-
-  
   return (
     <div className={classes.root}>
-    {jobs.map(({id,position})=>{
-      return(
-        <JobCard jobTitle={position} />
-      )
-    })}
+      {jobs.map(({ id, position }) => {
+        return <JobCard jobTitle={position} />;
+      })}
     </div>
   );
 }

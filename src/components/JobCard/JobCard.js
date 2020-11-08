@@ -11,22 +11,22 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    margin: 10
+    margin: 10,
   },
 });
 
-function JobCard({companyName,jobTitle,companyLogo}) {
+function JobCard({ companyName, jobTitle, companyLogo }) {
   const classes = useStyles();
-                                        // create separate Card component
+
   return (
-    <Card className={classes.root}>  
+    <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           component="img"
-          alt="Contemplative Reptile" //change
+          alt="#" //change
           height="140"
           image={companyLogo}
-          title="Contemplative Reptile" //change
+          title="#" //change
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
