@@ -1,5 +1,6 @@
   
 import { database } from "../libraries/firebase";
+import { storage } from "../libraries/firebase";
 
 // function to POST information about company to DB 
 export  function createCompany (company) {
@@ -13,20 +14,20 @@ export function getCompanyById(id) {
     .then((snapshot) => snapshot.val());
 }
 
+export const uploadImage = (image) => {
+   return storage.ref(`images/${image.name}`).put(image);
+    
+  };
 
+// export const getImageUrl =  () => {
+//   const [url, setUrl] = useState("");
 
-// function to GET information about company from DB
-// export function getCompany (company) {
-//   return database()
-//   .ref('companies/' + company.id)
-//   .once('value')
-//   .then(function(company) {
-//     console.log(company)
-// //   });
-// }
-// export function getUsersById(id) {
-//   return database
-//     .ref('/users/' + id)
-//     .once('value')
-//     .then((snapshot) => snapshot.val());
-// }
+//     storage
+//       .ref("images")
+//       .child(image.name)
+//       .getDownloadURL()
+//       .then(url => {
+//         setUrl(url);
+//       });
+//       console.log(url)
+//   }

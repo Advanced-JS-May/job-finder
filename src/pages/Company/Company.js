@@ -13,7 +13,7 @@ import Tab from "@material-ui/core/Tab";
 
 //components
 import TabPanel from "../../components/TabPanel/TabPanel";
-import  CompanyInfo from "../../components/Company/CompanyInfo/CompanyInfo";
+import CompanyInfo from "../../components/Company/CompanyInfo/CompanyInfo";
 import CreateJob from "../../components/Company/CreateJob/CreateJob";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,77 +52,76 @@ export  default function Company () {
     });
   }, [id]);
 
-  console.log(company)
 
 
   return (
-<div className={classes.root} >
- <div style={{display:"flex",flexDirection:"row"}}>     
- <div>
-       <CardMedia
+<div className={classes.root}>
+  <div style={{ display: "flex", flexDirection: "row" }}>
+    <div>
+      <CardMedia
         component="img"
         alt="Profile Picture"
         height="50px"
         image="./img_avatar.png"
         title="Profile picture"
       />
-</div>
-<div>
-       <CardMedia
+    </div>
+    <div>
+      <CardMedia
         component="img"
         alt="Cover Image"
         height="50px"
         image="./img_avatar.png"
         title="Profile picture"
       />
-</div>
-</div>
-<div>
-  <h1>{company.comapnyName}</h1>
-  <p>{company.description}</p>
-</div>
-<div>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
-        >
-          <Tab label="Location" />
-          <Tab label="Contacts" />
-          <Tab label="Employees" />
-          <Tab label="Pending Jobs" />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0} dir={theme.direction}>
-       Country : {company.country}
-       <br />
-       City : {company.city}
-       <br />
-       Address : {company.adress}
-       <br />
-       Industry : {company.industry}
-       <br />
-       Date of Establishemnt : {company.dateOfEstablishment}
-      </TabPanel>
-      <TabPanel value={value} index={1} dir={theme.direction}>
-        Website : {company.website}
-        <br />
-        Tel : {company.tel}
-      </TabPanel>
-      <TabPanel value={value} index={2} dir={theme.direction}>
-        {company.employees}
-      </TabPanel>
-      <TabPanel value={value} index={3} dir={theme.direction}>
-      </TabPanel>
     </div>
-    <div>
-      <CompanyInfo />
-      <CreateJob />
-    </div>
-</div>  
-  );
+  </div>
+  <div>
+    <h1>{company.comapnyName}</h1>
+    <p>{company.description}</p>
+  </div>
+  <div>
+    <AppBar position="static" color="default">
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        variant="fullWidth"
+        aria-label="full width tabs example"
+      >
+        <Tab label="Location" />
+        <Tab label="Contacts" />
+        <Tab label="Employees" />
+        <Tab label="Pending Jobs" />
+      </Tabs>
+    </AppBar>
+    <TabPanel value={value} index={0} dir={theme.direction}>
+      Country : {company.country}
+      <br />
+      City : {company.city}
+      <br />
+      Address : {company.adress}
+      <br />
+      Industry : {company.industry}
+      <br />
+      Date of Establishemnt : {company.dateOfEstablishment}
+    </TabPanel>
+    <TabPanel value={value} index={1} dir={theme.direction}>
+      Website : {company.website}
+      <br />
+      Tel : {company.tel}
+    </TabPanel>
+    <TabPanel value={value} index={2} dir={theme.direction}>
+      {company.employees}
+    </TabPanel>
+    <TabPanel value={value} index={3} dir={theme.direction}
+    ></TabPanel>
+  </div>
+  <div>
+    <CompanyInfo />
+    <CreateJob />
+  </div>
+</div>
+);
 }
