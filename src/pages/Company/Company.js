@@ -120,7 +120,7 @@ export  default function Company () {
   </div>
   <div>
     <CompanyInfo />
-    <CreateJob />
+    {/* <CreateJob /> */}
   </div>
 </div>
 );
