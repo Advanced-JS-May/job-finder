@@ -4,7 +4,7 @@ import React , { useState } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 //services
-import { createCompany,uploadImage } from '../../../services/company';
+import { createCompany } from '../../../services/company';
 import { useAuth } from '../../../services/authentication';
 
 
@@ -22,7 +22,6 @@ const handleCompanyInput = ({ target:{ value,name } })=> {
      ...e,
      [name]:value,
      id:user.uid,
-     image:"https://hirebee-main-new.s3.amazonaws.com/staff.am/upload/e/7/d/2/e7d26bbd.jpg"
      }))
 };
 

@@ -11,7 +11,7 @@ function App() {
       <header>
         <Navbar />
         <SwitchRouter />
-        <ImageUpload />
+        {/* <ImageUpload /> */}
       </header>
     </div>
   );

@@ -3,6 +3,7 @@ import { database } from "../libraries/firebase";
 import { storage } from "../libraries/firebase";
 
 // function to POST information about company to DB 
+
 export  function createCompany (company) {
   return database.ref('companies/' + company.id).set(company);
 }
@@ -36,6 +37,6 @@ return storage
  .ref("images")
  .child(image.name)
  .getDownloadURL()
-
+ 
 }
 
