@@ -1,4 +1,4 @@
-  
+import React, { useState } from "react";
 import { database } from "../libraries/firebase";
 import { storage } from "../libraries/firebase";
 
@@ -15,19 +15,27 @@ export function getCompanyById(id) {
 }
 
 export const uploadImage = (image) => {
-   return storage.ref(`images/${image.name}`).put(image);
+   return  storage.ref(`images/${image.name}`).put(image);
     
   };
 
 // export const getImageUrl =  () => {
-//   const [url, setUrl] = useState("");
-
 //     storage
-//       .ref("images")
-//       .child(image.name)
-//       .getDownloadURL()
-//       .then(url => {
-//         setUrl(url);
-//       });
-//       console.log(url)
-//   }
+//    .ref("images")
+//    .child(image.name)
+//    .getDownloadURL()
+//    .then(url => {
+//      setUrl(url);
+//    });
+//    console.log(url)
+// }
+
+
+export function getImageUrl (image)  {
+return storage
+ .ref("images")
+ .child(image.name)
+ .getDownloadURL()
+
+}
+

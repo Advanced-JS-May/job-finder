@@ -36,14 +36,14 @@ function SwitchRouter() {
       <Route path="/profile/create">
         <CreateProfile />
       </Route>
-      {/* <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
-        <CompanyInfo />
+      <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
+        {/* <CompanyInfo /> */}
         <Company />
-      </PrivateRoute> */}
-      <Route path="/company/:id">
+      </PrivateRoute> 
+  <Route path="/company/:id"> 
         <Company />
-       </Route>
-    </Switch>
+     </Route>
+  </Switch> 
   );
 }
 export default SwitchRouter;

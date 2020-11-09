@@ -5,37 +5,36 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 //services
 import { createCompany,uploadImage } from '../../../services/company';
-import { useAuth } from '../../../services/authentication'
+import { useAuth } from '../../../services/authentication';
+
+
+
 
 export default function CompanyInfo () {
 
 const [company,setCompany]=useState({})
-const [image, setImage] = useState(null);
 const { user } = useAuth();
-// const { url } = getImageUrl();
+
+
 
 const handleCompanyInput = ({ target:{ value,name } })=> {
    setCompany((e)=>({
      ...e,
      [name]:value,
      id:user.uid,
-    //  imageUrl:url,
-      }))
+     image:"https://hirebee-main-new.s3.amazonaws.com/staff.am/upload/e/7/d/2/e7d26bbd.jpg"
+     }))
 };
 
 const handleCreateCompany =()=>{
   createCompany(company);
-  uploadImage(image);
 }
 
-const handleImageUpload  = (e) => {
-      setImage(e.target.files[0]);
-  };
-console.log(image)
+
 
 return (
  <div>
-       <form style={{ textAlign: "center" }}>
+       <form  style={{ textAlign: "center" }}>
           <h3>Company Bio</h3>
           <TextField
             id="outlined-basic"
@@ -55,6 +54,7 @@ return (
             onChange={handleCompanyInput}
             value={company.title}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="DateOfEstablishment"
@@ -64,6 +64,7 @@ return (
             onChange={handleCompanyInput}
             value={company.dateOfEstablishment}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="Employees"
@@ -73,6 +74,7 @@ return (
             onChange={handleCompanyInput}
             value={company.numberOfEmployees}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="Tax ID"
@@ -81,6 +83,7 @@ return (
             onChange={handleCompanyInput}
             value={company.taxId}
           />
+          <br />
           <h2>Contact Details</h2>
           <TextField
             id="outlined-basic"
@@ -91,6 +94,7 @@ return (
             onChange={handleCompanyInput}
             value={company.country}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="City"
@@ -100,6 +104,7 @@ return (
             onChange={handleCompanyInput}
             value={company.city}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="address"
@@ -108,6 +113,7 @@ return (
             onChange={handleCompanyInput}
             value={company.address}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="E-mail"
@@ -117,6 +123,7 @@ return (
             onChange={handleCompanyInput}
             value={company.website}
           />
+          <br />
           <TextField
             id="outlined-basic"
             label="Tel"
@@ -126,8 +133,7 @@ return (
             onChange={handleCompanyInput}
             value={company.tel}
           />
-            <h4>Image</h4>
-            <input type="file" onChange={handleImageUpload}/>
+          <br />
             <Button variant="contained" color="primary" onClick={handleCreateCompany}>
               {" "}
               Submit

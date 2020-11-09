@@ -1,4 +1,5 @@
 import React from 'react';
+import ImageUpload from './components/Company/ImageUpload/ImageUpload';
 
 /* components */
 import Navbar from './components/Navbar/Navbar';
@@ -10,6 +11,7 @@ function App() {
       <header>
         <Navbar />
         <SwitchRouter />
+        <ImageUpload />
       </header>
     </div>
   );

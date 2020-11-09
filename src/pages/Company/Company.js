@@ -15,6 +15,7 @@ import Tab from "@material-ui/core/Tab";
 import TabPanel from "../../components/TabPanel/TabPanel";
 import CompanyInfo from "../../components/Company/CompanyInfo/CompanyInfo";
 import CreateJob from "../../components/Company/CreateJob/CreateJob";
+import ImageUpload from '../../components/Company/ImageUpload/ImageUpload' 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,7 +63,7 @@ export  default function Company () {
         component="img"
         alt="Profile Picture"
         height="50px"
-        image="./img_avatar.png"
+        image={company.image}
         title="Profile picture"
       />
     </div>
@@ -120,6 +121,7 @@ export  default function Company () {
   </div>
   <div>
     <CompanyInfo />
+    <ImageUpload />
     {/* <CreateJob /> */}
   </div>
 </div>
