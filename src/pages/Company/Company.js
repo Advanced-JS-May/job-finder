@@ -42,7 +42,9 @@ export  default function Company () {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+ const handleSmth = () =>{
+   console.log('WoW')
+ }
   // const handleChangeIndex = (index) => {
   //   setValue(index);
   // };
@@ -62,7 +64,7 @@ export  default function Company () {
       <CardMedia
         component="img"
         alt="Profile Picture"
-        height="50px"
+        height="200px"
         image={company.image}
         title="Profile picture"
       />
@@ -71,9 +73,11 @@ export  default function Company () {
       <CardMedia
         component="img"
         alt="Cover Image"
-        height="50px"
-        image="./img_avatar.png"
+        height="200px"
+        width="1000px"
+        image={company.image}
         title="Profile picture"
+        onClick={handleSmth}
       />
     </div>
   </div>
@@ -120,7 +124,7 @@ export  default function Company () {
     ></TabPanel>
   </div>
   <div>
-    <CompanyInfo />
+    {/* <CompanyInfo /> */}
     <ImageUpload />
     {/* <CreateJob /> */}
   </div>
