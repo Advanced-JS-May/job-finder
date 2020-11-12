@@ -9,7 +9,7 @@ import {useAuth} from '../../services/authentication'
 
 export default function CompanyInfo () {
 
-const [company,setCompany]=useState({country: '',city: '',adress: '',email: '',tel: '',})
+const [company,setCompany]=useState({})
 const {user}=useAuth();
 
 
