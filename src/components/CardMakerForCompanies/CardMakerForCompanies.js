@@ -1,5 +1,6 @@
 import React, { useState , useEffect } from 'react';
 import {getCompanyById} from '../../services/company.js'
+import CompaniesInfoShow from '../CompaniesInfoShow/CompaniesInfoShow.js'
 
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -32,8 +33,16 @@ export default function CardMakerForCompanies() {
     'Company Description(getting from db, Max chars. 50) \\\ Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum', id:'ZPAD7oRbfQSwurYDNUlRFWMCyDE2'},{img: 'https://play-lh.googleusercontent.com/YFpMBVjnTFQ9D7ln9jOPDxCwTf_AUPgNU0Tz8uskVP-0Esj_5jqBDpqcPm0LwDpcLA', name: 'Company Name(getting from db)', desc: 
     'Company Description(getting from db, Max chars. 50) \\\ Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum', id:'fq7J4i96oiPTmytVKfjFd0TIh9f2'},{img: 'https://play-lh.googleusercontent.com/YFpMBVjnTFQ9D7ln9jOPDxCwTf_AUPgNU0Tz8uskVP-0Esj_5jqBDpqcPm0LwDpcLA', name: 'Company Name(getting from db)', desc: 
     'Company Description(getting from db, Max chars. 50) \\\ Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum', id:'wlapL7ql6SNjFazSvcwUUhI7cbl1'}]);
-  const [gottenCompany, setGottenCompany ] = useState(1)
+  const [ gottenCompany, setGottenCompany ] = useState(1)
 
+  function setBack() {
+    setGottenCompany(1);
+  }
+  async function norrmalisingPromise(id) {
+    let x = await getCompanyById(id).then((e)=>(e));
+    setGottenCompany(x);
+    console.log(x)
+  }
   const allComps = () => {
     return (
       companies.map((e) => {
@@ -54,7 +63,7 @@ export default function CardMakerForCompanies() {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button size="small" color="primary" onClick={() => {setGottenCompany(getCompanyById(e.id))}}>
+                  <Button size="small" color="primary" onClick={() => {norrmalisingPromise(e.id)}}>
                     More Info
                   </Button>
                </CardActions>
@@ -64,7 +73,7 @@ export default function CardMakerForCompanies() {
   }
 
   useEffect(() => {
-      console.log(gottenCompany)
+      
   });
   const classes = useStyles();
   
@@ -72,7 +81,8 @@ export default function CardMakerForCompanies() {
     return(allComps());
   }
   else {
-    return(<h2>ALALALALA</h2>)
-  }
 
+    return(<CompaniesInfoShow functionBack={() => {setGottenCompany(1)}} companyName={gottenCompany.['company-name']} companyDescription={gottenCompany.description} companyImg={gottenCompany.image}  companyAdress={gottenCompany.adress} companyCity={gottenCompany.city} companyCountrey={gottenCompany.country} companyTax={gottenCompany.['tax-ID']} companyMail={gottenCompany.email} companyTelephone={gottenCompany.tel} companyEstablishTime={gottenCompany.['date-of-establishment']} companyEmployees={gottenCompany.['number-of-employees']} />)
+  }
+                            
 }

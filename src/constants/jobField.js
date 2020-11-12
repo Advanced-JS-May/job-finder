@@ -20,6 +20,5 @@
 	'Audit/Compliance',
 	'Healthcare/Pharmaceutical',
 	'Human Resources',
-
 ]             
 export default fields;
