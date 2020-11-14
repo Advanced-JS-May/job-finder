@@ -30,6 +30,7 @@ const handleCreateCompany =()=>{
 
 return (
     <div>
+    <h2>gcgfvhvh</h2>
       <form style={{ textAlign: "center" }}>
         <h3>Company Bio</h3>
         <h2>Basic Info</h2>
@@ -65,7 +66,7 @@ return (
          <TextField id="outlined-basic" label="E-mail"   type="email"variant="outlined" name="email"onChange={handleCompanyInput} value={company.email}/>
         </label>
         <label>
-         <TextField id="outlined-basic" label="Tel"   type="number" variant="outlined" name="tel"onChange={handleCompanyInput} value={company.email}/>
+         <TextField id="outlined-basic" label="Tel"   type="number" variant="outlined" name="tel"onChange={handleCompanyInput} value={company.tel}/>
         </label>
         <Button variant="contained" color="primary"onClick={handleCreateCompany}> Submit</Button>
       </form>

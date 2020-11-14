@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './Footer.css'
+import InputKey from '../../components/inputKeywords/inputKey.js'
 
 function Footer() {
   return (<>
   	<div className="footer">
+
   		<div className="footer__main-column">
   			<h2>Logo</h2>
   			<adress>

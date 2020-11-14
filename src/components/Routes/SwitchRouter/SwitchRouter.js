@@ -4,14 +4,14 @@ import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import { useAuth } from '../../../services/authentication';
 
-import SignIn from '../../../pages/SignIn/SignIn';
+import SignIn from '../../../pages/Signin/SignIn';
 import Signup from '../../../pages/Signup/Signup';
 import Home from '../../../pages/Home/Home';
 import Jobs from '../../../pages/Jobs/Jobs';
-import CompanyInfo from '../../../pages/CompanyInfo/CompanyInfo';
+import Company from '../../../pages/Company/Company';
 import EmailVerification from '../../../pages/EmailVerification/EmailVerification';
-import Company from '../../../pages/Company/Company'
 import CreateProfile from '../../../pages/CreateProfile/CreateProfile';
+import AllCompanies from '../../../pages/AllCompanies/AllCompanies';
 
 function SwitchRouter() {
   const { user } = useAuth();
@@ -30,17 +30,26 @@ function SwitchRouter() {
       <Route path="/jobs">
         <Jobs />
       </Route>
+      <Route path="/companies">
+        <AllCompanies />
+      </Route>
       <Route path="/email-verification">
         <EmailVerification />
       </Route>
       <Route path="/profile/create">
         <CreateProfile />
       </Route>
-      <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
+      <Route path="/company/profile"> 
         <CompanyInfo />
+     </Route>
+     <Route path="/company/:id"> 
+         <Company />
+     </Route>
+      {/* <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
         <Company />
-      </PrivateRoute>
-    </Switch>
+      </PrivateRoute>  */}
+     
+  </Switch> 
   );
 }
 export default SwitchRouter;

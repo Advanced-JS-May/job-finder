@@ -23,23 +23,6 @@ input,button,select {
 .Radio-Container span{
 	color: #fff;
 }
-.job-keywords-input ,select {
-	box-sizing: border-box !important;
-	font-size: 18px;
-    color: #979797;
-	padding: 16px 5px;
-	width: 200px;
-	margin-right: 2px;
-}
-.search-button {
-	width: 200px;
-	background: #407BFF;
-	border: none;
-	color: #fff;
-	padding: 16px 0px;
-	box-sizing: border-box;
-	cursor: pointer;
-}
 .centerer-search {
 	margin-top: 40px;
 	display: flex;

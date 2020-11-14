@@ -1,0 +1,8 @@
+.containerAllCompanies {
+	margin-left: 10%;
+	margin-right: 10%;
+	height: auto;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
