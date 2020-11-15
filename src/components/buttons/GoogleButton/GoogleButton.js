@@ -12,9 +12,7 @@ export default function GoogleButton(props) {
   function signInWithGoogle() {
     authWithGoogle(USER_ROLES.user)
       .then((user) => {
-        if (user) {
-          history.push('/');
-        }
+        history.push('/profile/create');
       })
       .catch((error) => console.log(error));
   }

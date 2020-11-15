@@ -13,7 +13,7 @@ export default function FacebookButton() {
     authWithFacebook(USER_ROLES.user)
       .then((user) => {
         if (user) {
-          history.push('/');
+          history.push('/profile/create');
         }
       })
       .catch((error) => console.log(error));

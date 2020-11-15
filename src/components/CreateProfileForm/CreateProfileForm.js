@@ -7,9 +7,6 @@ import { useAuth } from '../../services/authentication';
 import { createJobSeeker } from '../../services/JobSeeker.service';
 import jobSeekerValidation from '../../validation/jobSeeker.schema';
 
-/* Material ui */
-import Button from '@material-ui/core/Button';
-
 /* components */
 import FormPersonalDataSection from '../FormPersonalDataSection/FormPersonalDataSection';
 import FormContactSection from '../FormContactSection/FormContactSection';

@@ -8,9 +8,12 @@ import validate from '../../Utils/validate.helper';
 /* UI */
 import FormField from '../FormElements/FormField/FormField';
 import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
 import SocialAccountLogin from '../SocialAccountLogin/SocialAccountLogin';
 import ErrorMessage from '../FormElements/ErrorMessage/ErrorMessage';
+
+import styles from './JobSeeker.module.css';
+
+import FormContainer from '../FormElements/FormContainer/FormContainer';
 
 function JobSeekerRegister({ value, index }) {
   const { signup } = useAuth();
@@ -48,21 +51,10 @@ function JobSeekerRegister({ value, index }) {
       : false;
 
   return (
-    <Box
-      style={{
-        display: 'flex',
-        width: '100%',
-        justifyContent: 'space-evenly',
-        maxWidth: '600px',
-      }}
-    >
+    <FormContainer>
       <form
         onSubmit={formik.handleSubmit}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '300px',
-        }}
+        className={styles.form}
         autoComplete="off"
       >
         <FormField
@@ -101,10 +93,11 @@ function JobSeekerRegister({ value, index }) {
         <Button
           type="submit"
           color="primary"
-          variant="outlined"
+          variant="contained"
           onClick={formik.onSubmit}
           style={{
             margin: ' 16px 0',
+            padding: '0.8rem',
           }}
         >
           Submit
@@ -113,7 +106,7 @@ function JobSeekerRegister({ value, index }) {
         <ErrorMessage message={error} />
       </form>
       <SocialAccountLogin />
-    </Box>
+    </FormContainer>
   );
 }
 
