@@ -12,6 +12,7 @@ import Company from '../../../pages/Company/Company';
 import EmailVerification from '../../../pages/EmailVerification/EmailVerification';
 import CreateProfile from '../../../pages/CreateProfile/CreateProfile';
 import AllCompanies from '../../../pages/AllCompanies/AllCompanies';
+import CompanyInfo from '../../Company/CompanyInfo/CompanyInfo.js'
 
 function SwitchRouter() {
   const { user } = useAuth();

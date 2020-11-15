@@ -40,3 +40,11 @@ return storage
  
 }
 
+export function getAllCompanies() {
+  return database
+    .ref("/companies")
+    .once("value")
+    .then(function (response) {
+      return response.val();
+    });
+}	
