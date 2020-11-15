@@ -1,6 +1,8 @@
 import React, { useState , useEffect } from 'react';
 import {getCompanyById} from '../../services/company.js'
+import {getAllCompanies} from '../../services/company.js'
 import CompaniesInfoShow from '../CompaniesInfoShow/CompaniesInfoShow.js'
+
 
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,6 +17,7 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    minWidth: 345,
     display: 'inline-block',
     marginTop: '3%',
     marginBottom: '2%',
@@ -25,15 +28,27 @@ const useStyles = makeStyles({
 });
 
 export default function CardMakerForCompanies() {
-  const [ companies, setCompanies ] = useState([{img: 'https://play-lh.googleusercontent.com/YFpMBVjnTFQ9D7ln9jOPDxCwTf_AUPgNU0Tz8uskVP-0Esj_5jqBDpqcPm0LwDpcLA', name: 'Company Name(getting from db)', desc: 
-    'Company Description(getting from db, 5) \\\ Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum', id:'6n2DrqCLrfTrKjPDcYC8CHEG69K2'}, {img: 'https://play-lh.googleusercontent.com/YFpMBVjnTFQ9D7ln9jOPDxCwTf_AUPgNU0Tz8uskVP-0Esj_5jqBDpqcPm0LwDpcLA', name: 'Company Name(getting from db)', desc: 
-    'Company Description(getting from db, Max chars. 50) \\\ Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum', id:'Dwz6NcIoQlg9ilzTb0qJqSFuyz42'},{img: 'https://play-lh.googleusercontent.com/YFpMBVjnTFQ9D7ln9jOPDxCwTf_AUPgNU0Tz8uskVP-0Esj_5jqBDpqcPm0LwDpcLA', name: 'Company Name(getting from db)', desc: 
-    'Company Description(getting from db, Max chars. 50) \\\ Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum', id:'H379QYRtNIhVhb23IVJh9uW94us1'},{img: 'https://play-lh.googleusercontent.com/YFpMBVjnTFQ9D7ln9jOPDxCwTf_AUPgNU0Tz8uskVP-0Esj_5jqBDpqcPm0LwDpcLA', name: 'Company Name(getting from db)', desc: 
-    'Company Description(getting from db, Max chars. 50) \\\ Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum', id:'TiANllaiPTdp1gRb5LqzeP5fv3z1'},{img: 'https://play-lh.googleusercontent.com/YFpMBVjnTFQ9D7ln9jOPDxCwTf_AUPgNU0Tz8uskVP-0Esj_5jqBDpqcPm0LwDpcLA', name: 'Company Name(getting from db)', desc: 
-    'Company Description(getting from db, Max chars. 50) \\\ Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum', id:'ZPAD7oRbfQSwurYDNUlRFWMCyDE2'},{img: 'https://play-lh.googleusercontent.com/YFpMBVjnTFQ9D7ln9jOPDxCwTf_AUPgNU0Tz8uskVP-0Esj_5jqBDpqcPm0LwDpcLA', name: 'Company Name(getting from db)', desc: 
-    'Company Description(getting from db, Max chars. 50) \\\ Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum', id:'fq7J4i96oiPTmytVKfjFd0TIh9f2'},{img: 'https://play-lh.googleusercontent.com/YFpMBVjnTFQ9D7ln9jOPDxCwTf_AUPgNU0Tz8uskVP-0Esj_5jqBDpqcPm0LwDpcLA', name: 'Company Name(getting from db)', desc: 
-    'Company Description(getting from db, Max chars. 50) \\\ Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum', id:'wlapL7ql6SNjFazSvcwUUhI7cbl1'}]);
+  const [ companies, setCompanies ] = useState([{description: ''}]);
   const [ gottenCompany, setGottenCompany ] = useState(1)
+
+   useEffect(() => {
+    getAllCompanies().then((response) => {
+      setCompanies(Object.values(response));
+    });
+  }, []);
+
+  function ifDescription(prop) {
+    if(typeof prop != 'undefined') {
+      if(prop.trim != ''){
+        if(prop.length < 150) {
+          return prop
+        }
+         return prop.substr(0,150) + '...';
+        }
+      }
+      return 'No description'
+    }
+   
 
   function setBack() {
     setGottenCompany(1);
@@ -41,7 +56,6 @@ export default function CardMakerForCompanies() {
   async function norrmalisingPromise(id) {
     let x = await getCompanyById(id).then((e)=>(e));
     setGottenCompany(x);
-    console.log(x)
   }
   const allComps = () => {
     return (
@@ -50,15 +64,17 @@ export default function CardMakerForCompanies() {
                 <CardActionArea>
                   <CardMedia
                     className={classes.media}
-                    image={e.img}
+                    image={e.image}
                     title="logo"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                     {e.name}
+                     {e.['company-name']}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                     {e.desc}
+                      { ifDescription(e.description)
+                        
+                     }
                     </Typography>
                   </CardContent>
                 </CardActionArea>
@@ -72,16 +88,12 @@ export default function CardMakerForCompanies() {
     )
   }
 
-  useEffect(() => {
-      
-  });
   const classes = useStyles();
   
   if(gottenCompany == 1) {
     return(allComps());
   }
   else {
-
     return(<CompaniesInfoShow functionBack={() => {setGottenCompany(1)}} companyName={gottenCompany.['company-name']} companyDescription={gottenCompany.description} companyImg={gottenCompany.image}  companyAdress={gottenCompany.adress} companyCity={gottenCompany.city} companyCountrey={gottenCompany.country} companyTax={gottenCompany.['tax-ID']} companyMail={gottenCompany.email} companyTelephone={gottenCompany.tel} companyEstablishTime={gottenCompany.['date-of-establishment']} companyEmployees={gottenCompany.['number-of-employees']} />)
   }
                             
