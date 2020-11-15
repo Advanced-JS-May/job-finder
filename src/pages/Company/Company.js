@@ -60,7 +60,7 @@ export  default function Company () {
 <div className={classes.root}>
   <div style={{ display: "flex", flexDirection: "row" }}>
     <div>
-    <img src={company.image} alt="Girl in a jacket" width="500" height="600" />
+    <img src={company.image} alt="Profile Picture" width="50" height="50" />
       <CardMedia
         component="img"
         alt="Profile Picture"
