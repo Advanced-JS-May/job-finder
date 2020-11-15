@@ -4,8 +4,8 @@ import { useFormik } from 'formik';
 /* UI */
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import FormField from '../Form/FormField/FormField';
-import ErrorMessage from '../Form/ErrorMessage/ErrorMessage';
+import FormField from '../FormElements/FormField/FormField';
+import ErrorMessage from '../FormElements/ErrorMessage/ErrorMessage';
 /* Authentication */
 import { useAuth } from '../../services/authentication';
 import { USER_ROLES } from '../../constants/user.constants';

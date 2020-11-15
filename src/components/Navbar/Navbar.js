@@ -12,9 +12,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-/*components*/
-import CompanyInfo from '../Company/CompanyInfo/CompanyInfo';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -98,15 +95,11 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                 <Link to="/company/profile">
-                   Account
-                 </Link>
+                  <Link to="/company/profile">Account</Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                 <Link to="/company/:id">
-                   Profile
-                 </Link>
-                 </MenuItem>
+                  <Link to="/company/:id">Profile</Link>
+                </MenuItem>
                 <MenuItem onClick={handleSignOut}>log out</MenuItem>
               </Menu>
             </div>

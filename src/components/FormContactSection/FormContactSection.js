@@ -10,8 +10,10 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InputMask from 'react-input-mask';
 import EmailIcon from '@material-ui/icons/Email';
 
+import FormSection from '../FormElements/FormSection/FormSection';
+
 function TextMaskCustom(props) {
-  return <InputMask {...props} mask="+374 ( 99 ) 99-99-99" maskChar=" " />;
+  return <InputMask {...props} mask="+374 99 999999" maskChar=" " />;
 }
 
 function FormContactSection({
@@ -25,19 +27,20 @@ function FormContactSection({
   handleTwitterChange,
   handleFacebookChange,
   handleLinkedInChange,
+  handlePhoneBlur,
+  handleEmailBlur,
+  handleTwitterBlur,
+  handleFacebookBlur,
+  handleLinkedInBlur,
+  phoneError,
+  emailError,
+  twitterError,
+  facebookError,
+  linkedInError,
 }) {
   return (
-    <div
-      style={{
-        width: 400,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '10px',
-      }}
-    >
-      <Grid container direction="column" spacing={2}>
+    <FormSection>
+      <Grid container direction="column" spacing={3}>
         <Grid
           item
           style={{
@@ -57,6 +60,8 @@ function FormContactSection({
             label="phone Number"
             value={phoneValue}
             onChange={handlePhoneChange}
+            onBlur={handlePhoneBlur}
+            error={phoneError}
             fullWidth
             InputProps={{
               inputComponent: TextMaskCustom,
@@ -84,6 +89,8 @@ function FormContactSection({
             label="email"
             value={emailValue}
             onChange={handleEmailChange}
+            onBlur={handleEmailBlur}
+            error={emailError}
             fullWidth
             InputProps={{ style: { fontSize: 16, padding: 10 } }}
           />
@@ -108,6 +115,8 @@ function FormContactSection({
             name="twitter"
             value={twitterValue}
             onChange={handleTwitterChange}
+            onBlur={handleTwitterBlur}
+            error={twitterError}
             InputProps={{ style: { fontSize: 16, padding: 10 } }}
           />
         </Grid>
@@ -132,6 +141,8 @@ function FormContactSection({
             name="facebook"
             value={facebookValue}
             onChange={handleFacebookChange}
+            onBlur={handleFacebookBlur}
+            error={facebookError}
             InputProps={{ style: { fontSize: 16, padding: 10 } }}
           />
         </Grid>
@@ -155,11 +166,13 @@ function FormContactSection({
             name="linkedIn"
             value={linkedInValue}
             onChange={handleLinkedInChange}
+            onBlur={handleLinkedInBlur}
+            error={linkedInError}
             InputProps={{ style: { fontSize: 16, padding: 10 } }}
           />
         </Grid>
       </Grid>
-    </div>
+    </FormSection>
   );
 }
 export default FormContactSection;

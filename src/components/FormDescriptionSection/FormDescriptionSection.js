@@ -1,20 +1,26 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import FormSection from '../FormElements/FormSection/FormSection';
+
+const useStyles = makeStyles({
+  root: {
+    display: 'block',
+    margin: '20px 0',
+  },
+});
 
 function FormDescriptionSection({
   headlineValue,
-  handleHeadlineChange,
   summaryValue,
+  handleHeadlineChange,
   handleSummaryChange,
 }) {
+  const classes = useStyles();
   return (
-    <div
-      style={{
-        width: 400,
-        padding: '10px',
-      }}
-    >
+    <FormSection>
       <TextField
+        className={classes.root}
         name="headline"
         value={headlineValue}
         onChange={handleHeadlineChange}
@@ -29,6 +35,7 @@ function FormDescriptionSection({
         }}
       />
       <TextField
+        className={classes.root}
         margin="normal"
         label="summary"
         name="summary"
@@ -37,13 +44,13 @@ function FormDescriptionSection({
         multiline
         fullWidth
         rows={10}
-        variant="outlined"
         placeholder="Dynamic and motivated professional with a proven record of generating and building relationships, managing projects from concept to completion. Skilled in building cross-functional teams, demonstrating exceptional communication skills, and making critical decisions during challenges. Adaptable and transformational leader with an ability to work independently, creating effective presentations, and developing opportunities."
+        variant="outlined"
         inputProps={{
           maxLength: 450,
         }}
       />
-    </div>
+    </FormSection>
   );
 }
 

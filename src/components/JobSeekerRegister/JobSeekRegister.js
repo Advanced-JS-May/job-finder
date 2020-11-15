@@ -6,11 +6,11 @@ import { USER_ROLES } from '../../constants/user.constants';
 import validate from '../../Utils/validate.helper';
 
 /* UI */
-import FormField from '../Form/FormField/FormField';
+import FormField from '../FormElements/FormField/FormField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import SocialAccountLogin from '../SocialAccountLogin/SocialAccountLogin';
-import ErrorMessage from '../Form/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../FormElements/ErrorMessage/ErrorMessage';
 
 function JobSeekerRegister({ value, index }) {
   const { signup } = useAuth();
