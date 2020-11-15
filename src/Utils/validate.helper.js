@@ -1,4 +1,4 @@
-const validate = (values) => {
+const validateRegisterForm = (values) => {
   const errors = {};
   if (values.email === '') {
     errors.email = 'required';
@@ -13,4 +13,4 @@ const validate = (values) => {
   }
   return errors;
 };
-export default validate;
+export default validateRegisterForm;

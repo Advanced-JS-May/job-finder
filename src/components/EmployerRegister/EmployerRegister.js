@@ -10,7 +10,7 @@ import ErrorMessage from '../Form/ErrorMessage/ErrorMessage';
 import { useAuth } from '../../services/authentication';
 import { USER_ROLES } from '../../constants/user.constants';
 /* validation */
-import validate from '../../Utils/validate.helper';
+import validateRegisterForm from '../../Utils/validate.helper';
 
 function EmployerRegister({ value, index }) {
   const { signup } = useAuth();
@@ -24,7 +24,7 @@ function EmployerRegister({ value, index }) {
       password: '',
       passwordConfirm: '',
     },
-    validate,
+    validateRegisterForm,
     onSubmit: ({ email, password }) => {
       signup(email, password, USER_ROLES.employer)
         .then(() => {
