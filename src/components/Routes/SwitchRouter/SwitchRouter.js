@@ -43,7 +43,7 @@ function SwitchRouter() {
       <Route path="/company/profile"> 
         <CompanyInfo />
      </Route>
-     <Route path="/company/:id"> 
+     <Route path="/signin/company/:idsignin/company/:id"> 
          <Company />
      </Route>
       {/* <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
