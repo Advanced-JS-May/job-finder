@@ -4,7 +4,7 @@ import { storage } from "../libraries/firebase";
 
 // function to POST information about company to DB 
 
-export  function createCompany (company) {
+export  function createCompany (company ) {
   return database.ref('companies/' + company.id).set(company);
 }
 
@@ -17,7 +17,6 @@ export function getCompanyById(id) {
 
 export const uploadImage = (image) => {
    return  storage.ref(`images/${image.name}`).put(image);
-    
   };
 
 // export const getImageUrl =  () => {

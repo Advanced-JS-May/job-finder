@@ -56,8 +56,7 @@ export  default function Company () {
   }, [id]);
 
 
-
-  return (
+ return (
 <div className={classes.root}>
   <div style={{ display: "flex", flexDirection: "row" }}>
     <div>
@@ -76,7 +75,7 @@ export  default function Company () {
         height="200px"
         width="1000px"
         image={company.image}
-        title="Profile picture"
+        title="Cover picture"
         onClick={handleSmth}
       />
     </div>
@@ -126,6 +125,7 @@ export  default function Company () {
   <div>
     {/* <CompanyInfo /> */}
     <ImageUpload />
+    <CreateJob />
     {/* <CreateJob /> */}
   </div>
 </div>
