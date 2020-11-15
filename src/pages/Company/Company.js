@@ -9,13 +9,14 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-
+import Avatar from '@material-ui/core/Avatar';
 
 //components
 import TabPanel from "../../components/TabPanel/TabPanel";
 import CompanyInfo from "../../components/Company/CompanyInfo/CompanyInfo";
 import CreateJob from "../../components/Company/CreateJob/CreateJob";
 import ImageUpload from '../../components/Company/ImageUpload/ImageUpload' 
+import { ProfilePicture, CoverImage} from '../../components/icons/Avatar/Avatar'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,9 +43,7 @@ export  default function Company () {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
- const handleSmth = () =>{
-   console.log('WoW')
- }
+
   // const handleChangeIndex = (index) => {
   //   setValue(index);
   // };
@@ -60,25 +59,8 @@ export  default function Company () {
 <div className={classes.root}>
   <div style={{ display: "flex", flexDirection: "row" }}>
     <div>
-    <img src={company.image} alt="Profile Picture" width="50" height="50" />
-      <CardMedia
-        component="img"
-        alt="Profile Picture"
-        height="200px"
-        image={company.image}
-        title="Profile picture"
-      />
-    </div>
-    <div>
-      <CardMedia
-        component="img"
-        alt="Cover Image"
-        height="200px"
-        width="1000px"
-        image={company.image}
-        title="Cover picture"
-        onClick={handleSmth}
-      />
+       <ProfilePicture imageLink={company.image}/>
+       <CoverImage imageLink={company.image} />
     </div>
   </div>
   <div>

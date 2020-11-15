@@ -31,8 +31,8 @@ const handleCreateCompany =()=>{
 
 
 
-return (
- <div>
+
+return( <div>
        <form  style={{ textAlign: "center" }}>
           <h3>Company Bio</h3>
           <TextField
@@ -134,7 +134,6 @@ return (
           />
           <br />
             <Button variant="contained" color="primary" onClick={handleCreateCompany}>
-              {" "}
               Submit
             </Button>
         </form>;

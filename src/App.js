@@ -7,10 +7,10 @@ import SwitchRouter from './components/Routes/SwitchRouter/SwitchRouter';
 function App() {
   return (
     <div className="App">
-      <header>
+      <header> 
         <Navbar />
-        <SwitchRouter />
-      </header>
+        <SwitchRouter /> 
+       </header> 
     </div>
   );
 }
