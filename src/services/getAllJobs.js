@@ -6,5 +6,6 @@ export function getAllJobs() {
       .once("value")
       .then(function (response) {
         return response.val();
-      });
+      })
+      .catch((err)=>console.log(err))
   }

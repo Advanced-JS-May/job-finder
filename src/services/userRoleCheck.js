@@ -6,6 +6,7 @@ export function checkUserRole(id,role) {
     .ref("/users/" + id)
     .once("value")
     .then((snapshot) => snapshot.val())
+    .catch((err)=>console.log(err))
     .then((res) => {
       if (res.role == role) {
         console.log("isEmployer");
@@ -15,5 +16,6 @@ export function checkUserRole(id,role) {
         console.log("USER");
       }
       console.log("Real",res.role);
-    });
+    })
+    .catch((err)=>console.log(err))
 }
