@@ -14,33 +14,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Select(props) {
-	const classes = useStyles();
-  const [currency, setCurrency] = React.useState('EUR');
-  const {givenArray} = props;
+  const classes = useStyles();
+  const [currency, setCurrency] = useState('EUR');
+  const { givenArray } = props;
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
   };
-	return(
-		<>
-		<form className={classes.root} noValidate autoComplete="off">
-	      	<div>
-		        <TextField
-		          id="standard-select"
-		          select
-		          label="Select"
-		          onChange={handleChange}
-		          helperText="Please select"
-              variant="filled"
-		        >
-		          {givenArray.map((option) => (
-		            <MenuItem value={option}>
-		              {option}
-		            </MenuItem>
-		          ))}
-		        </TextField>
-	        </div>
-        </form>
-        </>
-	)
+  return (
+    <>
+      <form className={classes.root} noValidate autoComplete="off">
+        <div>
+          <TextField
+            id="standard-select"
+            select
+            label="Select"
+            onChange={handleChange}
+            helperText="Please select"
+            variant="filled"
+          >
+            {givenArray.map((option) => (
+              <MenuItem value={option}>{option}</MenuItem>
+            ))}
+          </TextField>
+        </div>
+      </form>
+    </>
+  );
 }

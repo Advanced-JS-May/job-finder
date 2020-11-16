@@ -7,13 +7,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ProvideAuth } from './services/authentication';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ProvideAuth>
-      <Router>
-        <App />
-      </Router>
-    </ProvideAuth>
-  </React.StrictMode>,
+  <ProvideAuth>
+    <Router>
+      <App />
+    </Router>
+  </ProvideAuth>,
   document.getElementById('root')
 );
 

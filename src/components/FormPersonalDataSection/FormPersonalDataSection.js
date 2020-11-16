@@ -1,80 +1,113 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import CITIES from '../../constants/armenianCities';
 import GENDERS from '../../constants/gender';
+import FormSection from '../FormElements/FormSection/FormSection';
+import { makeStyles } from '@material-ui/core/styles';
 
-function FormPersonalDataSection() {
-  const [gender, setGender] = useState(GENDERS[0]);
-  const [city, setCity] = useState(CITIES[0]);
+const useStyles = makeStyles({
+  root: {
+    margin: 5,
+  },
+});
 
-  const handleGenderChange = (event) => {
-    setGender(event.target.value);
-  };
-
-  const handleCityChange = (event) => {
-    setCity(event.target.value);
-  };
+function FormPersonalDataSection({
+  nameValue,
+  surnameValue,
+  ageValue,
+  genderValue,
+  cityValue,
+  handleNameChange,
+  handleSurnameChange,
+  handleAgeChange,
+  handleGenderChange,
+  handleCityChange,
+  handleNameBlur,
+  handleSurnameBlur,
+  handleAgeBlur,
+  handleGenderBlur,
+  handleCityBlur,
+  nameError,
+  surnameError,
+  ageError,
+  genderError,
+  cityError,
+}) {
+  const classes = useStyles();
 
   return (
-    <div
-      style={{
-        width: 400,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <FormSection>
       <TextField
+        className={classes.root}
         fullWidth
         label="Name"
+        name="name"
+        margin="normal"
+        value={nameValue}
+        onChange={handleNameChange}
+        onBlur={handleNameBlur}
+        error={nameError}
         variant="outlined"
-        InputProps={{ style: { padding: 5, margin: '12px 0' } }}
+        InputProps={{ style: { padding: 5 } }}
       />
       <TextField
         fullWidth
+        margin="normal"
         label="Surname"
+        name="surname"
+        value={surnameValue}
+        onChange={handleSurnameChange}
+        onBlur={handleSurnameBlur}
+        error={surnameError}
         variant="outlined"
-        InputProps={{ style: { margin: '12px 0 ', padding: 5 } }}
+        InputProps={{ style: { padding: 5 } }}
       />
       <TextField
         type="number"
         label="Age"
+        margin="normal"
+        value={ageValue}
+        onChange={handleAgeChange}
+        onBlur={handleAgeBlur}
+        error={ageError}
+        name="age"
         variant="outlined"
         fullWidth
-        InputProps={{ style: { margin: '12px 0', padding: 5 } }}
+        InputProps={{ style: { padding: 5 } }}
       />
       <TextField
         variant="outlined"
         select
-        value={gender}
+        label="gender"
+        margin="normal"
+        name="gender"
+        value={genderValue}
         onChange={handleGenderChange}
+        onBlur={handleGenderBlur}
+        error={genderError}
         fullWidth
-        InputProps={{ style: { padding: 0, margin: '12px 0' } }}
+        InputProps={{ style: { padding: 0 } }}
       >
-        {GENDERS.map((option) => {
-          if (option === 'Gender') {
-            return (
-              <MenuItem disabled key={option} value={option}>
-                {option}
-              </MenuItem>
-            );
-          }
-          return (
-            <MenuItem key={option} value={option}>
-              {option}
-            </MenuItem>
-          );
-        })}
+        {GENDERS.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
       </TextField>
       <TextField
         variant="outlined"
         select
-        value={city}
+        label="city"
+        margin="normal"
+        name="city"
+        value={cityValue}
         onChange={handleCityChange}
+        onBlur={handleCityBlur}
+        error={cityError}
         fullWidth
-        InputProps={{ style: { padding: 0, margin: '10px 0' } }}
+        InputProps={{ style: { padding: 0 } }}
       >
         {CITIES.map((option) => {
           if (option === 'All') {
@@ -91,7 +124,7 @@ function FormPersonalDataSection() {
           );
         })}
       </TextField>
-    </div>
+    </FormSection>
   );
 }
 
