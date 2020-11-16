@@ -6,10 +6,9 @@ import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import Fab from "@material-ui/core/Fab";
 
 //services 
-import { uploadImage,getImageUrl,createCompany } from '../../../services/company'
+import { uploadImage,createCompany } from '../../../services/company'
 import { useAuth } from '../../../services/authentication';
 
-// import { uploadImage,getImageUrl } from '../../../services/company';
 
 
 
@@ -25,6 +24,7 @@ export default function ImageUpload() {
 
   const handleUpload = () => {
     const uploadTask = uploadImage(image);
+    
     uploadTask.on(
       "state_changed",
 
@@ -57,7 +57,7 @@ export default function ImageUpload() {
     type="file"
     onChange={handleImageInput}
   />
-  <label htmlFor="contained-button-file">
+  <label>
     <Fab component="button" onClick={handleUpload}>
       <PhotoCamera />
     </Fab>
