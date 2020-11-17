@@ -52,7 +52,11 @@ function EmployerRegister({ value, index }) {
 
   return (
     <FormContainer>
-      <form className={styles.form} autoComplete="off">
+      <form
+        onSubmit={formik.handleSubmit}
+        className={styles.form}
+        autoComplete="off"
+      >
         <FormField
           type="email"
           name="email"
@@ -95,6 +99,7 @@ function EmployerRegister({ value, index }) {
           }}
           color="primary"
           variant="contained"
+          onClick={formik.handleSubmit}
         >
           Submit
         </Button>
