@@ -68,7 +68,8 @@ export default function MenuAppBar() {
           </div>
           {user === null ? (
             <LinearProgress color="secondary" />
-          ) : user && user.emailVerified ? (
+          ) : (user && user.emailVerified) ||
+            (user && user.facebookVerified) ? (
             <div>
               <IconButton
                 aria-label="account of current user"

@@ -33,7 +33,7 @@ function useProvideAuth() {
         return response.user;
       });
   };
-  /* ANCHOR CHECK IT GOOGLE*/
+
   const authWithGoogle = (role) => {
     const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -57,13 +57,21 @@ function useProvideAuth() {
     return firebase
       .auth()
       .signInWithPopup(provider)
-      .then(function (result) {
-        getUsersById(result.user.uid).then((res) => {
-          if (!res) {
-            createUser(result.user, role);
+      .then(async ({ user }) => {
+        await getUsersById(user.uid).then((res) => {
+          if (res === null) {
+            createUser(user, role);
+            setUser({
+              uid: user.uid,
+              email: user.email,
+              emailVerified: user.emailVerified,
+              role,
+            });
+          } else {
+            setUser(res);
           }
         });
-        return result.user;
+        return user;
       });
   };
   const sendVerificationEmail = (user) => user.sendEmailVerification();
@@ -72,9 +80,16 @@ function useProvideAuth() {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-        createUser(response.user, role);
-        return sendVerificationEmail(response.user);
+      .then(({ user }) => {
+        createUser(user, role);
+        setUser({
+          uid: user.uid,
+          email: user.email,
+          emailVerified: user.emailVerified,
+          facebookVerified: true,
+          role,
+        });
+        return sendVerificationEmail(user);
       });
   };
 
@@ -110,8 +125,17 @@ function useProvideAuth() {
   // ... component that utilizes this hook to re-render with the ...
   // ... latest auth object.
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
-      if (user && user.emailVerified) {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user && user.providerData[0].providerId === 'facebook.com') {
+        getUsersById(user.uid).then((response) => {
+          updateUserById(user.uid, {
+            emailVerified: user.emailVerified,
+            facebookVerified: true,
+          });
+          setUser({ ...response, facebookVerified: true });
+          return response;
+        });
+      } else if (user && user.emailVerified) {
         getUsersById(user.uid).then((response) => {
           updateUserById(user.uid, { emailVerified: user.emailVerified });
           setUser({ ...response, emailVerified: user.emailVerified });

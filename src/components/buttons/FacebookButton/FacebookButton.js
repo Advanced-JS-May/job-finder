@@ -4,6 +4,7 @@ import CustomButton from '../CustomButton/CustomButton';
 import { useAuth } from '../../../services/authentication';
 import { useHistory } from 'react-router-dom';
 import { USER_ROLES } from '../../../constants/user.constants';
+import { getUsersById } from '../../../services/user';
 
 export default function FacebookButton() {
   const { authWithFacebook } = useAuth();
@@ -12,9 +13,17 @@ export default function FacebookButton() {
   function signInWithFacebook() {
     authWithFacebook(USER_ROLES.user)
       .then((user) => {
-        if (user) {
-          history.push('/profile/create');
-        }
+        getUsersById(user.uid).then((result) => {
+          if (!result.profileCreated) {
+            setTimeout(() => {
+              history.push('/profile/create');
+            }, 1000);
+          } else {
+            setTimeout(() => {
+              history.push(`/profile/${result.uid}`);
+            }, 1000);
+          }
+        });
       })
       .catch((error) => console.log(error));
   }
