@@ -22,6 +22,7 @@ export default function CreateJob () {
           ...e,
           [name]:value,
           id:uniqueId(),
+          uid:user.uid,
            }))
      };
     
@@ -40,7 +41,7 @@ export default function CreateJob () {
         onChange={handleJobInput}
         value={job.position}
     />
-    <Button variant="contained" c olor="primary" onClick={handleCreateJob}>
+    <Button variant="contained" color="primary" onClick={handleCreateJob}>
         {" "}
         Submit
     </Button>

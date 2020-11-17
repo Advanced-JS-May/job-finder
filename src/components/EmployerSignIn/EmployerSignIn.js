@@ -10,16 +10,18 @@ export default function CompanySignIn() {
   const [email, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setError] = useState("");
-  const { signin } = useAuth();
+  const { signin,user } = useAuth();
 
   const handleLoginUpdate = ({ target: { value } }) => setLogin(value);
   const handlePasswordUpdate = ({ target: { value } }) => setPassword(value);
-
+  
   const handleLogin = () => {
-    signin(email, password).then((res) => {
-      checkUserRole(res.uid, USER_ROLES.employer)
+    
+    signin(email, password).then((user) => {
+
+      checkUserRole(user.uid, USER_ROLES.employer)
         .then((res) => {
-          res ? history.push("/signin/company") : setError("Not a Company");
+          res ? history.push(`/company/${user.uid}`) : setError("Not a Company");
         })
         .catch(console.warn);
     });

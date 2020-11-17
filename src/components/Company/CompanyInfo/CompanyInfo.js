@@ -20,6 +20,7 @@ const { user } = useAuth();
 const handleCompanyInput = ({ target:{ value,name } })=> {
    setCompany((e)=>({
      ...e,
+     followedJobId:value,
      [name]:value,
      id:user.uid,
      }))
