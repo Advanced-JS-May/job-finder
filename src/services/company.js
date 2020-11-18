@@ -19,6 +19,11 @@ export const uploadImage = (image) => {
    return  storage.ref(`images/${image.name}`).put(image);
   };
 
+  export const  uploadImageUrl = (companyId, imageUrl) => {
+    database.ref('companies/' + companyId).set({
+           image : imageUrl
+    });
+  }
 // export const getImageUrl =  () => {
 //     storage
 //    .ref("images")
