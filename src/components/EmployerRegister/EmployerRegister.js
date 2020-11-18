@@ -11,6 +11,9 @@ import { useAuth } from '../../services/authentication';
 import { USER_ROLES } from '../../constants/user.constants';
 /* validation */
 import validateRegisterForm from '../../Utils/validate.helper';
+import FormContainer from '../FormElements/FormContainer/FormContainer';
+
+import styles from './EmployerRegister.module.css';
 
 function EmployerRegister({ value, index }) {
   const { signup } = useAuth();
@@ -48,23 +51,8 @@ function EmployerRegister({ value, index }) {
       : false;
 
   return (
-    <Box
-      style={{
-        display: 'flex',
-        width: '100%',
-        maxWidth: '600px',
-        justifyContent: 'center',
-      }}
-    >
-      <form
-        onSubmit={formik.handleSubmit}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          minWidth: '300px',
-        }}
-        autoComplete="off"
-      >
+    <FormContainer>
+      <form className={styles.form} autoComplete="off">
         <FormField
           type="email"
           name="email"
@@ -103,16 +91,17 @@ function EmployerRegister({ value, index }) {
           type="submit"
           style={{
             margin: ' 16px 0',
+            padding: '0.8rem',
           }}
           color="primary"
-          variant="outlined"
+          variant="contained"
         >
           Submit
         </Button>
 
         <ErrorMessage message={error} />
       </form>
-    </Box>
+    </FormContainer>
   );
 }
 

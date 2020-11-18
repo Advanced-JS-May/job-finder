@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
@@ -39,16 +39,10 @@ function SwitchRouter() {
         <EmailVerification />
       </Route>
       {/* regular user */}
-      <PrivateRoute
-        auth={user && user.role === USER_ROLES.user}
-        path="/profile/create"
-      >
+      <PrivateRoute auth={user} path="/profile/create">
         <CreateProfile />
       </PrivateRoute>
-      <PrivateRoute
-        auth={user && user.role === USER_ROLES.user}
-        path="/profile/:id"
-      >
+      <PrivateRoute auth={user} path="/profile/:id">
         <div>{user && user.role}</div>
       </PrivateRoute>
 

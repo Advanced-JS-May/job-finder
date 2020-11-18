@@ -7,15 +7,13 @@ import { useAuth } from '../../services/authentication';
 import { createJobSeeker } from '../../services/JobSeeker.service';
 import jobSeekerValidation from '../../validation/jobSeeker.schema';
 
-/* Material ui */
-import Button from '@material-ui/core/Button';
-
 /* components */
 import FormPersonalDataSection from '../FormPersonalDataSection/FormPersonalDataSection';
 import FormContactSection from '../FormContactSection/FormContactSection';
 import FormDescriptionSection from '../FormDescriptionSection/FormDescriptionSection';
 import FormAlert from '../FormElements/FormAlert/FormAlert';
 import CreateProfileButtons from '../FormElements/CreateProfileButtons/CreateProfileButtons';
+import { updateUserById } from '../../services/user';
 
 function CreateProfileForm({
   activeStep,
@@ -55,11 +53,12 @@ function CreateProfileForm({
     },
     enableReinitialize: true,
     validationSchema: jobSeekerValidation,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       setOpen(true);
       setMessage(`Well done!`);
       setMessageType('success');
-      createJobSeeker(values, user.uid)
+      await updateUserById(user.uid, { profileCreated: true });
+      await createJobSeeker(values, user.uid)
         .then((res) => {
           history.push(`/profile/${user.uid}`);
         })

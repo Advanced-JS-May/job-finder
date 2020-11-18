@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useContext, useState } from 'react';
 import firebase from '../libraries/firebase';
-import { createUser, getUsersById } from './user';
+import { createUser, getUsersById, updateUserById } from './user';
 
 const authContext = createContext();
 
@@ -21,7 +21,7 @@ export const useAuth = () => {
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
   const [user, setUser] = useState(null);
-  
+
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
   const signin = (email, password) => {
@@ -33,19 +33,24 @@ function useProvideAuth() {
         return response.user;
       });
   };
-
+  /* ANCHOR CHECK IT GOOGLE*/
   const authWithGoogle = (role) => {
     const provider = new firebase.auth.GoogleAuthProvider();
 
     return firebase
       .auth()
       .signInWithPopup(provider)
-      .then(function (result) {
-        createUser(result.user, role);
+      .then(async (result) => {
+        await getUsersById(result.user.uid).then((res) => {
+          if (res === null) {
+            createUser(result.user, role);
+          }
+        });
+
         return result.user;
       });
   };
-
+  /* ANCHOR CHECK IT */
   const authWithFacebook = (role) => {
     let provider = new firebase.auth.FacebookAuthProvider();
 
@@ -53,7 +58,11 @@ function useProvideAuth() {
       .auth()
       .signInWithPopup(provider)
       .then(function (result) {
-        createUser(result.user, role);
+        getUsersById(result.user.uid).then((res) => {
+          if (!res) {
+            createUser(result.user, role);
+          }
+        });
         return result.user;
       });
   };
@@ -66,7 +75,7 @@ function useProvideAuth() {
       .then((response) => {
         createUser(response.user, role);
         return sendVerificationEmail(response.user);
-      } );
+      });
   };
 
   const signout = () => {
@@ -101,14 +110,11 @@ function useProvideAuth() {
   // ... component that utilizes this hook to re-render with the ...
   // ... latest auth object.
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (user && user.emailVerified) {
         getUsersById(user.uid).then((response) => {
-          createUser(
-            { ...response, emailVerified: user.emailVerified },
-            response.role
-          );
-          setUser(response);
+          updateUserById(user.uid, { emailVerified: user.emailVerified });
+          setUser({ ...response, emailVerified: user.emailVerified });
           return response;
         });
       } else {

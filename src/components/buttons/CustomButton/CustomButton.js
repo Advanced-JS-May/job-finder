@@ -10,8 +10,8 @@ export default function CustomButton({ children, text, ...props }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        margin: '1rem 0 0.5rem',
-        padding: '7px 10px',
+        margin: '1rem 0',
+        padding: '13px 10px',
         border: '1px solid',
         borderRadius: 5,
       }}
