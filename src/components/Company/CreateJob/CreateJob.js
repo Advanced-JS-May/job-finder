@@ -22,7 +22,7 @@ export default function CreateJob () {
           ...e,
           [name]:value,
           id:uniqueId(),
-          uid:user.uid,
+          uid:14,
            }))
      };
     

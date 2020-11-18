@@ -12,7 +12,7 @@ import Tab from "@material-ui/core/Tab";
 //components
 import TabPanel from "../../components/TabPanel/TabPanel";
 import CreateJob from "../../components/Company/CreateJob/CreateJob";
-import ImageUpload from "../../components/Company/ImageUpload/ImageUpload";
+import ImageUpload  from "../../components/Company/ImageUpload/ImageUpload";
 import { ProfilePicture, CoverImage } from "../../components/icons/Avatar/Avatar";
 import ProfileHeader from "../../components/Company/ProfileHeader/ProfileHeader";
 
@@ -56,9 +56,10 @@ export default function Company() {
     <div className={classes.root}>
       <div style={{ display: "flex", flexDirection: "row" }}>
         <div>
+           {/* <ProfileHeader />  */}
           <ProfilePicture imageLink={company.image} />
-          <ImageUpload />
-          <CoverImage imageLink={company.image} />
+           <ImageUpload />
+          <CoverImage imageLink={company.image} /> 
         </div>
       </div>
       <div>
