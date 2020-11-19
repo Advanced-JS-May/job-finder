@@ -1,3 +1,4 @@
+import { set } from "lodash";
 import React, { useState } from "react";
 import { database } from "../libraries/firebase";
 import { storage } from "../libraries/firebase";
@@ -19,11 +20,12 @@ export const uploadImage = (image) => {
    return  storage.ref(`images/${image.name}`).put(image);
   };
 
-  export const  uploadImageUrl = (companyId, imageUrl) => {
-    database.ref('companies/' + companyId).set({
-           image : imageUrl
-    });
-  }
+  export const uploadImageUrl = (companyId, imageType, imageUrl) => {
+    imageType === "coverImage"
+      ? database.ref("companies/" + companyId).set({ coverImage: imageUrl })
+      : database.ref("companies/" + companyId).set({ image: imageUrl });
+  };
+  
 // export const getImageUrl =  () => {
 //     storage
 //    .ref("images")

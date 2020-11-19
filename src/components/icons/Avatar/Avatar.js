@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   cover: {
     width: theme.spacing(125),
     height: theme.spacing(35),
-    borderRadius:theme.spacing(5)
+    borderRadius: theme.spacing(5),
   },
 }));
 
@@ -44,7 +44,10 @@ export function ProfilePicture(props) {
 
   return (
     <div className={classes.root}>
-      <Avatar alt="P" src={props.imageLink} className={classes.profile} />
+      <Avatar 
+      alt="P" 
+      src={props.imageLink} 
+      className={classes.profile} />
     </div>
   );
 }

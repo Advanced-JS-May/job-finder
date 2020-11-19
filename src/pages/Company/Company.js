@@ -12,9 +12,13 @@ import Tab from "@material-ui/core/Tab";
 //components
 import TabPanel from "../../components/TabPanel/TabPanel";
 import CreateJob from "../../components/Company/CreateJob/CreateJob";
-import ImageUpload  from "../../components/Company/ImageUpload/ImageUpload";
-import { ProfilePicture, CoverImage } from "../../components/icons/Avatar/Avatar";
+import ImageUpload from "../../components/Company/ImageUpload/ImageUpload";
+import {
+  ProfilePicture,
+  CoverImage,
+} from "../../components/icons/Avatar/Avatar";
 import ProfileHeader from "../../components/Company/ProfileHeader/ProfileHeader";
+import CompanyInfoCard from "../../components/Company/CompanyInfoCard/CompanyInfoCard";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,10 +60,10 @@ export default function Company() {
     <div className={classes.root}>
       <div style={{ display: "flex", flexDirection: "row" }}>
         <div>
-           {/* <ProfileHeader />  */}
           <ProfilePicture imageLink={company.image} />
-           <ImageUpload />
-          <CoverImage imageLink={company.image} /> 
+          <ImageUpload imageType='image'/>
+          <CoverImage  imageLink={company.coverImage} />
+          <ImageUpload imageType='coverImage'/>
         </div>
       </div>
       <div>
@@ -83,25 +87,17 @@ export default function Company() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0} dir={theme.direction}>
-          Country : {company.country}
-          <br />
-          City : {company.city}
-          <br />
-          Address : {company.adress}
-          <br />
-          Industry : {company.industry}
-          <br />
-          Date of Establishemnt : {company.dateOfEstablishment}
+          <CompanyInfoCard />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Website : {company.website}
-          <br />
-          Tel : {company.tel}
+          <CompanyInfoCard />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          {company.employees}
+          <CompanyInfoCard />
         </TabPanel>
-        <TabPanel value={value} index={3} dir={theme.direction}></TabPanel>
+        <TabPanel value={value} index={3} dir={theme.direction}>
+          <CompanyInfoCard />
+        </TabPanel>
       </div>
       <div>
         <CreateJob />

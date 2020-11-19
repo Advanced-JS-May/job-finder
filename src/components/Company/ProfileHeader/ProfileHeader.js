@@ -9,9 +9,10 @@ import {
   ProfilePicture,
   CoverImage,
 } from "./../../../components/icons/Avatar/Avatar";
-
-export default function ProfileHeader() {
+import CompanyInfoCard from '../../Company/CompanyInfoCard/CompanyInfoCard'
+export default function ProfileHeader(company) {
   return (
+    <>
     <>
           <Box
             // bgcolor="grey.700"
@@ -23,7 +24,7 @@ export default function ProfileHeader() {
             zIndex="tooltip"
             borderRadius='15px'
           >
-            <ProfilePicture />
+            <ProfilePicture imageLink={company.image}/>
             <ImageUpload />
           </Box>
           <Box
@@ -36,9 +37,13 @@ export default function ProfileHeader() {
             zIndex="modal"
             borderRadius='15px'
           >
-            <CoverImage />
-            {/* <ImageUpload /> */}
+            <CoverImage imageLink={company.image}/>
+            <ImageUpload />
           </Box>
+    </>
+    <>
+    <CompanyInfoCard />
+    </>
     </>
   );
 }
