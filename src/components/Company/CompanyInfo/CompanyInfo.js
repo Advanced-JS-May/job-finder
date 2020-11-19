@@ -20,7 +20,6 @@ const { user } = useAuth();
 const handleCompanyInput = ({ target:{ value,name } })=> {
    setCompany((e)=>({
      ...e,
-     followedJobId:value,
      [name]:value,
      id:user.uid,
      }))
@@ -28,6 +27,7 @@ const handleCompanyInput = ({ target:{ value,name } })=> {
 
 const handleCreateCompany =()=>{
   createCompany(company);
+  window.location.reload(false)
 }
 
 

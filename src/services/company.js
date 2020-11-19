@@ -1,12 +1,12 @@
 import { set } from "lodash";
 import React, { useState } from "react";
-import { database } from "../libraries/firebase";
+import { database,addCommentElement } from "../libraries/firebase";
 import { storage } from "../libraries/firebase";
 
 // function to POST information about company to DB 
 
 export  function createCompany (company ) {
-  return database.ref('companies/' + company.id).set(company);
+  return database.ref('/companies/' + company.id).set(company);
 }
 
 export function getCompanyById(id) {
@@ -17,25 +17,17 @@ export function getCompanyById(id) {
 }
 
 export const uploadImage = (image) => {
-   return  storage.ref(`images/${image.name}`).put(image);
+   return storage
+   .ref(`images/${image.name}`)
+   .put(image);
   };
 
   export const uploadImageUrl = (companyId, imageType, imageUrl) => {
-    imageType === "coverImage"
-      ? database.ref("companies/" + companyId).set({ coverImage: imageUrl })
-      : database.ref("companies/" + companyId).set({ image: imageUrl });
+     return  database
+     .ref("companies/" + companyId)
+     .child(`${imageType}`)
+     .set( imageUrl)
   };
-  
-// export const getImageUrl =  () => {
-//     storage
-//    .ref("images")
-//    .child(image.name)
-//    .getDownloadURL()
-//    .then(url => {
-//      setUrl(url);
-//    });
-//    console.log(url)
-// }
 
 
 export function getImageUrl (image)  {
@@ -43,7 +35,6 @@ return storage
  .ref("images")
  .child(image.name)
  .getDownloadURL()
- 
 }
 
 export function getAllCompanies() {
