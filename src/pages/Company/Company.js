@@ -8,7 +8,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-
+import Fab from "@material-ui/core/Fab"
 //components
 import TabPanel from "../../components/TabPanel/TabPanel";
 import CreateJob from "../../components/Company/CreateJob/CreateJob";
@@ -60,14 +60,16 @@ export default function Company() {
     <div className={classes.root}>
       <div style={{ display: "flex", flexDirection: "row" }}>
         <div>
-          <ProfilePicture imageLink={company.image} />
+          <ProfileHeader companyImage={company.image}/>
+          {/* <ProfilePicture imageLink={company.image} />
           <ImageUpload imageType='image'/>
           <CoverImage  imageLink={company.coverImage} />
-          <ImageUpload imageType='coverImage'/>
+          <ImageUpload imageType='coverImage'/> */}
         </div>
       </div>
       <div>
-        <h1>{company.comapnyName}</h1>
+        {/* <Fab  width="3500px"/> */}
+        <h1>{company.companyName}</h1>
         <p>{company.description}</p>
       </div>
       <div>

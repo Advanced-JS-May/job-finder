@@ -16,12 +16,13 @@ const useStyles = makeStyles((theme) => ({
   profile: {
     width: theme.spacing(20),
     height: theme.spacing(20),
+    border: "solid white 7px",
   },
   cover: {
     width: theme.spacing(125),
     height: theme.spacing(35),
     borderRadius: theme.spacing(5),
-  },
+   },
 }));
 
 export function CoverImage(props) {

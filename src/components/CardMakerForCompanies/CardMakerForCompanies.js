@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 export default function CardMakerForCompanies() {
   const [ companies, setCompanies ] = useState([{description: ''}]);
   const [ gottenCompany, setGottenCompany ] = useState(1)
-
+  
    useEffect(() => {
     getAllCompanies().then((response) => {
       setCompanies(Object.values(response));

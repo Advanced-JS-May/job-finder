@@ -31,22 +31,53 @@ export default function ImageUpload(props) {
      window.location.reload()
    };
 
-  return (
-    <>
-      <input
-        accept="image/*"
-        id="contained-button-file"
-        multiple
-        type="file"
-        onChange={handleImageInput}
-        // style={{display: 'none'}}
-        // ref={hiddenFileInput}
-      />
-      <label>
-        <Fab component="button" onClick={handleUpload}>
-          <PhotoCamera />
-        </Fab>
-      </label>
-    </>
-  );
+//   return (
+//     <div style={{border:"3px solid green",
+//     borderRadius:"13px",
+//     width:"300px",
+//     display:"flex",
+//     flexDirection:"row",
+//     textAlign:"center",
+//     alignContent:"center"}}>
+//       <div>
+//       <input
+//         accept="image/*"
+//         id="contained-button-file"
+//         multiple
+//         type="file"
+//         onChange={handleImageInput}
+//         // style={{display: 'none'}}
+//         // ref={hiddenFileInput}
+//       />
+//         </div>
+//         <div>
+//       <label>
+//         <Fab component="button" onClick={handleUpload}>
+//           <PhotoCamera />
+//         </Fab>
+//       </label>
+//       </div>
+//     </div>
+//   );
+return (
+  <Fab  variant="extended">
+    <div>
+    <input
+      accept="image/*"
+      id="contained-button-file"
+      type="file"
+      onChange={handleImageInput}
+      // style={{display: 'none'}}
+      // ref={hiddenFileInput}
+    />
+      </div>
+      <div>
+    <label>
+      <Fab component="button" onClick={handleUpload}>
+        <PhotoCamera />
+      </Fab>
+    </label>
+    </div>
+    </Fab>
+);
 }
