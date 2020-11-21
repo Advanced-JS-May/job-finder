@@ -9,7 +9,7 @@ import "./ProfileHeader.css"
 
 
 
-export default function ProfileHeader( { image,coverImage } ) {
+export default function ProfileHeader( { image, coverImage } ) {
   return (
     <div className="mainHeader">
         <div  id="profilePicture">

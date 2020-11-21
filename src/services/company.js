@@ -6,7 +6,7 @@ export function createCompany(company) {
      .set(company);
 }
 
-export function getCompanyById(id) {
+export function getCompanyById (id) {
   return database
     .ref("/companies/" + id)
     .once("value")
@@ -25,6 +25,8 @@ export const uploadImageUrl = (companyId, imageType, imageUrl) => {
     .child(`${imageType}`)
     .set(imageUrl);
 };
+
+
 
 export function getImageUrl(image) {
   return storage
