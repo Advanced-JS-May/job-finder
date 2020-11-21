@@ -12,7 +12,7 @@ import Company from '../../../pages/Company/Company';
 import EmailVerification from '../../../pages/EmailVerification/EmailVerification';
 import CreateProfile from '../../../pages/CreateProfile/CreateProfile';
 import AllCompanies from '../../../pages/AllCompanies/AllCompanies';
-import CompanyInfo from '../../../pages/CompanyInfo/CompanyInfo';
+import CompanyInfo from '../../../components/Company/CompanyInfo/CompanyInfo';
 import { USER_ROLES } from '../../../constants/user.constants';
 
 function SwitchRouter() {
@@ -50,12 +50,12 @@ function SwitchRouter() {
       <Route path="/company/profile">
         <CompanyInfo />
       </Route>
-      <Route path="/company/:id">
+      {/* <Route path="/company/:id">
         <Company />
-      </Route>
-      {/* <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
+      </Route> */}
+      <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
         <Company />
-      </PrivateRoute>  */}
+      </PrivateRoute> 
     </Switch>
   );
 }

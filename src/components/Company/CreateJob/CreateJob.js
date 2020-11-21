@@ -1,6 +1,8 @@
 //React
 import React, { useState } from 'react';
 import { Formik } from 'formik';
+import { useParams } from "react-router-dom";
+import { useAuth } from '../../../services/authentication';
 
 //UI
 import TextField from '@material-ui/core/TextField';
@@ -14,7 +16,8 @@ import { uniqueId } from "lodash";
 
 
 export default function CreateJob () {
-
+    const { id } = useParams();
+    const { user }= useAuth()
     const [job,setJob]=useState({});
  
     const handleJobInput = ({ target:{ value,name } })=> {
@@ -22,6 +25,7 @@ export default function CreateJob () {
           ...e,
           [name]:value,
           id:uniqueId(),
+          uid:user.uid,
            }))
      };
     
@@ -40,7 +44,7 @@ export default function CreateJob () {
         onChange={handleJobInput}
         value={job.position}
     />
-    <Button variant="contained" c olor="primary" onClick={handleCreateJob}>
+    <Button variant="contained" color="primary" onClick={handleCreateJob}>
         {" "}
         Submit
     </Button>

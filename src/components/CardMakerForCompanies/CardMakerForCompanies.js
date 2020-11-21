@@ -7,7 +7,7 @@ import CompanyMiniInfo from '../companyMiniInfo/CompanyMiniInfo.js'
 export default function CardMakerForCompanies() {
   const [ companies, setCompanies ] = useState([]);
   const [ gottenCompany, setGottenCompany ] = useState(1)
-
+  
    useEffect(() => {
     getAllCompanies().then((response) => {
       setCompanies(Object.values(response));
