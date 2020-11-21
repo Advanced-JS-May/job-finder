@@ -1,39 +1,28 @@
 import React from "react";
-//UI
-import CardContent from "@material-ui/core/CardContent";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import PhotoCamera from "@material-ui/icons/PhotoCamera";
-import Fab from "@material-ui/core/Fab";
-
 
 //components
 import ImageUpload from "./../ImageUpload/ImageUpload";
-import {
-  ProfilePicture,
-  CoverImage,
-} from "./../../../components/icons/Avatar/Avatar";
-import CompanyInfoCard from '../../Company/CompanyInfoCard/CompanyInfoCard'
+import {  ProfilePicture,CoverImage } from "./../../../components/icons/Avatar/Avatar";
 import "./ProfileHeader.css" 
 
 
 
 
 
-export default function ProfileHeader(props) {
+export default function ProfileHeader( { image,coverImage } ) {
   return (
     <div className="mainHeader">
         <div  id="profilePicture">
-        <ProfilePicture imageLink={props.companyImage} />
+        <ProfilePicture imageLink={image} />
         </div>
         <div  id="profileUpload">
-        <ImageUpload />
+        <ImageUpload imageType='image'/>
                </div>
         <div id="coverImage">
-        <CoverImage imageLink={props.companyImage} />
+        <CoverImage imageLink={coverImage} />
         </div>
         <div id="coverUpload">
-        <ImageUpload />
+        <ImageUpload imageType='coverImage'/>
         </div>
      </div>
   );

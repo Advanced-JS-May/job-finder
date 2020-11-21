@@ -2,7 +2,7 @@ import { database, storage } from "../libraries/firebase";
 
 export function createCompany(company) {
   return database
-     .ref("/companies/" + company.id)
+     .ref("/companies/" + company.id).child()
      .set(company);
 }
 

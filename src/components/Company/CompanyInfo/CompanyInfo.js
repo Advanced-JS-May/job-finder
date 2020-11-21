@@ -1,5 +1,6 @@
 //React
 import React , { useState } from 'react'
+import { Link } from 'react-router-dom';
 //UI
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -27,7 +28,7 @@ const handleCompanyInput = ({ target:{ value,name } })=> {
 
 const handleCreateCompany =()=>{
   createCompany(company);
-  window.location.reload(false)
+  // window.location.reload(false)
 }
 
 
@@ -135,7 +136,7 @@ return( <div>
           />
           <br />
             <Button variant="contained" color="primary" onClick={handleCreateCompany}>
-              Submit
+                <Link to = "/company/:id"  >Submit</Link>
             </Button>
         </form>;
     </div>

@@ -8,15 +8,18 @@ import Fab from "@material-ui/core/Fab";
 
 //services
 import { uploadImageUrl } from "../../../services/company";
+import { useAuth } from '../../../services/authentication';
 
-export default function ImageUpload(props) {
+export default function ImageUpload( { imageType } ) {
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
-  const { id } = useParams();
+  // const { id } = useParams();
+  const { user } = useAuth();
+  let id=user.uid
  
   const handleImageInput = async  ({ target: { files } }) => {
     let image = files[0];
-    const fileRef = storage.ref(props.imageType).child(image.name);
+    const fileRef = storage.ref(imageType).child(image.name);
     setImage(image);
     await fileRef.put(image);
     setUrl(await fileRef.getDownloadURL());
@@ -27,38 +30,11 @@ export default function ImageUpload(props) {
 
   const handleUpload =   () => {
 
-    uploadImageUrl(id,props.imageType,url);
+    uploadImageUrl(id,imageType,url);
      window.location.reload()
    };
 
-//   return (
-//     <div style={{border:"3px solid green",
-//     borderRadius:"13px",
-//     width:"300px",
-//     display:"flex",
-//     flexDirection:"row",
-//     textAlign:"center",
-//     alignContent:"center"}}>
-//       <div>
-//       <input
-//         accept="image/*"
-//         id="contained-button-file"
-//         multiple
-//         type="file"
-//         onChange={handleImageInput}
-//         // style={{display: 'none'}}
-//         // ref={hiddenFileInput}
-//       />
-//         </div>
-//         <div>
-//       <label>
-//         <Fab component="button" onClick={handleUpload}>
-//           <PhotoCamera />
-//         </Fab>
-//       </label>
-//       </div>
-//     </div>
-//   );
+
 return (
   <Fab  variant="extended">
     <div>

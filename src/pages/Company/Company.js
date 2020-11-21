@@ -12,13 +12,9 @@ import Fab from "@material-ui/core/Fab"
 //components
 import TabPanel from "../../components/TabPanel/TabPanel";
 import CreateJob from "../../components/Company/CreateJob/CreateJob";
-import ImageUpload from "../../components/Company/ImageUpload/ImageUpload";
-import {
-  ProfilePicture,
-  CoverImage,
-} from "../../components/icons/Avatar/Avatar";
 import ProfileHeader from "../../components/Company/ProfileHeader/ProfileHeader";
 import CompanyInfoCard from "../../components/Company/CompanyInfoCard/CompanyInfoCard";
+import { useAuth } from '../../services/authentication';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +36,9 @@ export default function Company() {
   const [value, setValue] = React.useState(0);
 
   const [company, setCompany] = useState({});
-  const { id } = useParams();
+  // const { id } = useParams();
+  const { user } =useAuth();
+  let id=user.uid
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -60,11 +58,7 @@ export default function Company() {
     <div className={classes.root}>
       <div style={{ display: "flex", flexDirection: "row" }}>
         <div>
-          <ProfileHeader companyImage={company.image}/>
-          {/* <ProfilePicture imageLink={company.image} />
-          <ImageUpload imageType='image'/>
-          <CoverImage  imageLink={company.coverImage} />
-          <ImageUpload imageType='coverImage'/> */}
+          <ProfileHeader image={company.image} coverImage={company.coverImage}/>
         </div>
       </div>
       <div>
@@ -81,8 +75,9 @@ export default function Company() {
             textColor="primary"
             variant="fullWidth"
             aria-label="full width tabs example"
+            borderRadius="15px"
           >
-            <Tab label="Location" />
+            <Tab label="SnapShot" />
             <Tab label="Contacts" />
             <Tab label="Employees" />
             <Tab label="Pending Jobs" />
@@ -90,9 +85,11 @@ export default function Company() {
         </AppBar>
         <TabPanel value={value} index={0} dir={theme.direction}>
           <CompanyInfoCard />
+          <CompanyInfoCard />
+          <CompanyInfoCard />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <CompanyInfoCard />
+          <CompanyInfoCard companyName={company.companyName}/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           <CompanyInfoCard />
