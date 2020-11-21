@@ -6,10 +6,11 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import './AllCompanies.css'
 
+
 export default function AllCompanies() {
 
   return (
-    <div className="containerAllCompanies">
+    <div className="containerAllCompanies" >
      	<CardMakerForCompanies />
     </div>
   );
