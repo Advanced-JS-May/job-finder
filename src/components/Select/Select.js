@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
+    "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: '25ch',
+      width: "25ch",
     },
   },
 }));
 
 export default function Select(props) {
   const classes = useStyles();
-  const [currency, setCurrency] = useState('EUR');
+  const [currency, setCurrency] = useState("EUR");
   const { givenArray } = props;
 
   const handleChange = (event) => {
@@ -32,6 +32,7 @@ export default function Select(props) {
             onChange={handleChange}
             helperText="Please select"
             variant="filled"
+            className={currency}
           >
             {givenArray.map((option) => (
               <MenuItem value={option}>{option}</MenuItem>
