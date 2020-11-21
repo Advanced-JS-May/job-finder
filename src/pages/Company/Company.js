@@ -85,9 +85,7 @@ export default function Company() {
         </AppBar>
         <TabPanel value={value} index={0} dir={theme.direction}>
           <CompanyInfoCard />
-          <CompanyInfoCard />
-          <CompanyInfoCard />
-        </TabPanel>
+         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <CompanyInfoCard companyName={company.companyName}/>
         </TabPanel>

@@ -8,10 +8,25 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
+
+
+//UI
+import PeopleIcon from '@material-ui/icons/People';
+import WorkIcon from '@material-ui/icons/Work';
+import BusinessIcon from '@material-ui/icons/Business';
+import MailIcon from '@material-ui/icons/Mail';
+import PhoneIcon from '@material-ui/icons/Phone';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import Fab from '@material-ui/core/Fab';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
     margin: 10,
+    display:"flex",
+    flexDirection:"column"
   },
 });
 
@@ -20,31 +35,26 @@ export default function CompanyInfoCard ({ companyName, jobTitle, companyLogo })
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        {/* <CardMedia
-          component="img"
-          alt="#" //change
-          height="140"
-          image="https://hirebee-main-new.s3.amazonaws.com/staff.am/upload/7/3/3/a/733aaf94.png",
-
-          title="#" //change
-        /> */}
-        <CardMedia >
-            <PhotoCamera />
-        
-        </CardMedia>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {companyName}
-            adadadad
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {jobTitle}
-            adadaz
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-
+          <div>
+            <WorkIcon />Jobs available:
+          </div>
+          <div>
+            <MailIcon />Mail:
+          </div>
+          <div>
+            <PhoneIcon />Tel:
+          </div>
+          <div>
+            <AssignmentIcon />Field:
+          </div>
+          <div>
+            <CalendarTodayIcon />Date of Establishment:
+          </div>
+          <div>
+            <BusinessIcon />Address:
+          </div>
+         </CardContent>
     </Card>
   );
 }
