@@ -38,12 +38,7 @@ function JobCard({ companyName, jobTitle, companyLogo }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+      <Button>Follow</Button>
       </CardActions>
     </Card>
   );

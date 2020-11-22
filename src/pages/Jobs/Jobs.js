@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 });
 
 function Jobs() {
-  const [jobs, setJobs] = useState([{ isLoading: true }]);
+  const [jobs, setJobs] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const perPage = 2;
