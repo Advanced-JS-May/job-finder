@@ -9,21 +9,27 @@ import "./ProfileHeader.css"
 
 
 
-export default function ProfileHeader( { image, coverImage } ) {
-  return (
+export default function ProfileHeader( { image, coverImage,name } ) {
+
+return (
+  <>
     <div className="mainHeader">
-        <div  id="profilePicture">
+      <div id="profilePicture">
         <ProfilePicture imageLink={image} />
-        </div>
-        <div  id="profileUpload">
-        <ImageUpload imageType='image'/>
-               </div>
-        <div id="coverImage">
+      </div>
+      <div id="profileUpload">
+        <ImageUpload imageType="image" />
+      </div>
+      <div id="coverImage">
         <CoverImage imageLink={coverImage} />
-        </div>
-        <div id="coverUpload">
-        <ImageUpload imageType='coverImage'/>
-        </div>
-     </div>
-  );
+      </div>
+      <div id="coverUpload">
+        <ImageUpload imageType="coverImage" />
+      </div>
+    </div>
+    <div id="profileName">
+      <h1>{name}</h1>
+    </div>
+  </>
+ );
 }

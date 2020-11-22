@@ -1,4 +1,3 @@
-//React
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCompanyById } from "../../services/company";
@@ -8,7 +7,9 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Fab from "@material-ui/core/Fab"
+import CardContent from "@material-ui/core/CardContent";
+import Card from "@material-ui/core/Card";
+
 //components
 import TabPanel from "../../components/TabPanel/TabPanel";
 import CreateJob from "../../components/Company/CreateJob/CreateJob";
@@ -20,14 +21,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     width: 1000,
+    marginRight:"24px"
   },
-  companyInfo: {
-    width: 300,
-    border: "5px solid",
-    display: "flex",
-    flexDirection: "center",
-    justifyContent: "center",
-  },
+  snapshot:{
+    display:"flex",
+    flexDirection:"row"
+  }
+
 }));
 
 export default function Company() {
@@ -56,16 +56,12 @@ export default function Company() {
 
   return (
     <div className={classes.root}>
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <div>
-          <ProfileHeader image={company.image} coverImage={company.coverImage}/>
-        </div>
-      </div>
-      <div>
-        {/* <Fab  width="3500px"/> */}
-        <h1>{company.companyName}</h1>
-        <p>{company.description}</p>
-      </div>
+     
+          <ProfileHeader
+           image={company.image} 
+           coverImage={company.coverImage}
+           name={company.companyName}/>
+        
       <div>
         <AppBar position="static" color="default">
           <Tabs
@@ -75,29 +71,35 @@ export default function Company() {
             textColor="primary"
             variant="fullWidth"
             aria-label="full width tabs example"
-            borderRadius="15px"
           >
             <Tab label="SnapShot" />
-            <Tab label="Contacts" />
-            <Tab label="Employees" />
-            <Tab label="Pending Jobs" />
+            <Tab label="jobs" />
+            <Tab label="Create Job Opening" />
           </Tabs>
         </AppBar>
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          <ProfileContactCard address={company.address} tel={company.tel} maill={company.mail} website={company.website}/>
+        <TabPanel value={value} index={0} dir={theme.direction} >
+          <div className={classes.snapshot}>
+            <div>
+              <ProfileContactCard 
+                address={company.address}
+                tel={company.tel} 
+                mail={company.mail} 
+                website={company.website}/>
+            </div>
+            <div>
+              <Card>
+                <CardContent>
+                <p> {company.description} </p>
+                </ CardContent>
+              </Card>
+            </div>
+          </div>
          </TabPanel>
-        {/* <TabPanel value={value} index={1} dir={theme.direction}>
-          <CompanyInfoCard companyName={company.companyName}/>
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          <CompanyInfoCard />
-        </TabPanel>
-        <TabPanel value={value} index={3} dir={theme.direction}>
-          <CompanyInfoCard />
-        </TabPanel> */}
-      </div>
-      <div>
-        <CreateJob />
+         <TabPanel value={value} index={1} dir={theme.direction} >
+           <div>
+             <CreateJob />
+           </div>
+         </TabPanel>
       </div>
     </div>
   );
