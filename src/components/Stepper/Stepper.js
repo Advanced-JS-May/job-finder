@@ -14,7 +14,7 @@ function StepperJob() {
             aria-hidden="true"
             width="24px"
           >
-            <circle cx="12" cy="12" r="12" fill="#690"></circle>
+            <circle cx="12" cy="12" r="12" fill="#3F51B5"></circle>
             <text
               className="text-in-circles"
               x="12"
@@ -34,7 +34,7 @@ function StepperJob() {
             aria-hidden="true"
             width="24px"
           >
-            <circle cx="12" cy="12" r="12" fill="#690"></circle>
+            <circle cx="12" cy="12" r="12" fill="#3F51B5"></circle>
             <text
               className="text-in-circles"
               x="12"
@@ -56,7 +56,7 @@ function StepperJob() {
             aria-hidden="true"
             width="24px"
           >
-            <circle cx="12" cy="12" r="12" fill="#690"></circle>
+            <circle cx="12" cy="12" r="12" fill="#3F51B5"></circle>
             <text
               className="text-in-circles"
               x="12"

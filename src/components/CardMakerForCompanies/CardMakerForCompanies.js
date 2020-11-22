@@ -28,7 +28,7 @@ export default function CardMakerForCompanies() {
       companies.map((e) => {
          return ( 
           <CompanyMiniInfo 
-            companyName = {e['company-name']}
+            companyName = {e.companyName}
             companyDesc = {e.description}
             companyImg = {e.image}
             companyId = {e.id}
@@ -47,7 +47,7 @@ if (gottenCompany == 1) {
       functionBack={() => {
         setGottenCompany(1);
       }}
-      companyName={gottenCompany["company-name"]}
+      companyName={gottenCompany.companyName}
       companyDescription={gottenCompany.description}
       companyImg={gottenCompany.image}
       companyAdress={gottenCompany.adress}
@@ -58,7 +58,7 @@ if (gottenCompany == 1) {
       companyTelephone={gottenCompany.tel}
       companyEstablishTime={gottenCompany["date-of-establishment"]}
       companyEmployees={gottenCompany["number-of-employees"]}
-    />
+      /> 
   );
 }
 
