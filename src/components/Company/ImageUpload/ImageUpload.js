@@ -1,73 +1,59 @@
-import React ,{ useState } from 'react'
-import { storage } from '../../../libraries/firebase'
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { storage } from "../../../libraries/firebase";
+
 //UI
-import Button from '@material-ui/core/Button';
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import Fab from "@material-ui/core/Fab";
 
-//services 
-import { uploadImage,getImageUrl,createCompany } from '../../../services/company'
+//services
+import { uploadImageUrl } from "../../../services/company";
 import { useAuth } from '../../../services/authentication';
-// import { uploadImage,getImageUrl } from '../../../services/company';
 
-export default function  ImageUpload ()  {
-    const [image, setImage] = useState(null);
-    const [url, setUrl] = useState("");
-    const [company,setCompany] = useState({});
-    const { user } = useAuth();
+export default function ImageUpload( { imageType } ) {
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState("");
+  // const { id } = useParams();
+  const { user } = useAuth();
+  let id=user.uid
+ 
+  const handleImageInput = async  ({ target: { files } }) => {
+    let image = files[0];
+    const fileRef = storage.ref(imageType).child(image.name);
+    setImage(image);
+    await fileRef.put(image);
+    setUrl(await fileRef.getDownloadURL());
+    
+  };
 
-    const handleImageInput = e => {
-         setImage(e.target.files[0]);
-        
-    }
-  
-    //   console.log('URL on input',url)
+//  const hiddenFileInput = React.useRef(null);
+
+  const handleUpload =   () => {
+
+    uploadImageUrl(id,imageType,url);
+     window.location.reload()
+   };
 
 
-      const handleUpload = () => {
-
-        const uploadTask = uploadImage(image);
-        uploadTask.on(
-          "state_changed",
-        
-          () => {
-            storage
-              .ref("images")
-              .child(image.name)
-              .getDownloadURL()
-              .then(url => {
-                setUrl(url);
-              });
-          }
-         
-        // getImageUrl(image)
-        //   .then(url => {
-        //     setUrl(url);
-        //   })
-        );
-        setCompany((e)=>({
-            ...e,
-            id:user.uid,
-            image:url
-            }))
-            console.log(company)
-        createCompany(company);
-
-        console.log('URL',url)
-      };
-   
-
-     return (
-        <div> 
-            <div>
-             <input type="file" onChange={handleImageInput} />
-            </div>
-            <div>
-                <Button variant="contained" color="primary" onClick={handleUpload}>
-                                                Submit
-                </Button>
-            </div>
-        </div> 
-     )
+return (
+  <Fab  variant="extended">
+    <div>
+    <input
+      accept="image/*"
+      id="contained-button-file"
+      type="file"
+      onChange={handleImageInput}
+      // style={{display: 'none'}}
+      // ref={hiddenFileInput}
+    />
+      </div>
+      <div>
+    <label>
+      <Fab component="button" onClick={handleUpload}>
+        <PhotoCamera />
+      </Fab>
+    </label>
+    </div>
+    </Fab>
+);
 }
-
-
-
