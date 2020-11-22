@@ -59,6 +59,9 @@ export default function MenuAppBar() {
       <AppBar position="static">
         <Toolbar className={classes.bar}>
           <div className={classes.links}>
+            <Link className={classes.link} to='/'>
+              Home
+            </Link> 
             <Link className={classes.link} to="/jobs">
               Jobs
             </Link>

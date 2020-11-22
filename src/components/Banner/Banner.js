@@ -10,7 +10,7 @@ import fields from "../../constants/jobField.js";
 import CITIES from "../../constants/armenianCities.js";
 import InputKey from "../../components/inputKeywords/inputKey.js";
 import Button from "@material-ui/core/Button";
-
+ 
 function Bunner() {
   const [value, setValue] = React.useState("jobs");
   const handleChange = (event) => {
@@ -19,9 +19,9 @@ function Bunner() {
 
   return (
     <div className="Bunner-Container">
-      <h1 className="Bunner-secondary-title">CAREER SEARCH STARTS HERE</h1>
+      <h1 className="Bunner-secondary-title">EVERYTHING STARTS FROM HERE</h1>
       <p className="Bunner-text">
-        Search for jobs, find your match and apply with one click.
+        Search for jobs, find your and contact employer with one click.
         <br />
         Explore all our options now.
       </p>

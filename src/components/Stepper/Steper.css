@@ -1,5 +1,5 @@
 .title__home-how {
-	color: #690;
+	color: #3F51B5;
 	text-align: center;
 }
 .stepper-container-home {
@@ -20,12 +20,12 @@
 .stepper-container-home .step-lines {
   width: 30%;
   height: 1px;
-  background-color: #690;
+  background-color: #3F51B5;
   margin: 0 10px;
 }
 .stepper-container-home span {
   margin: 5px 0;
-  color: #690;
+  color: #3F51B5;
 }
 .text-in-circles {
   fill: #fff;

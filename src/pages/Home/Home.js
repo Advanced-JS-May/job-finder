@@ -9,7 +9,6 @@ function Home() {
     <>
       <Bunner />
       <StepperJob />
-      <Footer />
     </>
   );
 }
