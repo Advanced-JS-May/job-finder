@@ -12,7 +12,7 @@ import "./ProfileHeader.css"
 export default function ProfileHeader( { image, coverImage,name } ) {
 
 return (
-  <>
+ <>
     <div className="mainHeader">
       <div id="profilePicture">
         <ProfilePicture imageLink={image} />
@@ -30,6 +30,6 @@ return (
     <div id="profileName">
       <h1>{name}</h1>
     </div>
-  </>
+ </>
  );
 }

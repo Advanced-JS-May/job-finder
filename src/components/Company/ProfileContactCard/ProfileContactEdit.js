@@ -1,8 +1,8 @@
-import React , { useEffect, useState } from "react";
+import React , { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 //services
-import  { createCompany ,getCompanyById} from '../../../services/company';
+import  { createCompany } from '../../../services/company';
 import { useAuth } from '../../../services/authentication';
 
 //UI
@@ -18,73 +18,11 @@ import Fab from "@material-ui/core/Fab";
 import CheckIcon from '@material-ui/icons/Check';
 import TextField from '@material-ui/core/TextField';
 
-//components
-import ProfileContactInfo from "./ProfileContactInfo";
-
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-    margin: 10,
-    display:"flex",
-    flexDirection:"column"
-  },
-  element: {
-    display:"flex",
-    alignItems:"center",
-  },
-
-  edit:{
-    position:"relative",
-    top:0,
-    left:0,
-  }
- 
-});
 
 
 export default function ProfileContactCard (props) {
-  const classes = useStyles();
-  const [edit, setEdit] = useState(false);
-  const [company,setCompany]=useState({})
-  const { user } = useAuth();
-  
-
-
-const handleCompanyInput = ({ target:{ value,name } })=> {
-   setCompany((e)=>({
-     ...e,
-     [name]:value,
-     id:user.uid,
-     }))
-};
-
-
-  const handleEdit = () => {
-    setEdit(!edit);
-    createCompany(company);
-   };
-
-   
-   useEffect(() => {
-    getCompanyById(user.uid).then((c) => {
-      setCompany(c);
-    });
-  }, [user.uid]);
-
-  return (
-   <>
-      {!edit ? (
-        <div>
-        <div>
-        <Fab className={classes.edit}>
-          <EditIcon className={classes.edit} onClick={handleEdit} />
-        </Fab>
-        </div>
-      <Card >
-        <ProfileContactInfo country = {company.country}  city={company.city}  address={company.address}  tel={company.tel}  mail={company.mail}  website={company.website}/>
-      </Card>
-      </div>):
-      <Card >
+ return(
+       <Card >
         <CardContent className={classes.root}>
             <Fab className={classes.edit}>
               <CheckIcon className={classes.edit} onClick={handleEdit} />
@@ -120,9 +58,9 @@ const handleCompanyInput = ({ target:{ value,name } })=> {
                 id="outlined-basic"
                 label={props.address}
                 variant="outlined"
-                name="address"
+                name="description"
                 onChange={handleCompanyInput}
-                value={company.address}
+                value={company.description}
                 width="300px">
               </TextField>
             </div>
@@ -140,8 +78,7 @@ const handleCompanyInput = ({ target:{ value,name } })=> {
               </TextField>
             </div>
             <div className={classes.element}>
-              <MailIcon />
-              Mail:
+              <MailIcon />Mail:
               <TextField
                 id="outlined-basic"
                 label={props.mail}
@@ -166,7 +103,7 @@ const handleCompanyInput = ({ target:{ value,name } })=> {
               </TextField>
             </div>
           </CardContent>
-        </Card> }
+        </Card> 
     </>
   );
 }

@@ -4,7 +4,7 @@ export function createCompany(company) {
   return database
      .ref("/companies/" + company.id)
      .set(company);
-}
+  }
 
 export function getCompanyById (id) {
   return database

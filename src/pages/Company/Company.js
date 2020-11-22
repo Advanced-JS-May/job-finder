@@ -84,7 +84,10 @@ export default function Company() {
                 address={company.address}
                 tel={company.tel} 
                 mail={company.mail} 
-                website={company.website}/>
+                website={company.website}
+                // image={company.image}
+                // coverImage={company.coverImage}
+                />
             </div>
             <div>
               <Card>
