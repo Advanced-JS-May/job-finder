@@ -1,0 +1,45 @@
+.mainHeader{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    margin-top:25px;
+}
+
+/*Profile Picture*/
+
+#profilePicture{
+    margin-left: 35px;
+    margin-top:25px;
+    z-index: 2;
+    padding: 15px;
+    position: absolute;
+    /* border:3px solid green */
+}
+
+    
+#profileUpload{
+    margin-left: 35px;
+    margin-top:215px;
+    z-index: 2;
+    padding: 15px;
+    position: absolute;
+    /* border:3px solid green */
+}
+/*Cover Image*/
+
+#coverImage{
+    margin-left: 100px;
+    z-index: 1;
+    position: absolute;
+    /* border:3px solid green */
+}
+
+#coverUpload{
+    z-index:2;
+    position: relative;
+    /* border:3px solid green; */
+    margin-left: 720px;
+    margin-top:215px;
+    margin-right: 65px;
+}

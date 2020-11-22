@@ -9,13 +9,10 @@ export function checkUserRole(id,role) {
     .catch((err)=>console.log(err))
     .then((res) => {
       if (res.role == role) {
-        console.log("isEmployer");
-        return true
+        return res
       } else {
         return false
-        console.log("USER");
       }
-      console.log("Real",res.role);
     })
     .catch((err)=>console.log(err))
 }

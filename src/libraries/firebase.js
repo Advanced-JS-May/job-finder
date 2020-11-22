@@ -25,18 +25,6 @@ const firebaseConfig = {
   appId: REACT_APP_APP_ID,
 };
 
-// const firebaseConfig = {
-//   apiKey:"AIzaSyBWQEpAA5MyZ36GsXoyQv_skG4DtPwd1xg",
-//   authDomain:"job-seeker-8e38e.firebaseapp.com" ,
-//   databaseURL:"https://job-seeker-8e38e.firebaseio.com/",
-//   projectId:"job-seeker-8e38e" ,
-//   storageBucket:"job-seeker-8e38e.appspot.com",
-//   messagingSenderId:"850523542035" ,
-//   appId:"1:850523542035:web:b39819a16bac28372765e6" ,
-// };
-
-
-
 
 firebase.initializeApp(firebaseConfig);
 

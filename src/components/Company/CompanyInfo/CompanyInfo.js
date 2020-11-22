@@ -1,8 +1,11 @@
 //React
 import React , { useState } from 'react'
+import { Link } from 'react-router-dom';
+
 //UI
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+
 //services
 import { createCompany } from '../../../services/company';
 import { useAuth } from '../../../services/authentication';
@@ -15,7 +18,7 @@ export default function CompanyInfo () {
 const [company,setCompany]=useState({})
 const { user } = useAuth();
 
-
+let link =`comapny${user.uid}`
 
 const handleCompanyInput = ({ target:{ value,name } })=> {
    setCompany((e)=>({
@@ -27,12 +30,13 @@ const handleCompanyInput = ({ target:{ value,name } })=> {
 
 const handleCreateCompany =()=>{
   createCompany(company);
+  // window.location.reload(false)
 }
 
 
 
-return (
- <div>
+
+return( <div>
        <form  style={{ textAlign: "center" }}>
           <h3>Company Bio</h3>
           <TextField
@@ -134,8 +138,7 @@ return (
           />
           <br />
             <Button variant="contained" color="primary" onClick={handleCreateCompany}>
-              {" "}
-              Submit
+                <Link to = {`/company/${user.uid}`}  >Submit</Link>
             </Button>
         </form>;
     </div>
