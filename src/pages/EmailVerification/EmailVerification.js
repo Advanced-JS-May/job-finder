@@ -25,7 +25,7 @@ export default function OutlinedCard() {
       getUsersById(user.uid).then((res) => {
         if (res.emailVerified) {
           if (user.role === USER_ROLES.employer) {
-            history.push(`/companies`);
+            history.push(`/company/profile`);
           } else {
             history.push('/profile/create');
           }

@@ -13,7 +13,7 @@ import Fab from "@material-ui/core/Fab"
 import TabPanel from "../../components/TabPanel/TabPanel";
 import CreateJob from "../../components/Company/CreateJob/CreateJob";
 import ProfileHeader from "../../components/Company/ProfileHeader/ProfileHeader";
-import CompanyInfoCard from "../../components/Company/CompanyInfoCard/CompanyInfoCard";
+import ProfileContactCard from "../../components/Company/ProfileContactCard/ProfileContactCard"
 import { useAuth } from '../../services/authentication';
 
 const useStyles = makeStyles((theme) => ({
@@ -84,9 +84,9 @@ export default function Company() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <CompanyInfoCard />
+          <ProfileContactCard address={company.address} tel={company.tel} maill={company.mail} website={company.website}/>
          </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
+        {/* <TabPanel value={value} index={1} dir={theme.direction}>
           <CompanyInfoCard companyName={company.companyName}/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
@@ -94,7 +94,7 @@ export default function Company() {
         </TabPanel>
         <TabPanel value={value} index={3} dir={theme.direction}>
           <CompanyInfoCard />
-        </TabPanel>
+        </TabPanel> */}
       </div>
       <div>
         <CreateJob />
