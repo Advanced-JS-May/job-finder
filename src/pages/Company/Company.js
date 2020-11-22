@@ -20,7 +20,7 @@ import { useAuth } from '../../services/authentication';
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 1000,
+    width: "100%",
     marginRight:"24px"
   },
   snapshot:{

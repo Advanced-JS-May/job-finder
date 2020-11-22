@@ -1,5 +1,9 @@
-import React from "react";
+import React , { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+
+//services
+import  { createCompany } from '../../../services/company';
+import { useAuth } from '../../../services/authentication';
 
 //UI
 import CardContent from "@material-ui/core/CardContent";
@@ -10,6 +14,9 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import LanguageIcon from '@material-ui/icons/Language';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import EditIcon from '@material-ui/icons/Edit';
+import Fab from "@material-ui/core/Fab";
+import CheckIcon from '@material-ui/icons/Check';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles({
   root: {
@@ -31,40 +38,141 @@ const useStyles = makeStyles({
  
 });
 
+
 export default function ProfileContactCard (props) {
   const classes = useStyles();
+  const [edit, setEdit] = useState(false);
+  const [company,setCompany]=useState({})
+const { user } = useAuth();
+
+
+
+const handleCompanyInput = ({ target:{ value,name } })=> {
+   setCompany((e)=>({
+     ...e,
+     [name]:value,
+     id:user.uid,
+     }))
+};
+
+const handleCreateCompany =()=>{
+  createCompany(company);
+  // windo
+};
+  const handleEdit = () => {
+    setEdit(!edit);
+    createCompany(company);
+  };
 
   return (
-    <Card >
+   <>
+      {!edit ? (
+      <Card >
+          <CardContent className={classes.root}>
+            <Fab className={classes.edit}>
+             <EditIcon className={classes.edit} onClick={handleEdit} />
+            </Fab>
+            <h3>Contacts</h3>
+            <div className={classes.element}>
+              <LocationCityIcon />State:{props.country} City:{props.city}
+            </div>
+            <div className={classes.element}>
+              <BusinessIcon />Address:{props.address}
+            </div>
+            <div className={classes.element}>
+              <PhoneIcon />Tel:{props.tel}
+            </div>
+            <div className={classes.element}>
+              <MailIcon />Mail:{props.mail}
+            </div>
+            <div className={classes.element}>
+              <LanguageIcon /> Website:{props.website}
+            </div>
+          </CardContent>
+      </Card>):
+      <Card >
         <CardContent className={classes.root}>
-        <EditIcon className={classes.edit} />
-          <h3>Contacts</h3>
-          <div className={classes.element}>
-            <LocationCityIcon />State:{props.country} City:{props.city}
-          </div>
-          <div className={classes.element}>
-            <BusinessIcon />Address:{props.address}
-          </div>
-          <div className={classes.element}>
-            <PhoneIcon />Tel:{props.tel}
-          </div>
-          <div className={classes.element}>
-            <MailIcon />Mail:{props.mail}
-          </div>
-          <div className={classes.element}>
-            <LanguageIcon /> Website:{props.website}
-          </div>
-         </CardContent>
-    </Card>
+            <Fab className={classes.edit}>
+              <CheckIcon className={classes.edit} onClick={handleEdit} />
+            </Fab>
+            <h3>Contacts</h3>
+            <div className={classes.element}>
+              <LocationCityIcon />
+               State: 
+               <TextField
+                id="outlined-basic"
+                label={props.country}
+                variant="outlined"
+                name="description"
+                // onChange={handleCompanyInput}
+                // value={company.description}
+                width="300px"
+             />
+               City:
+               <TextField
+                id="outlined-basic"
+                label={props.city}
+                variant="outlined"
+                name="description"
+                // onChange={handleCompanyInput}
+                // value={company.description}
+                width="300px"
+             />
+            </div>
+            <div className={classes.element}>
+              <BusinessIcon />
+               Address: 
+              <TextField
+                id="outlined-basic"
+                label={props.address}
+                variant="outlined"
+                name="description"
+                onChange={handleCompanyInput}
+                value={company.description}
+                width="300px">
+              </TextField>
+            </div>
+            <div className={classes.element}>
+              <PhoneIcon />
+               Tel:
+              <TextField
+                id="outlined-basic"
+                label={props.tel}
+                variant="outlined"
+                name="description"
+                // onChange={handleCompanyInput}
+                // value={company.description}
+                width="300px">
+              </TextField>
+            </div>
+            <div className={classes.element}>
+              <MailIcon />Mail:
+              <TextField
+                id="outlined-basic"
+                label={props.mail}
+                variant="outlined"
+                name="description"
+                // onChange={handleCompanyInput}
+                // value={company.description}
+                width="300px">
+              </TextField>
+            </div>
+            <div className={classes.element}>
+              <LanguageIcon className={classes.edit} /> 
+              Website:
+              <TextField
+                id="outlined-basic"
+                label={props.mail}
+                variant="outlined"
+                name="description"
+                // onChange={handleCompanyInput}
+                // value={company.description}
+                width="300px">
+              </TextField>
+            </div>
+          </CardContent>
+        </Card> }
+    </>
   );
 }
 
-          {/* <div className={classes.element}>
-            <WorkIcon /> <div>Jobs available:</div>
-          </div>
-          <div className={classes.element}>
-            <AssignmentIcon />Field:
-          </div>
-          <div className={classes.element}>
-            <CalendarTodayIcon />Establishment:
-          </div> */}

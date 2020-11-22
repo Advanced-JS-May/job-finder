@@ -2,7 +2,7 @@ import React, { useState , useEffect } from 'react';
 import {getCompanyById} from '../../services/company.js'
 import {getAllCompanies} from '../../services/company.js'
 import CompaniesInfoShow from '../CompaniesInfoShow/CompaniesInfoShow.js'
-import CompanyMiniInfo from '../companyMiniInfo/CompanyMiniInfo.js'
+import CompanyMiniInfo from '../CompanyMiniInfo/CompanyMiniInfo.js'
 
 export default function CardMakerForCompanies() {
   const [ companies, setCompanies ] = useState([]);
