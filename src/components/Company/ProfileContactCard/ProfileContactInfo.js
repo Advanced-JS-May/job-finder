@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+
 
 //UI
 import CardContent from "@material-ui/core/CardContent";
-
-// import Card from "@material-ui/core/Card";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
 import BusinessIcon from "@material-ui/icons/Business";
 import MailIcon from "@material-ui/icons/Mail";
 import PhoneIcon from "@material-ui/icons/Phone";
@@ -24,10 +24,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileContactInfo({  country,  city,  address,  tel,  mail,  website,}) {
+export default function ProfileContactInfo( {  country,  city,  address,  tel,  mail,  website } ) {
     const classes = useStyles();
 
         return (
+         <Card>  
             <CardContent className={classes.root}>
             <h3>Contacts</h3>
             <div className={classes.element}>
@@ -50,5 +51,6 @@ export default function ProfileContactInfo({  country,  city,  address,  tel,  m
                 <LanguageIcon /> Website:{website}
             </div>
             </CardContent>
+         </ Card>  
         );
 }

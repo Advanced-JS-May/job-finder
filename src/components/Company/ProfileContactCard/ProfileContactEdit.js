@@ -1,11 +1,11 @@
 import React , { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 
 //services
-import  { createCompany } from '../../../services/company';
+import  { createCompany ,getCompanyById} from '../../../services/company';
 import { useAuth } from '../../../services/authentication';
 
 //UI
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
 import BusinessIcon from '@material-ui/icons/Business';
@@ -19,35 +19,59 @@ import CheckIcon from '@material-ui/icons/Check';
 import TextField from '@material-ui/core/TextField';
 
 
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+    margin: 10,
+    display: "flex",
+    flexDirection: "column",
+  },
+  element: {
+    display: "flex",
+    alignItems: "center",
+  },
+});
 
-export default function ProfileContactCard (props) {
+
+
+export default function ProfileContactEdit ( {  country,  city,  address,  tel,  mail,  website } ) {
+  const classes = useStyles();
+  const [company,setCompany]=useState({});
+  const { user } = useAuth();
+  
+
+  const handleCompanyInput = ({ target:{ value,name } })=> {
+    setCompany((e)=>({
+      ...e,
+      [name]:value,
+      id:user.uid,
+      }))
+ };
+console.log(company)
  return(
-       <Card >
         <CardContent className={classes.root}>
-            <Fab className={classes.edit}>
-              <CheckIcon className={classes.edit} onClick={handleEdit} />
-            </Fab>
+           
             <h3>Contacts</h3>
             <div className={classes.element}>
               <LocationCityIcon />
                State: 
                <TextField
                 id="outlined-basic"
-                label={props.country}
+                label={country}
                 variant="outlined"
-                name="description"
-                // onChange={handleCompanyInput}
-                // value={company.description}
+                name="country"
+                onChange={handleCompanyInput}
+                value={company.country}
                 width="300px"
              />
                City:
                <TextField
                 id="outlined-basic"
-                label={props.city}
+                label={city}
                 variant="outlined"
-                name="description"
-                // onChange={handleCompanyInput}
-                // value={company.description}
+                name="city"
+                onChange={handleCompanyInput}
+                value={company.city}
                 width="300px"
              />
             </div>
@@ -56,11 +80,11 @@ export default function ProfileContactCard (props) {
                Address: 
               <TextField
                 id="outlined-basic"
-                label={props.address}
+                label={address}
                 variant="outlined"
-                name="description"
+                name="address"
                 onChange={handleCompanyInput}
-                value={company.description}
+                value={company.address}
                 width="300px">
               </TextField>
             </div>
@@ -69,23 +93,24 @@ export default function ProfileContactCard (props) {
                Tel:
               <TextField
                 id="outlined-basic"
-                label={props.tel}
+                label={tel}
                 variant="outlined"
-                name="description"
-                // onChange={handleCompanyInput}
-                // value={company.description}
+                name="tel"
+                onChange={handleCompanyInput}
+                value={company.tel}
                 width="300px">
               </TextField>
             </div>
             <div className={classes.element}>
-              <MailIcon />Mail:
+              <MailIcon />
+              Mail:
               <TextField
                 id="outlined-basic"
-                label={props.mail}
+                label={mail}
                 variant="outlined"
-                name="description"
-                // onChange={handleCompanyInput}
-                // value={company.description}
+                name="mail"
+                onChange={handleCompanyInput}
+                value={company.mail}
                 width="300px">
               </TextField>
             </div>
@@ -94,17 +119,15 @@ export default function ProfileContactCard (props) {
               Website:
               <TextField
                 id="outlined-basic"
-                label={props.mail}
+                label={website}
                 variant="outlined"
-                name="description"
-                // onChange={handleCompanyInput}
-                // value={company.description}
+                name="website"
+                onChange={handleCompanyInput}
+                value={company.website}
                 width="300px">
               </TextField>
             </div>
           </CardContent>
-        </Card> 
-    </>
   );
 }
 
