@@ -3,19 +3,18 @@ import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 /* UI */
 import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
 import FormField from '../FormElements/FormField/FormField';
 import ErrorMessage from '../FormElements/ErrorMessage/ErrorMessage';
 /* Authentication */
 import { useAuth } from '../../services/authentication';
 import { USER_ROLES } from '../../constants/user.constants';
 /* validation */
-import validateRegisterForm from '../../Utils/validate.helper';
+import validate from '../../Utils/validate.helper';
 import FormContainer from '../FormElements/FormContainer/FormContainer';
 
 import styles from './EmployerRegister.module.css';
 
-function EmployerRegister({ value, index }) {
+function EmployerRegister({ setProgress }) {
   const { signup } = useAuth();
   const history = useHistory();
 
@@ -27,8 +26,9 @@ function EmployerRegister({ value, index }) {
       password: '',
       passwordConfirm: '',
     },
-    validateRegisterForm,
+    validate,
     onSubmit: ({ email, password }) => {
+      setProgress();
       signup(email, password, USER_ROLES.employer)
         .then(() => {
           history.push('/email-verification');

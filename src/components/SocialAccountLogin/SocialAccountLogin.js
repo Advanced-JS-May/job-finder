@@ -3,7 +3,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import FacebookButton from '../buttons/FacebookButton/FacebookButton';
 import GoogleButton from '../buttons/GoogleButton/GoogleButton';
 
-export default function SocialAccountLogin() {
+export default function SocialAccountLogin({ setProgress }) {
   return (
     <ButtonGroup
       style={{
@@ -12,8 +12,8 @@ export default function SocialAccountLogin() {
       }}
       aria-label="outlined primary button group"
     >
-      <GoogleButton />
-      <FacebookButton />
+      <GoogleButton setProgress={setProgress} />
+      <FacebookButton setProgress={setProgress} />
     </ButtonGroup>
   );
 }

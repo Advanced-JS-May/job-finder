@@ -173,6 +173,7 @@ function CreateProfileForm({
             style={{
               width: 400,
               display: 'flex',
+              margin: 20,
             }}
           >
             <CreateProfileButtons

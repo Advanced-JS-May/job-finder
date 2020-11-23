@@ -13,7 +13,6 @@ import EmailVerification from '../../../pages/EmailVerification/EmailVerificatio
 import CreateProfile from '../../../pages/CreateProfile/CreateProfile';
 import AllCompanies from '../../../pages/AllCompanies/AllCompanies';
 import CompanyInfo from '../../../components/Company/CompanyInfo/CompanyInfo';
-import { USER_ROLES } from '../../../constants/user.constants';
 
 function SwitchRouter() {
   const { user } = useAuth();
@@ -55,7 +54,7 @@ function SwitchRouter() {
       </Route> */}
       <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
         <Company />
-      </PrivateRoute> 
+      </PrivateRoute>
     </Switch>
   );
 }

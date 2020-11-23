@@ -11,6 +11,7 @@ import InputMask from 'react-input-mask';
 import EmailIcon from '@material-ui/icons/Email';
 
 import FormSection from '../FormElements/FormSection/FormSection';
+import FormField from '../FormElements/FormField/FormField';
 
 function TextMaskCustom(props) {
   return <InputMask {...props} mask="+374 99 999999" maskChar=" " />;
@@ -40,7 +41,7 @@ function FormContactSection({
 }) {
   return (
     <FormSection>
-      <Grid container direction="column" spacing={3}>
+      <Grid container direction="column" spacing={0}>
         <Grid
           item
           style={{
@@ -54,7 +55,7 @@ function FormContactSection({
               margin: 10,
             }}
           />
-          <TextField
+          <FormField
             variant="outlined"
             name="phone"
             label="phone Number"
@@ -67,7 +68,7 @@ function FormContactSection({
               inputComponent: TextMaskCustom,
               style: { fontSize: 16, padding: 10 },
             }}
-          ></TextField>
+          />
         </Grid>
         <Grid
           item
@@ -82,7 +83,7 @@ function FormContactSection({
               margin: 10,
             }}
           />
-          <TextField
+          <FormField
             type="email"
             name="email"
             variant="outlined"
@@ -105,10 +106,10 @@ function FormContactSection({
         >
           <TwitterIcon
             style={{
-              margin: 10,
+              margin: '0 10px',
             }}
           />
-          <TextField
+          <FormField
             variant="outlined"
             fullWidth
             label="Twitter"
@@ -134,7 +135,7 @@ function FormContactSection({
               margin: 10,
             }}
           />
-          <TextField
+          <FormField
             variant="outlined"
             fullWidth
             label="Facebook"
@@ -159,7 +160,7 @@ function FormContactSection({
               margin: 10,
             }}
           />
-          <TextField
+          <FormField
             variant="outlined"
             fullWidth
             label="LinkedIn"
