@@ -57,21 +57,25 @@ function useProvideAuth() {
     return firebase
       .auth()
       .signInWithPopup(provider)
-      .then(async ({ user }) => {
-        await getUsersById(user.uid).then((res) => {
+      .then(async (response) => {
+        console.log(response.user);
+        console.log(response);
+        await getUsersById(response.user.uid).then((res) => {
+          console.log(res);
           if (res === null) {
-            createUser(user, role);
+            console.log(res);
+            createUser(response.user, role);
             setUser({
-              uid: user.uid,
-              email: user.email,
-              emailVerified: user.emailVerified,
+              uid: response.user.uid,
+              email: response.user.email,
+              emailVerified: response.user.emailVerified,
               role,
             });
           } else {
             setUser(res);
           }
         });
-        return user;
+        return response.user;
       });
   };
   const sendVerificationEmail = (user) => user.sendEmailVerification();
@@ -82,6 +86,7 @@ function useProvideAuth() {
       .createUserWithEmailAndPassword(email, password)
       .then(({ user }) => {
         createUser(user, role);
+
         setUser({
           uid: user.uid,
           email: user.email,
@@ -129,10 +134,26 @@ function useProvideAuth() {
       if (user && user.providerData[0].providerId === 'facebook.com') {
         getUsersById(user.uid).then((response) => {
           updateUserById(user.uid, {
+            uid: user.uid,
+            email: user.email,
             emailVerified: user.emailVerified,
             facebookVerified: true,
           });
-          setUser({ ...response, facebookVerified: true });
+          setUser(() => {
+            console.log({
+              uid: user.uid,
+              email: user.email,
+              emailVerified: user.emailVerified,
+              facebookVerified: true,
+            });
+            return {
+              uid: user.uid,
+              email: user.email,
+              emailVerified: user.emailVerified,
+              facebookVerified: true,
+            };
+          });
+
           return response;
         });
       } else if (user && user.emailVerified) {

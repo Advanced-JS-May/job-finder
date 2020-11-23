@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import { useAuth } from '../../../services/authentication';
 
-import SignIn from '../../../pages/Signin/SignIn';
+import SignIn from '../../../pages/SignIn/SignIn';
 import Signup from '../../../pages/Signup/Signup';
 import Home from '../../../pages/Home/Home';
 import Jobs from '../../../pages/Jobs/Jobs';
@@ -13,7 +13,6 @@ import EmailVerification from '../../../pages/EmailVerification/EmailVerificatio
 import CreateProfile from '../../../pages/CreateProfile/CreateProfile';
 import AllCompanies from '../../../pages/AllCompanies/AllCompanies';
 import CompanyInfo from '../../../components/Company/CompanyInfo/CompanyInfo';
-import { USER_ROLES } from '../../../constants/user.constants';
 
 function SwitchRouter() {
   const { user } = useAuth();
@@ -55,7 +54,7 @@ function SwitchRouter() {
       </Route> */}
       <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
         <Company />
-      </PrivateRoute> 
+      </PrivateRoute>
     </Switch>
   );
 }

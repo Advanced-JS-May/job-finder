@@ -19,7 +19,6 @@ function TabPanel({ children, value, index, ...other }) {
             justifyContent: 'center',
             alignItems: 'center',
           }}
-          m={3}
         >
           {children}
         </Box>

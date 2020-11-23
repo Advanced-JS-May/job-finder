@@ -15,7 +15,7 @@ import styles from './JobSeeker.module.css';
 
 import FormContainer from '../FormElements/FormContainer/FormContainer';
 
-function JobSeekerRegister({ value, index }) {
+function JobSeekerRegister({ setProgress }) {
   const { signup } = useAuth();
   const history = useHistory();
 
@@ -29,6 +29,7 @@ function JobSeekerRegister({ value, index }) {
     },
     validate,
     onSubmit: ({ email, password }) => {
+      setProgress();
       signup(email, password, USER_ROLES.user)
         .then(() => {
           history.push('/email-verification');
@@ -105,7 +106,7 @@ function JobSeekerRegister({ value, index }) {
 
         <ErrorMessage message={error} />
       </form>
-      <SocialAccountLogin />
+      <SocialAccountLogin setProgress={setProgress} />
     </FormContainer>
   );
 }
