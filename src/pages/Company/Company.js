@@ -16,6 +16,7 @@ import CreateJob from "../../components/Company/CreateJob/CreateJob";
 import ProfileHeader from "../../components/Company/ProfileHeader/ProfileHeader";
 import ProfileContactCard from "../../components/Company/ProfileContactCard/ProfileContactCard"
 import { useAuth } from '../../services/authentication';
+import ProfileDescriptionCard from "../../components/Company/ProfileDescriptionCard/ProfileDescriptionCard"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,6 +91,7 @@ export default function Company() {
                 />
             </div>
             <div>
+              <ProfileDescriptionCard />
               <Card>
                 <CardContent>
                 <p> {company.description} </p>
