@@ -9,7 +9,7 @@ import "./ProfileHeader.css"
 
 
 
-export default function ProfileHeader( { image, coverImage,name } ) {
+export default function ProfileHeader( { image, coverImage, name } ) {
 
 return (
  <>
@@ -28,7 +28,12 @@ return (
       </div>
     </div>
     <div id="profileName">
-      <h1>{name}</h1>
+      {!name?(
+        <h2>JobSeeaker.am</h2>
+      ):(
+         <h2>{name}</h2>
+      )
+      }
     </div>
  </>
  );

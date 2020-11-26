@@ -1,14 +1,18 @@
-import React from 'react';
+import React , { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import defaultDescription  from './../../../../src/constants/defaultDescription';
+import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    width :"800px",
+    height:"250px"
   },
   bullet: {
     display: 'inline-block',
@@ -23,26 +27,31 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileDescriptionCard() {
+export default function ProfileDescriptionCard( { description, name } ) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+
 
   return (
     <Card className={classes.root}>
+       <Button className={classes.edit}>
+        <Link to="/profile/profileContactCard/edit">
+          <EditIcon />
+        </Link>
+      </Button>
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
+        <Typography className={classes.title} color="textPriamry" gutterBottom>
+          <h1>  { name } </h1>
         </Typography>
-        <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+       <Typography className={classes.pos} color="textSecondary">
+       {!description ? (
+         <div>
+           <p>{defaultDescription}</p>
+        </div>
+         ) : (
+         <div>
+            <p>{description}</p>
+         </div>
+         )}
         </Typography>
       </CardContent>
       <CardActions>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+
 //services
 import { createCompany } from '../../../services/company';
 import { useAuth } from '../../../services/authentication';
@@ -29,14 +30,15 @@ const handleCompanyInput = ({ target:{ value,name } })=> {
 };
 
 const handleCreateCompany =()=>{
-  createCompany(company);
+  createCompany(company,"contacts");
   // window.location.reload(false)
 }
 
 
 
 
-return( <div>
+return( 
+<div>
        <form  style={{ textAlign: "center" }}>
           <h3>Company Bio</h3>
           <TextField

@@ -3,7 +3,11 @@
     position: relative;
     flex-direction: row;
     align-items: center;
-    margin-top:25px;
+    margin-top: 50px;
+    margin-right:150px;
+    margin-left:150px;
+    padding:none;
+    /* border:3px solid green */
 }
 
 /*Profile Picture*/
@@ -19,11 +23,19 @@
 }
 
 #profileName {
-    margin-left: 105px;
     z-index: 2;
+    margin-right:150px;
+    margin-left:250px;
+    height: 45px;
+    width:500px;
     padding:none;
-    /* border:3px solid green */
+
 }
+
+#profileName  h2 {
+ align-items : center;
+  padding:none;
+ }
 
 #profileUpload {
     display:flex;

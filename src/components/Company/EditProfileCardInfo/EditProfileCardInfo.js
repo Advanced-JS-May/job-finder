@@ -26,7 +26,7 @@ const useStyles = makeStyles({
       },
   });
 
-export default function EditProfileCardInfo(props) {
+export default function EditProfileCardInfo() {
   const classes = useStyles();  
   const [edit, setEdit] = useState(false);
 

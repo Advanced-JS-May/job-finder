@@ -26,7 +26,14 @@ const useStyles = makeStyles((theme) => ({
   },
   snapshot:{
     display:"flex",
-    flexDirection:"row"
+    // flexDirection:"row",
+    justifyContent:"space-between",
+    alignItems:"center",
+    margin :"3px solid green"
+  },
+  description:{
+    width:"1000px",
+    height: "250px"
   }
 
 }));
@@ -37,9 +44,7 @@ export default function Company() {
   const [value, setValue] = React.useState(0);
 
   const [company, setCompany] = useState({});
-  // const { id } = useParams();
   const { user } =useAuth();
-  let id=user.uid
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -50,20 +55,20 @@ export default function Company() {
   // };
 
   useEffect(() => {
-    getCompanyById(id).then((c) => {
+    getCompanyById(user.uid).then((c) => {
       setCompany(c);
     });
-  }, [id]);
+  }, [user.uid]);
+  
 
   return (
     <div className={classes.root}>
-     
           <ProfileHeader
            image={company.image} 
            coverImage={company.coverImage}
-           name={company.companyName}/>
-        
-      <div>
+           name={company.companyName}
+           />
+    <div>
         <AppBar position="static" color="default">
           <Tabs
             value={value}
@@ -82,21 +87,24 @@ export default function Company() {
           <div className={classes.snapshot}>
             <div>
               <ProfileContactCard 
+                country={company.country}
+                city={company.city}
                 address={company.address}
                 tel={company.tel} 
                 mail={company.mail} 
                 website={company.website}
-                // image={company.image}
-                // coverImage={company.coverImage}
                 />
             </div>
             <div>
-              <ProfileDescriptionCard />
-              <Card>
-                <CardContent>
+              <ProfileDescriptionCard
+                description={company.description} 
+                name={company.name}
+              />
+              {/* <Card className={classes.description}>
+                {/* <CardContent>
                 <p> {company.description} </p>
-                </ CardContent>
-              </Card>
+                </ CardContent> 
+              </Card> */}
             </div>
           </div>
          </TabPanel>

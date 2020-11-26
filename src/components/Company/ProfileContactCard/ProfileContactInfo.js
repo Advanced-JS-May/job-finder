@@ -27,7 +27,8 @@ const useStyles = makeStyles({
 export default function ProfileContactInfo( {  country,  city,  address,  tel,  mail,  website } ) {
     const classes = useStyles();
 
-        return (
+
+ return (
          <Card>  
             <CardContent className={classes.root}>
             <h3>Contacts</h3>
@@ -48,9 +49,10 @@ export default function ProfileContactInfo( {  country,  city,  address,  tel,  
                 Mail:{mail}
             </div>
             <div className={classes.element}>
-                <LanguageIcon /> Website:{website}
+                <LanguageIcon /> 
+                Website:{website}
             </div>
             </CardContent>
-         </ Card>  
-        );
+         </Card>  
+    );
 }

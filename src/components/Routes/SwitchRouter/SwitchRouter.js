@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import { useAuth } from '../../../services/authentication';
 
+//components 
 import SignIn from '../../../pages/SignIn/SignIn';
 import Signup from '../../../pages/Signup/Signup';
 import Home from '../../../pages/Home/Home';
@@ -13,6 +14,10 @@ import EmailVerification from '../../../pages/EmailVerification/EmailVerificatio
 import CreateProfile from '../../../pages/CreateProfile/CreateProfile';
 import AllCompanies from '../../../pages/AllCompanies/AllCompanies';
 import CompanyInfo from '../../../components/Company/CompanyInfo/CompanyInfo';
+import ProfileContactEdit from '../../../components/Company/ProfileContactCard/ProfileContactEdit';
+
+
+
 
 function SwitchRouter() {
   const { user } = useAuth();
@@ -36,6 +41,9 @@ function SwitchRouter() {
       </Route>
       <Route path="/email-verification">
         <EmailVerification />
+      </Route>
+      <Route path="/profile/profileContactCard/edit">
+        <ProfileContactEdit />
       </Route>
       {/* regular user */}
       <PrivateRoute auth={user} path="/profile/create">
