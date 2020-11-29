@@ -1,56 +1,157 @@
-//React
-import React, { useState } from 'react';
-import { Formik } from 'formik';
-import { useParams } from "react-router-dom";
-import { useAuth } from '../../../services/authentication';
+import React, { useState } from "react";
+import { Formik } from "formik";
+import { Link } from "react-router-dom";
+
+//services
+import { createCompany } from "../../../services/company";
+import { useAuth } from "../../../services/authentication";
 
 //UI
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import { Button } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 
-//services 
-import createJob from '../../../services/job';
+const useStyles = makeStyles({
+  root: {
+    width: "500px",
+    margin: 10,
+    display: "flex",
+    flexDirection: "column",
+  },
+  element: {
+    display: "flex",
+    alignItems: "center",
+  },
+});
 
-//helpers
-import { uniqueId } from "lodash";
+export default function ProfileDescriptionEdit() {
+  const classes = useStyles();
+  const { user } = useAuth();
 
+  return (
+    <Card className={classes.root}>
+      <CardContent>
+        <Formik
+          initialValues={{
+            position: "",
+            responsabilities:"",
+            requirements:"",
+            salary:"",
+            deadline:"",
+          }}
 
-export default function CreateJob () {
-    const { id } = useParams();
-    const { user }= useAuth()
-    const [job,setJob]=useState({});
- 
-    const handleJobInput = ({ target:{ value,name } })=> {
-        setJob((e)=>({
-          ...e,
-          [name]:value,
-          id:uniqueId(),
-          uid:user.uid,
-           }))
-     };
-    
-     const handleCreateJob =()=>{
-        createJob(job)
-      };
-
-    return (
-<div>
-    <form onSubmit={ handleCreateJob } style={{ textAlign: "center" }}>
-    <TextField
-        id="outlined-basic"
-        label="Position Name"
-        variant="outlined"
-        name="position"
-        onChange={handleJobInput}
-        value={job.position}
-    />
-    <Button variant="contained" color="primary" onClick={handleCreateJob}>
-        {" "}
-        Submit
-    </Button>
-    </form>
-</div>
-      )
+          onSubmit={(values) => {
+            createCompany(user.uid, "bio", values);
+          }}
+        >
+          {(props) => (
+            <form onSubmit={props.handleSubmit} className={classes.root}>
+                <h1>Post a job</h1>
+              <div>
+                {/* <LocationCityIcon /> */}
+                Position:
+                <TextField
+                  // label={country}
+                  id="outlined-basic"
+                  type="text"
+                  variant="outlined"
+                  name="address"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.description}
+                  name="description"
+                />
+                {props.errors.name && (
+                  <div id="feedback">{props.errors.name}</div>
+                )}
+              </div>
+              <div>
+                {/* <LocationCityIcon /> */}
+                Responsabilities:
+                <TextField
+                  // label={country}
+                  id="outlined-basic"
+                  type="text"
+                  variant="outlined"
+                  name="address"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.description}
+                  name="description"
+                />
+                {props.errors.name && (
+                  <div id="feedback">{props.errors.name}</div>
+                )}
+              </div>
+              <div>
+                {/* <LocationCityIcon /> */}
+                Requirements:
+                <TextField
+                  // label={country}
+                  id="outlined-basic"
+                  type="text"
+                  variant="outlined"
+                  name="address"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.description}
+                  name="description"
+                />
+                {props.errors.name && (
+                  <div id="feedback">{props.errors.name}</div>
+                )}
+              </div>
+              <div>
+                {/* <LocationCityIcon /> */}
+                Salary:
+                <TextField
+                  // label={country}
+                  id="outlined-basic"
+                  type="text"
+                  variant="outlined"
+                  name="address"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.description}
+                  name="description"
+                />
+                {props.errors.name && (
+                  <div id="feedback">{props.errors.name}</div>
+                )}
+              </div>
+              <div>
+                {/* <LocationCityIcon /> */}
+                Deadline:
+                <TextField
+                  // label={country}
+                  id="outlined-basic"
+                  type="text"
+                  variant="outlined"
+                  name="address"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.description}
+                  name="description"
+                />
+                {props.errors.name && (
+                  <div id="feedback">{props.errors.name}</div>
+                )}
+              </div>
+              <div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={props.handleSubmit}
+                >
+                  <Link to="/company/:id">Submit</Link>
+                </Button>
+              </div>
+            </form>
+          )}
+        </Formik>
+      </CardContent>
+    </Card>
+  );
 }
-
-

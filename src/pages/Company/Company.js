@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCompanyById } from "../../services/company";
+import { Link } from "react-router-dom";
 
 //UI
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import CardContent from "@material-ui/core/CardContent";
-import Card from "@material-ui/core/Card";
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import Fab from '@material-ui/core/Fab';
 
 //components
 import TabPanel from "../../components/TabPanel/TabPanel";
@@ -72,7 +73,7 @@ export default function Company() {
            coverImage={company.coverImage}
            name={company.companyName}
            />
-    <div>
+           
         <AppBar position="static" color="default">
           <Tabs
             value={value}
@@ -84,7 +85,6 @@ export default function Company() {
           >
             <Tab label="SnapShot" />
             <Tab label="jobs" />
-            <Tab label="Create Job Opening" />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0} dir={theme.direction} >
@@ -109,10 +109,14 @@ export default function Company() {
          </TabPanel>
          <TabPanel value={value} index={1} dir={theme.direction} >
            <div>
-             <CreateJob />
+             
+             <Fab>
+             <Link to="/profile/addJob" >
+              <AddBoxIcon />
+              </Link>
+             </Fab>
            </div>
          </TabPanel>
-      </div>
     </div>
   );
 }

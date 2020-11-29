@@ -16,7 +16,7 @@ import AllCompanies from '../../../pages/AllCompanies/AllCompanies';
 import CompanyInfo from '../../../components/Company/CompanyInfo/CompanyInfo';
 import ProfileContactEdit from '../../../components/Company/ProfileContactCard/ProfileContactEdit';
 import ProfileDescriptionEdit from '../../Company/ProfileDescriptionCard/ProdileDescriptionEdit';
-
+import CreateJob from "../../Company/CreateJob/CreateJob"
 
 
 
@@ -50,6 +50,10 @@ function SwitchRouter() {
         <ProfileDescriptionEdit />
       </Route>
 
+      <Route path="/profile/addJob">
+        <CreateJob />
+      </Route>
+
       {/* regular user */}
       <PrivateRoute auth={user} path="/profile/create">
         <CreateProfile />
@@ -57,7 +61,7 @@ function SwitchRouter() {
       <PrivateRoute auth={user} path="/profile/:id">
         <div>{user && user.role}</div>
       </PrivateRoute>
-
+     
       {/* company user */}
       <Route path="/company/profile">
         <CompanyInfo />

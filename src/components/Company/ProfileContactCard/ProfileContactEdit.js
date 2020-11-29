@@ -31,14 +31,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileContactEdit({
-  country,
-  city,
-  address,
-  tel,
-  mail,
-  website,
-}) {
+export default function ProfileContactEdit({  country,  city,  address,  tel,  mail,  website,}) {
   const classes = useStyles();
   const { user } = useAuth();
 
