@@ -49,6 +49,7 @@ function SwitchRouter() {
       <Route path="/profile/profileDescriptionCard/edit">
         <ProfileDescriptionEdit />
       </Route>
+
       {/* regular user */}
       <PrivateRoute auth={user} path="/profile/create">
         <CreateProfile />
@@ -61,9 +62,6 @@ function SwitchRouter() {
       <Route path="/company/profile">
         <CompanyInfo />
       </Route>
-      {/* <Route path="/company/:id">
-        <Company />
-      </Route> */}
       <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
         <Company />
       </PrivateRoute>

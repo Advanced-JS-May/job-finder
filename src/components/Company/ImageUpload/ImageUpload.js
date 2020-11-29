@@ -13,7 +13,6 @@ import { useAuth } from '../../../services/authentication';
 export default function ImageUpload( { imageType } ) {
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
-  // const { id } = useParams();
   const { user } = useAuth();
   let id=user.uid
  
@@ -26,7 +25,6 @@ export default function ImageUpload( { imageType } ) {
     
   };
 
-//  const hiddenFileInput = React.useRef(null);
 
   const handleUpload =   () => {
 

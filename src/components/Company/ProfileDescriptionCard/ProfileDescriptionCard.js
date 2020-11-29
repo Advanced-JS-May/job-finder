@@ -1,29 +1,26 @@
-import React , { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 //UI
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import defaultDescription  from './../../../../src/constants/defaultDescription';
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import defaultDescription from "./../../../../src/constants/defaultDescription";
 import EditIcon from "@material-ui/icons/Edit";
 
-//Services 
-import  { getCompanyById } from "../../../services/company";
-import { useAuth } from '../../../services/authentication';
 
 const useStyles = makeStyles({
   root: {
-    width :"800px",
-    height:"250px"
+    width: "800px",
+    height: "250px",
   },
   bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
   },
   title: {
     fontSize: 14,
@@ -33,12 +30,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileDescriptionCard( { description }) {
+export default function ProfileDescriptionCard({ description }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-       <Button className={classes.edit}>
+      <Button className={classes.edit}>
         <Link to="/profile/profileDescriptionCard/edit">
           <EditIcon />
         </Link>
@@ -47,16 +44,16 @@ export default function ProfileDescriptionCard( { description }) {
         <Typography className={classes.title} color="textPriamry" gutterBottom>
           <h1> Biography </h1>
         </Typography>
-       <Typography className={classes.pos} color="textSecondary">
-       {!description ? (
-         <div>
-           <p>{defaultDescription}</p>
-        </div>
-         ) : (
-         <div>
-            <p>{description}</p>
-         </div>
-         )}
+        <Typography className={classes.pos} color="textSecondary">
+          {!description ? (
+            <div>
+              <p>{defaultDescription}</p>
+            </div>
+          ) : (
+            <div>
+              <p>{description}</p>
+            </div>
+          )}
         </Typography>
       </CardContent>
       <CardActions>

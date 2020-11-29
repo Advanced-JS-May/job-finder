@@ -1,23 +1,22 @@
 import React from "react";
-import { Formik } from 'formik';
+import { Formik } from "formik";
 import { Link } from "react-router-dom";
 
 //services
-import  { createCompany } from '../../../services/company';
-import { useAuth } from '../../../services/authentication';
+import { createCompany } from "../../../services/company";
+import { useAuth } from "../../../services/authentication";
 
 //UI
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
-import BusinessIcon from '@material-ui/icons/Business';
-import MailIcon from '@material-ui/icons/Mail';
-import PhoneIcon from '@material-ui/icons/Phone';
-import LanguageIcon from '@material-ui/icons/Language';
-import LocationCityIcon from '@material-ui/icons/LocationCity';
-import TextField from '@material-ui/core/TextField';
+import BusinessIcon from "@material-ui/icons/Business";
+import MailIcon from "@material-ui/icons/Mail";
+import PhoneIcon from "@material-ui/icons/Phone";
+import LanguageIcon from "@material-ui/icons/Language";
+import LocationCityIcon from "@material-ui/icons/LocationCity";
+import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
-
 
 const useStyles = makeStyles({
   root: {
@@ -25,141 +24,158 @@ const useStyles = makeStyles({
     margin: 10,
     display: "flex",
     flexDirection: "column",
-    },
+  },
   element: {
     display: "flex",
     alignItems: "center",
   },
 });
 
-
-
-
-
-export default  function ProfileContactEdit( {  country,  city,  address,  tel,  mail,  website } ){
+export default function ProfileContactEdit({
+  country,
+  city,
+  address,
+  tel,
+  mail,
+  website,
+}) {
   const classes = useStyles();
   const { user } = useAuth();
- 
 
   return (
-  <Card className={classes.root}>
-    <CardContent>
-      <Formik 
-        initialValues={{ 
-          country: "",
-          city:"",
-          address:"",
-          tel:"",
-          mail:"",
-          website:"",
-          image:"",
-        }}
-  
-        onSubmit={(values) => {
-          createCompany(user.uid,"contacts",values)
-        }}
-      >
-        {props => (
-          <form onSubmit={props.handleSubmit} className={classes.root}>
+    <Card className={classes.root}>
+      <CardContent>
+        <Formik
+          initialValues={{
+            country: "",
+            city: "",
+            address: "",
+            tel: "",
+            mail: "",
+            website: "",
+            image: "",
+          }}
+          onSubmit={(values) => {
+            createCompany(user.uid, "contacts", values);
+          }}
+        >
+          {(props) => (
+            <form onSubmit={props.handleSubmit} className={classes.root}>
               <div>
-                    <LocationCityIcon />
-                    State:
-                    <TextField
-                      label={country}
-                      id="outlined-basic"
-                      type="text"
-                      variant="outlined"
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      value={props.values.name}
-                      name="country"
-                    />
-                    {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+                <LocationCityIcon />
+                State:
+                <TextField
+                  label={country}
+                  id="outlined-basic"
+                  type="text"
+                  variant="outlined"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.name}
+                  name="country"
+                />
+                {props.errors.name && (
+                  <div id="feedback">{props.errors.name}</div>
+                )}
               </div>
               <div>
-                    <LocationCityIcon />
-                    City:
-                    <TextField
-                      label={city}
-                      id="outlined-basic"
-                      type="text"
-                      variant="outlined"
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      value={props.values.name}
-                      name="city"
-                    />
-                    {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+                <LocationCityIcon />
+                City:
+                <TextField
+                  label={city}
+                  id="outlined-basic"
+                  type="text"
+                  variant="outlined"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.name}
+                  name="city"
+                />
+                {props.errors.name && (
+                  <div id="feedback">{props.errors.name}</div>
+                )}
               </div>
               <div>
-                    <BusinessIcon />
-                    Address:
-                    <TextField
-                      label={address}
-                      id="outlined-basic"
-                      type="text"
-                      variant="outlined"
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      value={props.values.name}
-                      name="address"
-                    />
-                    {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+                <BusinessIcon />
+                Address:
+                <TextField
+                  label={address}
+                  id="outlined-basic"
+                  type="text"
+                  variant="outlined"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.name}
+                  name="address"
+                />
+                {props.errors.name && (
+                  <div id="feedback">{props.errors.name}</div>
+                )}
               </div>
               <div>
-                    <PhoneIcon />
-                    Tel:
-                    <TextField
-                      label={tel}
-                      id="outlined-basic"
-                      type="text"
-                      variant="outlined"
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      value={props.values.name}
-                      name="tel"
-                    />
-                    {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+                <PhoneIcon />
+                Tel:
+                <TextField
+                  label={tel}
+                  id="outlined-basic"
+                  type="text"
+                  variant="outlined"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.name}
+                  name="tel"
+                />
+                {props.errors.name && (
+                  <div id="feedback">{props.errors.name}</div>
+                )}
               </div>
               <div>
-                    <MailIcon />
-                    Mail:
-                    <TextField
-                      label={mail}
-                      id="outlined-basic"
-                      type="text"
-                      variant="outlined"
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      value={props.values.name}
-                      name="mail"
-                    />
-                    {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+                <MailIcon />
+                Mail:
+                <TextField
+                  label={mail}
+                  id="outlined-basic"
+                  type="text"
+                  variant="outlined"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.name}
+                  name="mail"
+                />
+                {props.errors.name && (
+                  <div id="feedback">{props.errors.name}</div>
+                )}
               </div>
               <div>
-                    <LanguageIcon />
-                    Website:
-                    <TextField
-                      label={website}
-                      id="outlined-basic"
-                      type="text"
-                      variant="outlined"
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      value={props.values.name}
-                      name="website"
-                    />
-                    {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+                <LanguageIcon />
+                Website:
+                <TextField
+                  label={website}
+                  id="outlined-basic"
+                  type="text"
+                  variant="outlined"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.name}
+                  name="website"
+                />
+                {props.errors.name && (
+                  <div id="feedback">{props.errors.name}</div>
+                )}
               </div>
-              <Button variant="contained" color="primary" >
-                <Link to="/profile/:id">
-                  Submit
-                </Link>
-              </Button>
-          </form>
-        )}
-      </Formik>
-    </CardContent>
-  </Card>
+              <div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={props.handleSubmit}
+                >
+                  <Link to="/company/:id">Submit</Link>
+                </Button>
+              </div>
+            </form>
+          )}
+        </Formik>
+      </CardContent>
+    </Card>
   );
- }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,6 @@ import MailIcon from "@material-ui/icons/Mail";
 import PhoneIcon from "@material-ui/icons/Phone";
 import LanguageIcon from "@material-ui/icons/Language";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
-
 
 const useStyles = makeStyles({
   root: {
@@ -34,11 +33,18 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileContactCard ({ country , city , address , tel , mail ,website} ) {
+export default function ProfileContactCard({
+  country,
+  city,
+  address,
+  tel,
+  mail,
+  website,
+}) {
   const classes = useStyles();
 
   return (
-     <Card>
+    <Card>
       <Button className={classes.edit}>
         <Link to="/profile/profileContactCard/edit">
           <EditIcon />
