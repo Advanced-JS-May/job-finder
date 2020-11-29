@@ -45,7 +45,7 @@ export default function ProfileDescriptionEdit() {
             <form onSubmit={props.handleSubmit} className={classes.root}>
               <div>
                 {/* <LocationCityIcon /> */}
-                State:
+                <h1> Biography </h1>
                 <TextField
                   // label={country}
                   id="outlined-basic"

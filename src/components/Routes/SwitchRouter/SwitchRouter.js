@@ -23,7 +23,10 @@ import CreateJob from "../../Company/CreateJob/CreateJob"
 function SwitchRouter() {
   const { user } = useAuth();
 
-  return (
+return (
+  <main style={{
+      minHeight:"70vh"
+    }}>
     <Switch>
       <Route exact path="/">
         <Home />
@@ -70,6 +73,7 @@ function SwitchRouter() {
         <Company />
       </PrivateRoute>
     </Switch>
+ </main>
   );
 }
 export default SwitchRouter;

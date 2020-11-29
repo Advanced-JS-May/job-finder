@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import { Link } from "react-router-dom";
 
 //services
-import { createCompany } from "../../../services/company";
+import createJob from "../../../services/job";
 import { useAuth } from "../../../services/authentication";
 
 //UI
@@ -12,6 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import { uniqueId } from "lodash";
 
 const useStyles = makeStyles({
   root: {
@@ -40,10 +41,11 @@ export default function ProfileDescriptionEdit() {
             requirements:"",
             salary:"",
             deadline:"",
+            jobId:uniqueId()
           }}
 
           onSubmit={(values) => {
-            createCompany(user.uid, "bio", values);
+            createJob(values);
           }}
         >
           {(props) => (
@@ -57,11 +59,10 @@ export default function ProfileDescriptionEdit() {
                   id="outlined-basic"
                   type="text"
                   variant="outlined"
-                  name="address"
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.description}
-                  name="description"
+                  name="position"
                 />
                 {props.errors.name && (
                   <div id="feedback">{props.errors.name}</div>
@@ -75,11 +76,10 @@ export default function ProfileDescriptionEdit() {
                   id="outlined-basic"
                   type="text"
                   variant="outlined"
-                  name="address"
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.description}
-                  name="description"
+                  name="responsabilities"
                 />
                 {props.errors.name && (
                   <div id="feedback">{props.errors.name}</div>
@@ -93,11 +93,10 @@ export default function ProfileDescriptionEdit() {
                   id="outlined-basic"
                   type="text"
                   variant="outlined"
-                  name="address"
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.description}
-                  name="description"
+                  name="requirements"
                 />
                 {props.errors.name && (
                   <div id="feedback">{props.errors.name}</div>
@@ -115,7 +114,7 @@ export default function ProfileDescriptionEdit() {
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.description}
-                  name="description"
+                  name="salary"
                 />
                 {props.errors.name && (
                   <div id="feedback">{props.errors.name}</div>
@@ -133,7 +132,7 @@ export default function ProfileDescriptionEdit() {
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.description}
-                  name="description"
+                  name="deadline"
                 />
                 {props.errors.name && (
                   <div id="feedback">{props.errors.name}</div>
