@@ -2,7 +2,6 @@ import React, { useState , useEffect } from 'react';
 import {getCompanyById} from '../../services/company.js'
 import {getAllCompanies} from '../../services/company.js'
 import CompaniesInfoShow from '../CompaniesInfoShow/CompaniesInfoShow.js'
-<<<<<<< HEAD
 import CompanyMiniInfo from '../companyMiniInfo/CompanyMiniInfo.js'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -10,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Select from '../Select/Select.js'
 import { useLocation } from 'react-router-dom'
 import fields from "../../constants/jobField.js";
-import _ ,{uniqueId} from 'lodash'
+import _  from 'lodash'
 
 let tmpComps = [];
 let constComps = [];
@@ -34,9 +33,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
 }));
-=======
-import CompanyMiniInfo from '../CompanyMiniInfo/CompanyMiniInfo.js'
->>>>>>> c6dc8bd5a8b77018b31cc5410e75a1d83f311b48
+
 
 export default function CardMakerForCompanies() {
 
