@@ -15,6 +15,7 @@ import CreateProfile from '../../../pages/CreateProfile/CreateProfile';
 import AllCompanies from '../../../pages/AllCompanies/AllCompanies';
 import CompanyInfo from '../../../components/Company/CompanyInfo/CompanyInfo';
 import ProfileContactEdit from '../../../components/Company/ProfileContactCard/ProfileContactEdit';
+import ProfileDescriptionEdit from '../../Company/ProfileDescriptionCard/ProdileDescriptionEdit';
 
 
 
@@ -44,6 +45,9 @@ function SwitchRouter() {
       </Route>
       <Route path="/profile/profileContactCard/edit">
         <ProfileContactEdit />
+      </Route>|
+      <Route path="/profile/profileDescriptionCard/edit">
+        <ProfileDescriptionEdit />
       </Route>
       {/* regular user */}
       <PrivateRoute auth={user} path="/profile/create">

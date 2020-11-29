@@ -1,8 +1,8 @@
 import { database, storage } from "../libraries/firebase";
 
-export function createCompany(company,child) {
+export function createCompany(id,child,company) {
   return database
-     .ref("/companies/" + company.id)
+     .ref("/companies/" + id)
      .child(child)
      .set(company);
   }

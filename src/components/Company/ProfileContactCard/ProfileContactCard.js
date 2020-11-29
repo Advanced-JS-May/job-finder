@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
-//services
-import { getCompanyById } from "../../../services/company";
-import { useAuth } from "../../../services/authentication";
-
 //UI
 import Card from "@material-ui/core/Card";
 import EditIcon from "@material-ui/icons/Edit";
@@ -17,10 +13,6 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import LanguageIcon from "@material-ui/icons/Language";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
 
-// //components
-// import ProfileContactInfo from "./ProfileContactInfo";
-// import ProfileContactEdit from "./ProfileContactEdit";
-// import EditProfileCardInfo from "../EditProfileCardInfo/EditProfileCardInfo";
 
 const useStyles = makeStyles({
   root: {
@@ -42,24 +34,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileContactCard() {
+export default function ProfileContactCard ({ country , city , address , tel , mail ,website} ) {
   const classes = useStyles();
-  const [edit, setEdit] = useState(false);
-  const [company, setCompany] = useState({});
-  const { user } = useAuth();
-
-  const handleEdit = () => {
-    setEdit(!edit);
-  };
-
-  useEffect(() => {
-    getCompanyById(user.uid).then((c) => {
-      setCompany(c.contacts);
-    });
-  }, [user.uid]);
 
   return (
-    <Card>
+     <Card>
       <Button className={classes.edit}>
         <Link to="/profile/profileContactCard/edit">
           <EditIcon />
@@ -69,23 +48,23 @@ export default function ProfileContactCard() {
         <h3>Contacts</h3>
         <div className={classes.element}>
           <LocationCityIcon />
-          State:{company.country} City:{company.city}
+          State:{country} City:{city}
         </div>
         <div className={classes.element}>
           <BusinessIcon />
-          Address:{company.address}
+          Address:{address}
         </div>
         <div className={classes.element}>
           <PhoneIcon />
-          Tel:{company.tel}
+          Tel:{tel}
         </div>
         <div className={classes.element}>
           <MailIcon />
-          Mail:{company.mail}
+          Mail:{mail}
         </div>
         <div className={classes.element}>
           <LanguageIcon />
-          Website:{company.website}
+          Website:{website}
         </div>
       </CardContent>
     </Card>

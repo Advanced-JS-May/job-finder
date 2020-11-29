@@ -41,25 +41,29 @@ const useStyles = makeStyles((theme) => ({
 export default function Company() {
   const classes = useStyles();
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
-
-  const [company, setCompany] = useState({});
   const { user } =useAuth();
+
+  const [value, setValue] = React.useState(0);
+  const [company, setCompany] = useState({});
+  const [bio,setBio]=useState({});
+  const [contacts,setContacts]=useState({})
+  
+
+ 
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  // const handleChangeIndex = (index) => {
-  //   setValue(index);
-  // };
 
   useEffect(() => {
     getCompanyById(user.uid).then((c) => {
       setCompany(c);
+      setBio(c.bio);
+      setContacts(c.contacts);
     });
   }, [user.uid]);
-  
+
 
   return (
     <div className={classes.root}>
@@ -87,24 +91,19 @@ export default function Company() {
           <div className={classes.snapshot}>
             <div>
               <ProfileContactCard 
-                country={company.country}
-                city={company.city}
-                address={company.address}
-                tel={company.tel} 
-                mail={company.mail} 
-                website={company.website}
+                country={contacts.country}
+                city={contacts.city}
+                address={contacts.address}
+                tel={contacts.tel} 
+                mail={contacts.mail} 
+                website={contacts.website}
                 />
             </div>
             <div>
               <ProfileDescriptionCard
-                description={company.description} 
-                name={company.name}
+                description={bio.description} 
+                // name={company.name}
               />
-              {/* <Card className={classes.description}>
-                {/* <CardContent>
-                <p> {company.description} </p>
-                </ CardContent> 
-              </Card> */}
             </div>
           </div>
          </TabPanel>
