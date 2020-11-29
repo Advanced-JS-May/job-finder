@@ -9,6 +9,8 @@ import Check from '@material-ui/icons/Check';
 import CreateProfileForm from '../../components/CreateProfileForm/CreateProfileForm';
 import QontoConnector from '../../components/CreateProfileStepper/QontoConnector/QontoConnector';
 
+import styles from './CreateProfile.module.css';
+
 const useQontoStepIconStyles = makeStyles({
   root: {
     color: '#eaeaf0',
@@ -73,11 +75,10 @@ function CustomizedSteppers() {
     setActiveStep(index);
   };
 
-  const handleFinish = () => {};
-
   return (
-    <div>
+    <div className={styles.stepperWrapper}>
       <Stepper
+        className={styles.stepper}
         alternativeLabel
         activeStep={activeStep}
         connector={<QontoConnector />}
@@ -92,7 +93,6 @@ function CustomizedSteppers() {
         activeStep={activeStep}
         steps={steps}
         handleBackButton={handleBack}
-        handleFinish={handleFinish}
         moveToFirstPage={handleMovToFirstPage}
         handleNext={handleNext}
       />

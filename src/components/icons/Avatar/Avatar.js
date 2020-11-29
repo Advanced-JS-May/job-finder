@@ -25,14 +25,14 @@ const useStyles = makeStyles((theme) => ({
    },
 }));
 
-export function CoverImage(props) {
+export function CoverImage( { imageLink } ) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Avatar
         alt="C"
-        src={props.imageLink}
+        src={imageLink}
         className={classes.cover}
         variant="rounded"
       />
@@ -40,14 +40,14 @@ export function CoverImage(props) {
   );
 }
 
-export function ProfilePicture(props) {
+export function ProfilePicture( { imageLink } ) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Avatar 
       alt="P" 
-      src={props.imageLink} 
+      src={imageLink} 
       className={classes.profile} />
     </div>
   );
