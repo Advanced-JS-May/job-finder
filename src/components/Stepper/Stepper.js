@@ -19,7 +19,7 @@ function StepperJob() {
               className="text-in-circles"
               x="12"
               y="16"
-              text-anchor="middle"
+              textAnchor="middle"
             >
               1
             </text>
@@ -39,7 +39,7 @@ function StepperJob() {
               className="text-in-circles"
               x="12"
               y="16"
-              text-anchor="middle"
+              textAnchor="middle"
             >
               2
             </text>
@@ -61,7 +61,7 @@ function StepperJob() {
               className="text-in-circles"
               x="12"
               y="16"
-              text-anchor="middle"
+              textAnchor="middle"
             >
               3
             </text>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,33 +14,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Select(props) {
+export default function Select({givenArray, givenFunction}) {
   const classes = useStyles();
-  const [currency, setCurrency] = useState("EUR");
-  const { givenArray } = props;
+  const [ value, setValue ] = useState("All");
 
   const handleChange = (event) => {
-    setCurrency(event.target.value);
+    setValue(event.target.value);
   };
   return (
     <>
-      <form className={classes.root} noValidate autoComplete="off">
+      <FormControl className={classes.root} noValidate autoComplete="off">
         <div>
           <TextField
             id="standard-select"
             select
             label="Select"
-            onChange={handleChange}
+            onChange={handleChange , givenFunction}
             helperText="Please select"
             variant="filled"
-            className={currency}
+            className={value}
           >
             {givenArray.map((option) => (
-              <MenuItem value={option}>{option}</MenuItem>
+              <MenuItem key={option} value={option}>{option}</MenuItem>
             ))}
           </TextField>
         </div>
-      </form>
+      </FormControl>
     </>
   );
 }

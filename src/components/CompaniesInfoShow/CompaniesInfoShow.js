@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
   },
   backButton: {
     position: "absolute",
-    bottom: "50px",
-    right: "50px",
+    top: "100px",
+    left: "50px",
   },
 }));
 
@@ -47,12 +47,11 @@ export default function SimplePaper({
   companyTax,
 }) {
   const classes = useStyles();
-
   return (
-    <>
+    <div className='containerCompaniesMini'>
       <Fab
         className={classes.backButton}
-        color="secondary"
+        color="primary"
         aria-label="back"
         onClick={functionBack}
       >
@@ -104,6 +103,6 @@ export default function SimplePaper({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

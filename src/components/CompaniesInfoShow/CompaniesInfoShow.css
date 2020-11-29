@@ -7,13 +7,12 @@
     margin-top: 3%;
     border: 1px solid #ccc;
     padding: 10px;
-    background: url('https://www.toptal.com/designers/subtlepatterns/patterns/y-so-serious-white.png');
+    background: #fff;
     transition:all 500ms ease;
 }
 .detailInfoppp {
   	padding: 10px 50px;
-
-    background:  url('https://www.toptal.com/designers/subtlepatterns/patterns/y-so-serious-white.png');
+    background-color: #fff;
     width: 100%;
     height: 250px;
     margin-top: 3%;
@@ -21,6 +20,7 @@
     display: flex;
     justify-content: space-between;
     transition:all 500ms ease;
+    margin-bottom: 100px;
 }
 .mainContainerppp:hover,
 .detailInfoppp:hover {

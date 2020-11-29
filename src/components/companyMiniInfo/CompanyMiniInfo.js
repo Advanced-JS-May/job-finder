@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import _ , {uniqueId} from 'lodash'
 
 const useStyles = makeStyles({
   root: {
@@ -22,8 +23,8 @@ const useStyles = makeStyles({
 });
 
 function ifDescription(prop) {
-    if(typeof prop != 'undefined') {
-      if(prop.trim != ''){
+    if(typeof prop !== 'undefined') {
+      if(prop.trim !== ''){
         if(prop.length < 150) {
           return prop
         }
@@ -44,7 +45,7 @@ export default function CompanyMiniInfo(
 ) {
 	const classes = useStyles();
 	return (
-		<Card className={classes.root} key={companyId}>
+		<Card className={classes.root} key={_.uniqueId('cmi_')}>
                 <CardActionArea>
                   <CardMedia
                     className={ classes.media }
