@@ -7,6 +7,7 @@ import usePagination from "../../Utils/paginationHelper";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { getUserFollowings, addUserFollow } from "../../services/favorites";
 import { useAuth } from "../../services/authentication";
+import _ from "lodash";
 
 const useStyles = makeStyles({
   root: {
@@ -42,11 +43,9 @@ function Jobs() {
   }, []);
 
   useEffect(() => {
-    console.log(user);
     if (user && user.uid) {
       getUserFollowings(user.uid)
         .then((res) => {
-          console.log("response", res);
           setFollowing(res);
         })
         .catch((err) => console.log(err));
@@ -59,7 +58,6 @@ function Jobs() {
   };
 
   const handleClick = (event) => {
-    //@TODO: add include();
     let target = event.currentTarget.id;
     setFollowing((previous) => [...previous, target]);
     const newArr = following.filter(Boolean); //deletes undefined
@@ -76,10 +74,10 @@ function Jobs() {
             {data.currentData().map(({ id, position }) => {
               return (
                 <JobCard
+                  key={_.uniqueId("job")}
                   id={id}
                   jobTitle={position}
                   companyName={id}
-                  key={id}
                   onClick={handleClick}
                   arr={following}
                 ></JobCard>

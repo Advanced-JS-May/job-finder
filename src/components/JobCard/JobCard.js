@@ -15,19 +15,11 @@ const useStyles = makeStyles({
   },
 });
 
-function JobCard({
-  companyName,
-  jobTitle,
-  companyLogo,
-  onClick,
-  onChange,
-  id,
-  arr,
-}) {
+function JobCard({ companyName, jobTitle, companyLogo ,onClick ,id , arr}) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card key={id} className={classes.root} >
       <CardActionArea>
         <CardMedia
           component="img"
