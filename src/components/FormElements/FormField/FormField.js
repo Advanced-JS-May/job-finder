@@ -5,11 +5,13 @@ function FormField(props) {
   return (
     <TextField
       {...props}
-      required
       fullWidth
       color="primary"
       variant="outlined"
       margin="normal"
+      style={{
+        background: 'white',
+      }}
     />
   );
 }

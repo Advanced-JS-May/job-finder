@@ -48,9 +48,9 @@ export default function CreateJob () {
         {" "}
         Submit
     </Button>
-    </form>;
+    </form>
 </div>
-      );
+      )
 }
 
 

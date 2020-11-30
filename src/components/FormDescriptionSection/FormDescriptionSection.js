@@ -7,6 +7,15 @@ const useStyles = makeStyles({
   root: {
     display: 'block',
     margin: '20px 0',
+    background: 'white',
+  },
+  summary: {
+    display: 'block',
+    margin: '20px 0',
+    background: 'white',
+    '& .MuiInputBase-root': {
+      background: 'white',
+    },
   },
 });
 
@@ -35,7 +44,7 @@ function FormDescriptionSection({
         }}
       />
       <TextField
-        className={classes.root}
+        className={classes.summary}
         margin="normal"
         label="summary"
         name="summary"

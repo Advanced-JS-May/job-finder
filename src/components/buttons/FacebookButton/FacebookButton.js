@@ -6,11 +6,12 @@ import { useHistory } from 'react-router-dom';
 import { USER_ROLES } from '../../../constants/user.constants';
 import { getUsersById } from '../../../services/user';
 
-export default function FacebookButton() {
+export default function FacebookButton({ setProgress, ...props }) {
   const { authWithFacebook } = useAuth();
   const history = useHistory();
 
   function signInWithFacebook() {
+    setProgress();
     authWithFacebook(USER_ROLES.user)
       .then((user) => {
         getUsersById(user.uid).then((result) => {
@@ -29,7 +30,11 @@ export default function FacebookButton() {
   }
 
   return (
-    <CustomButton text="sign In with Facebook" onClick={signInWithFacebook}>
+    <CustomButton
+      {...props}
+      text="sign In with Facebook"
+      onClick={signInWithFacebook}
+    >
       <FacebookSvgIcon width="20" />
     </CustomButton>
   );

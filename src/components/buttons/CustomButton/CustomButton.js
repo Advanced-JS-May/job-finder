@@ -14,6 +14,7 @@ export default function CustomButton({ children, text, ...props }) {
         padding: '13px 10px',
         border: '1px solid',
         borderRadius: 5,
+        background: 'white',
       }}
     >
       {children}

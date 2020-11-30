@@ -6,12 +6,7 @@ import CITIES from '../../constants/armenianCities';
 import GENDERS from '../../constants/gender';
 import FormSection from '../FormElements/FormSection/FormSection';
 import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  root: {
-    margin: 5,
-  },
-});
+import FormField from '../FormElements/FormField/FormField';
 
 function FormPersonalDataSection({
   nameValue,
@@ -35,26 +30,18 @@ function FormPersonalDataSection({
   genderError,
   cityError,
 }) {
-  const classes = useStyles();
-
   return (
     <FormSection>
-      <TextField
-        className={classes.root}
-        fullWidth
+      <FormField
         label="Name"
         name="name"
-        margin="normal"
         value={nameValue}
         onChange={handleNameChange}
         onBlur={handleNameBlur}
         error={nameError}
-        variant="outlined"
         InputProps={{ style: { padding: 5 } }}
       />
-      <TextField
-        fullWidth
-        margin="normal"
+      <FormField
         label="Surname"
         name="surname"
         value={surnameValue}
@@ -64,10 +51,9 @@ function FormPersonalDataSection({
         variant="outlined"
         InputProps={{ style: { padding: 5 } }}
       />
-      <TextField
+      <FormField
         type="number"
         label="Age"
-        margin="normal"
         value={ageValue}
         onChange={handleAgeChange}
         onBlur={handleAgeBlur}
@@ -77,11 +63,9 @@ function FormPersonalDataSection({
         fullWidth
         InputProps={{ style: { padding: 5 } }}
       />
-      <TextField
-        variant="outlined"
+      <FormField
         select
         label="gender"
-        margin="normal"
         name="gender"
         value={genderValue}
         onChange={handleGenderChange}
@@ -95,12 +79,10 @@ function FormPersonalDataSection({
             {option}
           </MenuItem>
         ))}
-      </TextField>
-      <TextField
-        variant="outlined"
+      </FormField>
+      <FormField
         select
         label="city"
-        margin="normal"
         name="city"
         value={cityValue}
         onChange={handleCityChange}
@@ -123,7 +105,7 @@ function FormPersonalDataSection({
             </MenuItem>
           );
         })}
-      </TextField>
+      </FormField>
     </FormSection>
   );
 }

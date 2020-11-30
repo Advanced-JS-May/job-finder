@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { USER_ROLES } from '../../constants/user.constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,6 +60,9 @@ export default function MenuAppBar() {
       <AppBar position="static">
         <Toolbar className={classes.bar}>
           <div className={classes.links}>
+            <Link className={classes.link} to="/">
+              Home
+            </Link>
             <Link className={classes.link} to="/jobs">
               Jobs
             </Link>
@@ -68,8 +72,7 @@ export default function MenuAppBar() {
           </div>
           {user === null ? (
             <LinearProgress color="secondary" />
-          ) : (user && user.emailVerified) ||
-            (user && user.facebookVerified) ? (
+          ) : user ? (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -96,7 +99,11 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                  <Link to="/company/profile">Account</Link>
+                  {user.role === USER_ROLES.employer ? (
+                    <Link to="/company/profile">Account</Link>
+                  ) : (
+                    <Link to="/profile/create">Edit</Link>
+                  )}
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                   <Link to="/company/:id">Profile</Link>

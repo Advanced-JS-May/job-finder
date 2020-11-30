@@ -13,6 +13,7 @@ function CreateProfileButtons({
       <Button
         style={{
           flexGrow: 1,
+          margin: 10,
         }}
         size="large"
         variant="outlined"
@@ -25,6 +26,7 @@ function CreateProfileButtons({
         <Button
           style={{
             flexGrow: 1,
+            margin: 10,
           }}
           size="large"
           variant="contained"
@@ -37,6 +39,7 @@ function CreateProfileButtons({
         <Button
           style={{
             flexGrow: 1,
+            margin: 10,
           }}
           size="large"
           variant="contained"
