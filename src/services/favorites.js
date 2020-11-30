@@ -3,7 +3,7 @@ import { database } from "../libraries/firebase";
 
 export function getUserFollowings(id) {
   return database
-    .ref("/users/" + id)//change to job-seeker
+    .ref("/job-seeker/" + id)//change to job-seeker
     .child("following")
     .once("value")
     .then((snapshot) => snapshot.val())
@@ -12,7 +12,7 @@ export function getUserFollowings(id) {
 
 export function addUserFollow(id, favorite) {
   return database
-    .ref("/users/" + id)
+    .ref("/job-seeker/" + id)
     .child("following")
     .set(favorite);
 }

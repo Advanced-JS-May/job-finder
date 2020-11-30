@@ -24,7 +24,6 @@ function JobCard({
   id,
   arr,
 }) {
-  
   const classes = useStyles();
 
   return (
@@ -47,8 +46,7 @@ function JobCard({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button id={id} onClick={onClick} onChange={onChange}>
-          {" "}
+        <Button id={id} onClick={onClick}>
           {/*@TODO: create Follow Component */}
           {arr.includes(id) ? "unfollow" : "follow"}
         </Button>

@@ -42,26 +42,30 @@ function Jobs() {
   }, []);
 
   useEffect(() => {
-    getUserFollowings(user.uid)
-      .then((res) => {
-        console.log("response", res);
-        setFollowing(res);
-      })
-      .catch((err) => console.log(err));
-  }, [user.uid]);
+    console.log(user);
+    if (user && user.uid) {
+      getUserFollowings(user.uid)
+        .then((res) => {
+          console.log("response", res);
+          setFollowing(res);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [user]);
 
   const handleChange = (event, page) => {
     setPage(page);
     data.jump(page);
   };
 
-  const handleClick = (event) => { //@TODO: add include();
+  const handleClick = (event) => {
+    //@TODO: add include();
     let target = event.currentTarget.id;
     setFollowing((previous) => [...previous, target]);
-    const newArr = following.filter(Boolean);//deletes undefined  
+    const newArr = following.filter(Boolean); //deletes undefined
     const newSet = new Set([...newArr]);
     console.log(newSet);
-    addUserFollow(user.uid, [...newSet,target]); 
+    addUserFollow(user.uid, [...newSet, target]);
   };
 
   function JobPage() {
