@@ -5,18 +5,15 @@ import { getAllJobs } from "../../services/getAllJobs";
 import { Pagination } from "@material-ui/lab";
 import usePagination from "../../Utils/paginationHelper";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { getUserFollowings, addUserFollow } from "../../services/favorites";
+import { useAuth } from "../../services/authentication";
 
 const useStyles = makeStyles({
   root: {
-    marginLeft: 50,
+    // marginLeft: 50,
   },
   jobContainer: {
     width: 450,
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translateY(-50%)",
-    transform: "translateX(-50%)",
   },
   job: {
     display: "flex",
@@ -27,11 +24,13 @@ const useStyles = makeStyles({
 function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [page, setPage] = useState(1);
+  const [following, setFollowing] = useState([]);
   const [loading, setLoading] = useState(true);
   const perPage = 2;
   const count = Math.ceil(jobs.length / perPage);
   const data = usePagination(jobs, perPage);
   const classes = useStyles();
+  const { user } = useAuth();
 
   useEffect(() => {
     getAllJobs()
@@ -42,9 +41,27 @@ function Jobs() {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    getUserFollowings(user.uid)
+      .then((res) => {
+        console.log("response", res);
+        setFollowing(res);
+      })
+      .catch((err) => console.log(err));
+  }, [user.uid]);
+
   const handleChange = (event, page) => {
     setPage(page);
     data.jump(page);
+  };
+
+  const handleClick = (event) => { //@TODO: add include();
+    let target = event.currentTarget.id;
+    setFollowing((previous) => [...previous, target]);
+    const newArr = following.filter(Boolean);//deletes undefined  
+    const newSet = new Set([...newArr]);
+    console.log(newSet);
+    addUserFollow(user.uid, [...newSet,target]); 
   };
 
   function JobPage() {
@@ -53,7 +70,16 @@ function Jobs() {
         <div className={classes.jobContainer}>
           <div className={classes.job}>
             {data.currentData().map(({ id, position }) => {
-              return <JobCard jobTitle={position}></JobCard>;
+              return (
+                <JobCard
+                  id={id}
+                  jobTitle={position}
+                  companyName={id}
+                  key={id}
+                  onClick={handleClick}
+                  arr={following}
+                ></JobCard>
+              );
             })}
           </div>
           <Pagination

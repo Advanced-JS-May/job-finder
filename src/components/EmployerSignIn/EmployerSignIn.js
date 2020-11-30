@@ -1,27 +1,49 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../services/authentication";
-import { checkUserRole } from "../../services/userRoleCheck";
+import { checkUserRole } from "../../services/checkUserRole";
 import { USER_ROLES } from "../../constants/user.constants";
+import FormField from "../FormElements/FormField/FormField";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    width: "350px",
+    ["@media and (max-width: 768px)"]: {
+      width: "250px",
+    },
+  },
+  button: {
+    margin: " 16px 0",
+    padding: "0.8rem",
+    backgroundColor: "#4267B2",
+    color:"white"
+  },
+});
 
 export default function CompanySignIn() {
   const history = useHistory();
+  const classes = useStyles();
 
   const [email, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setError] = useState("");
-  const { signin,user } = useAuth();
+  const { signin, user } = useAuth();
 
   const handleLoginUpdate = ({ target: { value } }) => setLogin(value);
   const handlePasswordUpdate = ({ target: { value } }) => setPassword(value);
-  
-  const handleLogin = () => {
-    
-    signin(email, password).then((user) => {
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    signin(email, password).then((user) => {
       checkUserRole(user.uid, USER_ROLES.employer)
         .then((res) => {
-          res ? history.push(`/company/${user.uid}`) : setError("Not a Company");
+          res
+            ? history.push(`/company/${user.uid}`)
+            : setError("Not a Company");
         })
         .catch(console.warn);
     });
@@ -32,23 +54,33 @@ export default function CompanySignIn() {
       <div>
         <p>{errorMsg}</p>
       </div>
-      <label>
-        Login:
+      <form onSubmit={handleLogin} className={classes.form}>
+        <FormField
+          type="email"
+          name="email"
+          value={email}
+          label={"email"}
+          onChange={handleLoginUpdate}
+        />
         <br />
-        <input value={email} onChange={handleLoginUpdate} />
-      </label>
-      <br />
-      <label>
-        Password:
-        <br />
-        <input
+        <FormField
           value={password}
           onChange={handlePasswordUpdate}
+          name="password"
           type="password"
+          label={"password"}
         />
-      </label>
-      <br />
-      <button onClick={handleLogin}>Login</button>
+        <br />
+        {/* <button className={classes.button}>Login</button> */}
+        <Button 
+        type="submit"
+        color="primary"
+        variant="contained"
+        className={classes.button}
+         variant="contained" color="primary">
+          Login
+        </Button>
+      </form>
     </>
   );
 }

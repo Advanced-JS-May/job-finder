@@ -15,7 +15,16 @@ const useStyles = makeStyles({
   },
 });
 
-function JobCard({ companyName, jobTitle, companyLogo }) {
+function JobCard({
+  companyName,
+  jobTitle,
+  companyLogo,
+  onClick,
+  onChange,
+  id,
+  arr,
+}) {
+  
   const classes = useStyles();
 
   return (
@@ -38,7 +47,11 @@ function JobCard({ companyName, jobTitle, companyLogo }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-      <Button>Follow</Button>
+        <Button id={id} onClick={onClick} onChange={onChange}>
+          {" "}
+          {/*@TODO: create Follow Component */}
+          {arr.includes(id) ? "unfollow" : "follow"}
+        </Button>
       </CardActions>
     </Card>
   );

@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { database } from "../libraries/firebase";
-import { useAuth } from "../services/authentication";
 
-function getUserFollowings() {
+export function getUserFollowings(id) {
   return database
-    .ref("jobs/25")
+    .ref("/users/" + id)//change to job-seeker
     .child("following")
     .once("value")
     .then((snapshot) => snapshot.val())
-    .then((res) => console.log(res));
+    .catch((err) => console.log(err));
 }
 
-// function setNewFollow(){
-
-// } 
-
-export default getUserFollowings;
+export function addUserFollow(id, favorite) {
+  return database
+    .ref("/users/" + id)
+    .child("following")
+    .set(favorite);
+}
