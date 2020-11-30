@@ -33,22 +33,22 @@ export default function ProfileContactInfo( {  country,  city,  address,  tel,  
             <h3>Contacts</h3>
             <div className={classes.element}>
                 <LocationCityIcon />
-                State:{country} City:{city}
+                State: {country} , City: {city}
             </div>
             <div className={classes.element}>
                 <BusinessIcon />
-                Address:{address}
+                Address: {address}
             </div>
             <div className={classes.element}>
                 <PhoneIcon />
-                Tel:{tel}
+                Tel: {tel}
             </div>
             <div className={classes.element}>
                 <MailIcon />
-                Mail:{mail}
+                Mail: {mail}
             </div>
             <div className={classes.element}>
-                <LanguageIcon /> Website:{website}
+                <LanguageIcon /> Website: {website}
             </div>
             </CardContent>
          </ Card>  

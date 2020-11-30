@@ -9,7 +9,7 @@ import FormControl from "@material-ui/core/FormControl";
 import fields from "../../constants/jobField.js";
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router-dom";
+import { useHistory,generatePath } from "react-router-dom";
  
 function Bunner() {
   const [ searchPage, setSearchPage] = useState("jobs");
@@ -28,7 +28,7 @@ function Bunner() {
       history.push(`/jobs/q/${searchValue}_${fieldValue}`)
     }
     else if( searchPage === 'companies') {
-      history.push(`/companies/q/${searchValue}_${fieldValue}`)
+      history.push(generatePath("/companies/q/:search", { search: `${searchValue}_${fieldValue}`,}))
     }
   }
 

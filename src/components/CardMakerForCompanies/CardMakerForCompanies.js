@@ -1,15 +1,13 @@
 import React, { useState , useEffect } from 'react';
-import {getCompanyById} from '../../services/company.js'
 import {getAllCompanies} from '../../services/company.js'
-import CompaniesInfoShow from '../CompaniesInfoShow/CompaniesInfoShow.js'
 import CompanyMiniInfo from '../companyMiniInfo/CompanyMiniInfo.js'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Select from '../Select/Select.js'
-import { useLocation } from 'react-router-dom'
+import { useLocation, generatePath, useHistory } from 'react-router-dom'
 import fields from "../../constants/jobField.js";
-import _  from 'lodash'
+import _ from 'lodash'
 
 let tmpComps = [];
 let constComps = [];
@@ -43,15 +41,16 @@ export default function CardMakerForCompanies() {
   const [fieldValue, setFieldValue] = useState('All'); 
   const classes = useStyles();
   const location = useLocation();
+  let history = useHistory();
 
   const mapForComps = companies.map((e) => 
           <CompanyMiniInfo 
             key={_.uniqueId('cmii_')}
             companyName = {e.companyName}
-            companyDesc = {e.description}
+            companyDesc = {e.bio ? e.bio.description : 'No description'}
             companyImg = {e.image}
             companyId = {e.id}
-            buttonFunction = {() => {norrmalisingPromise(e.uid)}}
+            buttonFunction = {() => {history.push(generatePath("/companies/:id", { id: e.id,}))}}
           />
       )
 
@@ -71,31 +70,29 @@ export default function CardMakerForCompanies() {
     getAllCompanies().then((response) => {
       setCompanies(Object.values(response));
       constComps = Object.values(response)
+      console.log(constComps)
     });
   }, []);
 
   function Search(){
     tmpComps = constComps;
-    if(search[0] === '' === '' && fieldValue === 'All') {
+    if(search === '' === '' && fieldValue === 'All') {
       setCompanies(constComps)
       return true;
     }
     else if(fieldValue === 'All') {
     const filterComps = tmpComps.filter((e) => {
-      for(let i = 0; i < search.length;i++){
-        if(e.companyName && e.companyName.toLowerCase().includes(search[i].toLowerCase())){
+        if(e.companyName && e.companyName.toLowerCase().includes(search.toLowerCase())){
           return true;
-
         }
-        if(i+1===search.length){
+        else {
           return false;
         }
-      }
     })
 
     setCompanies(filterComps)
   }
-  else if(search[0] === '') {
+  else if(search === '') {
     const filterComps = tmpComps.filter((e) => {
       if(e.field === fieldValue) {
         return true;
@@ -110,11 +107,6 @@ export default function CardMakerForCompanies() {
   function setBack() {
     setGottenCompany(1);
   }
-
-  async function norrmalisingPromise(id) {
-    let x = await getCompanyById(id).then((e)=>(e));
-    setGottenCompany(x);
-  }
   
   function allComps()  {
     return (
@@ -126,7 +118,7 @@ export default function CardMakerForCompanies() {
             variant="outlined" 
             helperText="Write the keywords one by one deviding by ,"
             value={search}
-            onChange={(e) => { search[0] !== '' ? setSearch(e.target.value.split(',')):setSearch('')}}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <Select givenArray={fields} givenFunction={(e)=> {setFieldValue(e.target.value)}} />
           <Button className={classes.button} size="small" variant="contained" color="primary" onClick={() => {Search()}}>
@@ -139,29 +131,5 @@ export default function CardMakerForCompanies() {
       </div>
     )
   }
-  
-if (gottenCompany === 1) {
-  return allComps();
-} else {
-  return (
-    <CompaniesInfoShow
-      functionBack={() => {
-        setGottenCompany(1);
-      }}
-      companyName={gottenCompany.companyName}
-      companyDescription={gottenCompany.description}
-      companyImg={gottenCompany.image}
-      companyAdress={gottenCompany.adress}
-      companyCity={gottenCompany.city}
-      companyCountrey={gottenCompany.country}
-      companyTax={gottenCompany["tax-ID"]}
-      companyMail={gottenCompany.email}
-      companyTelephone={gottenCompany.tel}
-      companyEstablishTime={gottenCompany["date-of-establishment"]}
-      companyEmployees={gottenCompany["number-of-employees"]}
-      /> 
-  );
-}
-
-                            
+  return allComps();                  
 }

@@ -2,14 +2,14 @@ import React from "react";
 
 //components
 import ImageUpload from "./../ImageUpload/ImageUpload";
-import {  ProfilePicture,CoverImage } from "./../../../components/icons/Avatar/Avatar";
+import {  ProfilePicture, CoverImage } from "./../../../components/icons/Avatar/Avatar";
 import "./ProfileHeader.css" 
 
 
 
 
 
-export default function ProfileHeader( { image, coverImage,name } ) {
+export default function ProfileHeader( { image, coverImage, name } ) {
 
 return (
  <>

@@ -13,6 +13,7 @@ import EmailVerification from '../../../pages/EmailVerification/EmailVerificatio
 import CreateProfile from '../../../pages/CreateProfile/CreateProfile';
 import AllCompanies from '../../../pages/AllCompanies/AllCompanies';
 import CompanyInfo from '../../../components/Company/CompanyInfo/CompanyInfo';
+import CompanesInfoShow from '../../CompaniesInfoShow/CompaniesInfoShow.js'
 
 function SwitchRouter() {
   const { user } = useAuth();
@@ -31,11 +32,17 @@ function SwitchRouter() {
       <Route path="/jobs">
         <Jobs />
       </Route>
-      <Route path="/companies">
+      <Route exact path="/companies">
+        <AllCompanies />
+      </Route>
+      <Route path="/companies/q/:search">
         <AllCompanies />
       </Route>
       <Route path="/email-verification">
         <EmailVerification />
+      </Route>
+      <Route path="/companies/:id">
+        <CompanesInfoShow />
       </Route>
       {/* regular user */}
       <PrivateRoute auth={user} path="/profile/create">
