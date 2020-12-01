@@ -33,14 +33,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileContactCard({
-  country,
-  city,
-  address,
-  tel,
-  mail,
-  website,
-}) {
+export default function ProfileContactCard({  country,  city,  address,  tel,  mail,  website}) {
   const classes = useStyles();
 
   return (

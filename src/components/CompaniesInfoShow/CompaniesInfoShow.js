@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import "./CompaniesInfoShow.css";
 import { makeStyles } from "@material-ui/core/styles";
 import { ProfilePicture, CoverImage  } from "../../components/icons/Avatar/Avatar";
-import ProfileContactInfo from '../../components/Company/ProfileContactCard/ProfileContactInfo.js'
 import { useLocation } from 'react-router-dom'
 import { getCompanyById } from '../../services/company.js'
+import ProfileContactCard from "../Company/ProfileContactCard/ProfileContactCard";
 
 const useStyles = makeStyles((theme) => ({
   paperCont: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimplePaper() {
+export default function CompaniesInfoShow() {
   const classes = useStyles();
   const location = useLocation();
   const [ company, setCompany ] = useState({bio: {},contacts: {}});
@@ -48,7 +48,7 @@ export default function SimplePaper() {
             </div>
           </div>
           <div>
-            <ProfileContactInfo country={company.contacts.country ? company.contacts.country: 'No data'}  city={company.contacts.city ? company.contacts.city: 'No data'}  address={company.contacts.address ? company.contacts.address: 'No data'}  tel={company.contacts.tel ? company.contacts.tel: 'No data'}  mail={company.contacts.mail ? company.contacts.mail: 'No data'}  website={company.contacts.website ? company.contacts.website: 'No data'} />
+            <ProfileContactCard country={company.contacts.country ? company.contacts.country: 'No data'}  city={company.contacts.city ? company.contacts.city: 'No data'}  address={company.contacts.address ? company.contacts.address: 'No data'}  tel={company.contacts.tel ? company.contacts.tel: 'No data'}  mail={company.contacts.mail ? company.contacts.mail: 'No data'}  website={company.contacts.website ? company.contacts.website: 'No data'} />
           </div>
         </div>
       </div>
