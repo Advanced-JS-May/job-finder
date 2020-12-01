@@ -7,6 +7,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
 const useStyles = makeStyles({
   root: {
@@ -19,15 +21,15 @@ function JobCard({
   companyName,
   jobTitle,
   companyLogo,
-  onClick,
-  onChange,
+  onUnFollow,
+  onFollow,
   id,
   arr,
 }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card key={id} className={classes.root}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -46,10 +48,19 @@ function JobCard({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button id={id} onClick={onClick}>
-          {/*@TODO: create Follow Component */}
-          {arr.includes(id) ? "unfollow" : "follow"}
-        </Button>
+        {/*@TODO: create Follow Component */}
+        {arr.includes(id) ? ( 
+          <Button id={id} onClick={onUnFollow}>
+            <FavoriteBorderIcon color="secondary" />
+            unFollow
+          </Button>
+        ) : (
+          <Button id={id} onClick={onFollow}>
+            <FavoriteIcon color="secondary" />
+            Follow
+          </Button>
+        )}
+        {/* </Button> */}
       </CardActions>
     </Card>
   );

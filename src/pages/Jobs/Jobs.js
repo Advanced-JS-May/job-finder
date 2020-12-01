@@ -7,6 +7,8 @@ import usePagination from "../../Utils/paginationHelper";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { getUserFollowings, addUserFollow } from "../../services/favorites";
 import { useAuth } from "../../services/authentication";
+import _ from "lodash";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -31,6 +33,7 @@ function Jobs() {
   const data = usePagination(jobs, perPage);
   const classes = useStyles();
   const { user } = useAuth();
+  const history = useHistory();
 
   useEffect(() => {
     getAllJobs()
@@ -42,11 +45,9 @@ function Jobs() {
   }, []);
 
   useEffect(() => {
-    console.log(user);
     if (user && user.uid) {
       getUserFollowings(user.uid)
         .then((res) => {
-          console.log("response", res);
           setFollowing(res);
         })
         .catch((err) => console.log(err));
@@ -58,14 +59,26 @@ function Jobs() {
     data.jump(page);
   };
 
-  const handleClick = (event) => {
-    //@TODO: add include();
+  const handleFollow = (event) => {
+    if (user && user.uid) {
+      if (user.role === "regular") {
+        let target = event.currentTarget.id;
+        setFollowing((previous) => [...previous, target]);
+        const newArr = following.filter(Boolean); 
+        const newSet = new Set([...newArr]);
+        addUserFollow(user.uid, [...newSet, target]);
+      }
+    } else {
+      history.push(`/login/`)
+      console.log("please SignUp or SignIn");
+    }
+  };
+
+  const handleUnFollow = (event) => {
     let target = event.currentTarget.id;
-    setFollowing((previous) => [...previous, target]);
-    const newArr = following.filter(Boolean); //deletes undefined
-    const newSet = new Set([...newArr]);
-    console.log(newSet);
-    addUserFollow(user.uid, [...newSet, target]);
+    let filteredArray = following.filter((item) => item !== target);
+    setFollowing(filteredArray);
+    addUserFollow(user.uid, filteredArray);
   };
 
   function JobPage() {
@@ -73,14 +86,18 @@ function Jobs() {
       <div className={classes.root}>
         <div className={classes.jobContainer}>
           <div className={classes.job}>
-            {data.currentData().map(({ id, position }) => {
+            {data.currentData().map(({ jobId, position }) => {
               return (
                 <JobCard
-                  id={id}
+                  companyLogo={
+                    //temporary
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOReMDQrVH8-7Hc8LW-NIBda13DbA6m2s3eg&usqp=CAU"
+                  }
+                  key={_.uniqueId("job")}
+                  id={jobId}
                   jobTitle={position}
-                  companyName={id}
-                  key={id}
-                  onClick={handleClick}
+                  onFollow={handleFollow}
+                  onUnFollow={handleUnFollow}
                   arr={following}
                 ></JobCard>
               );

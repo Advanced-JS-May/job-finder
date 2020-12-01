@@ -38,10 +38,11 @@ export default function CardMakerForCompanies() {
   const [ companies, setCompanies ] = useState(['']);
   const [ gottenCompany, setGottenCompany ] = useState(1)
   const [ search, setSearch ] = useState('');
-  const [fieldValue, setFieldValue] = useState('All'); 
+  const [ fieldValue, setFieldValue ] = useState('All'); 
   const classes = useStyles();
   const location = useLocation();
   let history = useHistory();
+  
 
   const mapForComps = companies.map((e) => 
           <CompanyMiniInfo 
@@ -54,33 +55,50 @@ export default function CardMakerForCompanies() {
           />
       )
 
-   useEffect(() => {
+  const searchSet = () => {
+    let lastPartPath = ''
     if(location.pathname !== '/companies') {
       let lastPartPath = location.pathname.substring(location.pathname.lastIndexOf('/') + 1, location.pathname.lastIndexOf('_'));
-    
-    if(lastPartPath !== 'companies') {
-      setSearch(lastPartPath)
+      if(lastPartPath !== 'companies') {
+        setSearch(lastPartPath);
+      }
+    } else {
+      let lastPartPath = '';
     }
-  } 
-    
-    let lastPartField = decodeURI(location.pathname.substring(location.pathname.lastIndexOf('_') + 1))
-    if(lastPartField !== 'All') {
-      setFieldValue('All')
+
+    let lastPartField = decodeURI(location.pathname.substring(location.pathname.lastIndexOf('_') + 1));
+    if(lastPartField !== '/companies') {
+      setFieldValue(lastPartField);
     }
-    getAllCompanies().then((response) => {
-      setCompanies(Object.values(response));
+    else {
+      let lastPartField = 'All';
+    }
+    return (lastPartPath, lastPartField);
+  }
+
+   useEffect(() => {
+    getAllCompanies()
+    .then((response) => {
       constComps = Object.values(response)
-      console.log(constComps)
-    });
+      setCompanies(constComps);  
+    })
+    .then((r)=> {searchSet()})
+    .then((e)=> {Search(searchSet())})
   }, []);
 
   function Search(){
     tmpComps = constComps;
-    if(search === '' === '' && fieldValue === 'All') {
+
+    if(search === '' && fieldValue === 'All') {
+
+
       setCompanies(constComps)
       return true;
     }
+
     else if(fieldValue === 'All') {
+
+
     const filterComps = tmpComps.filter((e) => {
         if(e.companyName && e.companyName.toLowerCase().includes(search.toLowerCase())){
           return true;
@@ -114,13 +132,13 @@ export default function CardMakerForCompanies() {
         <form className={classes.root , classes.searchPart} noValidate autoComplete="off">
           <TextField 
             id="outlined-basic" 
-            label="Outlined" 
+            label="Search" 
             variant="outlined" 
-            helperText="Write the keywords one by one deviding by ,"
+            helperText="Write the keywords"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <Select givenArray={fields} givenFunction={(e)=> {setFieldValue(e.target.value)}} />
+          <Select valueq={fieldValue} givenArray={fields} givenFunction={(e)=> {setFieldValue(e.target.value)}} />
           <Button className={classes.button} size="small" variant="contained" color="primary" onClick={() => {Search()}}>
             Search
           </Button>
