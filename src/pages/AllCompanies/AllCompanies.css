@@ -1,4 +1,4 @@
-.containerAllCompanies {
+.containerAllCompanies .containerCompaniesMini, .containerCompaniesMini {
 	margin-left: 10%;
 	margin-right: 10%;
 	height: auto;
@@ -6,6 +6,7 @@
 	justify-content: space-around;
 	flex-wrap: wrap;
 }
-.AllPageContainer {
+.AllPageContainer, .containerCompaniesMini {
+	height: 100%;
 	background: url('https://www.toptal.com/designers/subtlepatterns/patterns/y-so-serious-white.png');
 }

@@ -2,10 +2,9 @@ import React from "react";
 import EmployeeSignIn from "../../components/JobSeekerSignIn/JobSeekerSignIn";
 import CompanySignIn from "../../components/EmployerSignIn/EmployerSignIn";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 import TabPanel from "../../components/TabPanel/TabPanel";
+import Typography from "@material-ui/core/Typography";
+import SimpleTabs from "../../components/Tabs/Tabs";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,27 +31,33 @@ export default function SignIn() {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
+
   return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
-        >
-          <Tab label="Job-seeker" />
-          <Tab label="Employer" />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0} dir={theme.direction}>
-        <EmployeeSignIn />
-      </TabPanel>
-      <TabPanel value={value} index={1} dir={theme.direction}>
-        <CompanySignIn />
-      </TabPanel>
+    <div>
+      <Typography
+        variant="h3"
+        color="textPrimary"
+        align="center"
+        style={{
+          margin: "2rem 0",
+        }}
+      >
+        Sign In
+      </Typography>
+
+      <SimpleTabs
+        value={value}
+        onChange={handleChange}
+        label1="Employer"
+        label2="Job-seeker"
+      >
+        <TabPanel value={value} index={0}>
+          <CompanySignIn />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <EmployeeSignIn />
+        </TabPanel>
+      </SimpleTabs>
     </div>
   );
 }

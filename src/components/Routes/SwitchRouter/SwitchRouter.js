@@ -4,8 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import { useAuth } from '../../../services/authentication';
 
-//components 
-import SignIn from '../../../pages/SignIn/SignIn';
+import SignIn from '../../../pages/SignIn/SignIn.js';
 import Signup from '../../../pages/Signup/Signup';
 import Home from '../../../pages/Home/Home';
 import Jobs from '../../../pages/Jobs/Jobs';
@@ -16,8 +15,8 @@ import AllCompanies from '../../../pages/AllCompanies/AllCompanies';
 import CompanyInfo from '../../../components/Company/CompanyInfo/CompanyInfo';
 import ProfileContactEdit from '../../../components/Company/ProfileContactCard/ProfileContactEdit';
 import ProfileDescriptionEdit from '../../Company/ProfileDescriptionCard/ProdileDescriptionEdit';
-import CreateJob from "../../Company/CreateJob/CreateJob"
-
+import CreateJob from "../../Company/CreateJob/CreateJob";
+import CompanesInfoShow from '../../CompaniesInfoShow/CompaniesInfoShow.js'
 
 
 function SwitchRouter() {
@@ -40,7 +39,10 @@ return (
       <Route path="/jobs">
         <Jobs />
       </Route>
-      <Route path="/companies">
+      <Route exact path="/companies">
+        <AllCompanies />
+      </Route>
+      <Route path="/companies/q/:search">
         <AllCompanies />
       </Route>
       <Route path="/email-verification">
@@ -57,6 +59,9 @@ return (
         <CreateJob />
       </Route>
 
+      <Route path="/companies/:id">
+        <CompanesInfoShow />
+      </Route>
       {/* regular user */}
       <PrivateRoute auth={user} path="/profile/create">
         <CreateProfile />

@@ -2,7 +2,7 @@ import React from "react";
 
 //components
 import ImageUpload from "./../ImageUpload/ImageUpload";
-import {  ProfilePicture,CoverImage } from "./../../../components/icons/Avatar/Avatar";
+import {  ProfilePicture, CoverImage } from "./../../../components/icons/Avatar/Avatar";
 import "./ProfileHeader.css" 
 
 
