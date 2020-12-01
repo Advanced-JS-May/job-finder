@@ -1,6 +1,6 @@
 import React, { useState , useEffect } from 'react';
 import {getAllCompanies} from '../../services/company.js';
-import CompanyMiniInfo from '../CompanyMiniInfo/CompanyMiniInfo.js';
+import CompanyMiniInfo from '../companyMiniInfo/CompanyMiniInfo.js';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
