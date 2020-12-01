@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Select({givenArray, givenFunction}) {
+export default function Select({givenArray, givenFunction,valueq}) {
   const classes = useStyles();
   const [ value, setValue ] = useState("All");
 
@@ -32,7 +32,8 @@ export default function Select({givenArray, givenFunction}) {
             onChange={handleChange , givenFunction}
             helperText="Please select"
             variant="filled"
-            className={value}
+            value = { valueq }
+            className = { value }
           >
             {givenArray.map((option) => (
               <MenuItem key={option} value={option}>{option}</MenuItem>
