@@ -13,12 +13,20 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 345,
     minWidth: 345,
+    maxHeight: 330,
+    minHeight: 330,
     display: 'inline-block',
     marginTop: '3%',
     marginBottom: '2%',
+    position: 'relative'
   },
   media: {
     height: 140,
+  },
+  button: {
+   position: 'absolute',
+   bottom: '5px',
+   left: '20px',
   },
 });
 
@@ -64,7 +72,7 @@ export default function CompanyMiniInfo(
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button size="small" color="primary" onClick={buttonFunction}>
+                  <Button className={classes.button} size="small" color="primary" onClick={buttonFunction}>
                     More Info
                   </Button>
                </CardActions>
