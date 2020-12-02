@@ -72,6 +72,12 @@ export default function CompaniesInfoShow() {
               </p>
             </div>
           </div>
+          <hr style={{
+              color: '#ccc',
+              backgroundColor: '#ccc',
+              height: .5,
+              width: '60%',
+          }}/>
           <div className="DetailInfoJobsppp">
             <div>
               {company.contacts ? (

@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CardMakerForCompanies() {
   const [companies, setCompanies] = useState([""]);
-  const [gottenCompany, setGottenCompany] = useState(1);
   const [search, setSearch] = useState("");
   const [fieldValue, setFieldValue] = useState("All");
   const classes = useStyles();
@@ -55,48 +54,51 @@ export default function CardMakerForCompanies() {
     />
   ));
 
-  const searchSet = () => {
+  async function searchSet() {
     let lastPartPath = "";
     if (location.pathname !== "/companies") {
-      let lastPartPath = location.pathname.substring(
+        lastPartPath = location.pathname.substring(
         location.pathname.lastIndexOf("/") + 1,
         location.pathname.lastIndexOf("_")
       );
       if (lastPartPath !== "companies") {
+        console.log(lastPartPath)
         setSearch(lastPartPath);
       }
     } else {
-      let lastPartPath = "";
+      setSearch('');
     }
 
     let lastPartField = decodeURI(
       location.pathname.substring(location.pathname.lastIndexOf("_") + 1)
     );
     if (lastPartField !== "/companies") {
-      setFieldValue(lastPartField);
+      await setFieldValue(lastPartField)
     } else {
-      let lastPartField = "All";
+      setFieldValue('All')
     }
-    return lastPartPath, lastPartField;
+    return (lastPartPath, lastPartField);
   };
 
   useEffect(() => {
     getAllCompanies()
-      .then((response) => {
-        constComps = Object.values(response);
-        setCompanies(constComps);
-      })
-      .then((r) => {
-        searchSet();
-      })
-      .then((e) => {
-        Search(searchSet());
-      });
+        .then((response) => {
+          constComps = Object.values(response);
+          setCompanies(constComps);
+        })
+        .then(()=>{
+          searchSet();
+        })     
+        console.log(1)
   }, []);
+
+  useEffect(() => {
+        Search()
+  }, [search,fieldValue]);
 
   function Search() {
     tmpComps = constComps;
-
+    console.log(search,5)
     if (search === "" && fieldValue === "All") {
       setCompanies(constComps);
       return true;
@@ -124,10 +126,6 @@ export default function CardMakerForCompanies() {
     }
   }
 
-  function setBack() {
-    setGottenCompany(1);
-  }
-
   function allComps() {
     return (
       <div>
@@ -142,7 +140,7 @@ export default function CardMakerForCompanies() {
             variant="outlined"
             helperText="Write the keywords"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {setSearch(e.target.value); console.log(search)}}
           />
           <Select
             valueq={fieldValue}
@@ -163,7 +161,7 @@ export default function CardMakerForCompanies() {
             Search
           </Button>
         </form>
-        <div className="containerCompaniesMini">{mapForComps}</div>
+        <div className="containerCompaniesMinia">{mapForComps}</div>
       </div>
     );
   }
