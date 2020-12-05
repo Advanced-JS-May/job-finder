@@ -1,0 +1,38 @@
+:root {
+  --base-margin: 10px;
+}
+
+.container {
+  display: flex;
+  gap: 1rem;
+  background: rgb(230, 228, 228);
+  height: calc(100vh - 8.5vh);
+  box-sizing: border-box;
+}
+
+.list {
+  width: 50px;
+  transition: width 0.2s ease-in-out;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.836);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.list-open {
+  width: 200px;
+}
+
+.board {
+  max-width: 450px;
+  padding: 10px;
+  margin: var(--base-margin);
+  box-sizing: border-box;
+  overflow-y: scroll;
+  background: rgba(255, 255, 255, 0.836);
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+}
+.board::-webkit-scrollbar {
+  display: none;
+}

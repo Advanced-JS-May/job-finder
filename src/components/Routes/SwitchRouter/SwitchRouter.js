@@ -15,69 +15,73 @@ import AllCompanies from '../../../pages/AllCompanies/AllCompanies';
 import CompanyInfo from '../../../components/Company/CompanyInfo/CompanyInfo';
 import ProfileContactEdit from '../../../components/Company/ProfileContactCard/ProfileContactEdit';
 import ProfileDescriptionEdit from '../../Company/ProfileDescriptionCard/ProdileDescriptionEdit';
-import CreateJob from "../../Company/CreateJob/CreateJob";
-import CompaniesInfoShow from '../../../components/CompaniesInfoShow/CompaniesInfoShow'
+import CreateJob from '../../Company/CreateJob/CreateJob';
+import CompaniesInfoShow from '../../../components/CompaniesInfoShow/CompaniesInfoShow';
+import CvBuilder from '../../../pages/CvBuilder/CvBuilder';
 
 function SwitchRouter() {
   const { user } = useAuth();
 
-return (
-  <main style={{
-      minHeight:"70vh"
-    }}>
-    <Switch>
-      <Route exact path="/">
-        <Home />
-      </Route>
-      <Route path="/signup">
-        <Signup />
-      </Route>
-      <Route path="/login">
-        <SignIn />
-      </Route>
-      <Route path="/jobs">
-        <Jobs />
-      </Route>
-      <Route exact path="/companies">
-        <AllCompanies />
-      </Route>
-      <Route path="/companies/q/:search">
-        <AllCompanies />
-      </Route>
-      <Route path="/email-verification">
-        <EmailVerification />
-      </Route>
-      <Route path="/profile/profileContactCard/edit">
-        <ProfileContactEdit />
-      </Route>|
-      <Route path="/profile/profileDescriptionCard/edit">
-        <ProfileDescriptionEdit />
-      </Route>
-
-      <Route path="/profile/addJob">
-        <CreateJob />
-      </Route>
-
-      <Route path="/companies/:id">
-        <CompaniesInfoShow />
-      </Route>
-      {/* regular user */}
-      <PrivateRoute auth={user} path="/profile/create">
-        <CreateProfile />
-      </PrivateRoute>
-      <PrivateRoute auth={user} path="/profile/:id">
-        <div>{user && user.role}</div>
-      </PrivateRoute>
-     
-      {/* company user */}
-      <Route path="/company/profile">
-        <CompanyInfo />
-      </Route>
-      <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
-        <Company />
-      </PrivateRoute>
-    </Switch>
- </main>
+  return (
+    <main
+      style={{
+        minHeight: '70vh',
+      }}
+    >
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/signup">
+          <Signup />
+        </Route>
+        <Route path="/login">
+          <SignIn />
+        </Route>
+        <Route path="/jobs">
+          <Jobs />
+        </Route>
+        <Route exact path="/companies">
+          <AllCompanies />
+        </Route>
+        <Route path="/companies/q/:search">
+          <AllCompanies />
+        </Route>
+        <Route path="/email-verification">
+          <EmailVerification />
+        </Route>
+        <Route path="/profile/profileContactCard/edit">
+          <ProfileContactEdit />
+        </Route>
+        |
+        <Route path="/profile/profileDescriptionCard/edit">
+          <ProfileDescriptionEdit />
+        </Route>
+        <Route path="/profile/addJob">
+          <CreateJob />
+        </Route>
+        <Route path="/companies/:id">
+          <CompaniesInfoShow />
+        </Route>
+        {/* regular user */}
+        <PrivateRoute auth={user} path="/profile/create">
+          <CreateProfile />
+        </PrivateRoute>
+        <PrivateRoute auth={user} path="/profile/:id">
+          <div>{user && user.role}</div>
+        </PrivateRoute>
+        <Route path="/cv-builder">
+          <CvBuilder />
+        </Route>
+        {/* company user */}
+        <Route path="/company/profile">
+          <CompanyInfo />
+        </Route>
+        <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
+          <Company />
+        </PrivateRoute>
+      </Switch>
+    </main>
   );
 }
 export default SwitchRouter;
