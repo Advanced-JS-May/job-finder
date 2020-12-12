@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 
 import PhoneIcon from '@material-ui/icons/Phone';
 import TwitterIcon from '@material-ui/icons/Twitter';

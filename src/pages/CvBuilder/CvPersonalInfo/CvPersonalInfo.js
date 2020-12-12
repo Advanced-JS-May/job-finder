@@ -1,50 +1,71 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { AccordionDetails, Fab } from '@material-ui/core';
+import React, { useState } from 'react';
+import { AccordionDetails, Button } from '@material-ui/core';
+import { useSelector, useDispatch } from 'react-redux';
 
-import TextField from '@material-ui/core/TextField';
-import DeleteIcon from '@material-ui/icons/Delete';
+import CvImage from '../CvImage/CvImage';
+import { useAuth } from '../../../services/authentication';
+import FormField from '../../../components/FormElements/FormField/FormField';
 import MenuItem from '@material-ui/core/MenuItem';
 import CITIES from '../../../constants/armenianCities';
-import GENDERS from '../../../constants/gender';
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
-import {
-  addImage,
-  deleteImage,
-  useStorage,
-} from '../../../services/manipulateStorage.service';
-import { useAuth } from '../../../services/authentication';
-import { removeUserFieldById } from '../../../services/user';
-import useUserData from '../../../services/userHook';
+import { changeField } from '../../../store/features/JobSeekerDetails';
+import { makeStyles } from '@material-ui/core/styles';
+import InputMask from 'react-input-mask';
+
+const useStyles = makeStyles({
+  summary: {
+    display: 'block',
+    margin: '20px 0',
+    background: 'white',
+    height: '100%',
+    '& .MuiInputBase-root': {
+      background: 'white',
+    },
+  },
+});
+
+function TextMaskCustom(props) {
+  return <InputMask {...props} mask="+374 99 999999" maskChar=" " />;
+}
 
 function CvPersonalInfo() {
-  const [image, setImage] = useState(null);
-  const { imageUrl, setImageUrl } = useState(null);
+  const {
+    name,
+    city,
+    email,
+    surname,
+    headline,
+    summary,
+    facebook,
+    linkedIn,
+    twitter,
+    phone,
+  } = useSelector((state) => state.jobSeeker);
+  const dispatch = useDispatch();
+
   const { user } = useAuth();
-  const { updateUserById } = useUserData();
 
-  const handleFileUpload = async (e) => {
-    e.preventDefault();
+  const [socialLinks, setSocialLinks] = useState({
+    facebook: false,
+    twitter: false,
+    linkedIn: false,
+    gitHub: false,
+    stackOverFlow: false,
+  });
 
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-      const task = addImage(`cv/${user.uid}`, e.target.files[0]);
-      console.log(task);
-      // setImageUrl(url);
-      // updateUserById(user.uid, { cvImage: url });
-    }
+  const classes = useStyles();
+
+  const handleFieldChange = (e) => {
+    dispatch(changeField({ name: e.target.name, value: e.target.value }));
+    /* TODO here */
+    /*  if (
+      e.target.parentNode.parentNode.parentNode.className === 'social-links'
+    ) {
+      if(e.target.value === '') {
+        const name = e.target.name
+        setSocialLinks((prevState)=> ({...prevState, name: !prevState[e.target.name]  }))
+      }
+    } */
   };
-
-  const handleImageRemove = () => {
-    deleteImage();
-    updateUserById(user.uid, { cvImage: null });
-  };
-
-  // useEffect(() => {
-  //   if (user && url) {
-  //     console.log(url);
-  //     updateUserById(user.uid, { cvImage: url });
-  //   }
-  // }, [updateUserById, url, user]);
 
   return (
     <>
@@ -57,139 +78,112 @@ function CvPersonalInfo() {
           alignItems: 'center',
         }}
       >
-        <div style={{ minHeight: 100 }}>
-          {imageUrl && <img height={100} src={imageUrl} alt="avatar" />}
-        </div>
-        {image && imageUrl ? (
-          <Fab
-            variant="extended"
-            component="span"
-            size="medium"
-            aria-label="add Photo"
-            color="secondary"
-            onClick={handleImageRemove}
-            style={{
-              alignSelf: 'flex-start',
-            }}
-          >
-            <DeleteIcon />
-            Delete
-          </Fab>
-        ) : (
-          <label
-            htmlFor="image"
-            style={{
-              alignSelf: 'flex-start',
-            }}
-          >
-            <input
-              onChange={handleFileUpload}
-              hidden
-              multiple
-              accept="image/*"
-              id="image"
-              type="file"
+        {user ? (
+          <>
+            {/* <CvImage /> */}
+            <FormField
+              label="Name"
+              name="name"
+              value={name || ''}
+              onChange={handleFieldChange}
             />
-            <Fab
-              variant="extended"
-              component="span"
-              size="medium"
-              aria-label="add Photo"
-              color="primary"
-              style={{
-                alignSelf: 'flex-start',
-              }}
+            <FormField
+              label="Surname"
+              name="surname"
+              value={surname || ''}
+              onChange={handleFieldChange}
+            />
+            <FormField
+              label="headline"
+              name="headline"
+              value={headline || ''}
+              onChange={handleFieldChange}
+            />
+            <FormField
+              select
+              label="city"
+              name="city"
+              value={city || ''}
+              onChange={handleFieldChange}
+              fullWidth
+              InputProps={{ style: { padding: 0 } }}
             >
-              <PhotoCameraIcon style={{ marginRight: 10 }} />
-              Upload Your photo
-            </Fab>
-          </label>
-        )}
+              {CITIES.map((option) => {
+                if (option === 'All') {
+                  return (
+                    <MenuItem disabled key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                  );
+                }
+                return (
+                  <MenuItem key={option} value={option}>
+                    {option}
+                  </MenuItem>
+                );
+              })}
+            </FormField>
 
-        <TextField
-          fullWidth
-          label="Name"
-          name="name"
-          margin="normal"
-          // value={nameValue}
-          // onChange={handleNameChange}
-          // onBlur={handleNameBlur}
-          // error={nameError}
-          variant="outlined"
-          InputProps={{ style: { padding: 5 } }}
-        />
-        <TextField
-          fullWidth
-          margin="normal"
-          label="Surname"
-          name="surname"
-          // value={surnameValue}
-          // onChange={handleSurnameChange}
-          // onBlur={handleSurnameBlur}
-          // error={surnameError}
-          variant="outlined"
-          InputProps={{ style: { padding: 5 } }}
-        />
-        <TextField
-          type="number"
-          label="Age"
-          margin="normal"
-          // value={ageValue}
-          // onChange={handleAgeChange}
-          // onBlur={handleAgeBlur}
-          // error={ageError}
-          name="age"
-          variant="outlined"
-          fullWidth
-          InputProps={{ style: { padding: 5 } }}
-        />
-        {/* <TextField
-          variant="outlined"
-          select
-          label="gender"
-          margin="normal"
-          name="gender"
-          // value={genderValue}
-          // onChange={handleGenderChange}
-          // onBlur={handleGenderBlur}
-          // error={genderError}
-          fullWidth
-          InputProps={{ style: { padding: 0 } }}
-        >
-          {GENDERS.map((option) => (
-            <MenuItem key={option} value={option}>
-              {option}
-            </MenuItem>
-          ))}
-        </TextField> 
-         <TextField
-          variant="outlined"
-          select
-          label="city"
-          margin="normal"
-          name="city"
-          // value={cityValue}
-          // onChange={handleCityChange}
-          // onBlur={handleCityBlur}
-          // error={cityError}
-          fullWidth
-          InputProps={{ style: { padding: 0 } }}
-        >
-          {CITIES.map((option) => {
-            if (option === 'All') {
-              return (
-                <MenuItem disabled key={option} value={option}>
-                  {option}
-                </MenuItem>
-              );
-            }
-            return (
-              <MenuItem key={option} value={option}>
-                {option}
-              </MenuItem>
-            );
-          })}
-        </TextField> */}
+            <FormField
+              label="email"
+              name="email"
+              type="email"
+              value={email || ''}
+              onChange={handleFieldChange}
+            />
+            <FormField
+              variant="outlined"
+              name="phone"
+              label="phone Number"
+              value={phone || ''}
+              onChange={handleFieldChange}
+              InputProps={{
+                inputComponent: TextMaskCustom,
+                style: { fontSize: 16, padding: 10 },
+              }}
+            />
+
+            <FormField
+              label="summary"
+              name="summary"
+              value={summary || ''}
+              onChange={handleFieldChange}
+              multiline
+              rows={10}
+              inputProps={{
+                maxLength: 450,
+              }}
+              className={classes.summary}
+            />
+            <div className="social-links">
+              <FormField
+                label="facebook"
+                name="facebook"
+                value={facebook || ''}
+                onChange={handleFieldChange}
+              />
+              <FormField
+                label="linkedIn"
+                name="linkedIn"
+                value={linkedIn || ''}
+                onChange={handleFieldChange}
+              />
+              <FormField
+                label="twitter"
+                name="twitter"
+                value={twitter || ''}
+                onChange={handleFieldChange}
+              />
+            </div>
+
+            <Button>+ GitHub</Button>
+            <Button>+ Facebook</Button>
+            <Button>+ Twitter</Button>
+            <Button>+ LinkedIn</Button>
+          </>
+        ) : null}
+        {/*
+         */}
       </AccordionDetails>
     </>
   );
