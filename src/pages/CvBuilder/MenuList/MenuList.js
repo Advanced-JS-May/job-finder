@@ -11,7 +11,23 @@ import TextFieldsIcon from '@material-ui/icons/TextFields';
 import PaletteIcon from '@material-ui/icons/Palette';
 import PersonIcon from '@material-ui/icons/Person';
 
-function MenuList({ open, handleDrawerClose, handleDrawerOpen }) {
+function MenuList({
+  open,
+  handleDrawerClose,
+  handleDrawerOpen,
+  handleMenuItemClick,
+  activeIcon,
+}) {
+  const handleDesignClick = () => {
+    handleMenuItemClick('design');
+  };
+  const handleTextClick = () => {
+    handleMenuItemClick('text');
+  };
+  const handlePreviewClick = () => {
+    handleMenuItemClick('preview');
+  };
+
   return (
     <>
       <List
@@ -28,21 +44,29 @@ function MenuList({ open, handleDrawerClose, handleDrawerOpen }) {
             {!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </ListItemIcon>
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={handleTextClick}>
           <ListItemIcon>
-            <TextFieldsIcon />
+            <TextFieldsIcon
+              color={activeIcon === 'text' ? 'primary' : 'action'}
+            />
           </ListItemIcon>
           <ListItemText primary={'Content'} />
         </ListItem>
-        <ListItem button>
+
+        <ListItem button onClick={handleDesignClick}>
           <ListItemIcon>
-            <PaletteIcon />
+            <PaletteIcon
+              color={activeIcon === 'design' ? 'primary' : 'action'}
+            />
           </ListItemIcon>
           <ListItemText primary={'Design'} />
         </ListItem>
-        <ListItem button>
+
+        <ListItem button onClick={handlePreviewClick}>
           <ListItemIcon>
-            <PersonIcon />
+            <PersonIcon
+              color={activeIcon === 'preview' ? 'primary' : 'action'}
+            />
           </ListItemIcon>
           <ListItemText primary={'Check'} />
         </ListItem>

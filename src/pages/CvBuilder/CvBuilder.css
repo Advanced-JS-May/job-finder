@@ -25,6 +25,7 @@
 
 .board {
   max-width: 450px;
+  width: 450px;
   padding: 10px;
   margin: var(--base-margin);
   box-sizing: border-box;

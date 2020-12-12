@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 import { storage } from '../libraries/firebase';
 
 export const deleteImage = (path, file) => {

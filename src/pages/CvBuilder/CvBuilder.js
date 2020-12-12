@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { database } from '../../libraries/firebase';
+import React, { useState } from 'react';
 import { useAuth } from '../../services/authentication';
-import { getUsersById } from '../../services/user';
 
 import Content from './Content/Content';
 
@@ -11,6 +9,7 @@ import MenuList from './MenuList/MenuList';
 export default function CvBuilder() {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
+  const [activeIcon, setActiveIcon] = useState('text');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -20,16 +19,28 @@ export default function CvBuilder() {
     setOpen(false);
   };
 
+  const handleMenuItemClick = (iconType) => {
+    setActiveIcon(iconType);
+  };
+
   return (
     <div className="container">
       <MenuList
         open={open}
         handleDrawerClose={handleDrawerClose}
         handleDrawerOpen={handleDrawerOpen}
+        handleMenuItemClick={handleMenuItemClick}
+        activeIcon={activeIcon}
       />
 
       <div className="board">
-        <Content />
+        {activeIcon === 'design' ? (
+          <div>design</div>
+        ) : activeIcon === 'preview' ? (
+          <div>preview</div>
+        ) : (
+          <Content />
+        )}
       </div>
       <div
         style={{
