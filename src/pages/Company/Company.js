@@ -112,7 +112,7 @@ export default function Company() {
             <div>
             <ProfileBusinessInfo
             numberOfEmployees={company.numberOfEmployees}
-            dateOfEstablishment={company.dateOfEstablishment}
+            establishment={company.establishment}
             taxId={company.taxId} 
             />
             </div>

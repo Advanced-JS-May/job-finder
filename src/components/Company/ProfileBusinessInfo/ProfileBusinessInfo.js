@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileBusinessInfo({dateOfEstablishment,numberOfEmployees,taxId}) {
+export default function ProfileBusinessInfo({establishment,numberOfEmployees,taxId}) {
   const classes = useStyles();
 
   return (
@@ -44,7 +44,7 @@ export default function ProfileBusinessInfo({dateOfEstablishment,numberOfEmploye
       </Button>
         <DateRangeIcon />
         Establishment
-        {dateOfEstablishment}
+        {establishment}
         <SupervisorAccountIcon />
         Employees
         {numberOfEmployees}
