@@ -7,6 +7,7 @@ import { createCompany } from "../../../services/company";
 import { useAuth } from "../../../services/authentication";
 
 //UI
+import Card from "@material-ui/core/Card";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileBusinessInfoEdit({}) {
+export default function ProfileBusinessInfoEdit({employees,establishment,taxId}) {
   const classes = useStyles();
   const { user } = useAuth();
 
@@ -49,27 +50,10 @@ export default function ProfileBusinessInfoEdit({}) {
           {(props) => (
             <form onSubmit={props.handleSubmit} className={classes.root}>
               <div>
-                <LocationCityIcon />
-                State:
-                <TextField
-                  label={country}
-                  id="outlined-basic"
-                  type="text"
-                  variant="outlined"
-                  onChange={props.handleChange}
-                  onBlur={props.handleBlur}
-                  value={props.values.name}
-                  name="country"
-                />
-                {props.errors.name && (
-                  <div id="feedback">{props.errors.name}</div>
-                )}
-              </div>
-              <div>
                 <DateRangeIcon />
                 Establishment:
                 <TextField
-                  label={city}
+                  label={establishment}
                   id="outlined-basic"
                   type="text"
                   variant="outlined"
@@ -86,7 +70,7 @@ export default function ProfileBusinessInfoEdit({}) {
                 <SupervisorAccountIcon />
                 Employees:
                 <TextField
-                  label={address}
+                  label={employees}
                   id="outlined-basic"
                   type="text"
                   variant="outlined"
@@ -103,7 +87,7 @@ export default function ProfileBusinessInfoEdit({}) {
                 <GavelIcon />
                 TaxID:
                 <TextField
-                  label={tel}
+                  label={taxId}
                   id="outlined-basic"
                   type="text"
                   variant="outlined"
@@ -123,7 +107,7 @@ export default function ProfileBusinessInfoEdit({}) {
                   color="primary"
                   onClick={props.handleSubmit}
                 >
-                  <Link to="/company/:id">Submit</Link>
+                  <Link to="/company/id">Submit</Link>
                 </Button>
               </div>
             </form>

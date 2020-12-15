@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileBusinessInfo({establishment,numberOfEmployees,taxId}) {
+export default function ProfileBusinessCard({establishment,numberOfEmployees,taxId}) {
   const classes = useStyles();
 
   return (
@@ -38,7 +38,7 @@ export default function ProfileBusinessInfo({establishment,numberOfEmployees,tax
       
       <CardContent className={classes.root}>
       <Button className={classes.edit}>
-        <Link to="/profile/profileContactCard/edit">
+        <Link to="/profile/profileBusinessCard/edit">
           <EditIcon />
         </Link>
       </Button>

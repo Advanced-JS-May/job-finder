@@ -13,12 +13,11 @@ import Fab from '@material-ui/core/Fab';
 
 //components
 import TabPanel from "../../components/TabPanel/TabPanel";
-import CreateJob from "../../components/Company/CreateJob/CreateJob";
 import ProfileHeader from "../../components/Company/ProfileHeader/ProfileHeader";
 import ProfileContactCard from "../../components/Company/ProfileContactCard/ProfileContactCard"
 import { useAuth } from '../../services/authentication';
 import ProfileDescriptionCard from "../../components/Company/ProfileDescriptionCard/ProfileDescriptionCard";
-import ProfileBusinessInfo from "../../components/Company/ProfileBusinessInfo/ProfileBusinessInfo"
+import ProfileBusinessCard from "../../components/Company/ProfileBusinessCard/ProfileBusinessCard"
 
 
 
@@ -110,7 +109,7 @@ export default function Company() {
               />
             </div>
             <div>
-            <ProfileBusinessInfo
+            <ProfileBusinessCard
             numberOfEmployees={company.numberOfEmployees}
             establishment={company.establishment}
             taxId={company.taxId} 
