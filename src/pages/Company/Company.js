@@ -50,7 +50,8 @@ export default function Company() {
   const [value, setValue] = React.useState(0);
   const [company, setCompany] = useState({});
   const [bio,setBio]=useState({});
-  const [contacts,setContacts]=useState({})
+  const [contacts,setContacts]=useState({});
+  const [business,setBusiness]=useState({})
   
 
  
@@ -65,6 +66,8 @@ export default function Company() {
       setCompany(c);
       setBio(c.bio);
       setContacts(c.contacts);
+      setBusiness(c.business)
+
     });
   }, [user.uid]);
 
@@ -110,9 +113,9 @@ export default function Company() {
             </div>
             <div>
             <ProfileBusinessCard
-            numberOfEmployees={company.numberOfEmployees}
-            establishment={company.establishment}
-            taxId={company.taxId} 
+            numberOfEmployees={business.numberOfEmployees}
+            establishment={business.establishment}
+            taxId={business.taxId} 
             />
             </div>
           </div>

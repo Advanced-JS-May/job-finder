@@ -44,7 +44,7 @@ export default function ProfileBusinessInfoEdit({employees,establishment,taxId})
             establishment: "",
           }}
           onSubmit={(values) => {
-            createCompany(user.uid, "contacts", values);
+            createCompany(user.uid, "business", values);
           }}
         >
           {(props) => (
@@ -60,7 +60,7 @@ export default function ProfileBusinessInfoEdit({employees,establishment,taxId})
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.name}
-                  name="city"
+                  name="establishment"
                 />
                 {props.errors.name && (
                   <div id="feedback">{props.errors.name}</div>
@@ -77,7 +77,7 @@ export default function ProfileBusinessInfoEdit({employees,establishment,taxId})
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.name}
-                  name="address"
+                  name="employees"
                 />
                 {props.errors.name && (
                   <div id="feedback">{props.errors.name}</div>
@@ -94,13 +94,12 @@ export default function ProfileBusinessInfoEdit({employees,establishment,taxId})
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.name}
-                  name="tel"
+                  name="taxId"
                 />
                 {props.errors.name && (
                   <div id="feedback">{props.errors.name}</div>
                 )}
               </div>
-
               <div>
                 <Button
                   variant="contained"

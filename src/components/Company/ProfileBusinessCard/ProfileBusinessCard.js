@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileBusinessCard({establishment,numberOfEmployees,taxId}) {
+export default function ProfileBusinessCard({establishment,employees,taxId}) {
   const classes = useStyles();
 
   return (
@@ -44,10 +44,12 @@ export default function ProfileBusinessCard({establishment,numberOfEmployees,tax
       </Button>
         <DateRangeIcon />
         Establishment
+        <p>
         {establishment}
+        </p>
         <SupervisorAccountIcon />
         Employees
-        {numberOfEmployees}
+        {employees}
         <GavelIcon />
         TaxID
         {taxId}
