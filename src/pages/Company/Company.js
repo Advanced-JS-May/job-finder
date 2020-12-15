@@ -17,7 +17,11 @@ import CreateJob from "../../components/Company/CreateJob/CreateJob";
 import ProfileHeader from "../../components/Company/ProfileHeader/ProfileHeader";
 import ProfileContactCard from "../../components/Company/ProfileContactCard/ProfileContactCard"
 import { useAuth } from '../../services/authentication';
-import ProfileDescriptionCard from "../../components/Company/ProfileDescriptionCard/ProfileDescriptionCard"
+import ProfileDescriptionCard from "../../components/Company/ProfileDescriptionCard/ProfileDescriptionCard";
+import ProfileBusinessInfo from "../../components/Company/ProfileBusinessInfo/ProfileBusinessInfo"
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -104,6 +108,13 @@ export default function Company() {
                 description={bio.description} 
                 // name={company.name}
               />
+            </div>
+            <div>
+            <ProfileBusinessInfo
+            numberOfEmployees={company.numberOfEmployees}
+            dateOfEstablishment={company.dateOfEstablishment}
+            taxId={company.taxId} 
+            />
             </div>
           </div>
          </TabPanel>
