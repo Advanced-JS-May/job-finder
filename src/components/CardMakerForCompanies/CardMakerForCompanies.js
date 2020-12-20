@@ -8,6 +8,8 @@ import Select from "../Select/Select.js";
 import { useLocation, generatePath, useHistory } from "react-router-dom";
 import fields from "../../constants/jobField.js";
 import _ from "lodash";
+import { Pagination } from "@material-ui/lab";
+import usePagination from "../../Utils/paginationHelper";
 
 let tmpComps = [];
 let constComps = [];
@@ -37,11 +39,37 @@ export default function CardMakerForCompanies() {
   const [companies, setCompanies] = useState([""]);
   const [search, setSearch] = useState("");
   const [fieldValue, setFieldValue] = useState("All");
+  const [page, setPage] = useState(1); //pagination
   const classes = useStyles();
   const location = useLocation();
   let history = useHistory();
+  const perPage = 3;
+  const count = Math.ceil(companies.length / perPage);
+  const data = usePagination(companies, perPage);
 
-  const mapForComps = companies.map((e) => (
+  useEffect(() => {
+    getAllCompanies()
+      .then((response) => {
+        constComps = Object.values(response);
+        setCompanies(constComps);
+      })
+      .then(() => {
+        searchSet();
+      });
+    console.log(1);
+  }, []);
+
+  useEffect(() => {
+    Search();
+  }, [search, fieldValue]);
+
+  const handleChange = (event, page) => {
+    //pagination
+    setPage(page);
+    data.jump(page);
+  };
+
+  const mapForComps = data.currentData().map((e) => (
     <CompanyMiniInfo
       key={_.uniqueId("cmii_")}
       companyName={e.companyName ? e.companyName : "No name"}
@@ -57,48 +85,32 @@ export default function CardMakerForCompanies() {
   async function searchSet() {
     let lastPartPath = "";
     if (location.pathname !== "/companies") {
-        lastPartPath = location.pathname.substring(
+      lastPartPath = location.pathname.substring(
         location.pathname.lastIndexOf("/") + 1,
         location.pathname.lastIndexOf("_")
       );
       if (lastPartPath !== "companies") {
-        console.log(lastPartPath)
+        console.log(lastPartPath);
         setSearch(lastPartPath);
       }
     } else {
-      setSearch('');
+      setSearch("");
     }
 
     let lastPartField = decodeURI(
       location.pathname.substring(location.pathname.lastIndexOf("_") + 1)
     );
     if (lastPartField !== "/companies") {
-      await setFieldValue(lastPartField)
+      await setFieldValue(lastPartField);
     } else {
-      setFieldValue('All')
+      setFieldValue("All");
     }
-    return (lastPartPath, lastPartField);
-  };
-
-  useEffect(() => {
-    getAllCompanies()
-        .then((response) => {
-          constComps = Object.values(response);
-          setCompanies(constComps);
-        })
-        .then(()=>{
-          searchSet();
-        })     
-        console.log(1)
-  }, []);
-
-  useEffect(() => {
-        Search()
-  }, [search,fieldValue]);
+    return lastPartPath, lastPartField;
+  }
 
   function Search() {
     tmpComps = constComps;
-    console.log(search,5)
+    console.log(search, 5);
     if (search === "" && fieldValue === "All") {
       setCompanies(constComps);
       return true;
@@ -140,7 +152,10 @@ export default function CardMakerForCompanies() {
             variant="outlined"
             helperText="Write the keywords"
             value={search}
-            onChange={(e) => {setSearch(e.target.value); console.log(search)}}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              console.log(search);
+            }}
           />
           <Select
             valueq={fieldValue}
@@ -149,7 +164,7 @@ export default function CardMakerForCompanies() {
               setFieldValue(e.target.value);
             }}
           />
-          <Button
+          {/* <Button
             className={classes.button}
             size="small"
             variant="contained"
@@ -159,9 +174,17 @@ export default function CardMakerForCompanies() {
             }}
           >
             Search
-          </Button>
+          </Button> */}
         </form>
         <div className="containerCompaniesMinia">{mapForComps}</div>
+        <Pagination
+          count={count}
+          size="large"
+          page={page}
+          variant="outlined"
+          shape="rounded"
+          onChange={handleChange}
+        />
       </div>
     );
   }
