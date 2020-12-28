@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import { getAllCompanies } from "../../services/company.js";
 import CompanyMiniInfo from "../CompanyMiniInfo/CompanyMiniInfo.js";
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Select from "../Select/Select.js";
-import { useLocation, generatePath, useHistory } from "react-router-dom";
-import fields from "../../constants/jobField.js";
+import TextField from "@material-ui/core/TextField"; //forSaerch
+import Button from "@material-ui/core/Button";  //forSaerch
+import Select from "../Select/Select.js";  //forSaerch
+import { useLocation, generatePath, useHistory } from "react-router-dom";  //forSaerch
+import fields from "../../constants/jobField.js";  //forSaerch
 import _ from "lodash";
 import { Pagination } from "@material-ui/lab";
 import usePagination from "../../Utils/paginationHelper";
 
-let tmpComps = [];
-let constComps = [];
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,15 +33,18 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
 }));
+  let tmpComps = []; //forSaerch
+  let constComps = [];  //forSaerch
 
 export default function CardMakerForCompanies() {
   const [companies, setCompanies] = useState([""]);
-  const [search, setSearch] = useState("");
-  const [fieldValue, setFieldValue] = useState("All");
+  const [search, setSearch] = useState(""); //forSaerch
+  const [fieldValue, setFieldValue] = useState("All"); //forSaerch
   const [page, setPage] = useState(1); //pagination
+  
   const classes = useStyles();
-  const location = useLocation();
-  let history = useHistory();
+  const location = useLocation(); //forSaerch
+  let history = useHistory(); //forSaerch
   const perPage = 3;
   const count = Math.ceil(companies.length / perPage);
   const data = usePagination(companies, perPage);
@@ -54,13 +56,12 @@ export default function CardMakerForCompanies() {
         setCompanies(constComps);
       })
       .then(() => {
-        searchSet();
+        searchSet(); //forSaerch
       });
-    console.log(1);
   }, []);
 
-  useEffect(() => {
-    Search();
+  useEffect(() => {  //forSaerch
+    Search();  
   }, [search, fieldValue]);
 
   const handleChange = (event, page) => {
@@ -82,8 +83,8 @@ export default function CardMakerForCompanies() {
     />
   ));
 
-  async function searchSet() {
-    let lastPartPath = "";
+  async function searchSet() { //forSaerch
+    let lastPartPath = ""; //forSaerch CHANGE VARS
     if (location.pathname !== "/companies") {
       lastPartPath = location.pathname.substring(
         location.pathname.lastIndexOf("/") + 1,
@@ -108,8 +109,8 @@ export default function CardMakerForCompanies() {
     return lastPartPath, lastPartField;
   }
 
-  function Search() {
-    tmpComps = constComps;
+  function Search() { //forSaerch
+    tmpComps = constComps; //forSaerch CHANGE VASR
     console.log(search, 5);
     if (search === "" && fieldValue === "All") {
       setCompanies(constComps);
@@ -127,6 +128,7 @@ export default function CardMakerForCompanies() {
       });
 
       setCompanies(filterComps);
+
     } else if (search === "") {
       const filterComps = tmpComps.filter((e) => {
         if (e.field === fieldValue) {
@@ -140,8 +142,8 @@ export default function CardMakerForCompanies() {
 
   function allComps() {
     return (
-      <div>
-        <form
+      <div> //forSaerch
+        <form 
           className={(classes.root, classes.searchPart)}
           noValidate
           autoComplete="off"
@@ -164,17 +166,6 @@ export default function CardMakerForCompanies() {
               setFieldValue(e.target.value);
             }}
           />
-          {/* <Button
-            className={classes.button}
-            size="small"
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              Search();
-            }}
-          >
-            Search
-          </Button> */}
         </form>
         <div className="containerCompaniesMinia">{mapForComps}</div>
         <Pagination
