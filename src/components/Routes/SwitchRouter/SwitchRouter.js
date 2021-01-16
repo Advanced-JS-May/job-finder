@@ -17,7 +17,7 @@ import ProfileContactEdit from '../../../components/Company/ProfileContactCard/P
 import ProfileDescriptionEdit from '../../Company/ProfileDescriptionCard/ProdileDescriptionEdit';
 import CreateJob from '../../Company/CreateJob/CreateJob';
 import CompaniesInfoShow from '../../../components/CompaniesInfoShow/CompaniesInfoShow';
-import CvBuilder from '../../../pages/CvBuilder/CvBuilder';
+import ProfileBusinessInfoEdit from '../../../components/Company/ProfileBusinessCard/ProfileBusinessInfoEdit';
 
 function SwitchRouter() {
   const { user } = useAuth();
@@ -53,9 +53,11 @@ function SwitchRouter() {
         <Route path="/profile/profileContactCard/edit">
           <ProfileContactEdit />
         </Route>
-        |
         <Route path="/profile/profileDescriptionCard/edit">
           <ProfileDescriptionEdit />
+        </Route>
+        <Route path="/profile/profileBusinessCard/edit">
+          <ProfileBusinessInfoEdit />
         </Route>
         <Route path="/profile/addJob">
           <CreateJob />
@@ -70,9 +72,6 @@ function SwitchRouter() {
         <PrivateRoute auth={user} path="/profile/:id">
           <div>{user && user.role}</div>
         </PrivateRoute>
-        <Route path="/cv-builder">
-          <CvBuilder />
-        </Route>
         {/* company user */}
         <Route path="/company/profile">
           <CompanyInfo />

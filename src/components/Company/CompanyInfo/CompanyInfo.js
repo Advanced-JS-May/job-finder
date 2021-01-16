@@ -67,7 +67,7 @@ return(
             variant="outlined"
             name="establishment"
             onChange={handleCompanyInput}
-            value={company.dateOfEstablishment}
+            value={company.establishment}
           />
           <br />
           <TextField
