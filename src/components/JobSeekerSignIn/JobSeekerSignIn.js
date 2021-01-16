@@ -12,20 +12,20 @@ import { checkProfileStatus } from "../../services/checkProfileStatus";
 
 const useStyles = makeStyles({
   form: {
-    display: "flex",
-    flexDirection: "column",
-    width: "350px",
-    ["@media and (max-width: 768px)"]: {
-      width: "250px",
+    display: 'flex',
+    flexDirection: 'column',
+    width: '350px',
+    ['@media and (max-width: 768px)']: {
+      width: '250px',
     },
   },
   button: {
-    margin: " 16px 0",
-    padding: "0.8rem",
+    margin: ' 16px 0',
+    padding: '0.8rem',
   },
 });
 
-export default function EmployeeSignIn() {
+export default function EmployeeSignIn({ setProgress }) {
   const history = useHistory();
   const classes = useStyles();
 
@@ -62,7 +62,7 @@ export default function EmployeeSignIn() {
           type="email"
           name="email"
           value={email}
-          label={"email"}
+          label={'email'}
           onChange={handleLoginUpdate}
         />
         <br />
@@ -71,7 +71,7 @@ export default function EmployeeSignIn() {
           onChange={handlePasswordUpdate}
           name="password"
           type="password"
-          label={"password"}
+          label={'password'}
         />
         <br />
         <Button
@@ -79,13 +79,12 @@ export default function EmployeeSignIn() {
           color="primary"
           variant="contained"
           className={classes.button}
-          variant="contained"
         >
           Login
         </Button>
         <br />
-        <GoogleButton />
-        <FacebookButton />
+        <GoogleButton setProgress={setProgress} />
+        <FacebookButton setProgress={setProgress} />
       </form>
     </>
   );
