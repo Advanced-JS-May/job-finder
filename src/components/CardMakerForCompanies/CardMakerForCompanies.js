@@ -3,15 +3,13 @@ import { getAllCompanies } from "../../services/company.js";
 import CompanyMiniInfo from "../CompanyMiniInfo/CompanyMiniInfo.js";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField"; //forSaerch
-import Button from "@material-ui/core/Button";  //forSaerch
-import Select from "../Select/Select.js";  //forSaerch
-import { useLocation, generatePath, useHistory } from "react-router-dom";  //forSaerch
-import fields from "../../constants/jobField.js";  //forSaerch
+import Button from "@material-ui/core/Button"; //forSaerch
+import Select from "../Select/Select.js"; //forSaerch
+import { useLocation, generatePath, useHistory } from "react-router-dom"; //forSaerch
+import fields from "../../constants/jobField.js"; //forSaerch
 import _ from "lodash";
 import { Pagination } from "@material-ui/lab";
 import usePagination from "../../Utils/paginationHelper";
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,15 +31,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
 }));
-  let tmpComps = []; //forSaerch
-  let constComps = [];  //forSaerch
+let tmpComps = []; //forSaerch
+let constComps = []; //forSaerch
 
 export default function CardMakerForCompanies() {
   const [companies, setCompanies] = useState([""]);
   const [search, setSearch] = useState(""); //forSaerch
   const [fieldValue, setFieldValue] = useState("All"); //forSaerch
   const [page, setPage] = useState(1); //pagination
-  
+
   const classes = useStyles();
   const location = useLocation(); //forSaerch
   let history = useHistory(); //forSaerch
@@ -60,8 +58,9 @@ export default function CardMakerForCompanies() {
       });
   }, []);
 
-  useEffect(() => {  //forSaerch
-    Search();  
+  useEffect(() => {
+    //forSaerch
+    Search();
   }, [search, fieldValue]);
 
   const handleChange = (event, page) => {
@@ -83,7 +82,8 @@ export default function CardMakerForCompanies() {
     />
   ));
 
-  async function searchSet() { //forSaerch
+  async function searchSet() {
+    //forSaerch
     let lastPartPath = ""; //forSaerch CHANGE VARS
     if (location.pathname !== "/companies") {
       lastPartPath = location.pathname.substring(
@@ -109,7 +109,8 @@ export default function CardMakerForCompanies() {
     return lastPartPath, lastPartField;
   }
 
-  function Search() { //forSaerch
+  function Search() {
+    //forSaerch
     tmpComps = constComps; //forSaerch CHANGE VASR
     console.log(search, 5);
     if (search === "" && fieldValue === "All") {
@@ -128,7 +129,6 @@ export default function CardMakerForCompanies() {
       });
 
       setCompanies(filterComps);
-
     } else if (search === "") {
       const filterComps = tmpComps.filter((e) => {
         if (e.field === fieldValue) {
@@ -142,8 +142,10 @@ export default function CardMakerForCompanies() {
 
   function allComps() {
     return (
-      <div> //forSaerch
-        <form 
+      <div>
+        {" "}
+        //forSaerch
+        <form
           className={(classes.root, classes.searchPart)}
           noValidate
           autoComplete="off"
