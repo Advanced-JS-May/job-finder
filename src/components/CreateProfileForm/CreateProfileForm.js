@@ -58,7 +58,7 @@ function CreateProfileForm({
       setMessage(`Well done!`);
       setMessageType('success');
       await updateUserById(user.uid, { profileCreated: true });
-      await createJobSeeker(values, user.uid)
+      await createJobSeeker({ ...values, following: [] }, user.uid)
         .then((res) => {
           history.push(`/profile/${user.uid}`);
         })
