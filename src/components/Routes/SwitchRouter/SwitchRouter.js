@@ -18,7 +18,7 @@ import ProfileDescriptionEdit from "../../Company/ProfileDescriptionCard/Prodile
 import CreateJob from "../../Company/CreateJob/CreateJob";
 import CompaniesInfoShow from "../../../components/CompaniesInfoShow/CompaniesInfoShow";
 import ProfileBusinessInfoEdit from "../../../components/Company/ProfileBusinessCard/ProfileBusinessInfoEdit"
-
+import JobsInfoShow from "../../../components/JobsInfoShow/JobsInfoShow";
 
 function SwitchRouter() {
   const { user } = useAuth();
@@ -39,7 +39,7 @@ function SwitchRouter() {
         <Route path="/login">
           <SignIn />
         </Route>
-        <Route path="/jobs">
+        <Route exact path="/jobs">
           <Jobs />
         </Route>
         <Route exact path="/companies">
@@ -65,6 +65,9 @@ function SwitchRouter() {
         </Route>
         <Route path="/companies/:id">
           <CompaniesInfoShow />
+        </Route>
+        <Route path="/jobs/:id">
+          <JobsInfoShow />
         </Route>
         {/* regular user */}
         <PrivateRoute auth={user} path="/profile/create">
