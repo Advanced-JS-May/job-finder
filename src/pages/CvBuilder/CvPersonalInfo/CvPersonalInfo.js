@@ -45,9 +45,9 @@ function CvPersonalInfo() {
   const { user } = useAuth();
 
   const [socialLinks, setSocialLinks] = useState({
-    facebook: false,
-    twitter: false,
-    linkedIn: false,
+    facebook: true,
+    twitter: true,
+    linkedIn: true,
     gitHub: false,
     stackOverFlow: false,
   });
@@ -56,15 +56,13 @@ function CvPersonalInfo() {
 
   const handleFieldChange = (e) => {
     dispatch(changeField({ name: e.target.name, value: e.target.value }));
-    /* TODO here */
-    /*  if (
-      e.target.parentNode.parentNode.parentNode.className === 'social-links'
-    ) {
-      if(e.target.value === '') {
-        const name = e.target.name
-        setSocialLinks((prevState)=> ({...prevState, name: !prevState[e.target.name]  }))
-      }
-    } */
+  };
+
+  const handleFaceBookClick = (name) => () => {
+    setSocialLinks((prevState) => {
+      prevState['facebook'] = !prevState['facebook'];
+      return prevState;
+    });
   };
 
   return (
@@ -132,7 +130,6 @@ function CvPersonalInfo() {
               onChange={handleFieldChange}
             />
             <FormField
-              variant="outlined"
               name="phone"
               label="phone Number"
               value={phone || ''}
@@ -155,31 +152,53 @@ function CvPersonalInfo() {
               }}
               className={classes.summary}
             />
-            <div className="social-links">
-              <FormField
-                label="facebook"
-                name="facebook"
-                value={facebook || ''}
-                onChange={handleFieldChange}
-              />
-              <FormField
-                label="linkedIn"
-                name="linkedIn"
-                value={linkedIn || ''}
-                onChange={handleFieldChange}
-              />
-              <FormField
-                label="twitter"
-                name="twitter"
-                value={twitter || ''}
-                onChange={handleFieldChange}
-              />
-            </div>
 
-            <Button>+ GitHub</Button>
-            <Button>+ Facebook</Button>
-            <Button>+ Twitter</Button>
-            <Button>+ LinkedIn</Button>
+            <div className="preview__buttons">
+              <Button color={socialLinks.gitHub ? 'primary' : 'default'}>
+                {socialLinks.gitHub ? '-' : '+'} GitHub
+              </Button>
+              <Button
+                onClick={handleFaceBookClick('facebook')}
+                color={socialLinks.facebook ? 'primary' : 'default'}
+              >
+                {socialLinks.facebook ? '-' : '+'} Facebook
+              </Button>
+              <Button color={socialLinks.twitter ? 'primary' : 'default'}>
+                {socialLinks.twitter ? '-' : '+'} Twitter
+              </Button>
+              <Button color={socialLinks.linkedIn ? 'primary' : 'default'}>
+                {socialLinks.linkedIn ? '-' : '+'} LinkedIn
+              </Button>
+              <Button color={socialLinks.stackOverFlow ? 'primary' : 'default'}>
+                {socialLinks.stackOverFlow ? '-' : '+'} StackOverflow
+              </Button>
+            </div>
+            <div className="social-links">
+              {socialLinks.facebook && (
+                <FormField
+                  label="facebook"
+                  name="facebook"
+                  value={facebook || ''}
+                  onChange={handleFieldChange}
+                />
+              )}
+              {socialLinks.linkedIn && (
+                <FormField
+                  label="linkedIn"
+                  name="linkedIn"
+                  value={linkedIn || ''}
+                  onChange={handleFieldChange}
+                />
+              )}
+              {socialLinks.twitter && (
+                <FormField
+                  label="twitter"
+                  name="twitter"
+                  value={twitter || ''}
+                  onChange={handleFieldChange}
+                />
+              )}
+            </div>
           </>
         ) : null}
         {/*
