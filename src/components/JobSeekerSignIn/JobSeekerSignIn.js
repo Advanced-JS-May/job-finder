@@ -8,6 +8,7 @@ import { USER_ROLES } from "../../constants/user.constants";
 import FormField from "../FormElements/FormField/FormField";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { checkProfileStatus } from "../../services/checkProfileStatus";
 
 const useStyles = makeStyles({
   form: {
@@ -31,7 +32,7 @@ export default function EmployeeSignIn() {
   const [email, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setError] = useState("");
-  const { signin } = useAuth();
+  const { signin, user } = useAuth();
 
   const handleLoginUpdate = ({ target: { value } }) => setLogin(value);
   const handlePasswordUpdate = ({ target: { value } }) => setPassword(value);
@@ -39,14 +40,15 @@ export default function EmployeeSignIn() {
   const handleLogin = (event) => {
     event.preventDefault();
     signin(email, password).then((res) => {
-      console.log("response", res);
-      checkUserRole(res.uid, USER_ROLES.user)
-        .then((res) => {
-          res
-            ? history.push("/signin/jobseeker")
-            : setError("Not a JobSeeker ");
-        })
-        .catch(console.warn);
+      if (res.profileCreated) {
+        if (res.role === USER_ROLES.user) {
+          history.push("/signin/jobseeker");
+        } else {
+          setError("Not a JobSeeker ");
+        }
+      } else {
+        history.push("/profile/create");
+      }
     });
   };
 
