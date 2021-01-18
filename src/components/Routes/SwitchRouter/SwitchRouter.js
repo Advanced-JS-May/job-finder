@@ -16,8 +16,7 @@ import ProfileContactEdit from "../../../components/Company/ProfileContactCard/P
 import ProfileDescriptionEdit from "../../Company/ProfileDescriptionCard/ProdileDescriptionEdit";
 import CreateJob from "../../Company/CreateJob/CreateJob";
 import CompaniesInfoShow from "../../../components/CompaniesInfoShow/CompaniesInfoShow";
-import ProfileBusinessInfoEdit from "../../../components/Company/ProfileBusinessCard/ProfileBusinessInfoEdit"
-
+import ProfileBusinessInfoEdit from "../../../components/Company/ProfileBusinessCard/ProfileBusinessInfoEdit";
 
 function SwitchRouter() {
   const { user } = useAuth();
@@ -51,7 +50,7 @@ function SwitchRouter() {
           <EmailVerification />
         </Route>
 
-         {/*ProfileCardsEdits*/}
+        {/*ProfileCardsEdits*/}
         <Route path="/profile/profileContactCard/edit">
           <ProfileContactEdit />
         </Route>
@@ -62,7 +61,7 @@ function SwitchRouter() {
           <ProfileBusinessInfoEdit />
         </Route>
 
-          {/*CreateJob*/} 
+        {/*CreateJob*/}
         <Route path="/profile/addJob">
           <CreateJob />
         </Route>
@@ -76,8 +75,6 @@ function SwitchRouter() {
           <CreateProfile />
         </PrivateRoute>
 
-  
-        
         <PrivateRoute auth={user} path="/profile/:id">
           <div>{user && user.role}</div>
         </PrivateRoute>
