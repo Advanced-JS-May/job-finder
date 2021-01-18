@@ -24,11 +24,11 @@ export default function OutlinedCard() {
     if (user) {
       getUsersById(user.uid).then((res) => {
         if (res.emailVerified) {
-          if (user.role === USER_ROLES.employer) {
-            history.push(`/company/profile`);
-          } else {
+          // if (user.role === USER_ROLES.employer) {
+          //   history.push(`/company/create`);
+          // } else {
             history.push('/profile/create');
-          }
+          // }
         } else {
           setError(true);
         }
