@@ -5,6 +5,7 @@ import { useHistory } from "react-router";
 /* auth & services */
 import { useAuth } from "../../services/authentication";
 import { createJobSeeker } from "../../services/JobSeeker.service";
+import { createCompany } from "../../services/company.service";
 import jobSeekerValidation from "../../validation/jobSeeker.schema";
 
 /* components */
@@ -45,7 +46,7 @@ function CreateProfileForm({
       phone: "",
       taxId: "",
       establishment: "",
-      employees: "",
+      employee: "",
       email: user ? user.email : "",
       twitter: "",
       facebook: "",
@@ -61,7 +62,7 @@ function CreateProfileForm({
       setMessage(`Well done!`);
       setMessageType("success");
       await updateUserById(user.uid, { profileCreated: true });
-      await createJobSeeker(values, user.uid)
+      await createCompany(values, user.uid)
         .then((res) => {
           history.push(`/profile/${user.uid}`);
         })
@@ -101,8 +102,8 @@ function CreateProfileForm({
               fieldValue={formik.values.field}
               establishmentValue={formik.values.establishment}
               taxIdValue={formik.values.taxId}
-              cityValue={formik.values.city}
               employeeValue={formik.values.employee}
+              cityValue={formik.values.city}
               //event handlers
               handleNameChange={formik.handleChange}
               handleFieldChnage={formik.handleChange}

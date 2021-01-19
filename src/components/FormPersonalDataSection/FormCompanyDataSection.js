@@ -83,6 +83,18 @@ function FormPersonalDataSection({
         InputProps={{ style: { padding: 5 } }}
       />
       <FormField
+        type="number"
+        label="Number of Employees"
+        value={employeeValue}
+        onChange={handleEmployeeChange}
+        onBlur={handleEmployeeBlur}
+        error={employeeError}
+        name="employee"
+        variant="outlined"
+        fullWidth
+        InputProps={{ style: { padding: 5 } }}
+      />
+      <FormField
         select
         label="City"
         name="city"
@@ -108,19 +120,6 @@ function FormPersonalDataSection({
           );
         })}
       </FormField>
-
-      <FormField
-        type="number"
-        label="Number of Employees"
-        value={employeeValue}
-        onChange={handleEmployeeChange}
-        onBlur={handleEmployeeBlur}
-        error={employeeError}
-        name="taxId"
-        variant="outlined"
-        fullWidth
-        InputProps={{ style: { padding: 5 } }}
-      />
     </FormSection>
   );
 }

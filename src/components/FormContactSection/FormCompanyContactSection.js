@@ -75,7 +75,7 @@ function FormCompanyContactSection({
           <FormField
             variant="outlined"
             name="phone"
-            label="phone Number"
+            label="Phone Number"
             value={phoneValue}
             onChange={handlePhoneChange}
             onBlur={handlePhoneBlur}
@@ -102,17 +102,14 @@ function FormCompanyContactSection({
           />
           <FormField
             variant="outlined"
-            name="address"
+            fullWidth
             label="Address"
+            name="address"
             value={addressValue}
             onChange={handleAddressChange}
             onBlur={handleAddressBlur}
             error={addressError}
-            fullWidth
-            InputProps={{
-              inputComponent: TextMaskCustom,
-              style: { fontSize: 16, padding: 10 },
-            }}
+            InputProps={{ style: { fontSize: 16, padding: 10 } }}
           />
         </Grid>
         <Grid
@@ -132,7 +129,7 @@ function FormCompanyContactSection({
             type="email"
             name="email"
             variant="outlined"
-            label="email"
+            label="Email"
             value={emailValue}
             onChange={handleEmailChange}
             onBlur={handleEmailBlur}
