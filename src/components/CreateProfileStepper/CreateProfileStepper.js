@@ -12,7 +12,6 @@ import QontoConnector from "../../components/CreateProfileStepper/QontoConnector
 import { useAuth } from "../../services/authentication";
 import styles from "./CreateProfile.module.css";
 import { USER_ROLES } from "../../constants/user.constants";
-import Button from "@material-ui/core/Button";
 const useQontoStepIconStyles = makeStyles({
   root: {
     color: "#eaeaf0",
@@ -76,8 +75,6 @@ function CustomizedSteppers() {
   const handleStepCLick = (index) => () => {
     setActiveStep(index);
   };
-
-  console.log(user);
 
   return (
     user && (

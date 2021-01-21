@@ -4,7 +4,6 @@ import { useHistory } from "react-router";
 
 /* auth & services */
 import { useAuth } from "../../services/authentication";
-import { createJobSeeker } from "../../services/JobSeeker.service";
 import { createCompany } from "../../services/company.service";
 import jobSeekerValidation from "../../validation/jobSeeker.schema";
 
@@ -77,6 +76,7 @@ function CreateProfileForm({
       if (answer) {
         setOpen(true);
         setMessage(`please fill in all the required inputs`);
+        console.log(user);
         setMessageType("error");
         moveToFirstPage();
       }
