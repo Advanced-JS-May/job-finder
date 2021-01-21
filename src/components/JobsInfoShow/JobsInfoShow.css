@@ -1,0 +1,68 @@
+.mainContainerppp {
+	   display: flex;
+     flex-direction: column;
+  	align-items: center;
+    width: 100%;
+    min-height: 500px;
+    height: auto;
+    margin-top: 3%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: #fff;
+    transition:all 500ms ease;
+    margin-bottom: 100px;
+}
+.containerCompaniesMini {
+  
+}
+.mainContainerppp:hover {
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+.descppp {
+	color: #666;
+  font-size: 15px;
+  padding: 0 500px;
+}
+
+.infoppp {
+	display: flex;
+  	flex-direction: column;
+  	justify-content: space-around;
+}
+.infoppp div {
+	display: flex;
+	align-items: center;
+}
+.avatarppp {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+  border: 2px solid red;
+}
+
+.headerppp {
+}
+.textppp h1 {
+  text-align: center;
+}
+.textppp p {
+  text-align: center;
+  padding: 0 22%;
+}
+.DetailInfoJobsppp {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+.JobsContainerppp {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+.onlyJobsContainerppp {
+  display: flex;
+  flex-direction: row;
+}

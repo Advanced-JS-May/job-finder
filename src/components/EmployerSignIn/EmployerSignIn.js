@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     margin: " 16px 0",
     padding: "0.8rem",
     backgroundColor: "#4267B2",
-    color:"white"
+    color: "white",
   },
 });
 
@@ -39,13 +39,15 @@ export default function CompanySignIn() {
   const handleLogin = (e) => {
     e.preventDefault();
     signin(email, password).then((user) => {
-      checkUserRole(user.uid, USER_ROLES.employer)
-        .then((res) => {
-          res
-            ? history.push(`/company/${user.uid}`)
-            : setError("Not a Company");
-        })
-        .catch(console.warn);
+      if (user.profileCreated) {
+        if (user.role === USER_ROLES.employer) {
+          history.push(`/company/${user.uid}`);
+        } else {
+          setError("Not a Company");
+        }
+      } else {
+        history.push("/profile/create");
+      }
     });
   };
 
@@ -72,12 +74,14 @@ export default function CompanySignIn() {
         />
         <br />
         {/* <button className={classes.button}>Login</button> */}
-        <Button 
-        type="submit"
-        color="primary"
-        variant="contained"
-        className={classes.button}
-         variant="contained" color="primary">
+        <Button
+          type="submit"
+          color="primary"
+          variant="contained"
+          className={classes.button}
+          variant="contained"
+          color="primary"
+        >
           Login
         </Button>
       </form>
