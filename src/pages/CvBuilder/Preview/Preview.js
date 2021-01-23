@@ -1,8 +1,9 @@
-import { Facebook, LinkedIn, Twitter } from '@material-ui/icons';
+import { Facebook, GitHub, LinkedIn, Twitter } from '@material-ui/icons';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Link from '@material-ui/core/Link';
 import { Typography } from '@material-ui/core';
+import StackOverFlow from '../../../components/icons/StackOverFlow/StackOverFlow';
 
 function Preview() {
   const {
@@ -16,7 +17,11 @@ function Preview() {
     linkedIn,
     summary,
     twitter,
+    github,
+    stackOverFlow,
   } = useSelector((state) => state.jobSeeker);
+
+  const socialLinks = useSelector((state) => state.socialLinks);
 
   return (
     <div
@@ -43,19 +48,29 @@ function Preview() {
         {email ? <div>{email}</div> : null}
         {phone ? <div>{phone}</div> : null}
         <div className="preview__socialIcons">
-          {facebook ? (
+          {facebook && socialLinks.facebook ? (
             <Link target="_blank" href={facebook}>
-              <Facebook />
+              <Facebook style={{ color: 'black' }} />
             </Link>
           ) : null}
-          {linkedIn ? (
+          {linkedIn && socialLinks.linkedIn ? (
             <Link target="_blank" href={linkedIn}>
-              <LinkedIn />
+              <LinkedIn style={{ color: 'black' }} />
             </Link>
           ) : null}
-          {twitter ? (
+          {twitter && socialLinks.twitter ? (
             <Link target="_blank" href={twitter}>
-              <Twitter />
+              <Twitter style={{ color: 'black' }} />
+            </Link>
+          ) : null}
+          {github && socialLinks.gitHub ? (
+            <Link target="_blank" href={github}>
+              <GitHub style={{ color: 'black' }} />
+            </Link>
+          ) : null}
+          {stackOverFlow && socialLinks.stackOverFlow ? (
+            <Link target="_blank" href={stackOverFlow}>
+              <StackOverFlow style={{ color: 'black' }} />
             </Link>
           ) : null}
         </div>

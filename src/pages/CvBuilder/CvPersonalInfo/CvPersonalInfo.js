@@ -11,6 +11,11 @@ import { changeField } from '../../../store/features/JobSeekerDetails';
 import { makeStyles } from '@material-ui/core/styles';
 import InputMask from 'react-input-mask';
 
+import { changeSocialLinkActiveState } from '../../../store/features/SocialLinks';
+
+import './CvPersonalInfo.css';
+import SocialLinks from '../SocialLinks/SocialLinks';
+
 const useStyles = makeStyles({
   summary: {
     display: 'block',
@@ -28,41 +33,18 @@ function TextMaskCustom(props) {
 }
 
 function CvPersonalInfo() {
-  const {
-    name,
-    city,
-    email,
-    surname,
-    headline,
-    summary,
-    facebook,
-    linkedIn,
-    twitter,
-    phone,
-  } = useSelector((state) => state.jobSeeker);
+  const { name, city, email, surname, headline, summary, phone } = useSelector(
+    (state) => state.jobSeeker,
+  );
+
   const dispatch = useDispatch();
 
   const { user } = useAuth();
-
-  const [socialLinks, setSocialLinks] = useState({
-    facebook: true,
-    twitter: true,
-    linkedIn: true,
-    gitHub: false,
-    stackOverFlow: false,
-  });
 
   const classes = useStyles();
 
   const handleFieldChange = (e) => {
     dispatch(changeField({ name: e.target.name, value: e.target.value }));
-  };
-
-  const handleFaceBookClick = (name) => () => {
-    setSocialLinks((prevState) => {
-      prevState['facebook'] = !prevState['facebook'];
-      return prevState;
-    });
   };
 
   return (
@@ -152,53 +134,7 @@ function CvPersonalInfo() {
               }}
               className={classes.summary}
             />
-
-            <div className="preview__buttons">
-              <Button color={socialLinks.gitHub ? 'primary' : 'default'}>
-                {socialLinks.gitHub ? '-' : '+'} GitHub
-              </Button>
-              <Button
-                onClick={handleFaceBookClick('facebook')}
-                color={socialLinks.facebook ? 'primary' : 'default'}
-              >
-                {socialLinks.facebook ? '-' : '+'} Facebook
-              </Button>
-              <Button color={socialLinks.twitter ? 'primary' : 'default'}>
-                {socialLinks.twitter ? '-' : '+'} Twitter
-              </Button>
-              <Button color={socialLinks.linkedIn ? 'primary' : 'default'}>
-                {socialLinks.linkedIn ? '-' : '+'} LinkedIn
-              </Button>
-              <Button color={socialLinks.stackOverFlow ? 'primary' : 'default'}>
-                {socialLinks.stackOverFlow ? '-' : '+'} StackOverflow
-              </Button>
-            </div>
-            <div className="social-links">
-              {socialLinks.facebook && (
-                <FormField
-                  label="facebook"
-                  name="facebook"
-                  value={facebook || ''}
-                  onChange={handleFieldChange}
-                />
-              )}
-              {socialLinks.linkedIn && (
-                <FormField
-                  label="linkedIn"
-                  name="linkedIn"
-                  value={linkedIn || ''}
-                  onChange={handleFieldChange}
-                />
-              )}
-              {socialLinks.twitter && (
-                <FormField
-                  label="twitter"
-                  name="twitter"
-                  value={twitter || ''}
-                  onChange={handleFieldChange}
-                />
-              )}
-            </div>
+            <SocialLinks />
           </>
         ) : null}
         {/*

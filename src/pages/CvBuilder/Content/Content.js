@@ -12,7 +12,7 @@ function Content() {
   return (
     <div>
       <form>
-        <Accordion>
+        <Accordion expanded={true}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="personal information"

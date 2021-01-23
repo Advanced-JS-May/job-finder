@@ -1,2 +1,3 @@
 import jobSeeker from './JobSeekerDetails';
-export default { jobSeeker };
+import socialLinks from './SocialLinks';
+export default { jobSeeker, socialLinks };
