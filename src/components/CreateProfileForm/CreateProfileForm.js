@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
-import { useHistory } from 'react-router';
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import { useHistory } from "react-router";
 
 /* auth & services */
-import { useAuth } from '../../services/authentication';
-import { createJobSeeker } from '../../services/JobSeeker.service';
-import jobSeekerValidation from '../../validation/jobSeeker.schema';
-
+import { useAuth } from "../../services/authentication";
+import { createJobSeeker } from "../../services/JobSeeker.service";
+import jobSeekerValidation from "../../validation/jobSeeker.schema";
+import { addUserFollow } from "../../services/favorites";
 /* components */
-import FormPersonalDataSection from '../FormPersonalDataSection/FormPersonalDataSection';
-import FormContactSection from '../FormContactSection/FormContactSection';
-import FormDescriptionSection from '../FormDescriptionSection/FormDescriptionSection';
-import FormAlert from '../FormElements/FormAlert/FormAlert';
-import CreateProfileButtons from '../FormElements/CreateProfileButtons/CreateProfileButtons';
-import { updateUserById } from '../../services/user';
+import FormPersonalDataSection from "../FormPersonalDataSection/FormPersonalDataSection";
+import FormContactSection from "../FormContactSection/FormContactSection";
+import FormDescriptionSection from "../FormDescriptionSection/FormDescriptionSection";
+import FormAlert from "../FormElements/FormAlert/FormAlert";
+import CreateProfileButtons from "../FormElements/CreateProfileButtons/CreateProfileButtons";
+import { updateUserById } from "../../services/user";
 
 function CreateProfileForm({
   activeStep,
@@ -26,11 +26,11 @@ function CreateProfileForm({
   const history = useHistory();
 
   const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState('');
-  const [messageType, setMessageType] = useState('error');
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("error");
 
   const handleClose = (_event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     setOpen(false);
@@ -38,27 +38,29 @@ function CreateProfileForm({
 
   const { validateForm, handleSubmit, ...formik } = useFormik({
     initialValues: {
-      name: '',
-      surname: '',
-      age: '',
-      gender: '',
-      city: '',
-      phone: '',
-      email: user ? user.email : '',
-      twitter: '',
-      facebook: '',
-      linkedIn: '',
-      headline: '',
-      summary: '',
+      name: "",
+      surname: "",
+      age: "",
+      gender: "",
+      city: "",
+      phone: "",
+      email: user ? user.email : "",
+      twitter: "",
+      facebook: "",
+      linkedIn: "",
+      headline: "",
+      summary: "",
+      // following: "",
     },
     enableReinitialize: true,
     validationSchema: jobSeekerValidation,
     onSubmit: async (values) => {
       setOpen(true);
       setMessage(`Well done!`);
-      setMessageType('success');
+      setMessageType("success");
       await updateUserById(user.uid, { profileCreated: true });
-      await createJobSeeker(values, user.uid)
+      await createJobSeeker(values, user.uid);
+      await addUserFollow(user.uid, "follow me ")
         .then((res) => {
           history.push(`/profile/${user.uid}`);
         })
@@ -73,7 +75,7 @@ function CreateProfileForm({
       if (answer) {
         setOpen(true);
         setMessage(`please fill in all the required inputs`);
-        setMessageType('error');
+        setMessageType("error");
         moveToFirstPage();
       }
     });
@@ -85,10 +87,10 @@ function CreateProfileForm({
       {user ? (
         <form
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           {activeStep === 0 ? (
@@ -172,7 +174,7 @@ function CreateProfileForm({
           <div
             style={{
               width: 400,
-              display: 'flex',
+              display: "flex",
               margin: 20,
             }}
           >

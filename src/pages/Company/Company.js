@@ -53,9 +53,6 @@ export default function Company() {
 
   const [value, setValue] = React.useState(0);
   const [company, setCompany] = useState({});
-  // const [bio, setBio] = useState({});
-  // const [contacts, setContacts] = useState({});
-  // const [business, setBusiness] = useState({});
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -95,22 +92,22 @@ export default function Company() {
               country={company.country}
               city={company.city}
               address={company.address}
-              tel={company.tel}
-              mail={company.mail}
+              tel={company.phone}
+              mail={company.email}
               website={company.website}
             />
           </div>
           <div className={classes.basicInfo}>
             <div>
               <ProfileBusinessCard
-                numberOfEmployees={company.numberOfEmployees}
+                employee={company.employee}
                 establishment={company.establishment}
                 taxId={company.taxId}
               />
             </div>
             <div>
               <ProfileDescriptionCard
-                description={company.description}
+                summary={company.summary}
                 // name={company.name}
               />
             </div>
@@ -129,3 +126,21 @@ export default function Company() {
     </div>
   );
 }
+
+/*KFeJMrAtOjOGhtW4bdOIY5PwwE62
+address: "Mamikonyans 56/1";
+city: "Yerevan";
+email: "gor.sharoyan95@gmail.com";
+employee: 152;
+establishment: 1995;
+facebook: "https://www.linkedin.com/mynetwork/";
+field: "Marketing ";
+following: "";
+headline: "https://www.linkedin.com/mynetwork/";
+linkedIn: "https://www.linkedin.com/mynetwork/";
+name: "Grdon Production ";
+phone: "+374 95 010248";
+summary: "https://www.linkedin.com/mynetwork/";
+taxId: 7889545;
+twitter: "https://www.linkedin.com/mynetwork/";
+website: "https://www.linkedin.com/mynetwork/";*/

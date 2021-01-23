@@ -56,11 +56,6 @@ function FormCompanyContactSection({
   linkedInError,
   websiteError,
 }) {
-  console.log(phoneValue);
-  console.log(emailValue);
-  console.log(twitterValue);
-  console.log(facebookValue);
-  console.log(linkedInValue);
   return (
     <FormSection>
       <Grid container direction="column" spacing={0}>

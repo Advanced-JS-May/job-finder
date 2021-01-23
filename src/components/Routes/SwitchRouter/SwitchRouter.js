@@ -79,8 +79,8 @@ function SwitchRouter() {
         </PrivateRoute>
 
         <PrivateRoute auth={user} path="/profile/:id">
-          <div>{user && user.role}</div>
-          {/* <Company /> */}
+          {/* <div>{user && user.role}</div> */}
+          <Company />
         </PrivateRoute>
 
         {/* <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
