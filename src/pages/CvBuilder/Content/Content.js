@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Accordion,
   AccordionDetails,
@@ -7,41 +7,65 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CvPersonalInfo from '../CvPersonalInfo/CvPersonalInfo';
+import WorkExperience from '../WorkExperience/WorkExperience';
 
 function Content() {
+  const [expanded, setExpanded] = useState('WE');
+
+  const handleAccordionExpanded = (panel) => (e) => {
+    if (
+      e.target &&
+      e.target.parentNode &&
+      (e.target.parentNode.classList.contains('accordion') ||
+        e.target.parentNode.parentNode.classList.contains('accordion'))
+    ) {
+      setExpanded((state) => (state === panel ? false : panel));
+    }
+  };
+
   return (
     <div>
       <form>
-        <Accordion expanded={true}>
+        <Accordion
+          onClick={handleAccordionExpanded('PI')}
+          expanded={expanded === 'PI'}
+        >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            className="accordion"
+            expandIcon={<ExpandMoreIcon style={{ cursor: 'default' }} />}
             aria-controls="personal information"
           >
-            <Typography>Personal Information</Typography>
+            <Typography color={expanded === 'PI' ? 'primary' : 'textSecondary'}>
+              Personal Information
+            </Typography>
           </AccordionSummary>
           <CvPersonalInfo />
         </Accordion>
-        <Accordion>
+
+        <Accordion
+          onClick={handleAccordionExpanded('WE')}
+          expanded={expanded === 'WE'}
+        >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
+            className="accordion"
+            expandIcon={<ExpandMoreIcon style={{ cursor: 'default' }} />}
+            aria-controls="work experience"
           >
-            <Typography>Accordion 2</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
+            <Typography color={expanded === 'WE' ? 'primary' : 'textSecondary'}>
+              Work WorkExperience
             </Typography>
-          </AccordionDetails>
+          </AccordionSummary>
+          <WorkExperience />
         </Accordion>
+
         <Accordion>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon style={{ cursor: 'default' }} />}
             aria-controls="panel3a-content"
           >
-            <Typography>Disabled Accordion</Typography>
+            <Typography color={expanded === 'PI' ? 'primary' : 'textSecondary'}>
+              Disabled Accordion
+            </Typography>
           </AccordionSummary>
         </Accordion>
       </form>

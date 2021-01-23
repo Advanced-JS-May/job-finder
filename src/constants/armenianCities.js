@@ -46,5 +46,9 @@ const cities = [
   'Tumanyan',
   'Tsaghkadzor',
 ];
+
 const CITIES = cities.map((el) => upperFirst(el));
+
+export const CITIESWITHOUTALL = cities.filter((el) => el !== 'All');
+
 export default CITIES;
