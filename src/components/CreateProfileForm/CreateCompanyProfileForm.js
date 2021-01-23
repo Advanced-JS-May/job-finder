@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 /* auth & services */
 import { useAuth } from "../../services/authentication";
 import { createCompany } from "../../services/company.service";
-import jobSeekerValidation from "../../validation/jobSeeker.schema";
+import { companyValidation } from "../../validation/jobSeeker.schema";
 
 /* components */
 import FormCompanyDataSection from "../FormPersonalDataSection/FormCompanyDataSection";
@@ -55,7 +55,7 @@ function CreateProfileForm({
       summary: "",
     },
     enableReinitialize: true,
-    validationSchema: jobSeekerValidation,
+    validationSchema: companyValidation,
     onSubmit: async (values) => {
       setOpen(true);
       setMessage(`Well done!`);
@@ -72,11 +72,13 @@ function CreateProfileForm({
   const handleFormSubmit = (e) => {
     e.preventDefault();
     validateForm(formik.values).then((res) => {
+      console.log(res);
       const answer = Object.keys(res).some((field) => res[field]);
+      console.log(answer);
       if (answer) {
         setOpen(true);
         setMessage(`please fill in all the required inputs`);
-        console.log(user);
+        // console.log(user);
         setMessageType("error");
         moveToFirstPage();
       }
@@ -127,9 +129,8 @@ function CreateProfileForm({
               fieldError={
                 formik.errors.field && formik.touched.field ? true : false
               }
-              establishestablishmentError={
-                formik.errors.establishestablishment &&
-                formik.touched.establishestablishment
+              establishmentError={
+                formik.errors.establishment && formik.touched.establishment
                   ? true
                   : false
               }

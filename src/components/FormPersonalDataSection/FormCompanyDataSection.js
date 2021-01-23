@@ -37,6 +37,12 @@ function FormPersonalDataSection({
   cityError,
   employeeError,
 }) {
+  console.log(nameValue);
+  console.log(fieldValue);
+  console.log(establishmentValue);
+  console.log(taxIdValue);
+  console.log(cityValue);
+  console.log(employeeValue);
   return (
     <FormSection>
       <FormField

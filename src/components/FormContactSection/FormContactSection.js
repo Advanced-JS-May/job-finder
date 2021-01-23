@@ -17,27 +17,36 @@ function TextMaskCustom(props) {
 }
 
 function FormContactSection({
+  //values
   phoneValue,
   emailValue,
   twitterValue,
   facebookValue,
   linkedInValue,
+  //event handlers
   handlePhoneChange,
   handleEmailChange,
   handleTwitterChange,
   handleFacebookChange,
   handleLinkedInChange,
+  //blurs
   handlePhoneBlur,
   handleEmailBlur,
   handleTwitterBlur,
   handleFacebookBlur,
   handleLinkedInBlur,
+  //errrors
   phoneError,
   emailError,
   twitterError,
   facebookError,
   linkedInError,
 }) {
+  console.log(phoneValue);
+  console.log(emailValue);
+  console.log(twitterValue);
+  console.log(facebookValue);
+  console.log(linkedInValue);
   return (
     <FormSection>
       <Grid container direction="column" spacing={0}>

@@ -76,6 +76,8 @@ function CustomizedSteppers() {
     setActiveStep(index);
   };
 
+  console.log(user.role);
+
   return (
     user && (
       <div className={styles.stepperWrapper}>
