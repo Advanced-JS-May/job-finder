@@ -17,7 +17,7 @@ function Signup() {
     setOpen(false);
   };
   const handleOpen = () => {
-    setOpen(true);
+    setOpen((state) => !state);
   };
 
   const handleChange = (_event, newValue) => {

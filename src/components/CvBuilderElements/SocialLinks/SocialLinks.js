@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '@material-ui/core/Button';
-import FormField from '../../../components/FormElements/FormField/FormField';
+import FormField from '../../FormElements/FormField/FormField';
 
 /* redux */
 import { useDispatch, useSelector } from 'react-redux';

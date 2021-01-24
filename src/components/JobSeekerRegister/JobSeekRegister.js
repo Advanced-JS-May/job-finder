@@ -35,7 +35,7 @@ function JobSeekerRegister({ setProgress }) {
           history.push('/email-verification');
         })
         .catch((error) => {
-          console.log(error);
+          setProgress();
           setError(error.message);
         });
     },

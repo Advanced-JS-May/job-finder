@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../../services/authentication';
+
 /* REDUX */
-import { Provider, useDispatch } from 'react-redux';
-import store from '../../store';
+import { useDispatch } from 'react-redux';
 
-/* COMPONENTs */
-import Content from './Content/Content';
+/* COMPONENTS */
+import Content from '../../components/CvBuilderElements/Content/Content';
+import MenuList from '../../components/CvBuilderElements/MenuList/MenuList';
+import Preview from '../../components/CvBuilderElements/Preview/Preview';
 
-import './CvBuilder.css';
-import MenuList from './MenuList/MenuList';
+/* Services */
 import { getJobSeekerById } from '../../services/JobSeeker.service';
 import { setCurrentUser } from '../../store/features/JobSeekerDetails';
-import Preview from './Preview/Preview';
+import { useAuth } from '../../services/authentication';
+
+import './CvBuilder.css';
 
 export default function CvBuilder() {
   const { user } = useAuth();

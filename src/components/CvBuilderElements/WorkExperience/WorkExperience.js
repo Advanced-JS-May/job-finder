@@ -1,26 +1,49 @@
 import React, { useState } from 'react';
 
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import FormField from '../../../components/FormElements/FormField/FormField';
-import MenuItem from '@material-ui/core/MenuItem';
-import { CITIESWITHOUTALL } from '../../../constants/armenianCities';
-import Button from '@material-ui/core/Button';
+import MultiLineFormField from '../../FormElements/MultiLineFormField/MultiLineFormField';
+import FormSelect from '../../FormElements/FormSelect/FormSelect';
+import FormField from '../../FormElements/FormField/FormField';
 
-import FormSelect from '../../../components/FormElements/FormSelect/FormSelect';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
 import StartDatePicker from '../StartDatePicker/StartDatePicker';
 import EndDatePicker from '../EndDatePicker/EndDatePicker';
-import { green, grey } from '@material-ui/core/colors';
 
-function WorkExperience() {
-  const [city, setCity] = useState(CITIESWITHOUTALL[0]);
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  clearFields,
+  setJobField,
+} from '../../../store/features/workExperienceFormData';
+import { CITIESWITHOUTALL } from '../../../constants/armenianCities';
+import { addJobToList } from '../../../store/features/jobList';
+
+const WorkExperience = () => {
   const [activeForm, setActiveForm] = useState(true);
+
+  const dispatch = useDispatch();
+  const workExperienceFormData = useSelector(
+    (state) => state.workExperienceFormData,
+  );
 
   const handleAddButtonClick = () => {
     setActiveForm((state) => !state);
   };
 
   const handleFieldChange = (e) => {
-    setCity(e.target.value);
+    const { name, value } = e.target;
+    dispatch(setJobField({ name, value }));
+  };
+
+  const handleSaveButtonClick = () => {
+    dispatch(addJobToList(workExperienceFormData));
+    dispatch(clearFields());
+    setActiveForm((state) => !state);
+  };
+
+  const handleResetButtonClick = () => {
+    dispatch(clearFields());
   };
 
   return (
@@ -38,14 +61,24 @@ function WorkExperience() {
         className="work-experience__form"
         style={{ display: activeForm ? 'block' : 'none' }}
       >
-        <FormField label="Job Title" name="jobTitle" />
-        <FormField label="Company" name="company" />
+        <FormField
+          label="Job Title"
+          name="jobTitle"
+          value={workExperienceFormData.jobTitle}
+          onChange={handleFieldChange}
+        />
+        <FormField
+          label="Company"
+          name="company"
+          value={workExperienceFormData.company}
+          onChange={handleFieldChange}
+        />
         <FormSelect
           array={CITIESWITHOUTALL}
-          value={city}
+          value={workExperienceFormData.city}
           onChange={handleFieldChange}
-          label="year"
-          name="startYear"
+          label="City"
+          name="city"
         />
 
         <div
@@ -56,12 +89,20 @@ function WorkExperience() {
           }}
         >
           <StartDatePicker />
-
           <EndDatePicker />
         </div>
+
+        <MultiLineFormField
+          label="Description"
+          name="description"
+          maxLength={450}
+          value={workExperienceFormData.description}
+          onChange={handleFieldChange}
+        />
+
         <div
           style={{
-            width: '90%',
+            width: '100%',
             margin: '1rem 0',
             display: 'flex',
             gap: '1rem',
@@ -72,6 +113,7 @@ function WorkExperience() {
             style={{ minWidth: '150px', fontSize: '1.2rem' }}
             variant="contained"
             color="primary"
+            onClick={handleSaveButtonClick}
           >
             Save
           </Button>
@@ -79,8 +121,9 @@ function WorkExperience() {
             style={{ minWidth: '150px', fontSize: '1.2rem' }}
             variant="contained"
             color="secondary"
+            onClick={handleResetButtonClick}
           >
-            Reset
+            reset
           </Button>
         </div>
       </div>
@@ -89,24 +132,20 @@ function WorkExperience() {
           width: '100%',
           margin: '1rem',
           display: 'flex',
-          gap: '1rem',
-          justifyContent: 'flex-end',
+          justifyContent: 'center',
         }}
       >
-        <Button
+        <Fab
           disabled={activeForm}
-          variant="contained"
-          style={{
-            background: activeForm ? grey : green[800],
-            color: activeForm ? 'grey' : 'white',
-          }}
+          aria-label="add"
           onClick={handleAddButtonClick}
+          color="primary"
         >
-          Add
-        </Button>
+          <AddIcon />
+        </Fab>
       </div>
     </AccordionDetails>
   );
-}
+};
 
 export default WorkExperience;

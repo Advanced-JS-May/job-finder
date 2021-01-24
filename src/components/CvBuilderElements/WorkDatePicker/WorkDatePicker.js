@@ -18,7 +18,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function WorkDatePicker({ name, children }) {
+export default function WorkDatePicker({
+  name,
+  children,
+  cancelButtonClick,
+  submitButtonClick,
+  dialogName,
+}) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -28,6 +34,16 @@ export default function WorkDatePicker({ name, children }) {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleCancelButtonClick = () => {
+    setOpen(false);
+    cancelButtonClick();
+  };
+
+  const handleSubmitButtonClick = () => {
+    setOpen(false);
+    submitButtonClick();
   };
 
   return (
@@ -45,15 +61,15 @@ export default function WorkDatePicker({ name, children }) {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Fill the form</DialogTitle>
+        <DialogTitle>{dialogName}</DialogTitle>
         <DialogContent>
           <form className={classes.container}>{children}</form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleCancelButtonClick} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleSubmitButtonClick} color="primary">
             Ok
           </Button>
         </DialogActions>

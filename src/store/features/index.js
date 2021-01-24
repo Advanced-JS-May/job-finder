@@ -1,3 +1,6 @@
 import jobSeeker from './JobSeekerDetails';
 import socialLinks from './SocialLinks';
-export default { jobSeeker, socialLinks };
+import workExperienceFormData from './workExperienceFormData';
+import jobList from './jobList';
+
+export default { jobSeeker, socialLinks, workExperienceFormData, jobList };

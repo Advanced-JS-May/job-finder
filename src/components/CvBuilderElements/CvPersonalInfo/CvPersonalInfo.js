@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import { AccordionDetails, Button } from '@material-ui/core';
+import React from 'react';
+import { changeField } from '../../../store/features/JobSeekerDetails';
 import { useSelector, useDispatch } from 'react-redux';
 
-import CvImage from '../CvImage/CvImage';
-import { useAuth } from '../../../services/authentication';
+// import CvImage from '../CvImage/CvImage';
 import FormField from '../../../components/FormElements/FormField/FormField';
-import MenuItem from '@material-ui/core/MenuItem';
-import CITIES from '../../../constants/armenianCities';
-import { changeField } from '../../../store/features/JobSeekerDetails';
-import { makeStyles } from '@material-ui/core/styles';
+import SocialLinks from '../SocialLinks/SocialLinks';
 import InputMask from 'react-input-mask';
 
-import { changeSocialLinkActiveState } from '../../../store/features/SocialLinks';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import { makeStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
 
+import CITIES from '../../../constants/armenianCities';
+import { useAuth } from '../../../services/authentication';
 import './CvPersonalInfo.css';
-import SocialLinks from '../SocialLinks/SocialLinks';
 
 const useStyles = makeStyles({
   summary: {
@@ -137,8 +136,6 @@ function CvPersonalInfo() {
             <SocialLinks />
           </>
         ) : null}
-        {/*
-         */}
       </AccordionDetails>
     </>
   );
