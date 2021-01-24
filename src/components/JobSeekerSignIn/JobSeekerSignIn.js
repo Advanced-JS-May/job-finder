@@ -8,30 +8,31 @@ import { USER_ROLES } from "../../constants/user.constants";
 import FormField from "../FormElements/FormField/FormField";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { checkProfileStatus } from "../../services/checkProfileStatus";
 
 const useStyles = makeStyles({
   form: {
-    display: "flex",
-    flexDirection: "column",
-    width: "350px",
-    ["@media and (max-width: 768px)"]: {
-      width: "250px",
+    display: 'flex',
+    flexDirection: 'column',
+    width: '350px',
+    ['@media and (max-width: 768px)']: {
+      width: '250px',
     },
   },
   button: {
-    margin: " 16px 0",
-    padding: "0.8rem",
+    margin: ' 16px 0',
+    padding: '0.8rem',
   },
 });
 
-export default function EmployeeSignIn() {
+export default function EmployeeSignIn({ setProgress }) {
   const history = useHistory();
   const classes = useStyles();
 
   const [email, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setError] = useState("");
-  const { signin } = useAuth();
+  const { signin, user } = useAuth();
 
   const handleLoginUpdate = ({ target: { value } }) => setLogin(value);
   const handlePasswordUpdate = ({ target: { value } }) => setPassword(value);
@@ -39,14 +40,15 @@ export default function EmployeeSignIn() {
   const handleLogin = (event) => {
     event.preventDefault();
     signin(email, password).then((res) => {
-      console.log("response", res);
-      checkUserRole(res.uid, USER_ROLES.user)
-        .then((res) => {
-          res
-            ? history.push("/signin/jobseeker")
-            : setError("Not a JobSeeker ");
-        })
-        .catch(console.warn);
+      if (res.profileCreated) {
+        if (res.role === USER_ROLES.user) {
+          history.push("/signin/jobseeker");
+        } else {
+          setError("Not a JobSeeker ");
+        }
+      } else {
+        history.push("/profile/create");
+      }
     });
   };
 
@@ -60,7 +62,7 @@ export default function EmployeeSignIn() {
           type="email"
           name="email"
           value={email}
-          label={"email"}
+          label={'email'}
           onChange={handleLoginUpdate}
         />
         <br />
@@ -69,7 +71,7 @@ export default function EmployeeSignIn() {
           onChange={handlePasswordUpdate}
           name="password"
           type="password"
-          label={"password"}
+          label={'password'}
         />
         <br />
         <Button
@@ -77,13 +79,12 @@ export default function EmployeeSignIn() {
           color="primary"
           variant="contained"
           className={classes.button}
-          variant="contained"
         >
           Login
         </Button>
         <br />
-        <GoogleButton />
-        <FacebookButton />
+        <GoogleButton setProgress={setProgress} />
+        <FacebookButton setProgress={setProgress} />
       </form>
     </>
   );

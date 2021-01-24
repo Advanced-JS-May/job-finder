@@ -34,6 +34,16 @@ function Signup() {
       >
         <CircularProgress color="inherit" />
       </Backdrop>
+      <Typography
+        variant="h3"
+        color="textPrimary"
+        align="center"
+        style={{
+          margin: '2rem 0',
+        }}
+      >
+        Sign Up
+      </Typography>
       <SimpleTabs
         value={value}
         onChange={handleChange}
