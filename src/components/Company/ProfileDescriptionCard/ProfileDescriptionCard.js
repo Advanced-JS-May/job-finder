@@ -11,7 +11,6 @@ import Typography from "@material-ui/core/Typography";
 import defaultDescription from "./../../../../src/constants/defaultDescription";
 import EditIcon from "@material-ui/icons/Edit";
 
-
 const useStyles = makeStyles({
   root: {
     width: "800px",
@@ -30,7 +29,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileDescriptionCard({ description }) {
+export default function ProfileDescriptionCard({ summary }) {
   const classes = useStyles();
 
   return (
@@ -45,13 +44,13 @@ export default function ProfileDescriptionCard({ description }) {
           <h1> Biography </h1>
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          {!description ? (
+          {!summary ? (
             <div>
               <p>{defaultDescription}</p>
             </div>
           ) : (
             <div>
-              <p>{description}</p>
+              <p>{summary}</p>
             </div>
           )}
         </Typography>

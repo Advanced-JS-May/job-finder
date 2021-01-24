@@ -4,12 +4,12 @@ import { useHistory } from "react-router";
 
 /* auth & services */
 import { useAuth } from "../../services/authentication";
-import { createJobSeeker } from "../../services/JobSeeker.service";
-import jobSeekerValidation from "../../validation/jobSeeker.schema";
-import { addUserFollow } from "../../services/favorites";
+import { createCompany } from "../../services/company.service";
+import { companyValidation } from "../../validation/jobSeeker.schema";
+
 /* components */
-import FormPersonalDataSection from "../FormPersonalDataSection/FormPersonalDataSection";
-import FormContactSection from "../FormContactSection/FormContactSection";
+import FormCompanyDataSection from "../FormPersonalDataSection/FormCompanyDataSection";
+import FormCompanyContactSection from "../FormContactSection/FormCompanyContactSection";
 import FormDescriptionSection from "../FormDescriptionSection/FormDescriptionSection";
 import FormAlert from "../FormElements/FormAlert/FormAlert";
 import CreateProfileButtons from "../FormElements/CreateProfileButtons/CreateProfileButtons";
@@ -39,28 +39,29 @@ function CreateProfileForm({
   const { validateForm, handleSubmit, ...formik } = useFormik({
     initialValues: {
       name: "",
-      surname: "",
-      age: "",
-      gender: "",
+      field: "",
       city: "",
+      address: "",
       phone: "",
+      taxId: "",
+      establishment: "",
+      employee: "",
       email: user ? user.email : "",
       twitter: "",
       facebook: "",
+      website: "",
       linkedIn: "",
       headline: "",
       summary: "",
-      // following: "",
     },
     enableReinitialize: true,
-    validationSchema: jobSeekerValidation,
+    validationSchema: companyValidation,
     onSubmit: async (values) => {
       setOpen(true);
       setMessage(`Well done!`);
       setMessageType("success");
       await updateUserById(user.uid, { profileCreated: true });
-      await createJobSeeker(values, user.uid);
-      await addUserFollow(user.uid, "follow me ")
+      await createCompany(values, user.uid)
         .then((res) => {
           history.push(`/profile/${user.uid}`);
         })
@@ -71,10 +72,13 @@ function CreateProfileForm({
   const handleFormSubmit = (e) => {
     e.preventDefault();
     validateForm(formik.values).then((res) => {
+      console.log(res);
       const answer = Object.keys(res).some((field) => res[field]);
+      console.log(answer);
       if (answer) {
         setOpen(true);
         setMessage(`please fill in all the required inputs`);
+        // console.log(user);
         setMessageType("error");
         moveToFirstPage();
       }
@@ -94,55 +98,84 @@ function CreateProfileForm({
           }}
         >
           {activeStep === 0 ? (
-            <FormPersonalDataSection
+            <FormCompanyDataSection
+              //values
               nameValue={formik.values.name}
-              surnameValue={formik.values.surname}
-              ageValue={formik.values.age}
-              genderValue={formik.values.gender}
+              fieldValue={formik.values.field}
+              establishmentValue={formik.values.establishment}
+              taxIdValue={formik.values.taxId}
+              employeeValue={formik.values.employee}
               cityValue={formik.values.city}
+              //event handlers
               handleNameChange={formik.handleChange}
-              handleSurnameChange={formik.handleChange}
-              handleAgeChange={formik.handleChange}
-              handleGenderChange={formik.handleChange}
+              handleFieldChnage={formik.handleChange}
+              handleEstablishmentChange={formik.handleChange}
+              handleTaxIdChange={formik.handleChange}
               handleCityChange={formik.handleChange}
+              handleEmployeeChange={formik.handleChange}
+              //blurs
               handleNameBlur={formik.handleBlur}
-              handleSurnameBlur={formik.handleBlur}
-              handleAgeBlur={formik.handleBlur}
-              handleGenderBlur={formik.handleBlur}
+              handleFieldBlur={formik.handleBlur}
+              handleEstablishmentBlur={formik.handleBlur}
+              handleTaxIdBlur={formik.handleBlur}
               handleCityBlur={formik.handleBlur}
+              handleEmployeeBlur={formik.handleBlur}
+              //errors
               nameError={
-                formik.errors.name && formik.touched.name ? true : false
+                formik.errors.companyName && formik.touched.companyName
+                  ? true
+                  : false
               }
-              surnameError={
-                formik.errors.surname && formik.touched.surname ? true : false
+              fieldError={
+                formik.errors.field && formik.touched.field ? true : false
               }
-              ageError={formik.errors.age && formik.touched.age ? true : false}
+              establishmentError={
+                formik.errors.establishment && formik.touched.establishment
+                  ? true
+                  : false
+              }
+              taxIdError={
+                formik.errors.taxId && formik.touched.taxId ? true : false
+              }
               cityError={
                 formik.errors.city && formik.touched.city ? true : false
               }
-              genderError={
-                formik.errors.gender && formik.touched.gender ? true : false
+              employeeError={
+                formik.errors.employee && formik.touched.employee ? true : false
               }
             />
           ) : activeStep === 1 ? (
-            <FormContactSection
+            <FormCompanyContactSection
+              //values
               phoneValue={formik.values.phone}
+              addressValue={formik.values.address}
               emailValue={formik.values.email}
               twitterValue={formik.values.twitter}
               facebookValue={formik.values.facebook}
               linkedInValue={formik.values.linkedIn}
+              websiteValue={formik.values.website}
+              //event handlers
               handlePhoneChange={formik.handleChange}
+              handleAddressChange={formik.handleChange}
               handleEmailChange={formik.handleChange}
               handleTwitterChange={formik.handleChange}
               handleFacebookChange={formik.handleChange}
               handleLinkedInChange={formik.handleChange}
+              handleWebsiteChange={formik.handleChange}
+              //blurs
+              handlePhoneBlur={formik.handleBlur}
+              handleAddressBlur={formik.handleBlur}
               handleEmailBlur={formik.handleBlur}
+              handleTwitterBlur={formik.handleBlur}
               handleFacebookBlur={formik.handleBlur}
               handleLinkedInBlur={formik.handleBlur}
-              handlePhoneBlur={formik.handleBlur}
-              handleTwitterBlur={formik.handleBlur}
+              handleWebsiteBlur={formik.handleBlur}
+              //Errors
               phoneError={
                 formik.errors.phone && formik.touched.phone ? true : false
+              }
+              emailaddressErrorError={
+                formik.errors.address && formik.touched.address ? true : false
               }
               emailError={
                 formik.errors.email && formik.touched.email ? true : false
@@ -155,6 +188,9 @@ function CreateProfileForm({
               }
               linkedInError={
                 formik.errors.linkedIn && formik.touched.linkedIn ? true : false
+              }
+              websiteError={
+                formik.errors.website && formik.touched.website ? true : false
               }
             />
           ) : (
@@ -175,7 +211,7 @@ function CreateProfileForm({
             style={{
               width: 400,
               display: "flex",
-              margin: 20,
+              margin: 170,
             }}
           >
             <CreateProfileButtons
