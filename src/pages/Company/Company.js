@@ -61,10 +61,9 @@ export default function Company() {
   useEffect(() => {
     getCompanyById(user.uid).then((company) => {
       setCompany(company);
-      console.log(company);
     });
   }, [user.uid]);
-  //several namings must be checked
+
   return (
     <div className={classes.root}>
       <ProfileHeader
