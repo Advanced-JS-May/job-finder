@@ -1,11 +1,12 @@
-import React from "react";
-import { Formik } from "formik";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Formik } from "formik";
+
 //services
 import { updateProfileInfo } from "../../../services/company.service";
 import { useAuth } from "../../../services/authentication";
-import { goBackFunction } from "../../../services/history.service";
+// import { getCompanyById } from "../../../services/company";
+import { getProfileById } from "../../../services/company.service";
 //UI
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
@@ -42,11 +43,15 @@ export default function ProfileContactEdit({
   const classes = useStyles();
   const { user } = useAuth();
   const history = useHistory();
+  const [profile, setProfile] = useState();
 
-  const handleGoBack = () => {
-    history.goBack();
-    // goBackFunction();
-  };
+  // useEffect(() => {
+  //   // getProfileById("/company/", user.uid).then((profile) => {
+  //   //   setProfile(profile);
+  //   //   console.log(profile);
+  //   // });
+
+  // }, [user.uid]);
 
   return (
     <Card className={classes.root}>
@@ -62,6 +67,7 @@ export default function ProfileContactEdit({
           }}
           onSubmit={(values) => {
             updateProfileInfo(user.uid, values);
+            setTimeout(() => history.goBack(), 1500);
           }}
         >
           {(props) => (
@@ -169,10 +175,11 @@ export default function ProfileContactEdit({
                 )}
               </div>
               <div>
+                {/* <SubmitButton>Submit</SubmitButton> */}
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={goBackFunction}
+                  onClick={props.handleSubmit}
                 >
                   Submit
                 </Button>
