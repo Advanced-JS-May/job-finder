@@ -78,7 +78,6 @@ function CreateProfileForm({
       if (answer) {
         setOpen(true);
         setMessage(`please fill in all the required inputs`);
-        // console.log(user);
         setMessageType("error");
         moveToFirstPage();
       }

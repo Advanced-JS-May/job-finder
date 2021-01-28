@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 //UI
 import Card from "@material-ui/core/Card";
@@ -33,16 +34,29 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileContactCard({  country,  city,  address,  tel,  mail,  website}) {
+export default function ProfileContactCard({
+  country,
+  city,
+  address,
+  tel,
+  mail,
+  website,
+}) {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push("/profile/profileContactCard/edit");
+  };
 
   return (
     <Card>
-      <Button className={classes.edit}>
+      <Button className={classes.edit} onclick={handleEdit}>
         <Link to="/profile/profileContactCard/edit">
           <EditIcon />
         </Link>
       </Button>
+
       <CardContent className={classes.root}>
         <h3>Contacts</h3>
         <div className={classes.element}>

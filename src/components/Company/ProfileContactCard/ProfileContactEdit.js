@@ -1,11 +1,11 @@
 import React from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
 //services
-import { createCompany } from "../../../services/company";
+import { updateProfileInfo } from "../../../services/company.service";
 import { useAuth } from "../../../services/authentication";
-
+import { goBackFunction } from "../../../services/history.service";
 //UI
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
@@ -31,9 +31,22 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileContactEdit({  country,  city,  address,  tel,  mail,  website,}) {
+export default function ProfileContactEdit({
+  country,
+  city,
+  address,
+  tel,
+  mail,
+  website,
+}) {
   const classes = useStyles();
   const { user } = useAuth();
+  const history = useHistory();
+
+  const handleGoBack = () => {
+    history.goBack();
+    // goBackFunction();
+  };
 
   return (
     <Card className={classes.root}>
@@ -46,10 +59,9 @@ export default function ProfileContactEdit({  country,  city,  address,  tel,  m
             tel: "",
             mail: "",
             website: "",
-            image: "",
           }}
           onSubmit={(values) => {
-            createCompany(user.uid, "contacts", values);
+            updateProfileInfo(user.uid, values);
           }}
         >
           {(props) => (
@@ -160,9 +172,9 @@ export default function ProfileContactEdit({  country,  city,  address,  tel,  m
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={props.handleSubmit}
+                  onClick={goBackFunction}
                 >
-                  <Link to="/company/:id">Submit</Link>
+                  Submit
                 </Button>
               </div>
             </form>
