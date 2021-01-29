@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 });
 
 export default function ProfileBusinessInfoEdit({
-  employees,
+  employee,
   establishment,
   taxId,
 }) {
@@ -43,7 +43,7 @@ export default function ProfileBusinessInfoEdit({
       <CardContent>
         <Formik
           initialValues={{
-            numberOfEmployees: "",
+            employee: "",
             taxId: "",
             establishment: "",
           }}
@@ -75,14 +75,14 @@ export default function ProfileBusinessInfoEdit({
                 <SupervisorAccountIcon />
                 Employees:
                 <TextField
-                  label={employees}
+                  label={employee}
                   id="outlined-basic"
                   type="text"
                   variant="outlined"
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.name}
-                  name="employees"
+                  name="employee"
                 />
                 {props.errors.name && (
                   <div id="feedback">{props.errors.name}</div>

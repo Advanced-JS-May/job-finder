@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 //UI
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -24,25 +25,15 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     marginRight: "24px",
   },
+  element: {
+    padding: "15px",
+  },
   snapshot: {
     display: "flex",
     // flexDirection:"row",
     justifyContent: "space-between",
     alignItems: "center",
     margin: "3px solid green",
-  },
-  basicInfo: {
-    display: "flex",
-    justifyContent: "space-between",
-    flexDirection: "column",
-  },
-  bussinessInfo: {
-    width: "1000px",
-    height: "250px",
-  },
-  description: {
-    width: "1000px",
-    height: "250px",
   },
 }));
 
@@ -69,7 +60,7 @@ export default function Company() {
       <ProfileHeader
         image={company.image}
         coverImage={company.coverImage}
-        name={company.companyName}
+        name={company.name}
       />
       <AppBar position="static" color="default">
         <Tabs
@@ -85,8 +76,8 @@ export default function Company() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
-        <div className={classes.snapshot}>
-          <div>
+        <Grid container direction="row" justify="center" alignItems="center">
+          <div className={classes.element}>
             <ProfileContactCard
               country={company.country}
               city={company.city}
@@ -96,22 +87,29 @@ export default function Company() {
               website={company.website}
             />
           </div>
-          <div className={classes.basicInfo}>
-            <div>
-              <ProfileBusinessCard
-                employee={company.employee}
-                establishment={company.establishment}
-                taxId={company.taxId}
-              />
-            </div>
-            <div>
-              <ProfileDescriptionCard
-                summary={company.summary}
-                // name={company.name}
-              />
-            </div>
+          <div>
+            <Grid
+              container
+              direction="column"
+              justify="space-between"
+              alignItems="center"
+            >
+              <div className={classes.element}>
+                <ProfileBusinessCard
+                  employee={company.employee}
+                  establishment={company.establishment}
+                  taxId={company.taxId}
+                />
+              </div>
+              <div className={classes.element}>
+                <ProfileDescriptionCard
+                  summary={company.summary}
+                  // name={company.name}
+                />
+              </div>
+            </Grid>
           </div>
-        </div>
+        </Grid>
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
         <div>

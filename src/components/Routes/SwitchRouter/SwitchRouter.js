@@ -8,7 +8,7 @@ import SignIn from "../../../pages/SignIn/SignIn";
 import Signup from "../../../pages/Signup/Signup";
 import Home from "../../../pages/Home/Home";
 import Jobs from "../../../pages/Jobs/Jobs";
-import Company from "../../../pages/Company/Company";
+import Profile from "../../../pages/Profile/Profile";
 import EmailVerification from "../../../pages/EmailVerification/EmailVerification";
 import CreateProfile from "../../../pages/CreateProfile/CreateProfile";
 import AllCompanies from "../../../pages/AllCompanies/AllCompanies";
@@ -16,7 +16,7 @@ import ProfileContactEdit from "../../../components/Company/ProfileContactCard/P
 import ProfileDescriptionEdit from "../../Company/ProfileDescriptionCard/ProdileDescriptionEdit";
 import CreateJob from "../../Company/CreateJob/CreateJob";
 import CompaniesInfoShow from "../../../components/CompaniesInfoShow/CompaniesInfoShow";
-import ProfileBusinessInfoEdit from "../../../components/Company/ProfileBusinessCard/ProfileBusinessInfoEdit";
+import ProfileBusinessEdit from "../../Company/ProfileBusinessCard/ProfileBusinessEdit";
 import JobsInfoShow from "../../../components/JobsInfoShow/JobsInfoShow";
 
 function SwitchRouter() {
@@ -59,7 +59,7 @@ function SwitchRouter() {
           <ProfileDescriptionEdit />
         </Route>
         <Route path="/profile/profileBusinessCard/edit">
-          <ProfileBusinessInfoEdit />
+          <ProfileBusinessEdit />
         </Route>
 
         {/*CreateJob*/}
@@ -80,7 +80,7 @@ function SwitchRouter() {
 
         <PrivateRoute auth={user} path="/profile/:id">
           {/* <div>{user && user.role}</div> */}
-          <Company />
+          <Profile />
         </PrivateRoute>
 
         {/* <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
