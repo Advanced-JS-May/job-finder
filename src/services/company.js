@@ -31,7 +31,7 @@ export function getImageUrl(image) {
 
 export function getAllCompanies() {
   return database
-    .ref("/companies")
+    .ref("/company/")
     .once("value")
     .then(function (response) {
       return response.val();

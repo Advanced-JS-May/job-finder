@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React, { useState, useEffect } from 'react';
 import { getAllCompanies } from '../../services/company';
 import CompanyMiniInfo from '../CompanyMiniInfo/CompanyMiniInfo';
@@ -11,20 +11,7 @@ import fields from '../../constants/jobField.js'; //forSaerch
 import _ from 'lodash';
 import { Pagination } from '@material-ui/lab';
 import usePagination from '../../Utils/paginationHelper';
-=======
-import React, { useState, useEffect } from "react";
-import { getAllCompanies } from "../../services/company";
-import CompanyMiniInfo from "../companyMiniInfo/CompanyMiniInfo";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField"; //forSaerch
-import Button from "@material-ui/core/Button"; //forSaerch
-import Select from "../Select/Select.js"; //forSaerch
-import { useLocation, generatePath, useHistory } from "react-router-dom"; //forSaerch
-import fields from "../../constants/jobField.js"; //forSaerch
-import _ from "lodash";
-import { Pagination } from "@material-ui/lab";
-import usePagination from "../../Utils/paginationHelper";
->>>>>>> 5112aa72d45df34a75fb856340b3bac011caabdc
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +31,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  pagin: {
+    display: 'flex',
+    justifyContent: 'center',
   },
 }));
 let tmpComps = []; //forSaerch
@@ -87,8 +78,8 @@ export default function CardMakerForCompanies() {
   const mapForComps = data.currentData().map((e) => (
     <CompanyMiniInfo
       key={_.uniqueId("cmii_")}
-      companyName={e.companyName ? e.companyName : "No name"}
-      companyDesc={e.bio ? e.bio.description : "No description"}
+      companyName={e.name ? e.name : "No name"}
+      companyDesc={e.headline ? e.headline : 'No Description'}
       companyImg={e.image}
       companyId={e.id}
       buttonFunction={() => {
@@ -125,8 +116,7 @@ export default function CardMakerForCompanies() {
   }
 
   function Search() {
-    //forSaerch
-    tmpComps = constComps; //forSaerch CHANGE VASR
+    tmpComps = constComps;
     console.log(search, 5);
     if (search === "" && fieldValue === "All") {
       setCompanies(constComps);
@@ -158,8 +148,6 @@ export default function CardMakerForCompanies() {
   function allComps() {
     return (
       <div>
-        {" "}
-        //forSaerch
         <form
           className={(classes.root, classes.searchPart)}
           noValidate
@@ -185,14 +173,16 @@ export default function CardMakerForCompanies() {
           />
         </form>
         <div className="containerCompaniesMinia">{mapForComps}</div>
-        <Pagination
-          count={count}
-          size="large"
-          page={page}
-          variant="outlined"
-          shape="rounded"
-          onChange={handleChange}
-        />
+        <div className={classes.pagin}>
+          <Pagination
+            count={count}
+            size="large"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
+        </div>
       </div>
     );
   }
