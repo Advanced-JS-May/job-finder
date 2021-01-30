@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
-import { Link } from "react-router-dom";
 
 //services
-import { createCompany } from "../../../services/company";
+import { updateProfileInfo } from "../../../services/company.service";
 import { useAuth } from "../../../services/authentication";
+// import { getCompanyById } from "../../../services/company";
+import { getProfileById } from "../../../services/company.service";
 
 //UI
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -31,9 +33,26 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileContactEdit({  country,  city,  address,  tel,  mail,  website,}) {
+export default function ProfileContactEdit({
+  country,
+  city,
+  address,
+  tel,
+  mail,
+  website,
+}) {
   const classes = useStyles();
   const { user } = useAuth();
+  const history = useHistory();
+  const [profile, setProfile] = useState();
+
+  // useEffect(() => {
+  //   // getProfileById("/company/", user.uid).then((profile) => {
+  //   //   setProfile(profile);
+  //   //   console.log(profile);
+  //   // });
+
+  // }, [user.uid]);
 
   return (
     <Card className={classes.root}>
@@ -46,10 +65,10 @@ export default function ProfileContactEdit({  country,  city,  address,  tel,  m
             tel: "",
             mail: "",
             website: "",
-            image: "",
           }}
           onSubmit={(values) => {
-            createCompany(user.uid, "contacts", values);
+            updateProfileInfo(user.uid, values);
+            setTimeout(() => history.goBack(), 1500);
           }}
         >
           {(props) => (
@@ -157,12 +176,13 @@ export default function ProfileContactEdit({  country,  city,  address,  tel,  m
                 )}
               </div>
               <div>
+                {/* <SubmitButton>Submit</SubmitButton> */}
                 <Button
                   variant="contained"
                   color="primary"
                   onClick={props.handleSubmit}
                 >
-                  <Link to="/company/:id">Submit</Link>
+                  Submit
                 </Button>
               </div>
             </form>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
-import { Link } from "react-router-dom";
 
 //services
-import { createCompany } from "../../../services/company";
+import { updateProfileInfo } from "../../../services/company.service";
 import { useAuth } from "../../../services/authentication";
 
 //UI
@@ -29,16 +29,18 @@ const useStyles = makeStyles({
 export default function ProfileDescriptionEdit() {
   const classes = useStyles();
   const { user } = useAuth();
+  const history = useHistory();
 
   return (
     <Card className={classes.root}>
       <CardContent>
         <Formik
           initialValues={{
-            description: "",
+            summary: "",
           }}
           onSubmit={(values) => {
-            createCompany(user.uid, "bio", values);
+            updateProfileInfo(user.uid, values);
+            setTimeout(() => history.goBack(), 1500);
           }}
         >
           {(props) => (
@@ -54,8 +56,8 @@ export default function ProfileDescriptionEdit() {
                   name="address"
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
-                  value={props.values.description}
-                  name="description"
+                  value={props.values.name}
+                  name="summary"
                 />
                 {props.errors.name && (
                   <div id="feedback">{props.errors.name}</div>
@@ -67,7 +69,7 @@ export default function ProfileDescriptionEdit() {
                   color="primary"
                   onClick={props.handleSubmit}
                 >
-                  <Link to="/company/:id">Submit</Link>
+                  Submit
                 </Button>
               </div>
             </form>

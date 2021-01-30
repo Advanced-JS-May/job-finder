@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 //UI
 import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -14,7 +15,7 @@ import EditIcon from "@material-ui/icons/Edit";
 const useStyles = makeStyles({
   root: {
     width: "800px",
-    height: "250px",
+    height: "180px",
   },
   bullet: {
     display: "inline-block",
@@ -34,15 +35,27 @@ export default function ProfileDescriptionCard({ summary }) {
 
   return (
     <Card className={classes.root}>
-      <Button className={classes.edit}>
-        <Link to="/profile/profileDescriptionCard/edit">
-          <EditIcon />
-        </Link>
-      </Button>
       <CardContent>
-        <Typography className={classes.title} color="textPriamry" gutterBottom>
-          <h1> Biography </h1>
-        </Typography>
+        <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="center"
+        >
+          <Button className={classes.edit}>
+            <Link to="/profile/profileDescriptionCard/edit">
+              <EditIcon />
+            </Link>
+          </Button>
+
+          <Typography
+            className={classes.title}
+            color="textPriamry"
+            gutterBottom
+          >
+            <h3> Biography </h3>
+          </Typography>
+        </Grid>
         <Typography className={classes.pos} color="textSecondary">
           {!summary ? (
             <div>

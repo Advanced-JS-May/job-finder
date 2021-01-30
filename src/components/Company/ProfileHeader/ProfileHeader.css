@@ -1,68 +1,62 @@
-.mainHeader{
-    display:flex;
-    position: relative;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 50px;
-    margin-right:150px;
-    margin-left:150px;
-    padding:none;
-    /* border:3px solid green */
+.mainHeader {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 50px;
+  margin-right: 150px;
+  margin-left: 150px;
+  padding: none;
 }
 
 /*Profile Picture*/
 
 #profilePicture {
-    display:flex;
-    position: absolute;
-    margin-left: 35px;
-    margin-top:25px;
-    z-index: 2;
-    padding: 15px;
-    /* border:3px solid green */
+  display: flex;
+  position: absolute;
+  margin-left: 35px;
+  margin-top: 25px;
+  z-index: 2;
+  padding: 15px;
 }
 
 #profileName {
-    z-index: 2;
-    margin-right:150px;
-    margin-left:250px;
-    height: 45px;
-    width:500px;
-    padding:none;
-
+  z-index: 2;
+  margin-right: 150px;
+  margin-left: 250px;
+  height: 45px;
+  width: 500px;
+  padding: none;
 }
 
-#profileName  h2 {
- align-items : center;
-  padding:none;
- }
+#profileName h2 {
+  align-items: center;
+  padding: none;
+}
 
 #profileUpload {
-    display:flex;
-    position: absolute;
-    margin-left: 35px;
-    margin-top:215px;
-    z-index: 2;
-    padding: 15px;
-    /* border:3px solid green */
+  display: flex;
+  position: absolute;
+  margin-left: 35px;
+  margin-top: 215px;
+  z-index: 2;
+  padding: 15px;
 }
 
 /*Cover Image*/
 
 #coverImage {
-    display:flex;
-    margin-left: 100px;
-    z-index: 1;
-    position: absolute;
-    /* border:3px solid green */
+  display: flex;
+  margin-left: 100px;
+  z-index: 1;
+  position: absolute;
 }
 
 #coverUpload {
-    display:flex;
-    position: relative;
-    z-index:2;
-    /* border:3px solid green; */
-    margin-left: 720px;
-    margin-top:215px;
-    margin-right: 65px;
+  display: flex;
+  position: relative;
+  z-index: 2;
+  margin-left: 720px;
+  margin-top: 215px;
+  margin-right: 65px;
 }
