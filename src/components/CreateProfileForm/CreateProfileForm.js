@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useHistory } from 'react-router';
 
@@ -59,12 +59,8 @@ function CreateProfileForm({
       setMessage(`Well done!`);
       setMessageType('success');
       await updateUserById(user.uid, { profileCreated: true });
-      await createJobSeeker(values, user.uid);
-      await addUserFollow(user.uid, 'follow me ')
-        .then((res) => {
-          history.push(`/profile/${user.uid}`);
-        })
-        .catch((error) => console.log(error));
+      await createJobSeeker({ ...values, following: ['lol'] }, user.uid);
+      history.push(`/profile/${user.uid}`);
     },
   });
 
@@ -81,6 +77,12 @@ function CreateProfileForm({
     });
     handleSubmit();
   };
+
+  useEffect(() => {
+    if (user && user.profileCreated) {
+      history.push('/');
+    }
+  }, [history, user]);
 
   return (
     <>
