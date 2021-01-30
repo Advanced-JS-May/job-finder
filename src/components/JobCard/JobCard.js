@@ -51,7 +51,7 @@ function JobCard({
       <CardActions>
         <Button onClick={details}>More</Button>
         {/*@TODO: create Follow Component */}
-        {arr.includes(id) ? ( 
+        {arr.includes(id) ? (
           <Button id={id} onClick={onUnFollow}>
             <FavoriteBorderIcon color="secondary" />
             unFollow

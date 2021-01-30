@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CompaniesInfoShow() {
   const classes = useStyles();
   const location = useLocation();
-  const [company, setCompany] = useState({ bio: {}, contacts: {} });
+  const [company, setCompany] = useState({});
   useEffect(() => {
     getCompanyById(
       location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
@@ -61,13 +61,11 @@ export default function CompaniesInfoShow() {
             </div>
             <div className="textppp">
               <h1>
-                {company.companyName ? company.companyName : "No Company Name"}
+                {company.name ? company.name : "No Company Name"}
               </h1>
               <p className="descppp">
-                {company.bio
-                  ? company.bio.description
-                    ? company.bio.description
-                    : "No Info"
+                {company.headline
+                  ? company.headline
                   : "No Company Description"}
               </p>
             </div>
@@ -80,30 +78,32 @@ export default function CompaniesInfoShow() {
           }}/>
           <div className="DetailInfoJobsppp">
             <div>
-              {company.contacts ? (
+             
                 <DetailInfoCompanies
+                  field={company.field ? company.field : 'No Field'}
                   country={
-                    company.contacts.country
-                      ? company.contacts.country
-                      : "No data"
+                    company.country
+                      ? company.country
+                      : "No info given"
                   }
-                  city={company.contacts.city ? company.contacts.city : "No data"}
+                  city={company.city ? company.city : "No data"}
                   address={
-                    company.contacts.address
-                      ? company.contacts.address
+                    company.address
+                      ? company.address
                       : "No data"
                   }
-                  tel={company.contacts.tel ? company.contacts.tel : "No data"}
-                  mail={company.contacts.mail ? company.contacts.mail : "No data"}
+                  tel={company.phone ? company.phone : "No data"}
+                  mail={company.mail ? company.mail : "No data"}
                   website={
-                    company.contacts.website
-                      ? company.contacts.website
+                    company.website
+                      ? company.website
                       : "No data"
                   }
+                  emp={company.employee ? company.employee : 'No data'}
+                  LinkedIn={company.linkedIn ? company.linkedIn : 'No data'}
+                  facebook={company.facebook ? company.facebook : 'No data'}
+                  twitter={company.twitter ? company.twitter : 'No data'}
                 />
-              ) : (
-                "No detail info were given"
-              )}
             </div>
             <div className="JobsContainerppp">
               <h2 style={{marginBlockEnd: '0'}}>
