@@ -58,7 +58,7 @@ export default function ProfileBusinessCard({
         >
           <div className={classes.element}>
             <DateRangeIcon />
-            Establishment: <br></br>
+            Establishment:
             <p>{establishment}</p>
           </div>
           <div className={classes.element}>
