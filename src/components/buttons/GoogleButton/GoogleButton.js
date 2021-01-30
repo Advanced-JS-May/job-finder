@@ -4,7 +4,7 @@ import CustomButton from '../CustomButton/CustomButton';
 import { useAuth } from '../../../services/authentication';
 import { useHistory } from 'react-router-dom';
 import { USER_ROLES } from '../../../constants/user.constants';
-import { getUsersById } from '../../../services/user';
+import { getUserById } from '../../../services/user';
 
 export default function GoogleButton({ setProgress, ...props }) {
   const { authWithGoogle, signout } = useAuth();
@@ -14,11 +14,11 @@ export default function GoogleButton({ setProgress, ...props }) {
     setProgress();
     authWithGoogle(USER_ROLES.user)
       .then((user) => {
-        getUsersById(user.uid).then((result) => {
-          if (result.role === USER_ROLES.employer) {
+        getUserById(user.uid).then((result) => {
+          if (result && result.role === USER_ROLES.employer) {
             signout();
           }
-          if (!result.profileCreated) {
+          if (result && !result.profileCreated) {
             setTimeout(() => {
               history.push('/profile/create');
             }, 1000);

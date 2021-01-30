@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useContext, useState } from 'react';
 import firebase from '../libraries/firebase';
-import { createUser, getUsersById, updateUserById } from './user';
+import { createUser, getUserById, updateUserById } from './user';
 
 const authContext = createContext();
 
@@ -24,31 +24,37 @@ function useProvideAuth() {
 
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
-  const signin = (email, password) => {
-    return firebase
+  const signin = async (email, password) => {
+    const response = await firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        setUser(response.user);
-        return response.user;
-      });
+      .signInWithEmailAndPassword(email, password);
+    const dbUser = await getUserById(response.user.uid);
+    setUser(dbUser);
+
+    return dbUser;
   };
 
-  const authWithGoogle = (role) => {
+  const authWithGoogle = async (role) => {
     const provider = new firebase.auth.GoogleAuthProvider();
 
-    return firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(async (result) => {
-        await getUsersById(result.user.uid).then((res) => {
-          if (res === null) {
-            createUser(result.user, role);
-          }
-        });
+    const result = await firebase.auth().signInWithPopup(provider);
+    const registeredUser = await getUserById(result.user.uid);
 
-        return result.user;
-      });
+    if (!registeredUser) {
+      console.log('res is null');
+      await createUser(result.user, role);
+    } else {
+      console.log('res is existing');
+    }
+
+    setUser({
+      uid: result.user.uid,
+      email: result.user.email,
+      emailVerified: result.user.emailVerified,
+      role,
+    });
+
+    return result.user;
   };
   /* ANCHOR CHECK IT */
   const authWithFacebook = (role) => {
@@ -60,7 +66,7 @@ function useProvideAuth() {
       .then(async (response) => {
         console.log(response.user);
         console.log(response);
-        await getUsersById(response.user.uid).then((res) => {
+        await getUserById(response.user.uid).then((res) => {
           console.log(res);
           if (res === null) {
             console.log(res);
@@ -130,38 +136,36 @@ function useProvideAuth() {
   // ... component that utilizes this hook to re-render with the ...
   // ... latest auth object.
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (user && user.providerData[0].providerId === 'facebook.com') {
-        getUsersById(user.uid).then((response) => {
+        getUserById(user.uid).then((response) => {
           updateUserById(user.uid, {
             uid: user.uid,
             email: user.email,
             emailVerified: user.emailVerified,
             facebookVerified: true,
           });
-          setUser(() => {
-            console.log({
-              uid: user.uid,
-              email: user.email,
-              emailVerified: user.emailVerified,
-              facebookVerified: true,
-            });
-            return {
-              uid: user.uid,
-              email: user.email,
-              emailVerified: user.emailVerified,
-              facebookVerified: true,
-            };
+          setUser({
+            uid: user.uid,
+            email: user.email,
+            emailVerified: user.emailVerified,
+            facebookVerified: true,
           });
 
           return response;
         });
       } else if (user && user.emailVerified) {
-        getUsersById(user.uid).then((response) => {
-          updateUserById(user.uid, { emailVerified: user.emailVerified });
-          setUser({ ...response, emailVerified: user.emailVerified });
-          return response;
+        const registeredUser = await getUserById(user.uid);
+        await updateUserById(user.uid, {
+          emailVerified: user.emailVerified,
         });
+
+        setUser((state) => ({
+          uid: user.uid,
+          email: user.email,
+          emailVerified: user.emailVerified,
+          role: registeredUser ? registeredUser.role : state.role,
+        }));
       } else {
         setUser(false);
       }
