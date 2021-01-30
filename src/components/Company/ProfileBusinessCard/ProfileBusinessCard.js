@@ -14,13 +14,16 @@ import GavelIcon from "@material-ui/icons/Gavel";
 
 const useStyles = makeStyles({
   root: {
-    width: "720px",
+    width: "765px",
     height: "30px",
     display: "flex",
   },
   element: {
     display: "flex",
     alignItems: "center",
+    textAlign: "baseline",
+    // padding: "15px",
+    border: "3px bold green",
   },
 
   edit: {
@@ -40,7 +43,7 @@ export default function ProfileBusinessCard({
   return (
     <Card>
       <CardContent className={classes.root}>
-        <div>
+        <div className={classes.element}>
           <Button className={classes.edit}>
             <Link to="/profile/profileBusinessCard/edit">
               <EditIcon />
@@ -53,17 +56,17 @@ export default function ProfileBusinessCard({
           justify="space-between"
           alignItems="center"
         >
-          <div>
+          <div className={classes.element}>
             <DateRangeIcon />
-            Establishment:
+            Establishment: <br></br>
             <p>{establishment}</p>
           </div>
-          <div>
+          <div className={classes.element}>
             <SupervisorAccountIcon />
             Employees:
             <p>{employee}</p>
           </div>
-          <div>
+          <div className={classes.element}>
             <GavelIcon />
             TaxID:
             <p>{taxId}</p>

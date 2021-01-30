@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "24px",
   },
   element: {
-    padding: "15px",
+    padding: "10px",
+    // border: "15px solid green",
   },
   snapshot: {
     display: "flex",
@@ -104,14 +105,14 @@ export default function Company() {
               justify="space-between"
               alignItems="center"
             >
-              <div className={profile.element}>
+              <div className={classes.element}>
                 <ProfileBusinessCard
                   employee={profile.employee}
                   establishment={profile.establishment}
                   taxId={profile.taxId}
                 />
               </div>
-              <div className={profile.element}>
+              <div className={classes.element}>
                 <ProfileDescriptionCard
                   summary={profile.summary}
                   // name={company.name}
@@ -133,21 +134,3 @@ export default function Company() {
     </div>
   );
 }
-
-/*KFeJMrAtOjOGhtW4bdOIY5PwwE62
-address: "Mamikonyans 56/1";
-city: "Yerevan";
-email: "gor.sharoyan95@gmail.com";
-employee: 152;
-establishment: 1995;
-facebook: "https://www.linkedin.com/mynetwork/";
-field: "Marketing ";
-following: "";
-headline: "https://www.linkedin.com/mynetwork/";
-linkedIn: "https://www.linkedin.com/mynetwork/";
-name: "Grdon Production ";
-phone: "+374 95 010248";
-summary: "https://www.linkedin.com/mynetwork/";
-taxId: 7889545;
-twitter: "https://www.linkedin.com/mynetwork/";
-website: "https://www.linkedin.com/mynetwork/";*/

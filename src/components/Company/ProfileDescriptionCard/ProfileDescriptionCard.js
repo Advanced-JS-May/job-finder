@@ -14,8 +14,8 @@ import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles({
   root: {
-    width: "750px",
-    height: "200px",
+    width: "800px",
+    height: "180px",
   },
   bullet: {
     display: "inline-block",
