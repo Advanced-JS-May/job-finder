@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { getCompanyById } from "../../services/company.service";
 import { Link } from "react-router-dom";
 
 //UI
@@ -15,9 +14,14 @@ import Fab from "@material-ui/core/Fab";
 import TabPanel from "../../components/TabPanel/TabPanel";
 import ProfileHeader from "../../components/Company/ProfileHeader/ProfileHeader";
 import ProfileContactCard from "../../components/Company/ProfileContactCard/ProfileContactCard";
-import { useAuth } from "../../services/authentication";
 import ProfileDescriptionCard from "../../components/Company/ProfileDescriptionCard/ProfileDescriptionCard";
 import ProfileBusinessCard from "../../components/Company/ProfileBusinessCard/ProfileBusinessCard";
+
+//Services
+import { USER_ROLES } from "../../constants/user.constants";
+import { useAuth } from "../../services/authentication";
+import { getCompanyById } from "../../services/company.service";
+import { getJobSeeker } from "../../services/JobSeeker.service";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,24 +47,30 @@ export default function Company() {
   const { user } = useAuth();
 
   const [value, setValue] = React.useState(0);
-  const [company, setCompany] = useState({});
+  const [profile, setProfile] = useState({});
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   useEffect(() => {
-    getCompanyById(user.uid).then((company) => {
-      setCompany(company);
-    });
+    if (user.role === "EMPLOYER") {
+      getCompanyById(user.uid).then((profile) => {
+        setProfile(profile);
+      });
+    } else {
+      getJobSeeker(user.uid).then((profile) => {
+        setProfile(profile);
+      });
+    }
   }, [user.uid]);
 
   return (
     <div className={classes.root}>
       <ProfileHeader
-        image={company.image}
-        coverImage={company.coverImage}
-        name={company.name}
+        image={profile.image}
+        coverImage={profile.coverImage}
+        name={profile.name}
       />
       <AppBar position="static" color="default">
         <Tabs
@@ -79,12 +89,12 @@ export default function Company() {
         <Grid container direction="row" justify="center" alignItems="center">
           <div className={classes.element}>
             <ProfileContactCard
-              country={company.country}
-              city={company.city}
-              address={company.address}
-              tel={company.phone}
-              mail={company.email}
-              website={company.website}
+              country={profile.country}
+              city={profile.city}
+              address={profile.address}
+              tel={profile.phone}
+              mail={profile.email}
+              website={profile.website}
             />
           </div>
           <div>
@@ -94,16 +104,16 @@ export default function Company() {
               justify="space-between"
               alignItems="center"
             >
-              <div className={classes.element}>
+              <div className={profile.element}>
                 <ProfileBusinessCard
-                  employee={company.employee}
-                  establishment={company.establishment}
-                  taxId={company.taxId}
+                  employee={profile.employee}
+                  establishment={profile.establishment}
+                  taxId={profile.taxId}
                 />
               </div>
-              <div className={classes.element}>
+              <div className={profile.element}>
                 <ProfileDescriptionCard
-                  summary={company.summary}
+                  summary={profile.summary}
                   // name={company.name}
                 />
               </div>

@@ -7,6 +7,7 @@ import { updateProfileInfo } from "../../../services/company.service";
 import { useAuth } from "../../../services/authentication";
 // import { getCompanyById } from "../../../services/company";
 import { getProfileById } from "../../../services/company.service";
+
 //UI
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";

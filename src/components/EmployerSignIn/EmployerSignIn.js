@@ -37,11 +37,12 @@ export default function CompanySignIn() {
   const handlePasswordUpdate = ({ target: { value } }) => setPassword(value);
 
   const handleLogin = (e) => {
-    console.log("hi");
-    e.preventDefault();
-    console.log(user.profileCreated);
-
     console.log(user);
+    // console.log("hi");
+    e.preventDefault();
+    // console.log(user.profileCreated);
+
+    // console.log(user);
     signin(email, password)
       .then((user) => {
         if (user.profileCreated) {

@@ -1,17 +1,15 @@
-
-import React, { useState, useEffect } from 'react';
-import { getAllCompanies } from '../../services/company';
-import CompanyMiniInfo from '../CompanyMiniInfo/CompanyMiniInfo';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField'; //forSaerch
-import Button from '@material-ui/core/Button'; //forSaerch
-import Select from '../Select/Select.js'; //forSaerch
-import { useLocation, generatePath, useHistory } from 'react-router-dom'; //forSaerch
-import fields from '../../constants/jobField.js'; //forSaerch
-import _ from 'lodash';
-import { Pagination } from '@material-ui/lab';
-import usePagination from '../../Utils/paginationHelper';
-
+import React, { useState, useEffect } from "react";
+import { getAllCompanies } from "../../services/company";
+import CompanyMiniInfo from "../CompanyMiniInfo/CompanyMiniInfo";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField"; //forSaerch
+import Button from "@material-ui/core/Button"; //forSaerch
+import Select from "../Select/Select.js"; //forSaerch
+import { useLocation, generatePath, useHistory } from "react-router-dom"; //forSaerch
+import fields from "../../constants/jobField.js"; //forSaerch
+import _ from "lodash";
+import { Pagination } from "@material-ui/lab";
+import usePagination from "../../Utils/paginationHelper";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   pagin: {
-    display: 'flex',
-    justifyContent: 'center',
+    display: "flex",
+    justifyContent: "center",
   },
 }));
 let tmpComps = []; //forSaerch
@@ -79,7 +77,7 @@ export default function CardMakerForCompanies() {
     <CompanyMiniInfo
       key={_.uniqueId("cmii_")}
       companyName={e.name ? e.name : "No name"}
-      companyDesc={e.headline ? e.headline : 'No Description'}
+      companyDesc={e.headline ? e.headline : "No Description"}
       companyImg={e.image}
       companyId={e.id}
       buttonFunction={() => {

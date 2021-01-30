@@ -12,6 +12,7 @@ import QontoConnector from "../../components/CreateProfileStepper/QontoConnector
 import { useAuth } from "../../services/authentication";
 import styles from "./CreateProfile.module.css";
 import { USER_ROLES } from "../../constants/user.constants";
+
 const useQontoStepIconStyles = makeStyles({
   root: {
     color: "#eaeaf0",
