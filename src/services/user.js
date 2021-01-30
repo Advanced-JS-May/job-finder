@@ -13,7 +13,7 @@ export function createUser({ uid, email, emailVerified }, role) {
     });
 }
 
-export function getUsersById(id) {
+export function getUserById(id) {
   return database
     .ref('/users/' + id)
     .once('value')

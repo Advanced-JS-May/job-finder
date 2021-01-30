@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useContext, useState } from 'react';
 import firebase from '../libraries/firebase';
-import { createUser, getUsersById, updateUserById } from './user';
+import { createUser, getUserById, updateUserById } from './user';
 
 const authContext = createContext();
 
@@ -24,21 +24,21 @@ function useProvideAuth() {
 
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
-  const signin = (email, password) => {
-    return firebase
+  const signin = async (email, password) => {
+    const response = await firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        setUser(response.user);
-        return response.user;
-      });
+      .signInWithEmailAndPassword(email, password);
+    const dbUser = await getUserById(response.user.uid);
+    setUser(dbUser);
+
+    return dbUser;
   };
 
   const authWithGoogle = async (role) => {
     const provider = new firebase.auth.GoogleAuthProvider();
 
     const result = await firebase.auth().signInWithPopup(provider);
-    const registeredUser = await getUsersById(result.user.uid);
+    const registeredUser = await getUserById(result.user.uid);
 
     if (!registeredUser) {
       console.log('res is null');
@@ -66,7 +66,7 @@ function useProvideAuth() {
       .then(async (response) => {
         console.log(response.user);
         console.log(response);
-        await getUsersById(response.user.uid).then((res) => {
+        await getUserById(response.user.uid).then((res) => {
           console.log(res);
           if (res === null) {
             console.log(res);
@@ -138,7 +138,7 @@ function useProvideAuth() {
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (user && user.providerData[0].providerId === 'facebook.com') {
-        getUsersById(user.uid).then((response) => {
+        getUserById(user.uid).then((response) => {
           updateUserById(user.uid, {
             uid: user.uid,
             email: user.email,
@@ -155,7 +155,7 @@ function useProvideAuth() {
           return response;
         });
       } else if (user && user.emailVerified) {
-        const registeredUser = await getUsersById(user.uid);
+        const registeredUser = await getUserById(user.uid);
         await updateUserById(user.uid, {
           emailVerified: user.emailVerified,
         });

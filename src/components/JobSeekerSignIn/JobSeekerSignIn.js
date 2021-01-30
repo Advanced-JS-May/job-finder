@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useAuth } from "../../services/authentication";
-import GoogleButton from "../buttons/GoogleButton/GoogleButton";
-import FacebookButton from "../buttons/FacebookButton/FacebookButton";
-import { checkUserRole } from "../../services/checkUserRole";
-import { USER_ROLES } from "../../constants/user.constants";
-import FormField from "../FormElements/FormField/FormField";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import { checkProfileStatus } from "../../services/checkProfileStatus";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../services/authentication';
+import GoogleButton from '../buttons/GoogleButton/GoogleButton';
+import FacebookButton from '../buttons/FacebookButton/FacebookButton';
+import { checkUserRole } from '../../services/checkUserRole';
+import { USER_ROLES } from '../../constants/user.constants';
+import FormField from '../FormElements/FormField/FormField';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import { checkProfileStatus } from '../../services/checkProfileStatus';
+import { getUserById } from '../../services/user';
 
 const useStyles = makeStyles({
   form: {
@@ -29,27 +30,26 @@ export default function EmployeeSignIn({ setProgress }) {
   const history = useHistory();
   const classes = useStyles();
 
-  const [email, setLogin] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMsg, setError] = useState("");
+  const [email, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMsg, setError] = useState('');
   const { signin, user } = useAuth();
 
   const handleLoginUpdate = ({ target: { value } }) => setLogin(value);
   const handlePasswordUpdate = ({ target: { value } }) => setPassword(value);
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    signin(email, password).then((res) => {
-      if (res.profileCreated) {
-        if (res.role === USER_ROLES.user) {
-          history.push("/signin/jobseeker");
-        } else {
-          setError("Not a JobSeeker ");
-        }
+    const user = await signin(email, password);
+    if (user.profileCreated) {
+      if (user.role === USER_ROLES.user) {
+        history.push('/signin/jobseeker');
       } else {
-        history.push("/profile/create");
+        setError('Not a JobSeeker ');
       }
-    });
+    } else {
+      history.push('/profile/create');
+    }
   };
 
   return (
