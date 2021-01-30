@@ -43,7 +43,7 @@ export default function EmployeeSignIn({ setProgress }) {
     const user = await signin(email, password);
     if (user.profileCreated) {
       if (user.role === USER_ROLES.user) {
-        history.push('/signin/jobseeker');
+        history.push(`/profile/${user.uid}`);
       } else {
         setError('Not a JobSeeker ');
       }
