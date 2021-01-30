@@ -7,16 +7,16 @@ import Card from "@material-ui/core/Card";
 import EditIcon from "@material-ui/icons/Edit";
 import Button from "@material-ui/core/Button";
 import CardContent from "@material-ui/core/CardContent";
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
-import GavelIcon from '@material-ui/icons/Gavel';
+import DateRangeIcon from "@material-ui/icons/DateRange";
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+import GavelIcon from "@material-ui/icons/Gavel";
 
 const useStyles = makeStyles({
   root: {
     width: 400,
     display: "flex",
     flexDirection: "row",
-    textAlign:"center"
+    textAlign: "center",
   },
   element: {
     display: "flex",
@@ -30,26 +30,27 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileBusinessCard({establishment,employees,taxId}) {
+export default function ProfileBusinessCard({
+  establishment,
+  employee,
+  taxId,
+}) {
   const classes = useStyles();
 
   return (
     <Card>
-      
       <CardContent className={classes.root}>
-      <Button className={classes.edit}>
-        <Link to="/profile/profileBusinessCard/edit">
-          <EditIcon />
-        </Link>
-      </Button>
+        <Button className={classes.edit}>
+          <Link to="/profile/profileBusinessCard/edit">
+            <EditIcon />
+          </Link>
+        </Button>
         <DateRangeIcon />
         Establishment
-        <p>
-        {establishment}
-        </p>
+        <p>{establishment}</p>
         <SupervisorAccountIcon />
         Employees
-        {employees}
+        <p>{employee}</p>
         <GavelIcon />
         TaxID
         {taxId}

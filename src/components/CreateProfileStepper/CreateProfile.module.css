@@ -1,10 +1,10 @@
 .stepper {
-  background: url('https://www.toptal.com/designers/subtlepatterns/patterns/y-so-serious-white.png');
+  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/y-so-serious-white.png");
   background-size: 50px;
 }
 
 .stepperWrapper {
-  background: url('https://www.toptal.com/designers/subtlepatterns/patterns/y-so-serious-white.png');
+  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/y-so-serious-white.png");
   background-size: 50px;
   padding: 5rem;
 }

@@ -1,5 +1,5 @@
 import firebase, { database } from "../libraries/firebase";
-import { USER_ROLES } from "../constants/user.constants";
+import { USER_ROLES } from "../constants/user.constants"; //?
 
 export function checkUserRole(id,role) {
   return database
@@ -8,7 +8,7 @@ export function checkUserRole(id,role) {
     .then((snapshot) => snapshot.val())
     .catch((err)=>console.log(err))
     .then((res) => {
-      if (res.role == role) {
+      if (res.role === role) {
         return res
       } else {
         return false

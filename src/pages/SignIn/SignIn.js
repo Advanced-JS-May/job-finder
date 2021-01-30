@@ -57,7 +57,6 @@ export default function SignIn() {
       >
         Sign In
       </Typography>
-
       <SimpleTabs
         value={value}
         onChange={handleChange}

@@ -12,13 +12,12 @@ import Company from "../../../pages/Company/Company";
 import EmailVerification from "../../../pages/EmailVerification/EmailVerification";
 import CreateProfile from "../../../pages/CreateProfile/CreateProfile";
 import AllCompanies from "../../../pages/AllCompanies/AllCompanies";
-import CompanyInfo from "../../../components/Company/CompanyInfo/CompanyInfo";
 import ProfileContactEdit from "../../../components/Company/ProfileContactCard/ProfileContactEdit";
 import ProfileDescriptionEdit from "../../Company/ProfileDescriptionCard/ProdileDescriptionEdit";
 import CreateJob from "../../Company/CreateJob/CreateJob";
 import CompaniesInfoShow from "../../../components/CompaniesInfoShow/CompaniesInfoShow";
-import ProfileBusinessInfoEdit from "../../../components/Company/ProfileBusinessCard/ProfileBusinessInfoEdit"
-
+import ProfileBusinessInfoEdit from "../../../components/Company/ProfileBusinessCard/ProfileBusinessInfoEdit";
+import JobsInfoShow from "../../../components/JobsInfoShow/JobsInfoShow";
 
 function SwitchRouter() {
   const { user } = useAuth();
@@ -39,7 +38,7 @@ function SwitchRouter() {
         <Route path="/login">
           <SignIn />
         </Route>
-        <Route path="/jobs">
+        <Route exact path="/jobs">
           <Jobs />
         </Route>
         <Route exact path="/companies">
@@ -51,6 +50,8 @@ function SwitchRouter() {
         <Route path="/email-verification">
           <EmailVerification />
         </Route>
+
+        {/*ProfileCardsEdits*/}
         <Route path="/profile/profileContactCard/edit">
           <ProfileContactEdit />
         </Route>
@@ -60,26 +61,31 @@ function SwitchRouter() {
         <Route path="/profile/profileBusinessCard/edit">
           <ProfileBusinessInfoEdit />
         </Route>
+
+        {/*CreateJob*/}
         <Route path="/profile/addJob">
           <CreateJob />
         </Route>
+
         <Route path="/companies/:id">
           <CompaniesInfoShow />
+        </Route>
+        <Route path="/jobs/:id">
+          <JobsInfoShow />
         </Route>
         {/* regular user */}
         <PrivateRoute auth={user} path="/profile/create">
           <CreateProfile />
         </PrivateRoute>
+
         <PrivateRoute auth={user} path="/profile/:id">
-          <div>{user && user.role}</div>
-        </PrivateRoute>
-        {/* company user */}
-        <Route path="/company/profile">
-          <CompanyInfo />
-        </Route>
-        <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
+          {/* <div>{user && user.role}</div> */}
           <Company />
         </PrivateRoute>
+
+        {/* <PrivateRoute auth={user && user.emailVerified} path="/company/:id">
+          <Company />
+        </PrivateRoute> */}
       </Switch>
     </main>
   );
