@@ -34,21 +34,27 @@ function useProvideAuth() {
       });
   };
 
-  const authWithGoogle = (role) => {
+  const authWithGoogle = async (role) => {
     const provider = new firebase.auth.GoogleAuthProvider();
 
-    return firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(async (result) => {
-        await getUsersById(result.user.uid).then((res) => {
-          if (res === null) {
-            createUser(result.user, role);
-          }
-        });
+    const result = await firebase.auth().signInWithPopup(provider);
+    const registeredUser = await getUsersById(result.user.uid);
 
-        return result.user;
-      });
+    if (!registeredUser) {
+      console.log('res is null');
+      await createUser(result.user, role);
+    } else {
+      console.log('res is existing');
+    }
+
+    setUser({
+      uid: result.user.uid,
+      email: result.user.email,
+      emailVerified: result.user.emailVerified,
+      role,
+    });
+
+    return result.user;
   };
   /* ANCHOR CHECK IT */
   const authWithFacebook = (role) => {
@@ -130,7 +136,7 @@ function useProvideAuth() {
   // ... component that utilizes this hook to re-render with the ...
   // ... latest auth object.
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (user && user.providerData[0].providerId === 'facebook.com') {
         getUsersById(user.uid).then((response) => {
           updateUserById(user.uid, {
@@ -139,29 +145,27 @@ function useProvideAuth() {
             emailVerified: user.emailVerified,
             facebookVerified: true,
           });
-          setUser(() => {
-            console.log({
-              uid: user.uid,
-              email: user.email,
-              emailVerified: user.emailVerified,
-              facebookVerified: true,
-            });
-            return {
-              uid: user.uid,
-              email: user.email,
-              emailVerified: user.emailVerified,
-              facebookVerified: true,
-            };
+          setUser({
+            uid: user.uid,
+            email: user.email,
+            emailVerified: user.emailVerified,
+            facebookVerified: true,
           });
 
           return response;
         });
       } else if (user && user.emailVerified) {
-        getUsersById(user.uid).then((response) => {
-          updateUserById(user.uid, { emailVerified: user.emailVerified });
-          setUser({ ...response, emailVerified: user.emailVerified });
-          return response;
+        const registeredUser = await getUsersById(user.uid);
+        await updateUserById(user.uid, {
+          emailVerified: user.emailVerified,
         });
+
+        setUser((state) => ({
+          uid: user.uid,
+          email: user.email,
+          emailVerified: user.emailVerified,
+          role: registeredUser ? registeredUser.role : state.role,
+        }));
       } else {
         setUser(false);
       }

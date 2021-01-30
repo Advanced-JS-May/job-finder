@@ -15,10 +15,10 @@ export default function GoogleButton({ setProgress, ...props }) {
     authWithGoogle(USER_ROLES.user)
       .then((user) => {
         getUsersById(user.uid).then((result) => {
-          if (result.role === USER_ROLES.employer) {
+          if (result && result.role === USER_ROLES.employer) {
             signout();
           }
-          if (!result.profileCreated) {
+          if (result && !result.profileCreated) {
             setTimeout(() => {
               history.push('/profile/create');
             }, 1000);
