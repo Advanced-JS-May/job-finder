@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Company() {
+export default function Profile() {
   const classes = useStyles();
   const theme = useTheme();
   const { user } = useAuth();
