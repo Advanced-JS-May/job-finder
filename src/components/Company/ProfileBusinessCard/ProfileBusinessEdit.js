@@ -43,6 +43,7 @@ export default function ProfileBusinessInfoEdit({
 
   return (
     <ProfileCardEdit
+      cardName="Business Info"
       cardContent={
         <Formik
           initialValues={{

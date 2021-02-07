@@ -43,6 +43,7 @@ export default function ProfileContactEdit({
   return (
     <div>
       <ProfileCardEdit
+        cardName="Contacts"
         cardContent={
           <Grid
             container

@@ -48,6 +48,7 @@ export default function ProfileDescriptionEdit() {
   return (
     <div>
       <ProfileCardEdit
+        cardName="description"
         cardContent={
           <Formik
             initialValues={{
@@ -61,7 +62,7 @@ export default function ProfileDescriptionEdit() {
             {(props) => (
               <form onSubmit={props.handleSubmit}>
                 <div>
-                  <h3> Biography </h3>
+                  <h3>Edit Biography </h3>
                   <TextField
                     className={classes.element}
                     margin="normal"

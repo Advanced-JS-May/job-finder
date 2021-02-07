@@ -18,6 +18,11 @@ const useStyles = makeStyles({
     right: "0px",
     cursor: "pointer",
   },
+  edit: {
+    alignItems: "baseline",
+    height: "20px",
+    border: "3px solid green",
+  },
   card: {
     position: "absolute",
     top: "40%",
@@ -33,7 +38,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileCardEdit({ cardContent, page }) {
+export default function ProfileCardEdit({ cardName, cardContent, page }) {
   const classes = useStyles();
   const history = useHistory();
 
@@ -44,13 +49,21 @@ export default function ProfileCardEdit({ cardContent, page }) {
   return (
     <div>
       <Card className={classes.card}>
-        <div>
-          <CloseIcon className={classes.closeIcon} onClick={handleGoBack} />
-        </div>
-        <div>
-          <br></br>
-          <hr></hr>
-        </div>
+        <Grid
+          container
+          direction="row"
+          justify="space-evenly"
+          alignItems="baseline"
+        >
+          <div>
+            <h4>Edit {cardName}</h4>
+          </div>
+          <div>
+            <CloseIcon className={classes.closeIcon} onClick={handleGoBack} />
+          </div>
+        </Grid>
+        <br></br>
+        <hr></hr>
         <Grid>
           <CardContent>{cardContent}</CardContent>
         </Grid>
