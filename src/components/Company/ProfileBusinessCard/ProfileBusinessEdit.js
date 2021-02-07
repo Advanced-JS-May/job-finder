@@ -2,6 +2,9 @@ import React from "react";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
 
+//components
+import ProfileCardEdit from "../ProfileCardEdit/ProfileCardEdit";
+import Profile from "../../../pages/Profile/Profile";
 //services
 import { useAuth } from "../../../services/authentication";
 import { updateProfileInfo } from "../../../services/company.service";
@@ -39,8 +42,8 @@ export default function ProfileBusinessInfoEdit({
   const history = useHistory();
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
+    <ProfileCardEdit
+      cardContent={
         <Formik
           initialValues={{
             employee: "",
@@ -111,13 +114,14 @@ export default function ProfileBusinessInfoEdit({
                   color="primary"
                   onClick={props.handleSubmit}
                 >
-                  Submit
+                  Save
                 </Button>
               </div>
             </form>
           )}
         </Formik>
-      </CardContent>
-    </Card>
+      }
+      page={<Profile />}
+    />
   );
 }

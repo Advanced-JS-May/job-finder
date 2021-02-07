@@ -4,6 +4,7 @@ import { Formik } from "formik";
 
 //components
 import Profile from "../../../pages/Profile/Profile";
+import ProfileCardEdit from "../ProfileCardEdit/ProfileCardEdit";
 
 //services
 import { updateProfileInfo } from "../../../services/company.service";
@@ -15,7 +16,6 @@ import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import FormSection from "../../FormElements/FormSection/FormSection";
 
 // import TextField from "@material-ui/core/TextField";
 
@@ -47,8 +47,8 @@ export default function ProfileDescriptionEdit() {
 
   return (
     <div>
-      <Card className={classes.card}>
-        <CardContent>
+      <ProfileCardEdit
+        cardContent={
           <Formik
             initialValues={{
               summary: "",
@@ -90,17 +90,15 @@ export default function ProfileDescriptionEdit() {
                     color="primary"
                     onClick={props.handleSubmit}
                   >
-                    Submit
+                    Save
                   </Button>
                 </div>
               </form>
             )}
           </Formik>
-        </CardContent>
-      </Card>
-      <div className={classes.page}>
-        <Profile />
-      </div>
+        }
+        page={<Profile />}
+      />
     </div>
   );
 }

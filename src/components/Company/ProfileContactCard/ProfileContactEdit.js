@@ -5,14 +5,13 @@ import { Formik } from "formik";
 //components
 import Profile from "../../../pages/Profile/Profile";
 import ProfileCardEdit from "../ProfileCardEdit/ProfileCardEdit";
+
 //services
 import { updateProfileInfo } from "../../../services/company.service";
 import { useAuth } from "../../../services/authentication";
 
 //UI
 import { makeStyles } from "@material-ui/core/styles";
-import CardContent from "@material-ui/core/CardContent";
-import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import BusinessIcon from "@material-ui/icons/Business";
 import MailIcon from "@material-ui/icons/Mail";
@@ -23,19 +22,6 @@ import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
-  page: {
-    opasity: 0,
-    filter: "blur(8px)",
-  },
-  card: {
-    position: "absolute",
-    top: "40%",
-    left: "30%",
-    right: "80%",
-    textAlign: "center",
-    width: "500px",
-    zIndex: 1,
-  },
   element: {
     display: "flex",
     alignItems: "center",
@@ -56,8 +42,8 @@ export default function ProfileContactEdit({
 
   return (
     <div>
-      <Card className={classes.card}>
-        <CardContent>
+      <ProfileCardEdit
+        cardContent={
           <Grid
             container
             direction="column"
@@ -188,21 +174,16 @@ export default function ProfileContactEdit({
                       color="primary"
                       onClick={props.handleSubmit}
                     >
-                      Submit
+                      Save
                     </Button>
                   </div>
                 </form>
               )}
             </Formik>
           </Grid>
-        </CardContent>
-      </Card>
-      <div className={classes.page}>
-        <Profile />;
-      </div>
-      <div>
-        <ProfileCardEdit />
-      </div>
+        }
+        page={<Profile />}
+      />
     </div>
   );
 }

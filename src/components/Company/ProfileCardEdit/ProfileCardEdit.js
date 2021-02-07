@@ -1,10 +1,8 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 //UI
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import EditIcon from "@material-ui/icons/Edit";
-import Fab from "@material-ui/core/Fab";
-import CheckIcon from "@material-ui/icons/Check";
 
 // import { makeStyles } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
@@ -13,17 +11,51 @@ import Grid from "@material-ui/core/Grid";
 import CloseIcon from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
 
-export default function ProfileCardEdit({ children }) {
+const useStyles = makeStyles({
+  closeIcon: {
+    position: "absolute",
+    top: "0px",
+    right: "0px",
+    cursor: "pointer",
+  },
+  card: {
+    position: "absolute",
+    top: "40%",
+    left: "30%",
+    right: "80%",
+    textAlign: "center",
+    width: "500px",
+    zIndex: 1,
+  },
+  page: {
+    opasity: 0,
+    filter: "blur(8px)",
+  },
+});
+
+export default function ProfileCardEdit({ cardContent, page }) {
+  const classes = useStyles();
+  const history = useHistory();
+
+  const handleGoBack = () => {
+    history.goBack();
+  };
+
   return (
     <div>
-      <Card>
-        <CloseIcon />
+      <Card className={classes.card}>
+        <div>
+          <CloseIcon className={classes.closeIcon} onClick={handleGoBack} />
+        </div>
+        <div>
+          <br></br>
+          <hr></hr>
+        </div>
         <Grid>
-          <CardContent></CardContent>
+          <CardContent>{cardContent}</CardContent>
         </Grid>
-        {/* <Button>
-      </Button> */}
       </Card>
+      <div className={classes.page}>{page}</div>
     </div>
   );
 }
