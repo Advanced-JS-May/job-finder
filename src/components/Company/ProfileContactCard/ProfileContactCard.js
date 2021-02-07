@@ -15,6 +15,9 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import LanguageIcon from "@material-ui/icons/Language";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
 
+//compoents
+import ProfileSocialMediaCard from "../ProfileSocialMediaCard/ProfileSocialMediaCard"
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -42,6 +45,9 @@ export default function ProfileContactCard({
   tel,
   mail,
   website,
+  facebook,
+  twitter,
+  linkedIn
 }) {
   const classes = useStyles();
   const history = useHistory();
@@ -82,10 +88,12 @@ export default function ProfileContactCard({
           <MailIcon />
           Mail:{mail}
         </div>
-        <div className={classes.element}>
-          <LanguageIcon />
-          Website:{website}
-        </div>
+        <ProfileSocialMediaCard 
+        facebook={facebook} 
+        twitter={twitter} 
+        linkedIn={linkedIn}
+         website={website}
+         />
       </CardContent>
     </Card>
   );

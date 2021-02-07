@@ -96,6 +96,9 @@ export default function Company() {
               tel={profile.phone}
               mail={profile.email}
               website={profile.website}
+              facebook={profile.facebook}
+              twitter={profile.twitter}
+              linkedIn={profile.linkedIn}
             />
           </div>
           <div>
