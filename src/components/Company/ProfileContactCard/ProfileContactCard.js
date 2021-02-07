@@ -16,12 +16,17 @@ import LanguageIcon from "@material-ui/icons/Language";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
 
 //compoents
-import ProfileSocialMediaCard from "../ProfileSocialMediaCard/ProfileSocialMediaCard"
+import ProfileSocialMediaCard from "../ProfileSocialMediaCard/ProfileSocialMediaCard";
 
 const useStyles = makeStyles({
+  card: {
+    boxShadow: "10px  8px 10px #888888",
+    border: "1px solid #808080 ",
+  },
   root: {
     maxWidth: 345,
-    margin: "25px",
+    // margin: "20px",
+    height: "230px",
     display: "flex",
     flexDirection: "column",
     // backgroundSize: "cover",
@@ -47,7 +52,7 @@ export default function ProfileContactCard({
   website,
   facebook,
   twitter,
-  linkedIn
+  linkedIn,
 }) {
   const classes = useStyles();
   const history = useHistory();
@@ -57,7 +62,7 @@ export default function ProfileContactCard({
   };
 
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardContent className={classes.root}>
         <Grid
           container
@@ -88,12 +93,12 @@ export default function ProfileContactCard({
           <MailIcon />
           Mail:{mail}
         </div>
-        <ProfileSocialMediaCard 
-        facebook={facebook} 
-        twitter={twitter} 
-        linkedIn={linkedIn}
-         website={website}
-         />
+        <ProfileSocialMediaCard
+          facebook={facebook}
+          twitter={twitter}
+          linkedIn={linkedIn}
+          website={website}
+        />
       </CardContent>
     </Card>
   );

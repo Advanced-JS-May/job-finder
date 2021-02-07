@@ -13,6 +13,10 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import GavelIcon from "@material-ui/icons/Gavel";
 
 const useStyles = makeStyles({
+  card: {
+    boxShadow: "10px  8px 10px #888888",
+    border: "1px solid #808080 ",
+  },
   root: {
     width: "765px",
     height: "30px",
@@ -41,7 +45,7 @@ export default function ProfileBusinessCard({
   const classes = useStyles();
 
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardContent className={classes.root}>
         <div className={classes.element}>
           <Button className={classes.edit}>
