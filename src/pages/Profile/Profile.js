@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 //UI
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -46,6 +46,7 @@ export default function Profile() {
   const classes = useStyles();
   const theme = useTheme();
   const { user } = useAuth();
+  const id = user.uid;
 
   const [value, setValue] = React.useState(0);
   const [profile, setProfile] = useState({});
@@ -56,11 +57,12 @@ export default function Profile() {
 
   useEffect(() => {
     if (user.role === "EMPLOYER") {
-      getCompanyById(user.uid).then((profile) => {
+      getCompanyById(id).then((profile) => {
         setProfile(profile);
+        // console.log(link);
       });
     } else {
-      getJobSeeker(user.uid).then((profile) => {
+      getJobSeeker(id).then((profile) => {
         setProfile(profile);
       });
     }
@@ -116,10 +118,7 @@ export default function Profile() {
                 />
               </div>
               <div className={classes.element}>
-                <ProfileDescriptionCard
-                  summary={profile.summary}
-                  // name={company.name}
-                />
+                <ProfileDescriptionCard summary={profile.summary} />
               </div>
             </Grid>
           </div>
