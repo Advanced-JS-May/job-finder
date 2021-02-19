@@ -115,6 +115,7 @@ export default function Profile() {
                   employee={profile.employee}
                   establishment={profile.establishment}
                   taxId={profile.taxId}
+                  field={profile.field}
                 />
               </div>
               <div className={classes.element}>

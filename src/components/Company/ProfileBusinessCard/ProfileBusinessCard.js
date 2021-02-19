@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import GavelIcon from "@material-ui/icons/Gavel";
+import FolderSpecialIcon from "@material-ui/icons/FolderSpecial";
 
 const useStyles = makeStyles({
   card: {
@@ -41,6 +42,7 @@ export default function ProfileBusinessCard({
   establishment,
   employee,
   taxId,
+  field,
 }) {
   const classes = useStyles();
 
@@ -60,6 +62,11 @@ export default function ProfileBusinessCard({
           justify="space-between"
           alignItems="center"
         >
+          <div className={classes.element}>
+            <FolderSpecialIcon />
+            Field:
+            <p>{field}</p>
+          </div>
           <div className={classes.element}>
             <DateRangeIcon />
             Establishment:
