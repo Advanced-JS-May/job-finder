@@ -6,6 +6,7 @@ import PreviewHeader from './PreviewHeader';
 import SectionHeader from './SectionHeader';
 import PreviewJobList from './PreviewJobList';
 import styles from './Preview.module.css';
+import PreviewEducationList from './PreviewEducationList';
 
 function Preview() {
   const { summary } = useSelector((state) => state.jobSeeker);
@@ -45,6 +46,7 @@ function Preview() {
         )}
 
         <PreviewJobList />
+        <PreviewEducationList />
       </div>
     </div>
   );
