@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../services/authentication';
 import { USER_ROLES } from '../../constants/user.constants';
 import { Button } from '@material-ui/core';
-import { getUsersById } from '../../services/user';
+import { getUserById } from '../../services/user';
 
 export default function OutlinedCard() {
   const history = useHistory();
@@ -22,12 +22,12 @@ export default function OutlinedCard() {
 
   useEffect(() => {
     if (user) {
-      getUsersById(user.uid).then((res) => {
+      getUserById(user.uid).then((res) => {
         if (res.emailVerified) {
           // if (user.role === USER_ROLES.employer) {
           //   history.push(`/company/create`);
           // } else {
-            history.push('/profile/create');
+          history.push('/profile/create');
           // }
         } else {
           setError(true);

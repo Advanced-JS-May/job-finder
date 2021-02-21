@@ -4,7 +4,7 @@ import CustomButton from '../CustomButton/CustomButton';
 import { useAuth } from '../../../services/authentication';
 import { useHistory } from 'react-router-dom';
 import { USER_ROLES } from '../../../constants/user.constants';
-import { getUsersById } from '../../../services/user';
+import { getUserById } from '../../../services/user';
 
 export default function FacebookButton({ setProgress, ...props }) {
   const { authWithFacebook } = useAuth();
@@ -14,7 +14,7 @@ export default function FacebookButton({ setProgress, ...props }) {
     setProgress();
     authWithFacebook(USER_ROLES.user)
       .then((user) => {
-        getUsersById(user.uid).then((result) => {
+        getUserById(user.uid).then((result) => {
           if (!result.profileCreated) {
             setTimeout(() => {
               history.push('/profile/create');

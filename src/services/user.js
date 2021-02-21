@@ -2,7 +2,7 @@ import firebase, { database } from '../libraries/firebase';
 import { createData } from './manipulateDB.service';
 
 export function createUser({ uid, email, emailVerified }, role) {
-  firebase
+  return firebase
     .database()
     .ref('users/' + uid)
     .set({
@@ -13,7 +13,7 @@ export function createUser({ uid, email, emailVerified }, role) {
     });
 }
 
-export function getUsersById(id) {
+export function getUserById(id) {
   return database
     .ref('/users/' + id)
     .once('value')
@@ -21,7 +21,5 @@ export function getUsersById(id) {
 }
 
 export function updateUserById(id, data) {
-  let userRef = database.ref('users/' + id);
-
   return firebase.database().ref(`/users/${id}`).update(data);
 }

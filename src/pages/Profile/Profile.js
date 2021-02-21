@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getCompanyById } from "../../services/company.service";
 import { Link } from "react-router-dom";
 
 //UI
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -14,15 +14,24 @@ import Fab from "@material-ui/core/Fab";
 import TabPanel from "../../components/TabPanel/TabPanel";
 import ProfileHeader from "../../components/Company/ProfileHeader/ProfileHeader";
 import ProfileContactCard from "../../components/Company/ProfileContactCard/ProfileContactCard";
-import { useAuth } from "../../services/authentication";
 import ProfileDescriptionCard from "../../components/Company/ProfileDescriptionCard/ProfileDescriptionCard";
 import ProfileBusinessCard from "../../components/Company/ProfileBusinessCard/ProfileBusinessCard";
+
+//Services
+import { USER_ROLES } from "../../constants/user.constants";
+import { useAuth } from "../../services/authentication";
+import { getCompanyById } from "../../services/company.service";
+import { getJobSeeker } from "../../services/JobSeeker.service";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     width: "100%",
     marginRight: "24px",
+  },
+  element: {
+    padding: "10px",
+    // border: "15px solid green",
   },
   snapshot: {
     display: "flex",
@@ -31,45 +40,38 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     margin: "3px solid green",
   },
-  basicInfo: {
-    display: "flex",
-    justifyContent: "space-between",
-    flexDirection: "column",
-  },
-  bussinessInfo: {
-    width: "1000px",
-    height: "250px",
-  },
-  description: {
-    width: "1000px",
-    height: "250px",
-  },
 }));
 
-export default function Company() {
+export default function Profile() {
   const classes = useStyles();
   const theme = useTheme();
   const { user } = useAuth();
 
   const [value, setValue] = React.useState(0);
-  const [company, setCompany] = useState({});
+  const [profile, setProfile] = useState({});
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   useEffect(() => {
-    getCompanyById(user.uid).then((company) => {
-      setCompany(company);
-    });
+    if (user.role === "EMPLOYER") {
+      getCompanyById(user.uid).then((profile) => {
+        setProfile(profile);
+      });
+    } else {
+      getJobSeeker(user.uid).then((profile) => {
+        setProfile(profile);
+      });
+    }
   }, [user.uid]);
 
   return (
     <div className={classes.root}>
       <ProfileHeader
-        image={company.image}
-        coverImage={company.coverImage}
-        name={company.companyName}
+        image={profile.image}
+        coverImage={profile.coverImage}
+        name={profile.name}
       />
       <AppBar position="static" color="default">
         <Tabs
@@ -85,33 +87,43 @@ export default function Company() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
-        <div className={classes.snapshot}>
-          <div>
+        <Grid container direction="row" justify="center" alignItems="center">
+          <div className={classes.element}>
             <ProfileContactCard
-              country={company.country}
-              city={company.city}
-              address={company.address}
-              tel={company.phone}
-              mail={company.email}
-              website={company.website}
+              country={profile.country}
+              city={profile.city}
+              address={profile.address}
+              tel={profile.phone}
+              mail={profile.email}
+              website={profile.website}
+              facebook={profile.facebook}
+              twitter={profile.twitter}
+              linkedIn={profile.linkedIn}
             />
           </div>
-          <div className={classes.basicInfo}>
-            <div>
-              <ProfileBusinessCard
-                employee={company.employee}
-                establishment={company.establishment}
-                taxId={company.taxId}
-              />
-            </div>
-            <div>
-              <ProfileDescriptionCard
-                summary={company.summary}
-                // name={company.name}
-              />
-            </div>
+          <div>
+            <Grid
+              container
+              direction="column"
+              justify="space-between"
+              alignItems="center"
+            >
+              <div className={classes.element}>
+                <ProfileBusinessCard
+                  employee={profile.employee}
+                  establishment={profile.establishment}
+                  taxId={profile.taxId}
+                />
+              </div>
+              <div className={classes.element}>
+                <ProfileDescriptionCard
+                  summary={profile.summary}
+                  // name={company.name}
+                />
+              </div>
+            </Grid>
           </div>
-        </div>
+        </Grid>
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
         <div>
@@ -125,21 +137,3 @@ export default function Company() {
     </div>
   );
 }
-
-/*KFeJMrAtOjOGhtW4bdOIY5PwwE62
-address: "Mamikonyans 56/1";
-city: "Yerevan";
-email: "gor.sharoyan95@gmail.com";
-employee: 152;
-establishment: 1995;
-facebook: "https://www.linkedin.com/mynetwork/";
-field: "Marketing ";
-following: "";
-headline: "https://www.linkedin.com/mynetwork/";
-linkedIn: "https://www.linkedin.com/mynetwork/";
-name: "Grdon Production ";
-phone: "+374 95 010248";
-summary: "https://www.linkedin.com/mynetwork/";
-taxId: 7889545;
-twitter: "https://www.linkedin.com/mynetwork/";
-website: "https://www.linkedin.com/mynetwork/";*/

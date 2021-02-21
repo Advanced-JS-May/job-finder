@@ -53,6 +53,9 @@ function CreateProfileForm({
       linkedIn: "",
       headline: "",
       summary: "",
+      id: user.uid,
+      image: "",
+      coverImage: "",
     },
     enableReinitialize: true,
     validationSchema: companyValidation,
@@ -78,7 +81,6 @@ function CreateProfileForm({
       if (answer) {
         setOpen(true);
         setMessage(`please fill in all the required inputs`);
-        // console.log(user);
         setMessageType("error");
         moveToFirstPage();
       }

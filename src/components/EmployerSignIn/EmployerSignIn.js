@@ -37,18 +37,26 @@ export default function CompanySignIn() {
   const handlePasswordUpdate = ({ target: { value } }) => setPassword(value);
 
   const handleLogin = (e) => {
+    console.log(user);
+    // console.log("hi");
     e.preventDefault();
-    signin(email, password).then((user) => {
-      if (user.profileCreated) {
-        if (user.role === USER_ROLES.employer) {
-          history.push(`/company/${user.uid}`);
+    // console.log(user.profileCreated);
+
+    // console.log(user);
+    signin(email, password)
+      .then((user) => {
+        if (user.profileCreated) {
+          if (user.role === USER_ROLES.employer) {
+            history.push(`/profile/${user.uid}`);
+          } else {
+            setError("Not a Company");
+          }
         } else {
-          setError("Not a Company");
+          setError("Please Create a profile");
+          history.push(`/profile/create`);
         }
-      } else {
-        history.push("/profile/create");
-      }
-    });
+      })
+      .then(console.log(user));
   };
 
   return (

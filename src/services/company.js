@@ -1,4 +1,5 @@
 import { database, storage } from "../libraries/firebase";
+import { updateData } from "../services/manipulateDB.service";
 
 export function createCompany(id, child, company) {
   return database
@@ -24,6 +25,9 @@ export const uploadImageUrl = (companyId, imageType, imageUrl) => {
     .child(`${imageType}`)
     .set(imageUrl);
 };
+
+//update profile image url function
+export const updateImageUrl = (id, data) => updateData("company", id, data);
 
 export function getImageUrl(image) {
   return storage.ref("images").child(image.name).getDownloadURL();
