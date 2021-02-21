@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import MONTHS from '../../constants/months';
+import YEARS from '../../constants/years';
+import WorkDatePicker from '../CvBuilderElements/WorkDatePicker/WorkDatePicker';
+import FormSelect from '../FormElements/FormSelect/FormSelect';
 
-import FormSelect from '../../FormElements/FormSelect/FormSelect';
-import WorkDatePicker from '../WorkDatePicker/WorkDatePicker';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { setJobField } from '../../../store/features/workExperienceFormData';
-import YEARS from '../../../constants/years';
-import MONTHS from '../../../constants/months';
-
-function StartDatePicker() {
+const CVDatePicker = ({
+  date,
+  setField,
+  dialogName,
+  ButtonName,
+  fieldName,
+}) => {
   const [startYear, setStartYear] = useState('year');
   const [startMonth, setStartMonth] = useState('month');
-
-  const { startDate } = useSelector((state) => state.workExperienceFormData);
-
   const dispatch = useDispatch();
 
   const handleStartMonthChange = (e) => {
@@ -31,16 +31,16 @@ function StartDatePicker() {
 
   const handleSubmit = () => {
     dispatch(
-      setJobField({ name: 'startDate', value: `${startMonth} / ${startYear}` }),
+      setField({ name: fieldName, value: `${startMonth} / ${startYear}` }),
     );
   };
 
   return (
     <WorkDatePicker
-      name={startDate === '' ? 'Start Date' : `${startMonth} / ${startYear}`}
+      name={date === '' ? ButtonName : `${startMonth} / ${startYear}`}
       cancelButtonClick={handleCancel}
       submitButtonClick={handleSubmit}
-      dialogName="Start Date"
+      dialogName={dialogName}
     >
       <FormSelect
         array={MONTHS}
@@ -49,7 +49,6 @@ function StartDatePicker() {
         disabledValue={'month'}
         onChange={handleStartMonthChange}
         label="months"
-        name="startMonth"
       />
       <FormSelect
         array={YEARS}
@@ -57,10 +56,9 @@ function StartDatePicker() {
         disabledValue={'year'}
         onChange={handleStartYearChange}
         label="year"
-        name="startYear"
       />
     </WorkDatePicker>
   );
-}
+};
 
-export default StartDatePicker;
+export default CVDatePicker;

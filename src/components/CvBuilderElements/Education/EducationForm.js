@@ -1,29 +1,25 @@
+import { Button } from '@material-ui/core';
 import React from 'react';
-import MultiLineFormField from '../../FormElements/MultiLineFormField/MultiLineFormField';
-import FormSelect from '../../FormElements/FormSelect/FormSelect';
-import WordExperienceDatePicker from '../WordExperienceDatePicker/WordExperienceDatePicker';
-import FormField from '../../FormElements/FormField/FormField';
-import Button from '@material-ui/core/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  clearFields,
-  setJobField,
-} from '../../../store/features/workExperienceFormData';
-import { addJobToList } from '../../../store/features/jobList';
-import { CITIESWITHOUTALL } from '../../../constants/armenianCities';
+import { clearFields, setField } from '../../../store/features/educationData';
+import { addSchoolToList } from '../../../store/features/schoolList';
 import CVForm from '../../CVForm/CVForm';
+import FormField from '../../FormElements/FormField/FormField';
+import MultiLineFormField from '../../FormElements/MultiLineFormField/MultiLineFormField';
+import EducationDatePicker from '../EducationDatePicker/EducationDatePicker';
 
-function JobForm({ activeForm, closeForm }) {
+const EducationForm = ({ activeForm, closeForm }) => {
+  const educationData = useSelector((state) => state.educationData);
+
   const dispatch = useDispatch();
-  const { workExperienceFormData } = useSelector((state) => state);
 
   const handleFieldChange = (e) => {
     const { name, value } = e.target;
-    dispatch(setJobField({ name, value }));
+    dispatch(setField({ name, value }));
   };
 
   const handleSaveButtonClick = () => {
-    dispatch(addJobToList(workExperienceFormData));
+    dispatch(addSchoolToList(educationData));
     dispatch(clearFields());
     closeForm();
   };
@@ -31,35 +27,29 @@ function JobForm({ activeForm, closeForm }) {
   const handleResetButtonClick = () => {
     dispatch(clearFields());
   };
+
   return (
     <CVForm activeForm={activeForm}>
       <FormField
-        label="Job Title"
-        name="jobTitle"
-        value={workExperienceFormData.jobTitle}
+        label="Degree"
+        name="degree"
+        value={educationData.degree}
         onChange={handleFieldChange}
       />
       <FormField
-        label="Company"
-        name="company"
-        value={workExperienceFormData.company}
+        label="School/University"
+        name="school"
+        value={educationData.school}
         onChange={handleFieldChange}
-      />
-      <FormSelect
-        array={CITIESWITHOUTALL}
-        value={workExperienceFormData.city}
-        onChange={handleFieldChange}
-        label="City"
-        name="city"
       />
 
-      <WordExperienceDatePicker />
+      <EducationDatePicker />
 
       <MultiLineFormField
         label="Description"
         name="description"
         maxLength={450}
-        value={workExperienceFormData.description}
+        value={educationData.description}
         onChange={handleFieldChange}
       />
 
@@ -91,6 +81,6 @@ function JobForm({ activeForm, closeForm }) {
       </div>
     </CVForm>
   );
-}
+};
 
-export default JobForm;
+export default EducationForm;

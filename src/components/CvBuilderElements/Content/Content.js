@@ -3,9 +3,16 @@ import { Accordion, AccordionSummary, Typography } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CvPersonalInfo from '../CvPersonalInfo/CvPersonalInfo';
 import WorkExperience from '../WorkExperience/WorkExperience';
+import Education from '../Education/Education';
+
+const activeBar = {
+  WorkExperience: 'WE',
+  personalInformation: 'PI',
+  education: 'EDU',
+};
 
 function Content() {
-  const [expanded, setExpanded] = useState('WE');
+  const [expanded, setExpanded] = useState(activeBar.education);
 
   const handleAccordionExpanded = (panel) => (e) => {
     if (
@@ -22,15 +29,21 @@ function Content() {
     <div>
       <form>
         <Accordion
-          onClick={handleAccordionExpanded('PI')}
-          expanded={expanded === 'PI'}
+          onClick={handleAccordionExpanded(activeBar.personalInformation)}
+          expanded={expanded === activeBar.personalInformation}
         >
           <AccordionSummary
             className="accordion"
             expandIcon={<ExpandMoreIcon style={{ cursor: 'default' }} />}
             aria-controls="personal information"
           >
-            <Typography color={expanded === 'PI' ? 'primary' : 'textSecondary'}>
+            <Typography
+              color={
+                expanded === activeBar.personalInformation
+                  ? 'primary'
+                  : 'textSecondary'
+              }
+            >
               Personal Information
             </Typography>
           </AccordionSummary>
@@ -38,30 +51,45 @@ function Content() {
         </Accordion>
 
         <Accordion
-          onClick={handleAccordionExpanded('WE')}
-          expanded={expanded === 'WE'}
+          onClick={handleAccordionExpanded(activeBar.WorkExperience)}
+          expanded={expanded === activeBar.WorkExperience}
         >
           <AccordionSummary
             className="accordion"
             expandIcon={<ExpandMoreIcon style={{ cursor: 'default' }} />}
             aria-controls="work experience"
           >
-            <Typography color={expanded === 'WE' ? 'primary' : 'textSecondary'}>
+            <Typography
+              color={
+                expanded === activeBar.WorkExperience
+                  ? 'primary'
+                  : 'textSecondary'
+              }
+            >
               Work WorkExperience
             </Typography>
           </AccordionSummary>
           <WorkExperience />
         </Accordion>
 
-        <Accordion>
+        <Accordion
+          onClick={handleAccordionExpanded(activeBar.education)}
+          expanded={expanded === activeBar.education}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon style={{ cursor: 'default' }} />}
-            aria-controls="panel3a-content"
+            aria-controls="education"
+            className="accordion"
           >
-            <Typography color={expanded === 'PI' ? 'primary' : 'textSecondary'}>
-              Disabled Accordion
+            <Typography
+              color={
+                expanded === activeBar.education ? 'primary' : 'textSecondary'
+              }
+            >
+              Education and Certificates
             </Typography>
           </AccordionSummary>
+          <Education />
         </Accordion>
       </form>
     </div>

@@ -1,0 +1,19 @@
+.preview {
+  background: white;
+  height: 97%;
+  width: 600px;
+  box-sizing: border-box;
+  padding: 2rem 4rem;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  overflow-y: scroll;
+}
+
+.preview::-webkit-scrollbar {
+  width: 3px;
+}
+
+.preview::-webkit-scrollbar-thumb {
+  width: 3px;
+  background: rgba(0, 0, 0, 0.5);
+}

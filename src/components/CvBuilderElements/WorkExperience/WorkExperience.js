@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import JobForm from '../JobFom/JobForm';
 import JobList from '../JobList/JobList';
+import AccordionPanel from '../AccordionDetails/AccordionDetails';
 
 const WorkExperience = () => {
   const [activeForm, setActiveForm] = useState(true);
@@ -18,15 +18,7 @@ const WorkExperience = () => {
   };
 
   return (
-    <AccordionDetails
-      style={{
-        width: '90%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        minHeight: '300px',
-      }}
-    >
+    <AccordionPanel>
       <JobList />
       <JobForm activeForm={activeForm} closeForm={closeActiveForm} />
 
@@ -34,7 +26,7 @@ const WorkExperience = () => {
         style={{
           width: '100%',
           margin: '1rem',
-          display: 'flex',
+          display: !activeForm ? 'flex' : 'none',
           justifyContent: 'center',
         }}
       >
@@ -47,7 +39,7 @@ const WorkExperience = () => {
           <AddIcon />
         </Fab>
       </div>
-    </AccordionDetails>
+    </AccordionPanel>
   );
 };
 

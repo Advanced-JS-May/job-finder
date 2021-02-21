@@ -37,3 +37,10 @@
 .board::-webkit-scrollbar {
   display: none;
 }
+
+@media print {
+  .list,
+  .board {
+    display: none;
+  }
+}

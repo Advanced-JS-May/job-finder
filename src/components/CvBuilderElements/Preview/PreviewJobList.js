@@ -22,7 +22,8 @@ const PreviewJobList = () => {
               key={job.id}
               style={{
                 display: 'flex',
-                flexWrap: 'wrap',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
                 width: '100%',
                 padding: 0,
               }}
@@ -76,6 +77,7 @@ const PreviewJobList = () => {
                     variant="body2"
                     component="p"
                     color="textSecondary"
+                    style={{ fontStyle: 'italic' }}
                   >
                     {job.description}
                   </Typography>
@@ -86,6 +88,7 @@ const PreviewJobList = () => {
                     background: 'grey',
                     height: '1px',
                     margin: '10px 0',
+                    width: '100%',
                   }}
                 />
               </div>

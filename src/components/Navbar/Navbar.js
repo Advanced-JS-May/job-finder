@@ -13,6 +13,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { USER_ROLES } from '../../constants/user.constants';
 
+import './navbar.css';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -56,7 +58,7 @@ export default function MenuAppBar() {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={`${classes.root} navbar`}>
       <AppBar position="static">
         <Toolbar className={classes.bar}>
           <div className={classes.links}>
