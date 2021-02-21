@@ -16,6 +16,6 @@
 	height: 100%;
 }
 .AllPageContainer, .containerCompaniesMini {
-	height: 70vh;
+	height: auto;
 	background: url('https://www.toptal.com/designers/subtlepatterns/patterns/y-so-serious-white.png');
 }
