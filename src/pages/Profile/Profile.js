@@ -17,7 +17,7 @@ import ProfileHeader from "../../components/Company/ProfileHeader/ProfileHeader"
 import ProfileContactCard from "../../components/Company/ProfileContactCard/ProfileContactCard";
 import ProfileDescriptionCard from "../../components/Company/ProfileDescriptionCard/ProfileDescriptionCard";
 import ProfileBusinessCard from "../../components/Company/ProfileBusinessCard/ProfileBusinessCard";
-
+import ProfileJobsTab from "../../components/Company/ProfileJobsTab/ProfileJobsTab";
 //Services
 import { USER_ROLES } from "../../constants/user.constants";
 import { useAuth } from "../../services/authentication";
@@ -126,6 +126,7 @@ export default function Profile() {
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
         <div>
+          <ProfileJobsTab />
           <Fab>
             <Link to="/profile/addJob">
               <AddBoxIcon />

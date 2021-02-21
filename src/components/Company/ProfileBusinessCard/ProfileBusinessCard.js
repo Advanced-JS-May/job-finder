@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     textAlign: "baseline",
     // padding: "15px",
-    border: "3px bold green",
+    // border: "3px bold green",
   },
 
   edit: {
