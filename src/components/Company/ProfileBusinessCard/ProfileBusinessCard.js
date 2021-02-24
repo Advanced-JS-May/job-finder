@@ -14,21 +14,18 @@ import GavelIcon from "@material-ui/icons/Gavel";
 import FolderSpecialIcon from "@material-ui/icons/FolderSpecial";
 
 const useStyles = makeStyles({
-  card: {
+  root: {
     boxShadow: "10px  8px 10px #888888",
     border: "1px solid #808080 ",
+    width: "800px",
+    height: "60px",
   },
-  root: {
-    width: "765px",
-    height: "30px",
-    display: "flex",
-  },
+
   element: {
     display: "flex",
     alignItems: "center",
     textAlign: "baseline",
-    // padding: "15px",
-    // border: "3px bold green",
+    padding: "5px",
   },
 
   edit: {
@@ -47,8 +44,13 @@ export default function ProfileBusinessCard({
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
-      <CardContent className={classes.root}>
+    <Card className={classes.root}>
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+        alignItems="center"
+      >
         <div className={classes.element}>
           <Button className={classes.edit}>
             <Link to="/profile/profileBusinessCard/edit">
@@ -56,34 +58,28 @@ export default function ProfileBusinessCard({
             </Link>
           </Button>
         </div>
-        <Grid
-          container
-          direction="row"
-          justify="space-between"
-          alignItems="center"
-        >
-          <div className={classes.element}>
-            <FolderSpecialIcon />
-            Field:
-            <p>{field}</p>
-          </div>
-          <div className={classes.element}>
-            <DateRangeIcon />
-            Establishment:
-            <p>{establishment}</p>
-          </div>
-          <div className={classes.element}>
-            <SupervisorAccountIcon />
-            Employees:
-            <p>{employee}</p>
-          </div>
-          <div className={classes.element}>
-            <GavelIcon />
-            TaxID:
-            <p>{taxId}</p>
-          </div>
-        </Grid>
-      </CardContent>
+        <div className={classes.element}>
+          <FolderSpecialIcon />
+          Field:
+          <p>{field}</p>
+        </div>
+        <div className={classes.element}>
+          <DateRangeIcon />
+          Establishment:
+          <p>{establishment}</p>
+        </div>
+        <div className={classes.element}>
+          <SupervisorAccountIcon />
+          Employees:
+          <p>{employee}</p>
+        </div>
+        <div className={classes.element}>
+          <GavelIcon />
+          TaxID:
+          <p>{taxId}</p>
+          <br></br>
+        </div>
+      </Grid>
     </Card>
   );
 }
