@@ -7,7 +7,6 @@ import Grid from "@material-ui/core/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import AddBoxIcon from "@material-ui/icons/AddBox";
 import Fab from "@material-ui/core/Fab";
 import Paper from "@material-ui/core/Paper";
 
@@ -18,6 +17,7 @@ import ProfileContactCard from "../../components/Company/ProfileContactCard/Prof
 import ProfileDescriptionCard from "../../components/Company/ProfileDescriptionCard/ProfileDescriptionCard";
 import ProfileBusinessCard from "../../components/Company/ProfileBusinessCard/ProfileBusinessCard";
 import ProfileJobsTab from "../../components/Company/ProfileJobsTab/ProfileJobsTab";
+
 //Services
 import { USER_ROLES } from "../../constants/user.constants";
 import { useAuth } from "../../services/authentication";
@@ -127,11 +127,6 @@ export default function Profile() {
       <TabPanel value={value} index={1} dir={theme.direction}>
         <div>
           <ProfileJobsTab />
-          <Fab>
-            <Link to="/profile/addJob">
-              <AddBoxIcon />
-            </Link>
-          </Fab>
         </div>
       </TabPanel>
     </div>
