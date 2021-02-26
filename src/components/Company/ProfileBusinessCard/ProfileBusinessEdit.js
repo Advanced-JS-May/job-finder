@@ -18,6 +18,7 @@ import DateRangeIcon from "@material-ui/icons/DateRange";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import GavelIcon from "@material-ui/icons/Gavel";
 import Button from "@material-ui/core/Button";
+import FolderSpecialIcon from "@material-ui/icons/FolderSpecial";
 
 const useStyles = makeStyles({
   root: {
@@ -33,6 +34,7 @@ const useStyles = makeStyles({
 });
 
 export default function ProfileBusinessInfoEdit({
+  field,
   employee,
   establishment,
   taxId,
@@ -47,6 +49,7 @@ export default function ProfileBusinessInfoEdit({
       cardContent={
         <Formik
           initialValues={{
+            field: "",
             employee: "",
             taxId: "",
             establishment: "",
@@ -58,6 +61,23 @@ export default function ProfileBusinessInfoEdit({
         >
           {(props) => (
             <form onSubmit={props.handleSubmit} className={classes.root}>
+              <div>
+                <FolderSpecialIcon />
+                Field:
+                <TextField
+                  label={field}
+                  id="outlined-basic"
+                  type="text"
+                  variant="outlined"
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.name}
+                  name="field"
+                />
+                {props.errors.name && (
+                  <div id="feedback">{props.errors.name}</div>
+                )}
+              </div>
               <div>
                 <DateRangeIcon />
                 Establishment:
