@@ -14,6 +14,10 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { uniqueId } from "lodash";
 
+// components
+import ProfileCardEdit from "../ProfileCardEdit/ProfileCardEdit";
+import Profile from "../../../pages/Profile/Profile";
+
 const useStyles = makeStyles({
   root: {
     width: "500px",
@@ -32,26 +36,25 @@ export default function ProfileDescriptionEdit() {
   const { user } = useAuth();
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
+    <ProfileCardEdit
+      cardContent={
         <Formik
           initialValues={{
             position: "",
-            responsabilities:"",
-            requirements:"",
-            salary:"",
-            deadline:"",
-            jobId:uniqueId(),
-            companyId:`${user.uid}`
+            responsabilities: "",
+            requirements: "",
+            salary: "",
+            deadline: "",
+            jobId: uniqueId(),
+            companyId: `${user.uid}`,
           }}
-
           onSubmit={(values) => {
             createJob(values);
           }}
         >
           {(props) => (
             <form onSubmit={props.handleSubmit} className={classes.root}>
-                <h1>Post a job</h1>
+              <h1>Post a job</h1>
               <div>
                 {/* <LocationCityIcon /> */}
                 Position:
@@ -151,7 +154,8 @@ export default function ProfileDescriptionEdit() {
             </form>
           )}
         </Formik>
-      </CardContent>
-    </Card>
+      }
+      page={<Profile />}
+    />
   );
 }

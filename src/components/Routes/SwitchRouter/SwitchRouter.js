@@ -14,7 +14,7 @@ import CreateProfile from "../../../pages/CreateProfile/CreateProfile";
 import AllCompanies from "../../../pages/AllCompanies/AllCompanies";
 import ProfileContactEdit from "../../../components/Company/ProfileContactCard/ProfileContactEdit";
 import ProfileDescriptionEdit from "../../Company/ProfileDescriptionCard/ProfileDescriptionEdit";
-import CreateJob from "../../Company/CreateJob/CreateJob";
+import CreateJob from "../../Company/CreateJobCard/CreateJobForm";
 import CompaniesInfoShow from "../../../components/CompaniesInfoShow/CompaniesInfoShow";
 import ProfileBusinessEdit from "../../Company/ProfileBusinessCard/ProfileBusinessEdit";
 import JobsInfoShow from "../../../components/JobsInfoShow/JobsInfoShow";
