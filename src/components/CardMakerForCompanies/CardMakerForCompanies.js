@@ -31,14 +31,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   pagin: {
-<<<<<<< HEAD
     display: 'flex',
     justifyContent: 'center',
     padding: '15px 0',
-=======
-    display: "flex",
-    justifyContent: "center",
->>>>>>> b3380fe93b4a04a18f46069ca7e1f25d12336eb5
   },
 }));
 let tmpComps = []; //forSaerch
@@ -121,12 +116,7 @@ export default function CardMakerForCompanies() {
 
   function Search() {
     tmpComps = constComps;
-<<<<<<< HEAD
     if (search === '' && fieldValue === 'All') {
-=======
-    console.log(search, 5);
-    if (search === "" && fieldValue === "All") {
->>>>>>> b3380fe93b4a04a18f46069ca7e1f25d12336eb5
       setCompanies(constComps);
       return true;
     } else if (fieldValue === "All") {
