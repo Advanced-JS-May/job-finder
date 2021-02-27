@@ -25,7 +25,7 @@ function SwitchRouter() {
   return (
     <main
       style={{
-        minHeight: "70vh",
+        minHeight: "auto",
       }}
     >
       <Switch>

@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
   pagin: {
     display: 'flex',
     justifyContent: 'center',
+    padding: '15px 0',
   },
 }));
 let tmpComps = []; //forSaerch
@@ -115,15 +116,14 @@ export default function CardMakerForCompanies() {
 
   function Search() {
     tmpComps = constComps;
-    console.log(search, 5);
     if (search === '' && fieldValue === 'All') {
       setCompanies(constComps);
       return true;
     } else if (fieldValue === 'All') {
       const filterComps = tmpComps.filter((e) => {
         if (
-          e.companyName &&
-          e.companyName.toLowerCase().includes(search.toLowerCase())
+          e.name &&
+          e.name.toLowerCase().includes(search.toLowerCase())
         ) {
           return true;
         } else {
@@ -159,7 +159,6 @@ export default function CardMakerForCompanies() {
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
-              console.log(search);
             }}
           />
           <Select

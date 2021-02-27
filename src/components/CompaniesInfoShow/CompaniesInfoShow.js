@@ -6,10 +6,12 @@ import {
   ProfilePicture,
   CoverImage,
 } from "../../components/ProfilePictureCover/ProfilePictureCover";
-import { useLocation } from "react-router-dom";
+import Fab from '@material-ui/core/Fab';
+import { useLocation,useHistory } from "react-router-dom";
 import { getCompanyById } from "../../services/company.js";
 import DetailInfoCompanies from "../DetailInfoCompanies/DetailInfoCompanies";
 import MiniCardJobs from "../MiniCardJobs/MiniCardJobs.js"
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles((theme) => ({
   paperCont: {
@@ -30,13 +32,25 @@ const useStyles = makeStyles((theme) => ({
   },
   MiniCardJobs: {
     margin: '0 25px',
-  }
+  },
+  root: {
+    paddingTop: '10px',
+    paddingLeft: '10px',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
 }));
 
 export default function CompaniesInfoShow() {
   const classes = useStyles();
   const location = useLocation();
   const [company, setCompany] = useState({});
+  let history = useHistory();
+
+  function goBack() {
+    history.push('/companies')
+  }
   useEffect(() => {
     getCompanyById(
       location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
@@ -46,6 +60,12 @@ export default function CompaniesInfoShow() {
   });
   return (
     <div className="AllPageContainer">
+      <div className={classes.root}>
+        <Fab color="primary" aria-label="add" onClick={goBack}>
+          <ArrowBackIcon />
+        </Fab>
+      </div>
+      
       <div className="containerCompaniesMini">
         <div className="mainContainerppp">
           <div className={classes.mainHeader}>
