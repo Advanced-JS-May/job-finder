@@ -19,14 +19,16 @@ import CreateJobCard from "../../../components/Company/CreateJobCard/CreateJobCa
 import usePagination from "../../../Utils/paginationHelper";
 
 const useStyles = makeStyles({
-  element: {
+  containter: {
+    padding: "25px",
+  },
+  elements: {
     display: "flex",
     flexDirection: "row",
   },
-  jobCards: {
+  pagination: {
+    marginTop: "25px",
     display: "flex",
-    flexDirection: "row",
-    padding: "35px",
   },
 });
 
@@ -44,16 +46,12 @@ export default function ProfileJobsTab({ profileJobs }) {
   }
 
   return (
-    <Grid container direction="column" justify="center" alignItems="flex-start">
-      <div className={classes.jobCards}>
-        <div className={classes.element}>
-          <ProfileJobsCardMaker profileJobs={data.currentData()} />
-        </div>
-        <div className={classes.element}>
-          <CreateJobCard />
-        </div>
+    <div className={classes.containter}>
+      <div className={classes.elements}>
+        <ProfileJobsCardMaker profileJobs={data.currentData()} />
+        <CreateJobCard />
       </div>
-      <div className={classes.element}>
+      <div className={classes.pagination}>
         <Pagination
           count={count}
           size="large"
@@ -63,6 +61,6 @@ export default function ProfileJobsTab({ profileJobs }) {
           onChange={handlePageChange}
         />
       </div>
-    </Grid>
+    </div>
   );
 }
