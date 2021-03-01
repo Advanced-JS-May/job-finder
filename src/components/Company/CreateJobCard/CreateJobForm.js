@@ -45,7 +45,7 @@ export default function ProfileDescriptionEdit() {
             requirements: "",
             salary: "",
             deadline: "",
-            jobId: uniqueId(),
+            jobId: uniqueId(user.uid),
             companyId: `${user.uid}`,
           }}
           onSubmit={(values) => {

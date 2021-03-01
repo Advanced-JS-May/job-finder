@@ -7,6 +7,13 @@ export function createData(path, data, uid) {
     .set(data);
 }
 
+export function createChildData(path, id, child, data) {
+  return database
+    .ref(path + id)
+    .child(child)
+    .set(data);
+}
+
 export function getData(path, id) {
   return database
     .ref(path + id)

@@ -115,7 +115,7 @@ export default function CardMakerForCompanies() {
 
   function Search() {
     tmpComps = constComps;
-    console.log(search, 5);
+    // console.log(search, 5);
     if (search === "" && fieldValue === "All") {
       setCompanies(constComps);
       return true;

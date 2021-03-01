@@ -16,6 +16,8 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    boxShadow: "10px  8px 10px #888888",
+    border: "1px solid #808080 ",
   },
 });
 

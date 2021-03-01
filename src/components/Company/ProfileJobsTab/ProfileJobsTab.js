@@ -11,36 +11,32 @@ import Fab from "@material-ui/core/Fab";
 //components
 import CreateJob from "../CreateJobCard/CreateJobForm";
 import MiniCardJobs from "../../MiniCardJobs/MiniCardJobs";
+import ProfileJobsCardMaker from "./ProfileJobsCardMaker";
 import CreateJobCard from "../../../components/Company/CreateJobCard/CreateJobCard";
 
 const useStyles = makeStyles({
   element: {
     display: "flex",
     flexDirection: "row",
-    padding: "35px",
   },
-  card: {
-    // boxShadow: "10px  8px 10px #888888",
-    // border: "1px solid #808080 ",
+  jobCards: {
+    display: "flex",
+    flexDirection: "row",
+    padding: "35px",
   },
 });
 
-export default function ProfileJobsTab() {
+export default function ProfileJobsTab({ profileJobs }) {
   const classes = useStyles();
+  console.log(profileJobs);
 
   return (
     <Grid container direction="column" justify="center" alignItems="flex-start">
-      <div className={classes.element}>
-        <div className={classes.card}>
-          <MiniCardJobs />
+      <div className={classes.jobCards}>
+        <div className={classes.element}>
+          <ProfileJobsCardMaker profileJobs={profileJobs} />
         </div>
-        <div className={classes.card}>
-          <MiniCardJobs />
-        </div>
-        <div className={classes.card}>
-          <MiniCardJobs />
-        </div>
-        <div>
+        <div className={classes.element}>
           <CreateJobCard />
         </div>
       </div>

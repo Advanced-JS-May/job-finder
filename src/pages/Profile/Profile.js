@@ -23,6 +23,7 @@ import { USER_ROLES } from "../../constants/user.constants";
 import { useAuth } from "../../services/authentication";
 import { getCompanyById } from "../../services/company.service";
 import { getJobSeeker } from "../../services/JobSeeker.service";
+import { getAllJobs } from "../../services/getAllJobs";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,6 +48,7 @@ export default function Profile() {
 
   const [value, setValue] = React.useState(0);
   const [profile, setProfile] = useState({});
+  const [profileJobs, setProfileJobs] = useState([""]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -63,6 +65,18 @@ export default function Profile() {
         setProfile(profile);
       });
     }
+  }, [user.uid]);
+
+  useEffect(() => {
+    getAllJobs().then((jobs) => {
+      const jobsArray = Object.values(jobs);
+      const profleJobsArray = jobsArray.filter((job) => {
+        if (job.companyId === user.uid) {
+          return true;
+        }
+      });
+      setProfileJobs(profleJobsArray);
+    });
   }, [user.uid]);
 
   return (
@@ -126,7 +140,7 @@ export default function Profile() {
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
         <div>
-          <ProfileJobsTab />
+          <ProfileJobsTab profileJobs={profileJobs} />
         </div>
       </TabPanel>
     </div>
