@@ -1,0 +1,226 @@
+[33m0534eee[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m)[m ci:green_heart:(ProfileJobsTab)-m1)created function for getting info on jobs from Db 2)created separate components for every job related to the profile 3)now ProfileJobs tab recieves info and drows individual job cards
+[33m281ec55[m ♻ refactor (ProfileBusinessCard) : added "field" to the card form
+[33mb3380fe[m[33m ([m[1;31morigin/dev[m[33m)[m :art: UI(ProfileJobsTab): started working on ProfileJobsTab -m
+[33mf4d0ec7[m 🎨UI (ProfileBusinessCard) : changed UI
+[33m3af357b[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33ma672035[m 🎨ui (ProfileBusinessCard) : minor changes to the UI
+[33m6222d75[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m2660fba[m 💚 ci(AllCompanies): fixed some bugs & css
+[33m8ce7390[m :art: (Profile) : small changes to the Profile page's UI
+[33m24caed2[m :recycle: (ProfileBusinessCard) : added "Field" to the ProfileBusinessCard
+[33m4438a95[m 💚 ci (FormRow) : created FormRow as UI tool in order to integrate it to the form (yet testing it )
+[33m0b6a761[m 🎨ui(ProfileCardEdit) : simple minor changements to the UI
+[33m0437579[m 🎨ui(ProfileCardEdit):created Generic edit card with static position and backgorund blur css properties , than added thath component to the all editCards
+[33mf1e934e[m 🎨 UI (ProfileContactEdit ProfileDescriptionEdit) : created new UI with blured backgrounds for EditCards
+[33m96082e8[m 🎨 UI (ProfileBusinessCard ProfileDescriptionCard ProfileContactCard) : made several changes to profile main pages , mistly changed the appearance of the cards.
+[33m47324fd[m 💚 ci (ProfileSocialMediaCard) : created separate component for profiles social media pages with realted links to them
+[33m684ef20[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33mf603c82[m 💚ci(CreateeProfile): added company id to the profile form while creating the profile
+[33m3c1c5c1[m :bug:  fix(sign in): correct routing problem
+[33m3abe6d9[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m3973f4b[m :bug: (CompanyMiniInfo) : made the name of the folder Uppercase ))
+[33m17b0b55[m Merge branch 'dev' of github.com:Advanced-JS-May/job-finder into dev
+[33m8f9d0ab[m 🐛 fix(createProfile): add following list
+[33m45824cb[m 🐛 fix(auth): fix signin user issue
+[33mc29df58[m 🎨 ui (Profile page) : finished the profile page main grid
+[33m743f005[m 🐛 fix(google sign in): fix google sign in issue
+[33m36cc4b6[m 🐛 fix(cardMaker): fix import issue
+[33mc3c09da[m 💚 ci (Profile) : created generic function for getting either Jobseeker or Company and rendering it into Profile page
+[33m2e5e7c8[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m8974fcf[m Merge branch 'dev' of github.com:Advanced-JS-May/job-finder into dev
+[33mf0d6336[m 🎨 ui (Profile page):rearanged profile page and its related components , changed their UI gained better look ))
+[33me93f4fa[m 💚 ci(AllCompanies): Detail Info changed
+[33m58aab8a[m ♻️ refactor (updateProfileInfo service ):created service for information update of every component in db .Than that service was implemented in all the main components in profile page
+[33m23bd5ec[m 💚 ci (ProfileContactEdit): changed profile put method .now information is updated via using firebase . update()
+[33m26463d1[m merge conflict
+[33mfb250dc[m merge conflict
+[33m5112aa7[m 💚ci (Company/company):changed several points in company page & service
+[33m1bab26a[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m4f3d611[m merge conflict
+[33m09112ec[m ♻️ refactor (Company page):changed props names on the Company page => know all de inforamtion comes form CreateProfile form
+[33m60334ab[m 🐛fix(company.validation): fixed the bug with company profile creation , it appeard thath company validation service is missing so added company validation into the services
+[33maa85f72[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m5b6524f[m 💚 ci (Company/Jobseeker) : worked on company service and changed getting method also created separate JobSeeker page for jobseekers
+[33mb56c335[m 🐛 fix (FormCompanyContactSection/FormCompanyDataSection) : fixed some bugs with form for creating companys profile
+[33md571e6e[m 💚 ci (CompanyDataSection/CompanyContactSection): continued configuration of company creation page
+[33m1305337[m 💚 ci (EmployerRegister) : Created one unified generic route for user creation (borth job seeker and company)
+[33m57a1d8a[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m5198547[m 💚ci(jobPage): updated
+[33m7a2e2ef[m 🐛(job): updated
+[33mddfbee4[m 🎨style(formatter): solve indent problem
+[33mfaf185c[m 💚ci(job-seeker): add following field
+[33mbc7ec19[m 💚ci(auth): unify two components
+[33m6578228[m 🐛ci(cardMaker): fix import bug
+[33mfdd87a2[m 🐛 fix(AllCompanies) added some comments
+[33mb5d4f72[m 💚 ci (AllCompanies) : pagination
+[33m9230d47[m 🎨 ui (Company page) : did some small work on Company pages snapshot parts UI ,
+[33m0905eec[m ⚡perf (page Company ) : ProfileBusinessCard is now editable and psots and gets data from db
+[33m1d59e1e[m 👷‍♂️(SwtichRouter) : added ProfileBusinessInfoEdit to the router
+[33maa64389[m 💚ci (ProfileBusinessInfoEdit) : created edit form for ProfileBusiness Info
+[33mbcd9909[m 💚 ci (ProfileBusinessInfo) : created/updated Profile business info component
+[33mf9a4cb5[m 🐛 fix(AllCompanies): Fixed bug with button(after redirect search)
+[33m69f0263[m 💚 ci(AllCompanies): New UI for detailed info
+[33mcbcb0fc[m 🐛 fixed(Companies): fixed name in import
+[33m8c24399[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33mc4c5d3f[m ♻ refactor (CompaniesInfoShow) : changed import names into appropriate ones
+[33m27d92a8[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m06b9128[m 🐛fix (favorites): add tools
+[33mbd62fae[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m4c58ff4[m 🐛 fix(AllCompanies)many warnings/seting field is working
+[33m6ccd814[m 🐛fix (jobs): fixed
+[33mfe04890[m 🐛fix (favorites): favorites fixed
+[33meb03081[m ⚡️ perf(CreateJob) : added companyId to createJob so created jobs have their creators id on them
+[33m4783c14[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m478f4ac[m 💚ci(favorites): add favorites
+[33mf140953[m 💚 ci(companies): Updated Ui in detail info
+[33m1913ebc[m 💚 ci (CreateJob): CreateJob components is now fully operational and is working with the use of formik
+[33m7a3cebd[m 🐛 fix(AllCompanies) fixed some bugs
+[33ma4ff34b[m 💚 ci (CreateJob): updated component for job vacancy creating
+[33m1ac4471[m 💚 ci(Banner): added fast search
+[33m5cd9892[m 💚 ci(Banner): added fast search
+[33m8454741[m ⚡️ perf (ProfileContactEdit/ProfileDescriptionEdit) :added links to the edit forms , now after subbmiting user comes back to the profile
+[33m26371e0[m 💚 ci (ProfileDescriptionEdit) : finilezed profiles description edït components and related serviece (createcompany)
+[33m8a4a1c7[m ⚡️ perf(ProfileContactEdit/company services) : changed profile contact inf edit with using formik also created child() object on companies , now contacts are esparated from main data
+[33mc6dc8bd[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m265cdb3[m 💚 ci (ProfileDescriptionCard) : started creating simple card components
+[33ma8a0b50[m 🐛fix(registration): fixed bugs and styles
+[33m0902f18[m 💚 ci (ProfileContactEdit) : created separate JSX components/form for editing profile contact info
+[33m1b8cd4f[m 💚 ci (ProfileContactInfo) : created separate JSX component for profile contact inforamtion rendering
+[33m7e3b727[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m16d06fb[m 💚ci(EditProfileCard/ProdileContactCad) : chaneged ProfileContactCard.now it is editable
+[33m058252f[m 💚 ci(Home): New UI!
+[33mfc855ce[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33mf6a652a[m 💚 ci(Home): New Ui!
+[33m5e65908[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m4453151[m  🐛fix(JobCard): add follow button
+[33m5abc7ee[m  🐛fix(SignIn) : changed simpleTabs
+[33me9ee99b[m 🎨 ui (Company(page)) : made several rearangements to Company pages UI
+[33m12319cb[m 💚 ci (ProfileConctactCard): created card component for profile contact information
+[33mfc82ce5[m Merge branch 'dev' of github.com:Advanced-JS-May/job-finder into dev
+[33m98eaaf7[m ci(E-verification): change emailVerification
+[33m5b21459[m  🐛 fix (SwitchRouter) : fixed SignIn name in imports
+[33mcfd0ef5[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m7aa308e[m ⚡️ perf(CompanInfo) : get rid og useParams() now i get id from useAuth()
+[33m80f48fc[m 💚 ci(CardMakerForCompanies) make more components and solved all bugs
+[33m616f724[m ⚡️ perf(id) :changed id getting approach know id is comming from useAuth insted of useParams() this fixes problem with routes
+[33m2da5a24[m 🎨 style (ProfileHeader) : worked on profiles headers UI
+[33mf2af1bc[m 🐛fix(services/company/uploadImageUrl) : fiexed bug with image url upload /function is uploading related image links
+[33m2086982[m 💚 ci (services/company/imageupload) : working on functions to upload sover phota and profile picture to firebase DB /working on generic one
+[33meff6c8a[m 🐛fix (ImageUpload) : fiexed bug with 3 clicks of image upload
+[33mf27e86a[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m535aaf0[m ⚡perf (ImageUpload) : rearanged ImageUpload component
+[33mee15256[m ⚡️ perf(routes) : added url to the signin process
+[33m4d70de9[m 🐛fix(employerRegister): add submit function
+[33mf93d891[m 💚ci(facebook auth): fix redirect function
+[33m245b9fa[m ci(google Button): fix multiple users in db
+[33m04d0adf[m ci(create profile): add profileCreated field to db
+[33mf45f1a5[m ci(emailVerfication): fix double reload bug
+[33m9989ed5[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m2f0a53c[m 💚 ci (imports) : removed some uneccessary imports
+[33m0181f41[m Merge branch 'dev' of github.com:Advanced-JS-May/job-finder into dev
+[33m84edf00[m ⚡perf(fetch) : upgraded
+[33mc04f102[m ⚡perf(Tabs) : upgraded
+[33m593ea5e[m 🐛 fix(PaginationControled) : fix
+[33m7d40dac[m 💚 CI (ImageUpload/Avatar) : created several Avatars,changed ImageUplaod Component
+[33m75eaa85[m 🐛(SwitchRouter): last fisx was accidently wrong change  the name of the path
+[33medc3c82[m 🐛(SwitchRouter) : fixed bug with route to company/id
+[33m441e471[m 💚 ci (SwithcRouter): made several temporary changes before fixing a bug with  team
+[33mab6e506[m ci(register): change style
+[33m796fbf9[m Merge branch 'dev' of github.com:Advanced-JS-May/job-finder into dev
+[33mb476234[m ci(jobSeeker profile): add jobSeeker create page
+[33m58cf1b1[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m89aed1f[m 💚 ci(AllCompanies): getting all info & showing
+[33ma83c903[m 💚 ci(Pagination) : @material-ui/lab
+[33mc47accb[m 💚 ci(Jobs) : add pagination
+[33md429386[m 💚 ci(Pagination) : create pagination
+[33m6e472db[m fix(env): fixed conflict
+[33m2a7db48[m Merge branch 'dev' of github.com:Advanced-JS-May/job-finder into dev
+[33mce565e4[m 💚 ci(companies)getting and showing
+[33m612372b[m 💚 ci(companies) getting all companies and showing
+[33m42a772d[m 💚 ci (SwitchTouter/Navbar)  :created separate route for CompanyInfo
+[33m6d72e35[m 💚 ci (ImageUpload) : changed function of posting image url to DB
+[33m347ed82[m 💚 ci (ImageUpload) : added function for getting the link to the uploaded image
+[33m1fd2bd9[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m1615cc3[m 💚ci(JobTimeline) : render Jobs
+[33m4777ac9[m 💚 ci (Company) : finilized company ,ready to push ))
+[33m5f6a961[m 💚ci(JobTimeline) : render Jobs
+[33m93a86c3[m 💚 ci (CompanyInfo) : created image uploading function for uploading stuff to firebase DB
+[33m57ad301[m 💚 ci (firebase) : added storage to firebase library in order to be able to use uploading /dowloading of images
+[33m1d3d966[m 💚 ci (Company) : added basic information about Company by getting it fro firease DB
+[33m1a9388d[m 💚 ci (Company): created basic UI for Company page/working on improovements
+[33m76ffa75[m 💚 ci (createJob) : created Job announcement creating component/ several changes in architecture
+[33mffec332[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33mf5407e5[m  💚 ci (solved some bugs and made company page)
+[33m9212e40[m 💚ci(profile): add form for creating profiles
+[33m275f9a6[m 💚 ci (SwitchRouter) : added Company to the Routes
+[33m634718f[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33mb5c7e3c[m 💚 ci (Company) : Completed a function for geting info on company from Firebase
+[33m6c9fa2f[m commit
+[33m152ab55[m commit
+[33m0fcf398[m 💚ci(job seeker) : add profile create form
+[33m3cc5e5f[m build(npm) : add react-input-mask
+[33mf31c355[m ⚡perf(Tabs) : create universal tabs
+[33m5f88c9f[m ⚡perf(svg buttons) : add Button for icons
+[33ma21e653[m ⚡perf(Router) : solve protected Route issue
+[33m647fd49[m ⚡perf(authentication) : em-verification changed
+[33mf403ef7[m ⚡perf(Tabs) : move hard-coded attr to props
+[33m6a93060[m ⚡perf(Routes) : remove unnecessary components
+[33ma6c9631[m ⚡perf(Banner) change name to Banner
+[33mabf4086[m 🐛 fix(Router) :  make PrivateRoutes accessable
+[33ma29aa24[m ⚡perf(routes) : add switchRouter to App
+[33mc4d41fe[m ⚡perf(Router) ; split private and public routes
+[33m90c10a1[m 💚ci(Routes) : add private route component
+[33m3ba8acc[m 💚ci(Tabs) : split Tabs into smaller components
+[33m2cd242b[m 💚  ci(Sign in) : Authentication Moodified
+[33mae4364b[m 💚 ci(Home Page) Made Home page & addet to routes
+[33m883dd46[m 💚 ci(Home page)
+[33m5efce77[m Merge branch 'dev' of https://github.com/Advanced-JS-May/job-finder into dev
+[33m9b8ef13[m 💚 ci(CompnayInfo) : added userId to CompayInfo Post method
+[33m92ed7c8[m git add .
+[33mb1c34d0[m 🐛 fix(App) : resolve conflict
+[33m4fa5fd1[m changed
+[33m9661acd[m   �� ci(CompanyInfo): created companyInfo form /firebase DB/firebase DB POST fetches
+[33me45ecd7[m 💚 ci(register) : add submit function to form instead of submit button
+[33mb6f6324[m 💚 ci(navigation) : add navbar
+[33m1dcd98a[m Merge branch 'master' of https://github.com/Advanced-JS-May/job-finder into master
+[33m842a9ff[m firebase new config
+[33md40b8dd[m 💚 ci(register) : integrate formik with register
+[33m2dc17b4[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m 👷‍♂️ build(npm) : add formik
+[33m43e79a2[m 🎨 style(core): solve indent problem
+[33m5fd2b7c[m 🎨 style(indent) : resolved indent issue #7
+[33m71fda8a[m 🎨 style(register) : fix vague naming
+[33mdb80bae[m 🐛 fix(constants) : fix path for user.constants
+[33m64ad8e9[m 🐛 fix(components) separate icons and buttons in different folders
+[33m7396244[m 🐛 fix(constants) : resolved issue with role constant #3
+[33m471782d[m 🐛 fix(service) : resolved issue #2
+[33ma461c98[m ✨ feat(social accouts) add sign in/up to register
+[33me56ae7b[m ⚡️ perf(routes) delete unnecessary routes
+[33mccb0732[m ⚡️ perf(paths) remove unused code from employee sing in
+[33m9596703[m ♻ refactor (social accounts) change roles
+[33mc455b81[m 💚ci(signin) add Sign in page and authentication service
+[33mc94cc2b[m 💚ci(signin) add Employee Sign in
+[33m3a6e14e[m 💚ci(signin) add Company sign in
+[33m4e8fe04[m 💚ci(signin) add Facebook Sign In
+[33m8c4d81b[m 💚ci(SignIn) add Google Sign In
+[33m1718480[m 💚ci(jobseeker) add email verification for job seeker
+[33m362806f[m 💚ci(register) add employer email verification
+[33me0d34d7[m 💚ci(Tabs) add tabs component for sign up
+[33m7e32c05[m 💚ci(employerSignup) add user to db
+[33md8f9648[m Merge branch 'master' of https://github.com/Advanced-JS-May/job-finder
+[33mf6178c9[m 💚 ci(EmployerRegistration) email authentication
+[33m64306fb[m 💚 ci(EmployerRegister) added authentication
+[33m04ed057[m Merge branch 'master' of https://github.com/Advanced-JS-May/job-finder
+[33m10dc55b[m 👷build(authentication) add auth service
+[33m4ac8447[m change heading Employer Sign up
+[33mff7b794[m created employer signup static page
+[33m64a147c[m added Material Ui icons
+[33m03c5adb[m added eviroment for signup
+[33mdb20764[m configured environment variables/tested npm
+[33mb501351[m installed lodash
+[33m96a5509[m installed material UI
+[33mdb53475[m installed react router dom
+[33m034f89b[m created Authentification Apps
+[33mdaa476a[m configured firebase
+[33m5f6a752[m installed firebase
+[33mf0ffefb[m created folder structure/environment variables
+[33ma361081[m Initialize project using Create React App
