@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 //UI
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -16,10 +16,19 @@ const useStyles = makeStyles({
 
 export default function ProfileJobsCardMaker({ profileJobs }) {
   const classes = useStyles();
+  const history = useHistory();
+
+  function handleGotoCurrentJob() {
+    history.push("/profile/jobs");
+  }
   return profileJobs.map((profileJob) => {
     return (
       <div>
-        <MiniCardJobs className={classes.card} jobName={profileJob.position} />
+        <MiniCardJobs
+          className={classes.card}
+          jobName={profileJob.position}
+          buttonFunc={handleGotoCurrentJob}
+        />
       </div>
     );
   });
