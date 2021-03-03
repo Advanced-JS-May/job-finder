@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, useHistory, useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
 //components
@@ -12,6 +13,9 @@ import Snackbar from "@material-ui/core/Snackbar";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
 import Grid from "@material-ui/core/Grid";
 import { Category } from "@material-ui/icons";
+
+//Services
+import { getJobById } from "../../services/jobs.service";
 
 const useStyles = makeStyles({
   minibar: {
@@ -29,18 +33,17 @@ const useStyles = makeStyles({
   },
 });
 
-export default function VacancyCard({
-  company,
-  category,
-  address,
-  deadline,
-  position,
-  responsabilites,
-  qualifications,
-  procedures,
-  additionalInfo,
-}) {
+export default function VacancyCard() {
   const classes = useStyles();
+  const params = useParams();
+  const jobId = params.id;
+  const [job, setJob] = useState("");
+
+  useEffect(() => {
+    getJobById(jobId).then((job) => {
+      setJob(job);
+    });
+  });
 
   return (
     <Card>
@@ -53,7 +56,7 @@ export default function VacancyCard({
         >
           <div className={classes.section}>
             <MuiAlert variant="filled" severity="info">
-              {position}
+              {job.position}
             </MuiAlert>
           </div>
           <div className={classes.section}>
@@ -66,25 +69,25 @@ export default function VacancyCard({
               <Card>
                 <SnackbarContent message="Company" />
                 <CardContent className={classes.minibar}>
-                  <p>{company}</p>
+                  <p>{job.company}</p>
                 </CardContent>
               </Card>
               <Card>
                 <SnackbarContent message="Category" />
-                <CardContent>
-                  <p>{category}</p>
+                <CardContent className={classes.minibar}>
+                  <p>{job.category}</p>
                 </CardContent>
               </Card>
               <Card>
                 <SnackbarContent message="Job Adress" />
-                <CardContent>
-                  <p>{address}</p>
+                <CardContent className={classes.minibar}>
+                  <p>{job.address}</p>
                 </CardContent>
               </Card>
               <Card>
                 <SnackbarContent message="Deadline" />
-                <CardContent>
-                  <p>{deadline}</p>
+                <CardContent className={classes.minibar}>
+                  <p>{job.deadline}</p>
                 </CardContent>
               </Card>
             </Grid>
@@ -96,7 +99,7 @@ export default function VacancyCard({
                 message="Responsabilities"
               />
               <CardContent>
-                <p>{responsabilites}</p>
+                <p>{job.responsabilites}</p>
               </CardContent>
             </Card>
           </div>
@@ -107,7 +110,7 @@ export default function VacancyCard({
                 message="Required qualifications"
               />
               <CardContent>
-                <p>{qualifications}</p>
+                <p>{job.qualifications}</p>
               </CardContent>
             </Card>
           </div>
@@ -118,7 +121,7 @@ export default function VacancyCard({
                 message="Application Procedures"
               />
               <CardContent>
-                <p>{procedures}</p>
+                <p>{job.procedures}</p>
               </CardContent>
             </Card>
           </div>
@@ -129,7 +132,7 @@ export default function VacancyCard({
                 message="AdditionalInfo"
               />
               <CardContent>
-                <p>{additionalInfo}</p>
+                <p>{job.additionalInfo}</p>
               </CardContent>
             </Card>
           </div>

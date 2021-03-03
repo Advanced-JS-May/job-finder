@@ -71,7 +71,7 @@ function SwitchRouter() {
         <Route path="/profile/addJob">
           <CreateJob />
         </Route>
-        <Route path="/profile/jobs">
+        <Route path="/profile/jobs/:id">
           <VacancyCard />
         </Route>
 
